@@ -1,6 +1,6 @@
 <?php
 require_once File::build_path(array("model", "ModelProduit.php"));
-require_once File::build_path(array("model", "Utility.php")); // chargement du modèle
+require_once File::build_path(array("lib", "Utility.php")); // chargement du modèle
 class ControllerProduit {
 
     protected static $object="produit";
@@ -27,6 +27,11 @@ class ControllerProduit {
     }
 
     public static function searchedDeepen() {
+        //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
+        $typesBien=arrayContain($_POST,"typeBien"); $nombreChambre=arrayContain($_POST,"nombreChambre"); 
+        $nombrePieces=arrayContain($_POST,"nombrePieces"); $typePiece=arrayContain($_POST,"typePiece");
+        $commodite=arrayContain($_POST,"commodite"); $rangement=arrayContain($_POST,"rangement");
+        $orientation=arrayContain($_POST,"orientation"); $options=arrayContain($_POST,"options");
         ControllerProduit::search();
     }
 

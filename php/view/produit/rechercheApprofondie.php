@@ -38,12 +38,12 @@
 		       		<div class="titreCategorie">Nombre de chambre(s)
 		       			<div class="col s12 ligne"></div>
 		       			<div class="contientCheckBox">
-      						<label ><input type="checkbox" class="filled-in" name="nomreChambre1" /><span> 1 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomreChambre2"/><span> 2 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomreChambre3"/><span> 3 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomreChambre4"/><span> 4 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomreChambre5"/><span> 5 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomreChambre6Plus"/><span> 6+ </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombreChambre1" /><span> 1 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombreChambre2"/><span> 2 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombreChambre3"/><span> 3 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombreChambre4"/><span> 4 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombreChambre5"/><span> 5 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombreChambre6Plus"/><span> 6+ </span></label>
       					</div>
 		        	</div>
 		    	</div>
@@ -51,12 +51,12 @@
 		       		<div class="titreCategorie">Nombre de pièces
 		       			<div class="col s12 ligne"></div></div>
 		       			<div class="contientCheckBox">
-      						<label ><input type="checkbox" class="filled-in" name="nomrePieces1" /><span> 1 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomrePieces2"/><span> 2 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomrePieces3" /><span> 3 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomrePieces4" /><span> 4 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomrePieces5" /><span> 5 </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="nomrePieces6Plus" /><span> 6+ </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombrePieces1" /><span> 1 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombrePieces2"/><span> 2 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombrePieces3" /><span> 3 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombrePieces4" /><span> 4 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombrePieces5" /><span> 5 </span></label>
+      						<label ><input type="checkbox" class="filled-in" name="nombrePieces6Plus" /><span> 6+ </span></label>
 		        		</div>
 		    		</div>
 		    	<div class="categorie row">
