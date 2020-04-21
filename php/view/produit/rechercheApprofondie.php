@@ -4,7 +4,12 @@
 	       		<div class="categorie row">
 		       		<div class="titreCategorie">Localisation
 		       			<div class="col s12 ligne"></div></div>
-		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="où ?" type="text"  name="localisation"/>
+	          	<div class="col s5" id="contenantVille" style="padding: 0px;">
+		          	<div class="searchBarBox input-field grey lighten-4">
+			            <label for="immat_id"></label>
+			            <input id= "searchBoxVille" class="searchBarInput" placeholder="où ?" type="text"  name="localisation" autocomplete="off" />
+		        	</div>
+		        	<div class="card" id="resultSearchVille"></div>
 		        	</div>
 		    	</div>
 		    	<div class="categorie row">
@@ -22,17 +27,17 @@
 		       		<div class="titreCategorie">Budget
 		       			<div class="col s12 ligne"></div></div>
 
-		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="min" type="text"  name="minBudget" /></div>
+		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="min" type="text"  name="minBudget" autocomplete="off" /></div>
 
-		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="max" type="text"  name="maxBudget" /></div>   	
+		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="max" type="text"  name="maxBudget" autocomplete="off"/></div>   	
 		    	</div>
 		    	<div class="categorie row">
 		       		<div class="titreCategorie">Surface
 		       			<div class="col s12 ligne"></div></div>
 
-		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="min" type="text"  name="minSurface" /></div>
+		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="min" type="text"  name="minSurface" autocomplete="off"/></div>
 
-		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="max" type="text"  name="maxSurface" /></div>
+		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="max" type="text"  name="maxSurface" autocomplete="off"/></div>
 		    	</div>
 		    	<div class="categorie row">
 		       		<div class="titreCategorie">Nombre de chambre(s)
@@ -121,5 +126,6 @@
       </form>
 	</div>
 </div>
+<script type="text/javascript" src="../js/search.js"></script>
 
-<?php?>
+

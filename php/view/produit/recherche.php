@@ -4,30 +4,33 @@
       <form method="get" action="index.php?controller=produit&action=searched">
 	       <div class="row">
 	          <p>
-	          	<div class="searchBarBox input-field col s3 grey lighten-4">
-	            <label for="immat_id"></label>
-	            <input class="searchBarInput" placeholder="où ?" type="text"  name="localisation"  />
-	        </div>
+	          	<div class="col s5" id="contenantVille" style="padding: 0px;">
+		          	<div class="searchBarBox input-field grey lighten-4">
+			            <label for="immat_id"></label>
+			            <input id= "searchBoxVille" class="searchBarInput" placeholder="où ?" type="text"  name="localisation" autocomplete="off" />
+		        	</div>
+		        	<div class="card" id="resultSearchVille"></div>
+	        	</div>
 	          </p>
 
 	          <p>
 	          	<div class="searchBarBox input-field col s3 grey lighten-4">
 	            <label for="couleur_id"></label>
-	            <input  class="searchBarInput" placeholder="min m²" type="text" name="minSurface" />
+	            <input  class="searchBarInput" placeholder="min m²" type="text" name="minSurface" autocomplete="off" />
 	            </div>
 	          </p>
 
 	          <p>
-	          	<div class="searchBarBox input-field col s3  grey lighten-4">
+	          	<div class="searchBarBox input-field col s2  grey lighten-4">
 	            <label for="couleur_id"></label>
-	            <input  class="searchBarInput" placeholder="min €" type="text" name="minBudget" />
+	            <input  class="searchBarInput" placeholder="min €" type="text" name="minBudget" autocomplete="off"/>
 	            </div>
 	          </p>
 
 	          <p>
-	          	<div class="searchBarBox input-field col s3 grey lighten-4">
+	          	<div class="searchBarBox input-field col s2 grey lighten-4">
 	            <label for="couleur_id"></label>
-	            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget"/>
+	            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget" autocomplete="off"/>
 	            </div>
 	          </p>
 
@@ -53,6 +56,7 @@
       </form>
 	</div>
 </div>
+<script type="text/javascript" src="../js/search.js"></script>
 
 <?php 
 
