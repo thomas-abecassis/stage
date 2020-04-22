@@ -1,28 +1,37 @@
 <?php
-require_once File::build_path(array("model", "ModelProduit.php"));
+require_once File::build_path(array("model", "ModelLot.php"));
 require_once File::build_path(array("lib", "Utility.php")); // chargement du modèle
-class ControllerProduit {
+class ControllerLot {
 
-    protected static $object="produit";
+    protected static $object="lot";
 
     public static function readAll() {
-        $tab_v = ModelProduit::selectAll();
-        $controller='produit'; $view='list'; $pagetitle='Liste des produits';     //appel au modèle pour gerer la BD
+        $tab_v = ModelLot::selectAll();
+        $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
     public static function search() {
-        $controller='produit'; $view='recherche'; $pagetitle='Recherche de biens';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='recherche'; $pagetitle='Recherche de biens';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
     public static function searched(){
-        ControllerProduit::search();
+        $data=array(
+            "localisation" => myGet("localisation"),
+            "minSurface" => myGet("minSurface"),
+            "minBudget" => myGet("minBudget"),
+            "maxBudget" => myGet("maxBudget")
+        );
+        $tab_v = ModelLot::selectByRecherche($data);
+        $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
+        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
 
     public static function searchDeepen() {
-        $controller='produit'; $view='rechercheApprofondie'; $pagetitle='Recherche de biens approfondie';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='rechercheApprofondie'; $pagetitle='Recherche de biens approfondie';     //appel au modèle pour gerer la BD
+        $typesDeBiens=ModelLot::getAllTypesBiens();
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
@@ -32,24 +41,24 @@ class ControllerProduit {
         $nombrePieces=arrayContain($_POST,"nombrePieces"); $typePiece=arrayContain($_POST,"typePiece");
         $commodite=arrayContain($_POST,"commodite"); $rangement=arrayContain($_POST,"rangement");
         $orientation=arrayContain($_POST,"orientation"); $options=arrayContain($_POST,"options");
-        ControllerProduit::search();
+        ControllerLot::search();
     }
 
     public static function Read(){
-    	$v=ModelProduit::select(myGet('id'));
+    	$v=ModelLot::select(myGet('id'));
     	if($v==false){
-        $controller='produit'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
         require File::build_path('view/view.php');  //"redirige" vers la vue
     	}else{      
-        $controller='produit'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 	    }
     }
 
     public static function create(){
-        $v=new ModelProduit("","","");
+        $v=new ModelLot("","","");
         $isUpdate=false;
-    	$controller='produit'; $view='update'; $pagetitle='creation de produit';     //appel au modèle pour gerer la BD
+    	$controller='lot'; $view='update'; $pagetitle='creation de lot';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
@@ -57,39 +66,39 @@ class ControllerProduit {
     	$id=myGet('id');
     	$nom=myGet('nom');
     	$prix=myGet('prix');
- 		$v=new ModelProduit($id,$nom,$prix);
+ 		$v=new ModelLot($id,$nom,$prix);
  		$v->save();
-        $controller='produit'; $view='created'; $pagetitle='cree';     //appel au modèle pour gerer la BD
-        $tab_v = ModelProduit::selectAll();
+        $controller='lot'; $view='created'; $pagetitle='cree';     //appel au modèle pour gerer la BD
+        $tab_v = ModelLot::selectAll();
         require File::build_path(array("view", "view.php"));  
     }
 
     public static function delete(){
         $id=myGet('id');
-        ModelProduit::delete($id);
-        $tab_v=ModelProduit::selectAll();
-        $controller='produit'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
+        ModelLot::delete($id);
+        $tab_v=ModelLot::selectAll();
+        $controller='lot'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  
     }
 
     public static function update(){
         $im=myGet('id');
-        $v=ModelProduit::select($im);
+        $v=ModelLot::select($im);
         $isUpdate=true;
-        $controller='produit'; $view='update'; $pagetitle='mise à jour de produit';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='update'; $pagetitle='mise à jour de lot';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
 
     public static function updated(){
-        $controller='produit'; $view='updated'; $pagetitle='mise à jour de produit';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='updated'; $pagetitle='mise à jour de lot';     //appel au modèle pour gerer la BD
         $data=array(
             "id"=>myGet("id"),
             "nom"=>myGet("nom"),
             "prix"=>myGet("prix")
         );
-        ModelProduit::update($data);
-        $tab_v = ModelProduit::selectAll();
+        ModelLot::update($data);
+        $tab_v = ModelLot::selectAll();
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
@@ -98,18 +107,18 @@ class ControllerProduit {
             $_SESSION["panier"]=array();
         }
 
-        $produit= ModelProduit::select(myGet('id'));
+        $lot= ModelLot::select(myGet('id'));
 
-        array_push($_SESSION["panier"],$produit);
+        array_push($_SESSION["panier"],$lot);
 
-        $tab_v=ModelProduit::selectAll();
+        $tab_v=ModelLot::selectAll();
 
-        $controller='produit'; $view='list'; $pagetitle='acceuil';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='list'; $pagetitle='acceuil';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
     public static function error(){
-        $controller='produit'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
+        $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue        
     }
 

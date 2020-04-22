@@ -1,7 +1,7 @@
 
 <div class="col s12 m8 offset-m2">
 	<div class="card" id="searchBox">
-      <form method="get" action="index.php?controller=produit&action=searched">
+      <form method="post" action="index.php?controller=lot&action=searched">
 	       <div class="row">
 	          <p>
 	          	<div class="col s5" id="contenantVille" style="padding: 0px;">
@@ -36,10 +36,10 @@
 
 	    </div>
 	    	  <div id="plusCriteres">
-	    	  	<a href="index.php?action=searchDeepen&controller=produit">
+	    	  	<a href="index.php?action=searchDeepen&controller=lot">
 	    	  	plus de critères
 	    	  </a>
-	    	  	<a href="index.php?action=searchDeepen&controller=produit" class="btn-floating btn-small waves-effect waves-light red">
+	    	  	<a href="index.php?action=searchDeepen&controller=lot" class="btn-floating btn-small waves-effect waves-light red">
 	    	  		<i class="material-icons">add</i>
 	    	  	</a>
 	    	  </div>

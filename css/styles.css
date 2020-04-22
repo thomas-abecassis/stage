@@ -76,17 +76,9 @@ footer a {
 .centrer{
 	text-align: center;
 	}
-.boite{
-	 width: 350px;
-	 height: 400px;
-	 border: 5px solid red;
-	 bottom: 1em;
-	
-    background-color: white;
-    transition: background .3s;
-    text-align: center;
-    
-}
+
+
+
 .bouton{
 	position:absolute;
 	 background-color: white;
@@ -225,3 +217,89 @@ input[type=checkbox] +span{
 .resultWordHover{
   background-color: #d9d7d6;
 }
+
+.imageBoite{
+    background-color: -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    height: auto;
+    -webkit-border-top-left-radius: .5rem;
+    border-top-left-radius: .5rem;
+    -webkit-border-bottom-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    background-color: #cad1d9;
+    position: relative;
+    width: 20rem;
+    min-height: 17rem;
+}
+
+.imageBoite img{
+  position: absolute;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;}
+
+.boite{
+  padding-left:0px !important;
+  border-radius: 7px !important;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important;
+  box-shadow: 0 0px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important; 
+  display: flex;   
+}
+
+.boite:hover{
+  border-radius: 7px !important;
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
+  box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
+  cursor:pointer;    
+}
+
+.infoBoite{
+  padding: 2rem;
+}
+
+.prix{
+  font-size: 20px;
+  font-weight: bold;
+  color: #2f2f2f;
+}
+
+.surface{
+  display:flex;
+  position: relative;
+}
+
+.surfaceText{
+  position: absolute;
+  bottom: 0;
+  left:1.5rem;
+}
+
+.myCarousel{
+    position: relative;
+    background-color: red; 
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    height: auto;
+    background-color: #cad1d9;
+    position: relative;
+    width: 20rem;
+    min-height: 17rem;
+}
+
+.carousel img{
+    position: absolute;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+

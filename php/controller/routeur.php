@@ -1,5 +1,5 @@
 <?php
-require_once File::build_path(array("controller", "ControllerProduit.php"));
+require_once File::build_path(array("controller", "ControllerLot.php"));
 require_once File::build_path(array("controller", "ControllerUtilisateur.php"));
 require_once File::build_path(array("controller", "ControllerCommande.php"));
 
@@ -18,7 +18,7 @@ if(!is_null(myGet('action'))){
 	$action = myGet('action');
 }
 
-$controller='produit';
+$controller='lot';
 if(!is_null(myGet('controller'))){
 	$controller = myGet('controller');
 }

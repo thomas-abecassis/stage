@@ -18,7 +18,7 @@ searchBox.addEventListener("input", function(){
 function eventOnCity(){
 	let children = Array.from(document.getElementById("resultSearchVille").children);
 	children.forEach(function(element){
-		element.addEventListener("click",()=>{searchBox.value=element.innerHTML.split("(")[0];
+		element.addEventListener("click",()=>{searchBox.value=element.innerHTML.split("(")[0].trim();
 		document.getElementById('resultSearchVille').innerHTML=null;});
 	}
 	);
@@ -44,13 +44,6 @@ function search(){
 	xhr2.send(null);
 }
 
-$(document).keypress(
-  function(event){
-    if (event.which == '13') {
-      event.preventDefault();
-    }
-});
-
 document.onkeydown = function (e) {
     e = e || window.event;
     let children = Array.from(document.getElementById("resultSearchVille").children);
@@ -67,9 +60,9 @@ document.onkeydown = function (e) {
 	    	children[ih-1].classList.add("resultWordHover");
 	    	children[ih].classList.remove("resultWordHover");
     	}else if(e.keyCode==13){
-    	searchBox.value=children[ih].innerHTML.split("(")[0];
+    	event.preventDefault();
+    	searchBox.value=children[ih].innerHTML.split("(")[0].trim();
 		document.getElementById('resultSearchVille').innerHTML=null;
     	}
-	}	
-
+	}
 };

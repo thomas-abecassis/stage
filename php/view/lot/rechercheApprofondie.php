@@ -1,6 +1,6 @@
 <div class="col s12 m8 offset-m2">
 	<div class="card searchBoxApprofondie" id="searchBox" >
-      <form method="post" action="index.php?controller=produit&action=searchedDeepen">
+      <form method="post" action="index.php?controller=lot&action=searchedDeepen">
 	       		<div class="categorie row">
 		       		<div class="titreCategorie">Localisation
 		       			<div class="col s12 ligne"></div></div>
@@ -16,11 +16,11 @@
 		       		<div class="titreCategorie">Type(s) de bien
 		       			<div class="col s12 ligne"></div></div>
 		       			<div class="contientCheckBox">
-      						<label ><input type="checkbox" class="filled-in" name="typeBienAppartement" /><span> appartement </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typeBienMaison" /><span> maison </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typeBienCommerce" /><span> commerce </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typeBienViager" /><span> viager </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typeBienPropriete"/><span> proprieté </span></label>
+		       				<?php
+		       					foreach ($typesDeBiens as $type) {
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($type->typeDeBien) ." \" /><span> ".$type->typeDeBien." </span></label>";
+		       					}
+		       				?>
       					</div>
 		    	</div>
 		    	<div class="categorie row">
