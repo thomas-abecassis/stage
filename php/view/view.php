@@ -16,7 +16,6 @@
 </head>
 
 <body class=" grey lighten-3">
-    <div id="contenu">
         <header>
         	 <nav   id="menu" class="nav-wraper">
           
@@ -39,6 +38,7 @@
             	</nav>
 
         </header>
+        <main>
         <div class="container">
             <div class="row">
             <?php 
@@ -67,6 +67,8 @@ if(isset($_SESSION["panier"])){
 
 
     </div>
+  </main>
+
     <div class="pad1">
         <footer >
         <!-- Footer social -->
