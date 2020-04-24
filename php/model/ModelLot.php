@@ -178,14 +178,35 @@ public static function getAlllots(){
     }
   }
 
-  public static function getAllTypesBiens(){
-    $sql="SELECT typeDeBien FROM typeDeBien";
+  public static function getAllCategorie($categorie){
+    $sql="SELECT " . $categorie . " FROM " . $categorie;
     $rep=Model::$pdo->query($sql);
     return $rep->fetchAll(PDO::FETCH_OBJ); 
   }
 
+  public static function getAllTypesBiens(){
+    return ModelLot::getAllCategorie("typeDeBien");
+  }
 
+    public static function getAllTypesPieces(){
+    return ModelLot::getAllCategorie("typeDePieces");
+  }
 
+  public static function getAllCommodites(){
+    return ModelLot::getAllCategorie("commodites");
+  }
+
+  public static function getAllTypesRangements(){
+    return ModelLot::getAllCategorie("rangement");
+  }
+
+  public static function getAllOrientations(){
+    return ModelLot::getAllCategorie("orientation");
+  }
+
+  public static function getAllOptions(){
+    return ModelLot::getAllCategorie("options");
+  }
 }
 ?>
 

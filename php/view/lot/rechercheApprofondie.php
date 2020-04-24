@@ -39,7 +39,7 @@
 
 		          		<div class=" input-field col s3 grey lighten-4"><label for="immat_id"></label><input class="searchBarInput" placeholder="max" type="text"  name="maxSurface" autocomplete="off"/></div>
 		    	</div>
-		    	<div class="categorie row">
+		    	<!--<div class="categorie row">
 		       		<div class="titreCategorie">Nombre de chambre(s)
 		       			<div class="col s12 ligne"></div>
 		       			<div class="contientCheckBox">
@@ -51,7 +51,7 @@
       						<label ><input type="checkbox" class="filled-in" name="nombreChambre6Plus"/><span> 6+ </span></label>
       					</div>
 		        	</div>
-		    	</div>
+		    	</div>-->
 		    	<div class="categorie row">
 		       		<div class="titreCategorie">Nombre de pièces
 		       			<div class="col s12 ligne"></div></div>
@@ -68,49 +68,48 @@
 		       		<div class="titreCategorie">Type(s) de pièces
 		       			<div class="col s12 ligne"></div></div>
 		       			<div class="contientCheckBox">
-      						<label ><input type="checkbox" class="filled-in" name="typePieceSam" /><span> S.A.M séparée </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typePieceToilettes" /><span> toilettes séparée</span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typePieceSdb" /><span> salle de bain </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typePieceSd" /><span> salle d'eau (douche) </span></label>
-      						<label ><input type="checkbox" class="filled-in" name="typePieceHall" /><span> pas de hall d'entrée</span></label>
+		       				<?php
+		       					foreach ($typesDePieces as $piece) {
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($piece->typeDePieces) ." \" /><span> ".$piece->typeDePieces." </span></label>";
+		       					}
+		       				?>
 		        		</div>
 		    		</div>
 		    	<div class="categorie row">
 		       		<div class="titreCategorie">Commodité(s)
 		       			<div class="col s12 ligne"></div></div>
 		       				<div class="contientCheckBox">
-	      						<label ><input type="checkbox" class="filled-in" name="commoditePiscine"/><span> piscine </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="commoditeAlarme"/><span> alarme </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="commoditeClim"/><span> climatisation </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="commoditeCheminee"/><span> cheminée </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="commoditeTerasse"/><span> terrasse(s) </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="commoditeBalcon"/><span> balcon(s) </span></label>
+		       				<?php
+		       					foreach ($commodites as $commodite) {
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($commodite->commodites) ." \" /><span> ".$commodite->commodites." </span></label>";
+		       					}
+		       				?>
 	      					</div>
 		    	</div>
 		    		<div class="categorie row">
-		       		<div class="titreCategorie">Rangement
+		       		<div class="titreCategorie">Rangement(s)
 		       			<div class="col s12 ligne"></div></div>
 		       				<div class="contientCheckBox">
-	      						<label  ><input type="checkbox" class="filled-in" name="rangementCave" /><span> cave </span></label>
-	      						<label ><input type="checkbox" class="filled-in"  name="rangementPlacards"/><span> placards </span></label>
-	      						<label ><input type="checkbox" class="filled-in"  name="rangementParking"/><span> parking ouvert </span></label>
-	      						<label ><input type="checkbox" class="filled-in"  name="rangementGarage"/><span> garage </span></label>
+		       				<?php
+		       					foreach ($rangements as $rangement) {
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($rangement->rangement) ." \" /><span> ".$rangement->rangement." </span></label>";
+		       					}
+		       				?>
 	      					</div>
 		    	</div>
 		    		<div class="categorie row">
-		       		<div class="titreCategorie">Orientation
+		       		<div class="titreCategorie">Orientation(s)
 		       			<div class="col s12 ligne"></div></div>
 		       				<div class="contientCheckBox">
-	      						<label ><input type="checkbox" class="filled-in" name="orientationSud" /><span> sud</span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="orientationEst" /><span> est </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="orientationNord" /><span> nord </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="orientationOuest"/><span> ouest</span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="orientationVue" /><span> belle vue </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="orientationVis" /><span> sans vis à vis</span></label>
+		       				<?php
+		       					foreach ($orientations as $orientation) {
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($orientation->orientation) ." \" /><span> ".$orientation->orientation." </span></label>";
+		       					}
+		       				?>
 	      					</div>
 		    	</div>
 		    	<div class="categorie row">
-		       		<div class="titreCategorie">Options
+		       		<div class="titreCategorie">Option(s)
 		       			<div class="col s12 ligne"></div></div>
 		       				<div class="contientCheckBox">
 	      						<label ><input type="checkbox" class="filled-in" name="optionsMeuble" /><span> meublé</span></label>
