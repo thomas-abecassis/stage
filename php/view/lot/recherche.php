@@ -36,10 +36,10 @@
 
 	    </div>
 	    	  <div id="plusCriteres">
-	    	  	<a href="index.php?action=searchDeepen&controller=lot">
+	    	  	<a href="index.php?action=searchDeepen&controller=lotApprofondi">
 	    	  	plus de critères
 	    	  </a>
-	    	  	<a href="index.php?action=searchDeepen&controller=lot" class="btn-floating btn-small waves-effect waves-light red">
+	    	  	<a href="index.php?action=searchDeepen&controller=lotApprofondi" class="btn-floating btn-small waves-effect waves-light red">
 	    	  		<i class="material-icons">add</i>
 	    	  	</a>
 	    	  </div>

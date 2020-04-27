@@ -23,7 +23,7 @@
                <!-- <img href="#index.html" id="logo" src="https://www.logolynx.com/images/logolynx/0a/0a541bcbcef40a7c1058c0d02db88762.png"alt="Le logo."> -->
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
             		
-                		<li><a href="index.php">Acceuil</a></li>
+                		<li><a href="index.php">Accueil</a></li>
                         <li ><a href="index.php?action=readAll">Produits</a></li>
                 		<li ><a href=" index.php?action=readAll&controller=utilisateur">Utilisateurs</a></li>
                 		

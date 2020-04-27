@@ -2,6 +2,7 @@
 require_once File::build_path(array("controller", "ControllerLot.php"));
 require_once File::build_path(array("controller", "ControllerUtilisateur.php"));
 require_once File::build_path(array("controller", "ControllerCommande.php"));
+require_once File::build_path(array("controller", "ControllerLotApprofondi.php"));
 
  function myGet($nomvar){
  	if(isset($_GET[$nomvar])){
@@ -27,7 +28,7 @@ $controller_classe="Controller".ucfirst($controller);
 if(class_exists($controller_classe,false)){
 	$controller_classe::$action();
 }else{
-	ControllerProduit::error();
+	ControllerLot::error();
 }
 
 

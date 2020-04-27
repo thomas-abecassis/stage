@@ -1,6 +1,6 @@
 <div class="col s12 m8 offset-m2">
 	<div class="card searchBoxApprofondie" id="searchBox" >
-      <form method="post" action="index.php?controller=lot&action=searchedDeepen">
+      <form method="post" action="index.php?controller=lotApprofondi&action=searchedDeepen">
 	       		<div class="categorie row">
 		       		<div class="titreCategorie">Localisation
 		       			<div class="col s12 ligne"></div></div>
@@ -18,7 +18,7 @@
 		       			<div class="contientCheckBox">
 		       				<?php
 		       					foreach ($typesDeBiens as $type) {
-		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($type->typeDeBien) ." \" /><span> ".$type->typeDeBien." </span></label>";
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($type->typeDeBien) ."\" /><span> ".$type->typeDeBien." </span></label>";
 		       					}
 		       				?>
       					</div>
@@ -70,7 +70,7 @@
 		       			<div class="contientCheckBox">
 		       				<?php
 		       					foreach ($typesDePieces as $piece) {
-		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($piece->typeDePieces) ." \" /><span> ".$piece->typeDePieces." </span></label>";
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typePiece". ucfirst($piece->typeDePieces) ."\" /><span> ".$piece->typeDePieces." </span></label>";
 		       					}
 		       				?>
 		        		</div>
@@ -81,7 +81,7 @@
 		       				<div class="contientCheckBox">
 		       				<?php
 		       					foreach ($commodites as $commodite) {
-		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($commodite->commodites) ." \" /><span> ".$commodite->commodites." </span></label>";
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"commodite". ucfirst($commodite->commodites) ."\" /><span> ".$commodite->commodites." </span></label>";
 		       					}
 		       				?>
 	      					</div>
@@ -92,7 +92,7 @@
 		       				<div class="contientCheckBox">
 		       				<?php
 		       					foreach ($rangements as $rangement) {
-		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($rangement->rangement) ." \" /><span> ".$rangement->rangement." </span></label>";
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"rangement". ucfirst($rangement->rangement) ."\" /><span> ".$rangement->rangement." </span></label>";
 		       					}
 		       				?>
 	      					</div>
@@ -103,7 +103,7 @@
 		       				<div class="contientCheckBox">
 		       				<?php
 		       					foreach ($orientations as $orientation) {
-		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($orientation->orientation) ." \" /><span> ".$orientation->orientation." </span></label>";
+		       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"orientation". ucfirst($orientation->orientation) ."\"/><span> ".$orientation->orientation." </span></label>";
 		       					}
 		       				?>
 	      					</div>
@@ -112,11 +112,11 @@
 		       		<div class="titreCategorie">Option(s)
 		       			<div class="col s12 ligne"></div></div>
 		       				<div class="contientCheckBox">
-	      						<label ><input type="checkbox" class="filled-in" name="optionsMeuble" /><span> meublé</span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="optionsInterphone"/><span> interphone </span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="optionsDigicode" /><span> digicode</span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="optionsGardien" /><span> gardien</span></label>
-	      						<label ><input type="checkbox" class="filled-in" name="optionsAscenseur" /><span> avec ascenseur </span></label>
+			       				<?php
+			       					foreach ($options as $option) {
+			       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"myOptions". ucfirst($option->options) ."\" /><span> ".$option->options." </span></label>";
+			       					}
+			       				?>
 	      					</div>
 	      	</div>
 	            <input  class="inputButton inputButtonApprofondie" type="submit" value="Envoyer" />

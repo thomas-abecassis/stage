@@ -124,11 +124,35 @@ public static function getAlllots(){
 
   }
 
+  //a securiser
   public static function selectByRecherche($data){
     if(!array_filter($data)){
       return Modellot::selectAll();
     }
     else{
+      $sql=ModelLot::getSqlSearch($data);
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+          //"nom_tag" => $immat,
+          //nomdutag => valeur, ...
+      );
+      // On donne les valeurs et on exécute la requête   
+      $req_prep->execute($values);
+
+          // On récupère les résultats comme précédemment
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
+    $tab_voit = $req_prep->fetchAll();
+    // Attention, si il n'y a pas de résultats, on renvoie false
+    if (empty($tab_voit))
+        return false;
+    return $tab_voit;
+
+    }
+  }
+
+  public static function getSqlSearch($data){
       $sql = "SELECT * from lot WHERE";
       $firstCondition=true;
 
@@ -157,55 +181,7 @@ public static function getAlllots(){
         $sql=$sql." loyer < " . $data["maxBudget"];
         $firstCondition=false;
       }
-      // Préparation de la requête
-      $req_prep = Model::$pdo->prepare($sql);
-
-      $values = array(
-          //"nom_tag" => $immat,
-          //nomdutag => valeur, ...
-      );
-      // On donne les valeurs et on exécute la requête   
-      $req_prep->execute($values);
-
-          // On récupère les résultats comme précédemment
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
-    $tab_voit = $req_prep->fetchAll();
-    // Attention, si il n'y a pas de résultats, on renvoie false
-    if (empty($tab_voit))
-        return false;
-    return $tab_voit;
-
-    }
-  }
-
-  public static function getAllCategorie($categorie){
-    $sql="SELECT " . $categorie . " FROM " . $categorie;
-    $rep=Model::$pdo->query($sql);
-    return $rep->fetchAll(PDO::FETCH_OBJ); 
-  }
-
-  public static function getAllTypesBiens(){
-    return ModelLot::getAllCategorie("typeDeBien");
-  }
-
-    public static function getAllTypesPieces(){
-    return ModelLot::getAllCategorie("typeDePieces");
-  }
-
-  public static function getAllCommodites(){
-    return ModelLot::getAllCategorie("commodites");
-  }
-
-  public static function getAllTypesRangements(){
-    return ModelLot::getAllCategorie("rangement");
-  }
-
-  public static function getAllOrientations(){
-    return ModelLot::getAllCategorie("orientation");
-  }
-
-  public static function getAllOptions(){
-    return ModelLot::getAllCategorie("options");
+      return $sql;
   }
 }
 ?>
