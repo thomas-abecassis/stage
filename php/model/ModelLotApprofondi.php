@@ -66,7 +66,7 @@ class ModelLotApprofondi {
       $isFirst=false;
     }
     if(count($nombrePieces)!=0){
-      if($isFirst){$sql=$sql."nombrePiece= ".$nombrePieces[0]; }
+      if($isFirst){$sql=$sql." nombrePiece= ".$nombrePieces[0]; }
       else{$sql=$sql." and nombrePiece= ".$nombrePieces[0];}
       $isFirst=false;
     }
@@ -87,7 +87,7 @@ class ModelLotApprofondi {
         }
         $sql=$sql.$sqlTable;
       }
-    }
+    } 
     return $sql;
   }
 

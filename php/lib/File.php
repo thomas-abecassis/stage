@@ -1,6 +1,4 @@
-
 <?php
-
 class File{
 	public static function build_path($path_array) {
 	    // $ROOT_FOLDER (sans slash à la fin) vaut
@@ -9,8 +7,5 @@ class File{
 	    $ROOT_FOLDER = __DIR__ . $DS . "..";
 	    return $ROOT_FOLDER. $DS . join('/', $path_array);
 	}
-
-
 }
-
 ?>

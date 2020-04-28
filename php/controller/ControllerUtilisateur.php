@@ -124,12 +124,12 @@ class ControllerUtilisateur {
                 $_SESSION["login"] = myGet("login");
                 $_SESSION["admin"] = true;
             }
-            $controller='utilisateur'; $view='details'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
         }
         else{
             echo ("MAUVAIS LOGIN OU MDP");
         }
+        $controller='utilisateur'; $view='details'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
+        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
     static function disconnect(){

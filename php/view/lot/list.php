@@ -16,8 +16,18 @@
         }
         else{
             echo "aucune annonce ne correspond à votre recherche";
-        }
-
+        }?>
+        <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite">  <p class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>
+        <script>
+        <?php 
+            if(isset($_SESSION["login"])){
+                echo "connecte = true";
+            }
+            else{
+                echo "connecte = false";
+            };
+        ?></script>
+        <script type="text/javascript" src="../js/sauvegarde.js"></script>
 
 
        

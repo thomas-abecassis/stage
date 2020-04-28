@@ -3,6 +3,7 @@
 require_once File::build_path(array("config", "Conf.php"));
 
 class Model{
+	
 	public static $pdo;
 
 	public static function Init(){
@@ -29,7 +30,6 @@ class Model{
 		$rep=Model::$pdo->query("select * from ".$table_name);
   		return $rep->fetchAll(PDO::FETCH_CLASS, $class_name); 
 	}
-
 
 	public static function select($primary_value){
 		$table_name=static::$object;
@@ -74,8 +74,6 @@ class Model{
 	}
 
  public function save(){
-
-
 		$data=$this->getTab();
 
 	  	$sql = "INSERT INTO " . static::$object . " VALUES ( ";
@@ -100,13 +98,11 @@ class Model{
   	$sql=rtrim($sql,', ');
   	$sql=$sql." WHERE ".static::$primary.'=:'.static::$primary;
 
-
     // Préparation de la requête
     $req_prep = Model::$pdo->prepare($sql);
 
     $req_prep->execute($data);
   }
-
 }
 
 Model::Init();

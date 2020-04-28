@@ -420,12 +420,42 @@ input[type=checkbox] +span{
 }
 
 
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+  flex: 1 0 auto;
+}
+
+#sauvegardeAnnonce{
+  justify-content: center;
+  -webkit-justify-content: center;
+  background-color: #eeac6e;
+  transition:0.2s; 
+}
+
+.flex{
+  display: flex;
+}
+
+.fondTransparent{
+    position: fixed;
+    background-color: rgba(0,0,0,.6);
+    width: 100%;
+    height: 100%;
+}
+
+
+#connexion input{
+    border-radius: 5px;
+    border: solid grey 1px;
+    padding-left: 5px;
+}
+
+#boutonConnexion{
+  padding: 10px;
+  background-color: #eeac6e;
+}
