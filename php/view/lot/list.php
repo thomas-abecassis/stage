@@ -3,7 +3,7 @@
         if($tab_v != false){
             foreach ($tab_v as $v)
                 echo '  <a href=index.php?action=Read&id='.rawurlencode($v->getId()).'>
-                        <div class="col s12 m10 l7 offset-m1 offset-l2 card boite">
+                        <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">
                             <div class="imageBoite" ><img src="../image/'.$v->getId().'/1.jpg"></div> 
                             <div class="infoBoite">
                 			<p class="centrer">Produit ' . htmlspecialchars($v->getnom()) . ' </p>
@@ -17,7 +17,7 @@
         else{
             echo "aucune annonce ne correspond à votre recherche";
         }?>
-        <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite">  <p class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>
+        <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">  <p id="inSauvegarde" class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>
         <script>
         <?php 
             if(isset($_SESSION["login"])){

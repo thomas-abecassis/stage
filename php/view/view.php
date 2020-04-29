@@ -28,9 +28,10 @@
                 		
                         <?php 
                         if(isset($_SESSION["login"])){
-                            echo ("<li><a href=\"index.php?action=disconnect&controller=utilisateur\">Deconnexion</a></li>");
+                            echo "<li><a href=\"index.php?action=read&controller=alerte\">Mes recherches</a></li>";
+                            echo "<li><a href=\"index.php?action=disconnect&controller=utilisateur\">Deconnexion</a></li>";
                         }else{
-                           echo ("<li><a href=\"index.php?action=connect&controller=utilisateur\">Connexion</a></li>"); 
+                           echo "<li><a href=\"index.php?action=connect&controller=utilisateur\">Connexion</a></li>";
                         }
                         ?>
             		

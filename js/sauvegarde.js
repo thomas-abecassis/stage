@@ -1,34 +1,48 @@
 let sauvegarde=document.getElementById("sauvegardeAnnonce");
-const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length ) 
-var xhr= new XMLHttpRequest();
-	xhr.addEventListener('readystatechange', function() { // On gère ici une requête asynchrone
+const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-	        if(xhr.responseText.valueOf()=="true".valueOf()){
-	        	document.location.reload(true);
-	        }else{
-	        	let co=document.getElementById("connexionBox");
-	        	if(co.childElementCount<6){
-		        	let p=document.createElement('p');
-		        	p.innerHTML="mauvais identifiant ou mot de passe";
-		        	p.style.color="red";
-		        	p.classList.add("center");	   
-		        	co.appendChild(p);
-	        	}
-	        }
-	    }
+function requeteAJAX(url,callback) {
+	let requete = new XMLHttpRequest();
+	requete.open("GET", url, true);
+	requete.addEventListener("load", function () {
+		callback(requete);
 	});
+	requete.send(null);
+}
+
+function callback1(xhr){
+	if(xhr.responseText.valueOf()=="true".valueOf()){
+	    document.location.reload(true);
+	}else{
+		let co=document.getElementById("connexionBox");
+	    if(co.childElementCount<6){
+		    let p=document.createElement('p');
+		    p.innerHTML="mauvais identifiant ou mot de passe";
+		    p.style.color="red";
+		    p.classList.add("center");	   
+		    co.appendChild(p);
+	    }
+	}
+}
+
+function callback2(xhr){
+	console.log(xhr.responseText);
+	document.getElementById("inSauvegarde").innerHTML="recherche sauvegardée !";
+}
+
 
 function creerSauvegarde(){
 	sauvegarde.style["background-color"] = "#f0dcc8";
+	sauvegarde.removeEventListener("click",clickHandler);
+	sauvegarde.classList.remove("boite_hover");
+	requeteAJAX("index.php?controller=alerte&action=created",callback2);
 }
 
 function envoieConnexion(){
 	console.log("j'envoie");
 	mail=document.getElementById("inputMail");
-	mdp=document.getElementById("inputMdp");
-	xhr.open("get","lib/connexionAjax.php?login="+mail.value+"&mdp=" +mdp.value);
-	xhr.send(null);
+	mdp=document.getElementById("inputMdp"); 
+	requeteAJAX("lib/connexionAjax.php?login="+mail.value+"&mdp=" +mdp.value,callback1);
 }
 
 function popUp(){
@@ -81,13 +95,13 @@ function hideOnClickOutside(element,elementASupprimer) {
     document.addEventListener('click', outsideClickListener);
 }
 
-
-
-sauvegarde.addEventListener("click", function(){
+function clickHandler(){
 	if(connecte){
 		creerSauvegarde();
 	}
 	else{
 		popUp();
 	}
-});
+}
+
+sauvegarde.addEventListener("click", clickHandler);

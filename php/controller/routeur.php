@@ -3,6 +3,7 @@ require_once File::build_path(array("controller", "ControllerLot.php"));
 require_once File::build_path(array("controller", "ControllerUtilisateur.php"));
 require_once File::build_path(array("controller", "ControllerCommande.php"));
 require_once File::build_path(array("controller", "ControllerLotApprofondi.php"));
+require_once File::build_path(array("controller", "ControllerAlerte.php"));
 
  function myGet($nomvar){
  	if(isset($_GET[$nomvar])){

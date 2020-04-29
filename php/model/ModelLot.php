@@ -126,6 +126,7 @@ public static function getAlllots(){
 
   //a securiser
   public static function selectByRecherche($data){
+    ModelLot::unsetSession();
     if(!array_filter($data)){
       return Modellot::selectAll();
     }
@@ -153,6 +154,7 @@ public static function getAlllots(){
   }
 
   public static function getSqlSearch($data){
+      $_SESSION['dataFirst']=$data;
       $sql = "SELECT * from lot WHERE";
       $firstCondition=true;
 
@@ -182,6 +184,12 @@ public static function getAlllots(){
         $firstCondition=false;
       }
       return $sql;
+  }
+
+  public static function unsetSession(){
+    $_SESSION['typesBien']=array();
+    $_SESSION['nombrePieces']=array();
+    $_SESSION['dataCheckBox']=array();
   }
 }
 ?>

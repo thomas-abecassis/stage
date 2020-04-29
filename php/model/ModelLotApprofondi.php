@@ -58,7 +58,11 @@ class ModelLotApprofondi {
 
   // a securiser
   public static function getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
+    ModelLot::unsetSession();
     $sql=ModelLot::getSqlSearch($dataPost);
+    $_SESSION['typesBien']=$typesBien;
+    $_SESSION['nombrePieces']=$nombrePieces;
+    $_SESSION['dataCheckBox']=$dataCheckBox;
     $isFirst=strlen($sql)==23;
     if(count($typesBien)!=0){
       if($isFirst){$sql=$sql." typeDeBien = \"".$typesBien[0]."\"";}
