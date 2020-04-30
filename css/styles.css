@@ -248,18 +248,20 @@ input[type=checkbox] +span{
   border-radius: 7px !important;
   -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important;
   box-shadow: 0 0px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important; 
-  display: flex;   
+  display: flex; 
+  padding: 0 !important;  
 }
 
 .boite_hover:hover{
   border-radius: 7px !important;
   -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
   box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
-  cursor:pointer;    
+  cursor:pointer;  
 }
 
 .infoBoite{
   padding: 2rem;
+  width:100%;
 }
 
 .prix{
@@ -434,7 +436,7 @@ main {
   justify-content: center;
   -webkit-justify-content: center;
   background-color: #eeac6e;
-  transition:0.2s; 
+  color-transition:0.2s; 
 }
 
 .flex{

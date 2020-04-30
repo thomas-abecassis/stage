@@ -29,16 +29,14 @@ class ControllerAlerte {
     }
 
     public static function delete(){
-        $login=myGet('id');
-        if(Session::is_user($login) || Session::is_admin()){
-            Modelutilisateur::delete($login);
-            $tab_v=Modelutilisateur::selectAll();
-            $controller='utilisateur'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));   
+        $id=myGet('id');
+        $login=$_SESSION["login"];
+        if((Session::is_user($login) && ModelAlerte::alerteCorrespondToUser($id,$login)) || Session::is_admin()){
+            ModelAlerte::delete($id);
+            echo "delete";  
         }
         else{
-            $controller='utilisateur'; $view='connect'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue  
+            echo "pas les droits";
         }
 
     }

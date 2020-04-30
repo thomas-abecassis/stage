@@ -1,0 +1,53 @@
+.deleteAlerte{
+	float:right;
+	display: flex;
+    font-weight: 500;
+    cursor:pointer;
+}
+
+.boutonsAlerte{
+	float:right;
+	display: flex;
+}
+
+.boutonAlerte{
+	border-radius:5px;
+	padding: 10px 25px 10px 25px;
+}
+
+.boutonAnnonces{
+	background-color: #eeac6e;
+}
+
+.deleteAlerte span{
+	margin-top: 0.3em;
+}
+
+.boutonModification{
+	border:solid 1px #eeac6e;
+	margin-left: 1.5em;
+	cursor:pointer;
+}
+
+.idAlerte{
+	display:none;
+}
+
+.nomAlerte{
+	font-size: 20px;
+  	font-weight: bold;
+  	color: #2f2f2f;
+}
+
+.modificationNom{
+	display:none;
+	border-radius: 5px !important;
+    border: solid grey 1px !important;
+    padding-left: 5px !important;
+    width:95% !important;
+}
+
+.contientNom{
+	width: 50%;
+    overflow: hidden;
+}
