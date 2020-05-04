@@ -461,3 +461,18 @@ main {
   padding: 10px;
   background-color: #eeac6e;
 }
+
+.liste li{
+  display: inline-flex;
+  padding: 0.75em 1em 0.75em 1em;
+  font-weight:630;
+}
+
+#titreDescription{
+  font-size: 20px;
+  font-weight:630;
+}
+
+.liste{
+  padding-left:2em !important;
+}

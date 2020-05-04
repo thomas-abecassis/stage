@@ -2,7 +2,7 @@
         <?php
         if($tab_v != false){
             foreach ($tab_v as $v)
-                echo '  <a href=index.php?action=Read&id='.rawurlencode($v->getId()).'>
+                echo '  <a href=index.php?controller=lotApprofondi&action=Read&id='.rawurlencode($v->getId()).'>
                         <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">
                             <div class="imageBoite" ><img src="../image/'.$v->getId().'/1.jpg"></div> 
                             <div class="infoBoite">

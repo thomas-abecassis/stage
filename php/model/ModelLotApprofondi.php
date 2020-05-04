@@ -27,6 +27,18 @@ class ModelLotApprofondi {
       }
   }
 
+  public function getLot(){
+    return $this->modelLot;
+  }
+
+  public function getCommodites(){
+    return $this->commodites;
+  }
+
+  public function getOptions(){
+    return $this->options;
+  }
+
   public function getInfosFor($nomTable){
     $sql="SELECT " . str_replace("sLot", "",$nomTable) . " FROM " . $nomTable. " WHERE idLot= " . $this->modelLot->getId();
     $rep=Model::$pdo->query($sql);

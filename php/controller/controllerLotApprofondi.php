@@ -1,6 +1,7 @@
 <?php
 require_once File::build_path(array("model", "ModelAlerte.php"));
 require_once File::build_path(array("model", "ModelLotApprofondi.php"));
+require_once File::build_path(array("model", "ModelLot.php"));
 require_once File::build_path(array("lib", "Utility.php")); // chargement du modèle
 
 class ControllerLotApprofondi{
@@ -55,6 +56,20 @@ class ControllerLotApprofondi{
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
         require File::build_path(array("view", "view.php"));
+    }
+
+    public static function read(){
+        $id=myGet("id");
+        $lot=ModelLot::select($id);
+        if($lot==false){
+            $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
+            require File::build_path(array('view','view.php'));  //"redirige" vers la vue
+        }
+        else{     
+            $lotApprofondi=new ModelLotApprofondi($lot); 
+            $controller='lot'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        }
     }
 
 }

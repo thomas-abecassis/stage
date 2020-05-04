@@ -28,18 +28,17 @@ class ControllerLot {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
-    public static function Read(){
+    /*(public static function Read(){
     	$v=ModelLot::select(myGet('id'));
     	if($v==false){
         $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
         require File::build_path(array('view','view.php'));  //"redirige" vers la vue
     	}else{      
         $controller='lot'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
-        require_once File::build_path(array("model", "ModelLotApprofondi.php"));
-        $modelApprofondi=new ModelLotApprofondi($v);
+        $model=$v;
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 	    }
-    }
+    }*/
 
     public static function create(){
         $v=new ModelLot("","","");

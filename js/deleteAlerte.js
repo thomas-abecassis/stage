@@ -1,3 +1,8 @@
+let modifie = false;
+let lastName;
+let lastInput;
+let lastButon;
+
 function requeteAJAX(url,callback) {
 	let requete = new XMLHttpRequest();
 	requete.open("GET", url, true);
@@ -8,7 +13,7 @@ function requeteAJAX(url,callback) {
 }
 
 function callback1(xhr){
-	console.log("element sup");
+	console.log(xhr.responseText);
 }
 
 function mettreEvents(){
@@ -33,17 +38,23 @@ function supprimerAlerte(buton){
 };
 
 function modifierAlerte(buton){
+	lastButon=buton;
 	let boite=buton.closest(".boite");
 	let inputNom=boite.getElementsByClassName("modificationNom")[0];
 	let displayNom=boite.getElementsByClassName("nomAlerte")[0];
-	if(inputNom.style["display"]!="block" ){
+	if(!modifie){
+		modifie = true; 
 		displayNom.style["display"]="none";
 		inputNom.style["display"]="block";
 	}else{
+		modifie=false;
 		displayNom.style["display"]="block";
 		inputNom.style["display"]="none";
 	}
 	inputNom.focus();
+	inputNom.selectionStart = inputNom.selectionEnd = inputNom.value.length;
+	lastName=displayNom;
+	lastInput=inputNom;
 }
 
 function supprimerBoiteParent(button){
@@ -76,5 +87,21 @@ function idDansEnfants(element){
 	console.log(test);
 	return test;
 }
+
+function modifierNom(display,nom){
+	display.textContent=nom;
+	let id=trouverId(display);
+	requeteAJAX("index.php?controller=alerte&action=update&id="+id+"&nom="+nom,callback1);
+}
+
+document.onkeydown = function (e) {
+    e = e || window.event;
+ 	if(e.keyCode==13){
+	 if(modifie){
+	 	modifierAlerte(lastButon);
+	 	modifierNom(lastName,lastInput.value);
+	 }
+    }
+};
 
 mettreEvents()

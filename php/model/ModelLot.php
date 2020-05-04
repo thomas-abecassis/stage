@@ -9,6 +9,9 @@ class Modellot extends Model{
   private $localisation;
   private $surface;
   private $loyer;
+  private $description;
+  private $typeDeBien;
+  private $nombrePiece;
   protected static $object = "lot";
   protected static $primary='id';
 
@@ -21,6 +24,14 @@ class Modellot extends Model{
   // un setter 
   public function setid($id2) {
        $this->id = $id2;
+  }
+
+  public function getTypeDeBien(){
+    return $this->typeDeBien;
+  }
+
+  public function getNombrePiece(){
+    return $this->nombrePiece;
   }
 
   public function getnom(){
@@ -48,23 +59,20 @@ class Modellot extends Model{
     return $this->surface;
   }
 
+  public function getDescription(){
+    return $this->description;
+  }
+
   public function getLocalisation(){
     return $this->localisation;
   }
 
   public function getTab(){
-    $data=array(
-    "id"=>$this->id,
-    "nom"=>$this->nom,
-    "localisation"=>$this->localisation,
-    "loyer"=>$this->loyer,
-    "surface"=>$this->surface
-    );
-    return $data;
+    return get_object_vars($this);
   }
       
-public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur = NULL) {
-  if (!is_null($i) && !is_null($n) && !is_null($loc) && !is_null($loy) && !is_null($sur)) {
+public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL) {
+  if (!is_null($i) && !is_null($n) && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d)) {
     // Si aucun de $m, $c et $i sont nuls,
     // c'est forcement qu'on les a fournis
     // donc on retombe sur le constructeur à 3 arguments
@@ -73,6 +81,7 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
     $this->localisation = $loc;
     $this->loyer = $loy;
     $this->surface = $sur;
+    $this->d=$d;
   }
 }
 

@@ -41,46 +41,21 @@ class ControllerAlerte {
 
     }
 
-    public static function update(){
+    public static function update(){ //l'utilisateur peut seulement modifier le nom de sa recherche sauvegardé
         $id=myGet("id");
-
-        if(Session::is_user($id) || Session::is_admin()){
-            $v=ModelUtilisateur::select($id);
-            $isUpdate=true;
-            $controller='utilisateur'; $view='update'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        $nom=myGet("nom");
+        $login=$_SESSION["login"];
+        if((Session::is_user($login) && ModelAlerte::alerteCorrespondToUser($id,$login)) || Session::is_admin()){
+            $alerte=ModelAlerte::select($id);
+            $alerte->setNom($nom);
+            $alerte->updated();
+            echo "enregistré";
         }else{
-            $controller='utilisateur'; $view='connect'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+            echo "pas les droits";
         }
 
     }
 
-
-    public static function updated(){
-        if(Session::is_user(myGet('login')) || Session::is_admin()){
-            $admin=0;
-            if(!is_null(myGet("admin")) && Session::is_admin()){
-                $admin=1;
-            }
-            $controller='utilisateur'; $view='updated'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            $data=array(
-            "login"=>myGet('login'),
-            "nom"=>myGet('nom'),
-            "prenom"=>myGet('prenom'),
-            "mdp"=>Security::chiffrer(myGet('mdp')),
-            "admin"=>$admin
-            );
-            ModelUtilisateur::update($data);
-            $tab_v = ModelUtilisateur::selectAll();
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-        }
-        else{
-            $controller='utilisateur'; $view='connect'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-        }
-
-    }
 }
 ?>
 

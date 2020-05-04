@@ -58,6 +58,10 @@ class ModelAlerte extends Model{
   	return $this->idAlerte;
   }
 
+  public function setNom($nom){
+  	$this->nom=$nom;
+  }
+
 
   public function getLocalisation(){
   	if($this->tabSimple["localisation"]!==""){
@@ -117,10 +121,15 @@ class ModelAlerte extends Model{
   	echo $this->loginUtilisateur;
   }
 
+  public function updated(){
+  	ModelAlerte::update($this->getTab());
+  }
+
   public function getTab(){
-  	var_dump(get_object_vars($this));
   	return get_object_vars($this);
   }
+
+
 
 }
 
