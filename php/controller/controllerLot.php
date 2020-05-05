@@ -33,6 +33,8 @@ class ControllerLot {
             $data=$_SESSION["dataFirst"];
         }
         $tab_v = ModelLot::selectByRecherche($data,$page);
+        $page=(int)$page;
+        $nbPage=((ModelLot::getNbLotRecherche($data)-1)/5)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
@@ -42,7 +44,7 @@ class ControllerLot {
     	if($v==false){
         $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
         require File::build_path(array('view','view.php'));  //"redirige" vers la vue
-    	}else{      
+    	}else{
         $controller='lot'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
         $model=$v;
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
@@ -64,7 +66,7 @@ class ControllerLot {
  		$v->save();
         $controller='lot'; $view='created'; $pagetitle='cree';     //appel au modèle pour gerer la BD
         $tab_v = ModelLot::selectAll();
-        require File::build_path(array("view", "view.php"));  
+        require File::build_path(array("view", "view.php"));
     }
 
     public static function delete(){
@@ -72,7 +74,7 @@ class ControllerLot {
         ModelLot::delete($id);
         $tab_v=ModelLot::selectAll();
         $controller='lot'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  
+        require File::build_path(array("view", "view.php"));
     }
 
     public static function update(){
@@ -113,9 +115,8 @@ class ControllerLot {
 
     public static function error(){
         $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue        
+        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
 }
 ?>
-
