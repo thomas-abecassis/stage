@@ -18,6 +18,13 @@
             echo "aucune annonce ne correspond à votre recherche";
         }?>
         <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">  <p id="inSauvegarde" class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>
+        <div class="col s12 m10 l7 offset-m1 offset-l2">
+        <?php
+            for($i=1;$i<=19;$i++){
+                echo "<a href=\"index.php?controller=lot&action=searched&page=" . $i . "\">" . $i . "</a>";
+            }
+        ?>
+        </div>
         <script>
         <?php 
             if(isset($_SESSION["login"])){

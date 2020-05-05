@@ -17,13 +17,22 @@ class ControllerLot {
     }
 
     public static function searched(){
-        $data=array(
-            "localisation" => myGet("localisation"),
-            "minSurface" => myGet("minSurface"),
-            "minBudget" => myGet("minBudget"),
-            "maxBudget" => myGet("maxBudget")
-        );
-        $tab_v = ModelLot::selectByRecherche($data);
+        $page=myGet('page');
+        if($page<1){
+            $page=1;
+        }
+        if(myGet("localisation")!=NULL || myGet("minSurface")!=NULL || myGet("minBudget")!=NULL || myGet("maxBudget")!=NULL){
+            $data=array(
+                "localisation" => myGet("localisation"),
+                "minSurface" => myGet("minSurface"),
+                "minBudget" => myGet("minBudget"),
+                "maxBudget" => myGet("maxBudget")
+            );
+
+        }else{
+            $data=$_SESSION["dataFirst"];
+        }
+        $tab_v = ModelLot::selectByRecherche($data,$page);
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }

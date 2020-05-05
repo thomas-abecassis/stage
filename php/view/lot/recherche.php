@@ -1,7 +1,7 @@
 
 <div class="col s12 m8 offset-m2">
 	<div class="card" id="searchBox">
-      <form method="post" action="index.php?controller=lot&action=searched">
+      <form method="post" action="index.php?controller=lot&action=searched&page=1">
 	       <div class="row">
 	          <p>
 	          	<div class="col s5" id="contenantVille" style="padding: 0px;">

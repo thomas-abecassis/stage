@@ -134,13 +134,15 @@ public static function getAlllots(){
   }
 
   //a securiser
-  public static function selectByRecherche($data){
+  public static function selectByRecherche($data,$page){
     ModelLot::unsetSession();
     if(!array_filter($data)){
-      return Modellot::selectAll();
+      $sql="select * from lot";
+    }else{
+      $sql=ModelLot::getSqlSearch($data,$page);
     }
-    else{
-      $sql=ModelLot::getSqlSearch($data);
+    $sql=$sql." LIMIT " . (($page-1)*5) . ", 5";
+    echo $sql;
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
@@ -157,9 +159,7 @@ public static function getAlllots(){
     // Attention, si il n'y a pas de résultats, on renvoie false
     if (empty($tab_voit))
         return false;
-    return $tab_voit;
-
-    }
+    return $tab_voit;  
   }
 
   public static function getSqlSearch($data){
