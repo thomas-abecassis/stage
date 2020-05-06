@@ -1,4 +1,4 @@
-
+<div class="container">
         <?php
         if($alertes != false){
             foreach ($alertes as $alerte){
@@ -8,19 +8,20 @@
                             <div class="infoBoite">
                 			<div class="red-text text-darken-1 deleteAlerte"><i class=" material-icons small">delete_forever</i><span>supprimer la recherche</span> </div>
                 			<div class="contientNom"><div class="nomAlerte">'.htmlspecialchars($alerte->getNom()).'</div>
-                            <input class="modificationNom"  value="'.htmlspecialchars($alerte->getNom()).'" type="text" autocomplete="off" /></div> 
+                            <input class="modificationNom"  value="'.htmlspecialchars($alerte->getNom()).'" type="text" autocomplete="off" /></div>
                             <p class="grey-text grey-lighten-1">   <span >'.htmlspecialchars($alerte->getLocalisation()).", ".htmlspecialchars($alerte->getSurfaceStr()).", ".htmlspecialchars($alerte->getBudgetStr()) .' </span></p>
                             <div class="boutonsAlerte">
                                 <a href="index.php?controller=lotApprofondi&action=searchedDeepenAlerte&alerte='.urlencode(serialize($alerte)).'"><div class="boutonAlerte boutonAnnonces">Voir les lots</div></a>
                                 <div class="boutonAlerte boutonModification"> Modifier</div></div>
                             </div>
 
-            		    </div>'; 
-            }                      
+            		    </div>';
+            }
         }
         else{
             echo "aucune annonce ne correspond à votre recherche";
         }
         ?>
+      </div>
 
         <script type="text/javascript" src="../js/deleteAlerte.js"></script>

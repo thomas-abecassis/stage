@@ -1,7 +1,4 @@
-    <?php
-
-    $controller=static::$object;
-    ?>
+<div class="container">
     <div id="searchBox" class="card col s6 offset-s3">
       <div class="row">
         <h4 class="center">Connexion</h4>
@@ -22,3 +19,4 @@
         </div>
       </div>
     </div>
+  </div>

@@ -1,4 +1,5 @@
-<div class="card col offset-l3 carteLot">
+<div class="containerLot">
+<div class="card offset-l3 carteLot">
 	<div class="relative">
 	  <div class="myCarousel" id="myCarouselImage">
 		  <a id="boutonGauche" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">arrow_back</i></a>
@@ -56,7 +57,15 @@
     	<?php echo "<div class=\"infosEssentiels\"><div class=\"nom\">".htmlspecialchars($lot->getNom())."</div><div class=
     	\"loyer\">". htmlspecialchars($lot->getLoyer())."€/mois </div></div>" ; ?>
 </div>
-
+<div id="contact" class="card ">
+	<div class="contenuContact">
+	<span class="phraseContact" >Ce bien vous intéresse ?</span>
+	<span class="phraseContact">Contactez nous !</span>
+	<div class="contactButton" id="contactTel"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
+	<div class="contactButton" id="contactMail"><i class="material-icons">email</i><span>mail</span></div>
+	<br><br><br><br></div>
+</div>
+</div>
 <div class="col offset-l3 noPadding">
 	<div class="decoupageSection"></div>
 	<div class="descriptionWrap">

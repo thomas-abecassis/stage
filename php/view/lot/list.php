@@ -1,4 +1,4 @@
-
+<div class="container">
         <?php
         if($tab_v != false){
             foreach ($tab_v as $v)
@@ -55,6 +55,7 @@
         ?>
       </ul>
         </div>
+      </div>
         <script>
         <?php
             if(isset($_SESSION["login"])){

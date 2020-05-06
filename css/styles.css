@@ -371,9 +371,9 @@ input[type=checkbox] +span{
 }
 
 .carteLot{
+	float: left;
   padding:0 !important;
   width:auto !important;
-	margin-top: 1.5em !important;
 }
 
 .ImageBoutonSlide{
@@ -564,4 +564,50 @@ main {
 
 #description{
 	margin-top: 1em;
+}
+
+.grid{
+	display: grid;
+	grid-template-columns: 65% 35%;
+	grid-gap: 10px;
+	grid-auto-rows: minmax(100px, auto);
+}
+
+.containerLot{
+		margin-top: 1.5em !important;
+		margin-left: 25%;
+}
+
+#contact{
+	float:left;
+	margin-left: 1em;
+	font-size: 19px;
+}
+
+.contenuContact{
+	padding: 1em;
+}
+
+.phraseContact{
+	display: block;
+	text-align: center;
+	padding-bottom: 1em;
+}
+
+#contactTel{
+	background-color: #ee6e73;
+}
+
+#contactMail{
+	background-color: #ee6e73;
+}
+
+.contactButton{
+		border-radius: 3px;
+		line-height: 2em;
+		margin-bottom: 1em;
+}
+
+.contactButton:hover{
+	cursor: pointer;
 }

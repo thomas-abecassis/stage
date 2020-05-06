@@ -40,7 +40,6 @@
 
         </header>
         <main>
-        <div class="container">
             <div class="row">
             <?php
             $filepath = File::build_path(array("view", $controller, "$view.php"));
@@ -48,7 +47,6 @@
             require $filepath;
             ?>
             </div>
-        </div>
 
 <?php /*
 if(isset($_SESSION["panier"])){
