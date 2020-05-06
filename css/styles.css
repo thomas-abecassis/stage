@@ -82,7 +82,7 @@ footer a {
 .bouton{
 	position:absolute;
 	 background-color: white;
-	
+
 	z-index:2;
 	font-size:200%}
 
@@ -96,20 +96,20 @@ footer a {
 	/* margin: 10px;*/
 	display: block;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     z-index:1;
     position:absolute;
 
 }
 .baleine{
-	 
+
 	 background-image: url(../image/baleine.jpg);
 	 background-repeat: no-repeat;
 	 background-size: cover;
 }
 
 .poisson{
-	 
+
 	 background-image: url(../image/poisson.jpg);
 	 background-repeat: no-repeat;
 	 background-size: cover;
@@ -125,7 +125,6 @@ footer a {
 
 .inputButton{
   border:1px solid rgba(0,0,0,0);
-  background-color: #eeac6e;
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 4rem;
@@ -156,7 +155,7 @@ footer a {
  color:#ff392f !important;
 }
 
-a { color: inherit !important; } 
+a { color: inherit !important; }
 
 .ligne{
   border-bottom:solid 1px;
@@ -247,16 +246,16 @@ input[type=checkbox] +span{
   padding-left:0px !important;
   border-radius: 7px !important;
   -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important;
-  box-shadow: 0 0px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important; 
-  display: flex; 
-  padding: 0 !important;  
+  box-shadow: 0 0px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.2) !important;
+  display: flex;
+  padding: 0 !important;
 }
 
 .boite_hover:hover{
   border-radius: 7px !important;
   -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
   box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
-  cursor:pointer;  
+  cursor:pointer;
 }
 
 .infoBoite{
@@ -282,7 +281,7 @@ input[type=checkbox] +span{
 }
 
 .myCarousel{
-    position: relative; 
+    position: relative;
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
@@ -317,11 +316,16 @@ input[type=checkbox] +span{
 }
 
 .intoSlide{
-  max-height: 100%;
+  height: 100%;
+	width: 100%;
   top: 0;
   right: 0;
   bottom: 0;
-  flex: 0 0 100%;
+	position: relative;
+}
+
+.flexSlide{
+	  flex: 0 0 100%;
 }
 
 .intoSlideBouton{
@@ -331,10 +335,20 @@ input[type=checkbox] +span{
 }
 
 .intoSlideImage{
-  margin-left: 0 !important;
-  margin-right: 0 !important;
   max-width: 100%;
-  margin: auto;
+	max-height: 100%;
+	margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.intoSlide img{
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .boutonSlider{
@@ -353,7 +367,7 @@ input[type=checkbox] +span{
 .boutonSlider:hover{
   -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
   box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
-  cursor:pointer;    
+  cursor:pointer;
 }
 
 .carteLot{
@@ -361,7 +375,7 @@ input[type=checkbox] +span{
   width:auto !important;
 }
 
-.ImageBoutonSlide{ 
+.ImageBoutonSlide{
   border-radius: 0.5rem;
   background-position: 50%;
   background-size: cover;
@@ -435,8 +449,7 @@ main {
 #sauvegardeAnnonce{
   justify-content: center;
   -webkit-justify-content: center;
-  background-color: #eeac6e;
-  color-transition:0.2s; 
+  color-transition:0.2s;
 }
 
 .flex{
@@ -459,7 +472,6 @@ main {
 
 #boutonConnexion{
   padding: 10px;
-  background-color: #eeac6e;
 }
 
 .liste li{
@@ -475,4 +487,59 @@ main {
 
 .liste{
   padding-left:2em !important;
+}
+
+.listeFinDePage li{
+	display: inline-block;
+	position: relative;
+}
+.listeFinDePage{
+	text-align: center;
+}
+
+.listeFinDePage li a{
+	margin: 0 .2rem;
+	padding: 0 .8rem;
+	position: relative;
+}
+
+.listeFinDePage li a i{
+	position: absolute;
+	left: 0;
+}
+
+.listeFinDePage li i{
+	position: absolute;
+	left: 0;
+}
+
+.pageSelection :before {
+  content : "";
+  position: absolute;
+  left    : 0.5em;
+  bottom  : 0;
+  height  : 1px;
+  width   : 50%;
+  border-bottom:1px solid grey;
+}
+
+.secondeCouleur{
+	  background-color: #eeac6e !important;
+}
+
+.secondeCouleurTexte{
+	color:#eeac6e !important
+}
+
+.decoupageSection{
+	border-bottom: solid 1px #c4c2c1;
+	margin-bottom: 1em;
+}
+
+.descriptionWrap{
+	width:40em;
+}
+
+.noPadding{
+	padding: 0 !important;
 }

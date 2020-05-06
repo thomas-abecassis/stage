@@ -1,4 +1,4 @@
-    <?php 
+    <?php
 
     $controller=static::$object;
     ?>
@@ -14,12 +14,11 @@
                 <input value= "" type="password" placeholder="mot de passe" name="mdp" id="mdp_id" required />
               </p>
               <p >
-                <input id="boutonConnexion" class="col s10 offset-s1" type="submit" value="Envoyer" />
+                <input id="boutonConnexion secondeCouleur" class="col s10 offset-s1" type="submit" value="Envoyer" />
               </p>
               <input type='hidden' name='action' value='connected'>
-              <input type='hidden' name='controller' value='utilisateur'> 
+              <input type='hidden' name='controller' value='utilisateur'>
           </form>
         </div>
       </div>
     </div>
-

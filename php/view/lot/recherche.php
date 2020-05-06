@@ -47,7 +47,7 @@
 
 	    <div style="position: absolute; left: 50%;">
     		<div style="position: relative; left: -50%;">
-	            <input  class="inputButton" type="submit" value="Envoyer" />
+	            <input  class="secondeCouleur inputButton" type="submit" value="Envoyer" />
     		</div>
   		</div>
 
@@ -58,7 +58,7 @@
 </div>
 <script type="text/javascript" src="../js/search.js"></script>
 
-<?php 
+<?php
 
 
 

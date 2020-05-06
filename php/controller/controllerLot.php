@@ -21,20 +21,20 @@ class ControllerLot {
         if($page<1){
             $page=1;
         }
-        if(myGet("localisation")!=NULL || myGet("minSurface")!=NULL || myGet("minBudget")!=NULL || myGet("maxBudget")!=NULL){
+        if(isset($_POST["localisation"])){
             $data=array(
                 "localisation" => myGet("localisation"),
                 "minSurface" => myGet("minSurface"),
                 "minBudget" => myGet("minBudget"),
                 "maxBudget" => myGet("maxBudget")
             );
-
+            $_SESSION["dataFirst"]=$data;
         }else{
             $data=$_SESSION["dataFirst"];
         }
         $tab_v = ModelLot::selectByRecherche($data,$page);
         $page=(int)$page;
-        $nbPage=((ModelLot::getNbLotRecherche($data)-1)/5)+1;
+        $nbPage=(int)((ModelLot::getNbLotRecherche($data)-1)/15)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }

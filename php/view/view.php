@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   
+
   <meta charset="utf-8">
   <title><?php echo $pagetitle; ?></title>
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
@@ -19,15 +19,15 @@
 
 <body class=" grey lighten-3">
         <header>
-        	 <nav   id="menu" class="nav-wraper">                     
+        	 <nav   id="menu" class="nav-wraper">
                <!-- <img href="#index.html" id="logo" src="https://www.logolynx.com/images/logolynx/0a/0a541bcbcef40a7c1058c0d02db88762.png"alt="Le logo."> -->
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-            		
+
                 		<li><a href="index.php">Accueil</a></li>
                         <li ><a href="index.php?action=readAll">Produits</a></li>
                 		<li ><a href=" index.php?action=readAll&controller=utilisateur">Utilisateurs</a></li>
-                		
-                        <?php 
+
+                        <?php
                         if(isset($_SESSION["login"])){
                             echo "<li><a href=\"index.php?action=read&controller=alerte\">Mes recherches</a></li>";
                             echo "<li><a href=\"index.php?action=disconnect&controller=utilisateur\">Deconnexion</a></li>";
@@ -35,14 +35,14 @@
                            echo "<li><a href=\"index.php?action=connect&controller=utilisateur\">Connexion</a></li>";
                         }
                         ?>
-            		
+
             	</nav>
 
         </header>
         <main>
         <div class="container">
             <div class="row">
-            <?php 
+            <?php
             $filepath = File::build_path(array("view", $controller, "$view.php"));
 
             require $filepath;
@@ -94,11 +94,10 @@ if(isset($_SESSION["panier"])){
 
         </footer>
     </div>
-    
-    
+
+
 </body>
 
 
 
 </html>
-

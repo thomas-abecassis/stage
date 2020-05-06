@@ -3,7 +3,7 @@
 require_once File::build_path(array("model", "Model.php"));
 
 class Modellot extends Model{
-   
+
   private $id;
   private $nom;
   private $localisation;
@@ -15,13 +15,13 @@ class Modellot extends Model{
   protected static $object = "lot";
   protected static $primary='id';
 
-      
-  // un getter      
+
+  // un getter
   public function getid() {
-       return $this->id;  
+       return $this->id;
   }
-     
-  // un setter 
+
+  // un setter
   public function setid($id2) {
        $this->id = $id2;
   }
@@ -48,10 +48,10 @@ class Modellot extends Model{
 
   public function setprix($prix){
     if(strlen($prix)==8){
-    $this->prix=$prix; 
+    $this->prix=$prix;
     }
     else{
-      echo"oupsi"; 
+      echo"oupsi";
     }
   }
 
@@ -70,7 +70,7 @@ class Modellot extends Model{
   public function getTab(){
     return get_object_vars($this);
   }
-      
+
 public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL) {
   if (!is_null($i) && !is_null($n) && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d)) {
     // Si aucun de $m, $c et $i sont nuls,
@@ -91,13 +91,13 @@ public static function getAlllots(){
 }
 
 
-           
+
   /* une methode d'affichage.
   public function afficher() {
     echo "lot $this->prix de id $this->id (nom $this->nom)";
   }*/
-  
-  
+
+
   public static function getlotByImmat($immat) {
     $sql = "SELECT * from lot WHERE prix=:nom_tag";
     // Préparation de la requête
@@ -107,7 +107,7 @@ public static function getAlllots(){
         "nom_tag" => $immat,
         //nomdutag => valeur, ...
     );
-    // On donne les valeurs et on exécute la requête	 
+    // On donne les valeurs et on exécute la requête
     $req_prep->execute($values);
 
     // On récupère les résultats comme précédemment
@@ -128,21 +128,19 @@ public static function getAlllots(){
         "nom_tag" => $immat,
         //nomdutag => valeur, ...
     );
-    // On donne les valeurs et on exécute la requête   
+    // On donne les valeurs et on exécute la requête
     $req_prep->execute($values);
 
   }
 
   //a securiser
   public static function selectByRecherche($data,$page){
-    ModelLot::unsetSession();
     if(!array_filter($data)){
       $sql="select * from lot";
     }else{
-      $sql=ModelLot::getSqlSearch($data,$page);
+      $sql=ModelLot::getSqlSearch($data);
     }
-    $sql=$sql." LIMIT " . (($page-1)*5) . ", 5";
-    echo $sql;
+    $sql=$sql." LIMIT " . (($page-1)*15) . ", 15";
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
@@ -150,7 +148,7 @@ public static function getAlllots(){
           //"nom_tag" => $immat,
           //nomdutag => valeur, ...
       );
-      // On donne les valeurs et on exécute la requête   
+      // On donne les valeurs et on exécute la requête
       $req_prep->execute($values);
 
           // On récupère les résultats comme précédemment
@@ -159,7 +157,24 @@ public static function getAlllots(){
     // Attention, si il n'y a pas de résultats, on renvoie false
     if (empty($tab_voit))
         return false;
-    return $tab_voit;  
+    return $tab_voit;
+  }
+
+  public static function getNbLotRecherche($data){
+    if(!array_filter($data)){
+      $sql="select * from lot";
+    }else{
+      $sql=ModelLot::getSqlSearch($data);
+    }
+    $req_prep = Model::$pdo->prepare($sql);
+    $values = array(
+          //"nom_tag" => $immat,
+          //nomdutag => valeur, ...
+    );
+    $req_prep->execute($values);
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
+    $tab_lot= $req_prep->fetchAll();
+    return count($tab_lot);
   }
 
   public static function getSqlSearch($data){
@@ -202,4 +217,3 @@ public static function getAlllots(){
   }
 }
 ?>
-
