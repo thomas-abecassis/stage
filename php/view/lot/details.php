@@ -58,17 +58,19 @@
 </div>
 
 <div class="col offset-l3 noPadding">
+	<div class="decoupageSection"></div>
 	<div class="descriptionWrap">
-		<ul class="liste">
+		<span class="titrePartie" >Critères</span>
+		<div class="row">
 		<?php
-			echo "<li>". $lot->getTypeDeBien() ."</li>";
-			echo "<li>". $lot->getLocalisation() ."</li>";
-			echo "<li>". $lot->getSurface() ."</li>";
-			echo "<li>". $lot->getNombrePiece() ."</li>";
+			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
+			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Adresse : </div><div class=\"critereLot\">". $lot->getLocalisation() ."</div></div>";
+			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Surface : </div><div class=\"critereLot\">". $lot->getSurface() ."m²</div></div>";
+			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Nombre de pièces : </div><div class=\"critereLot\">". $lot->getNombrePiece() ."</div></div>";
 		?>
-		</ul>
+	</div>
 		<div class="decoupageSection"></div>
-		<span id="titreDescription" >Description</span>
+		<span class="titrePartie" >Les plus</span>
 		<ul class="liste">
 			<?php
 				foreach ($lotApprofondi->getCommodites() as $value ) {
@@ -80,9 +82,13 @@
 		?>
 		</ul>
 		<div class="decoupageSection"></div>
+		<span class="titrePartie" >Description</span>
+		<div id="description">
 		<?php
 			echo $lot->getDescription();
 		?>
+		</div>
+		<div class="decoupageSection"></div>
 	</div>
 </div>
 
