@@ -57,13 +57,20 @@
     	<?php echo "<div class=\"infosEssentiels\"><div class=\"nom\">".htmlspecialchars($lot->getNom())."</div><div class=
     	\"loyer\">". htmlspecialchars($lot->getLoyer())."€/mois </div></div>" ; ?>
 </div>
+<div class="floatLeft">
+<div id="sticky">
+	<div id="anchor"></div>
 <div id="contact" class="card ">
 	<div class="contenuContact">
 	<span class="phraseContact" >Ce bien vous intéresse ?</span>
 	<span  class="lightBold phraseContact">Contactez nous !</span>
-	<div class="contactButton" id="contactTel"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
-	<div class="contactButton" id="contactMail"><i class="material-icons">email</i><span>e-mail</span></div>
+	<div class="contactButton displayFlex" id="contactTelButton"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
+	<div class="contactContent displayNone" id="contactTelContent"><i class="material-icons">local_phone</i><span>06 XX XX XX XX</span></div>
+	<div class="contactButton displayFlex" id="contactMailButton"><i class="material-icons">email</i><span>e-mail</span></div>
+	<div class="contactContent displayNone" id="contactMailContent"><i class="material-icons">email</i><span>monmail@mail.fr</span></div>
 	</div>
+</div>
+</div>
 </div>
 </div>
 <div class="col offset-l3 noPadding">
@@ -102,6 +109,8 @@
 </div>
 
 <script type="text/javascript" src="../js/myCarousel.js"></script>
+<script type="text/javascript" src="../js/boutonContact.js"></script>
+<script type="text/javascript" src="../js/stickyContact.js"></script>
 
 <?php
 

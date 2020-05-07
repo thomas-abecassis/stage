@@ -595,11 +595,11 @@ main {
 	padding-bottom: 1em;
 }
 
-#contactTel{
+#contactTelButton{
 	background-color: #ee6e73;
 }
 
-#contactMail{
+#contactMailButton{
 	background-color: #ee6e73;
 }
 
@@ -610,9 +610,23 @@ main {
 	text-align: center;
 	color: #fff;
 	font-weight: 500;
-	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.contactContent{
+	height: 2em;
+	border-radius: 3px;
+	margin-bottom: 1em;
+	text-align: center;
+	font-weight: 400;
+	align-items: center;
+	justify-content: center;
+	border: solid 1px #ee6e73;
+}
+
+.contactContent i{
+	margin-right: 5px;
 }
 
 .contactButton:hover{
@@ -626,3 +640,21 @@ main {
 .lightBold{
 	font-weight: 500;
 }
+
+.displayNone{
+	display:none;
+}
+
+.displayFlex{
+	display: flex;
+}
+
+.sticky-top {
+		position:fixed!important;
+		top:0!important;
+		z-index:10000!important;
+	}
+
+	.floatLeft{
+		float: left;
+	}
