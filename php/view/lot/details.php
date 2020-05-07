@@ -60,10 +60,10 @@
 <div id="contact" class="card ">
 	<div class="contenuContact">
 	<span class="phraseContact" >Ce bien vous intéresse ?</span>
-	<span class="phraseContact">Contactez nous !</span>
+	<span  class="lightBold phraseContact">Contactez nous !</span>
 	<div class="contactButton" id="contactTel"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
-	<div class="contactButton" id="contactMail"><i class="material-icons">email</i><span>mail</span></div>
-	<br><br><br><br></div>
+	<div class="contactButton" id="contactMail"><i class="material-icons">email</i><span>e-mail</span></div>
+	</div>
 </div>
 </div>
 <div class="col offset-l3 noPadding">

@@ -582,6 +582,7 @@ main {
 	float:left;
 	margin-left: 1em;
 	font-size: 19px;
+	min-width: 15em;
 }
 
 .contenuContact{
@@ -603,11 +604,25 @@ main {
 }
 
 .contactButton{
-		border-radius: 3px;
-		line-height: 2em;
-		margin-bottom: 1em;
+	height: 2em;
+	border-radius: 3px;
+	margin-bottom: 1em;
+	text-align: center;
+	color: #fff;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .contactButton:hover{
 	cursor: pointer;
+}
+
+.contactButton i{
+	margin-right: 5px;
+}
+
+.lightBold{
+	font-weight: 500;
 }
