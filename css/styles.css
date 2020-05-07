@@ -285,19 +285,18 @@ input[type=checkbox] +span{
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    height: auto;
     overflow: hidden;
 }
 
 #myCarouselImage{
     background-color: #cad1d9;
-    width: 40rem;
-    min-height: 34rem;
+    width: 62vh;
+    min-height: 52vh;
 }
 
 #myCarouselBouton{
-    width: 40rem;
-    min-height: 5rem;
+    width: 62vh;
+    min-height: 8vh;
     position: absolute;
     bottom: 0rem;
 
@@ -354,7 +353,7 @@ input[type=checkbox] +span{
 .boutonSlider{
   padding:0 !important;
   border-radius: 0.5rem;
-  height: 4rem;
+  height: 6vh;
   border: solid black 1px;
   -webkit-transition: -webkit-box-shadow .25s;
   transition: -webkit-box-shadow .25s;
@@ -541,7 +540,7 @@ main {
 }
 
 .descriptionWrap{
-	width:40em;
+	width:62vh;
 }
 
 .noPadding{
@@ -582,7 +581,7 @@ main {
 	float:left;
 	margin-left: 1em;
 	font-size: 19px;
-	min-width: 15em;
+	min-width: 29vh;
 }
 
 .contenuContact{
@@ -650,15 +649,19 @@ main {
 }
 
 .sticky-top {
-		position:fixed!important;
-		top:0!important;
-		z-index:10000!important;
-	}
+	position:fixed!important;
+	top:0!important;
+	z-index:10000!important;
+}
 
-	.floatLeft{
-		float: left;
-	}
+.floatLeft{
+	float: left;
+}
 
-	.container{
-		max-width: 1780px !important;
-	}
+.container{
+	max-width: 1780px !important;
+}
+
+#descriptionWrapper{
+  margin-right: calc(100% - 40em - 25%);
+}

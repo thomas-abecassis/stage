@@ -73,7 +73,7 @@
 </div>
 </div>
 </div>
-<div class="col offset-l3 noPadding">
+<div id="descriptionWrapper" class=" col offset-l3 noPadding">
 	<div class="decoupageSection"></div>
 	<div class="descriptionWrap">
 		<span class="titrePartie" >Critères</span>
