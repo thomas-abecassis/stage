@@ -658,3 +658,7 @@ main {
 	.floatLeft{
 		float: left;
 	}
+
+	.container{
+		max-width: 1780px !important;
+	}
