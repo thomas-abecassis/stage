@@ -1,11 +1,22 @@
 <div class="container">
         <?php
         if($tab_v != false){
-            foreach ($tab_v as $v)
+            foreach ($tab_v as $v){
+                $filecount = 0;
+                $files = glob("../image/".htmlspecialchars($v->getId())."/*.*");
+                if ($files){
+                 $filecount = count($files);
+                }
                 echo '  <a href=index.php?controller=lotApprofondi&action=Read&id='.rawurlencode($v->getId()).'>
-                        <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">
-                            <div class="imageBoite" ><img src="../image/'.$v->getId().'/1.jpg"></div>
-                            <div class="infoBoite">
+                        <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">';
+                        if($filecount!=0){
+                          echo '<div class="imageBoite" ><img src="../image/'.$v->getId().'/1.jpg"></div>';
+                        }
+                        else{
+                          echo '<div class="imageBoite" ><img src="../image/noPhoto.png"></div>';
+                        }
+
+                echo '<div class="infoBoite">
                 			<p class="">' . htmlspecialchars($v->getnom()) . ' </p>
                 			<p class="prix">'.htmlspecialchars($v->getLoyer()).' €/mois </p>
                             <p class="surface">   <i class="material-icons">home</i><span class="surfaceText">'.htmlspecialchars($v->getSurface()) . 'm² </span></p>
@@ -13,6 +24,7 @@
                             </div>
             		    </div>
                         </a>';
+            }
         }
         else{
             echo "aucune annonce ne correspond à votre recherche";

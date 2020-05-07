@@ -2,14 +2,29 @@
 <div class="card offset-l3 carteLot">
 	<div class="relative">
 	  <div class="myCarousel" id="myCarouselImage">
-		  <a id="boutonGauche" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">arrow_back</i></a>
-		  <a id="boutonDroite" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">arrow_forward</i></a>
+			<?php
+				$filecount = 0;
+				$files = glob("../image/".htmlspecialchars($lot->getId())."/*.*");
+				if ($files){
+				 $filecount = count($files);
+				}
+				if($filecount!=0){
+			  	echo "<a id=\"boutonGauche\" class=\"btn-floating btn-large waves-effect waves-light grey\"><i class=\"material-icons\">arrow_back</i></a>";
+			  	echo "<a id=\"boutonDroite\" class=\"btn-floating btn-large waves-effect waves-light grey\"><i class=\"material-icons\">arrow_forward</i></a>";
+				}
+			?>
 		  <div id="slideImage" class="slide">
 		  	<?php
-		  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
-					echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
-			    echo "<img class=\"intoSlideImage\" src=". $file ." \">";
-					echo"</div>";
+				if($filecount!==0){
+			  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
+						echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
+				    echo "<img class=\"intoSlideImage\" src=". $file ." \">";
+						echo"</div>";
+					}
+			}
+			else{
+				echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
+				echo "<img class=\"intoSlideImage\" src=\"../image/noPhoto.png\">";
 			}
 			?>
 		</div>
@@ -17,24 +32,25 @@
 	  <div class="myCarousel" id="myCarouselBouton">
 	  	<div id="slideBouton" class="slide">
 	  		<?php
-	  		$i=0;
-	  		echo "";
-		  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
-		  		if($i%3 ==0){
-		  			if($i!=0){
-		  				echo "</div>";
-		  			}
-	  				echo "<div class=\"flexSlide intoSlide intoSlideBouton row \">";
-	  				echo "<div class=\"boutonSlider col s2 offset-s2\"> <div class=\"selectionne ImageBoutonSlide\" style=\"  background-image:url('".$file."');\"></div> ";
-		  		}else{
-		  			echo "<div class=\"boutonSlider col s2 offset-s1\" > <div class=\"ImageBoutonSlide\" style=\"  background-image:url('".$file."');\"></div> </div>";
-		  		}
+		  		$i=0;
+		  		echo "";
+			  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
+			  		if($i%3 ==0){
+			  			if($i!=0){
+			  				echo "</div>";
+			  			}
+		  				echo "<div class=\"flexSlide intoSlide intoSlideBouton row \">";
+		  				echo "<div class=\"boutonSlider col s2 offset-s2\"> <div class=\"selectionne ImageBoutonSlide\" style=\"  background-image:url('".$file."');\"></div> ";
+			  		}else{
+			  			echo "<div class=\"boutonSlider col s2 offset-s1\" > <div class=\"ImageBoutonSlide\" style=\"  background-image:url('".$file."');\"></div> </div>";
+			  		}
 
-			    if($i%3 ==0){
-	  				echo "</div>";
-		  		}
-		  		$i++;
-			}
+				    if($i%3 ==0){
+		  				echo "</div>";
+			  		}
+			  		$i++;
+				}
+
 			?>
 			</div></div>
 	  		<!---<div id="slideBouton" class="slide">
