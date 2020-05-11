@@ -18,7 +18,7 @@
 				if($filecount!==0){
 			  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
 						echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
-				    echo "<img class=\"intoSlideImage\" src=". $file ." \">";
+				    echo "<img class=\"intoSlideImage\" src=". str_replace(' ', '%20', $file) ." \">";
 						echo"</div>";
 					}
 			}

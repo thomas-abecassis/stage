@@ -40,7 +40,7 @@ function indexHover(){
 }
 
 function search(){	
-	xhr2.open("get", "lib/search?mot="+searchBox.value, true);
+	xhr2.open("get", "lib/search.php?mot="+searchBox.value, true);
 	xhr2.send(null);
 }
 
