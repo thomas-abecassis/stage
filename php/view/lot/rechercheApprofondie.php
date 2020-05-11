@@ -120,7 +120,7 @@
 				       				?>
 		      					</div>
 		      	</div>
-		            <input  class="inputButton inputButtonApprofondie" type="submit" value="Envoyer" />
+		            <input  class="inputButton inputButtonApprofondie secondeCouleur" type="submit" value="Envoyer" />
 	  		</div>
 		    </div>
 	      </form>
