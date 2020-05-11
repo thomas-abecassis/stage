@@ -19,6 +19,7 @@ function callback1(xhr){
 function mettreEvents(){
 	let deleteButons=Array.from(document.getElementsByClassName("deleteAlerte"));
 	let modificationButons=Array.from(document.getElementsByClassName("boutonModification"));
+	let activationButons=Array.from(document.getElementsByClassName("switch"));
 	deleteButons.forEach((buton)=>{
 		buton.addEventListener("click",()=>{
 			supprimerAlerte(buton);
@@ -29,6 +30,16 @@ function mettreEvents(){
 			modifierAlerte(buton);
 		});
 	});
+	activationButons.forEach((buton)=>{
+		buton.addEventListener("change",()=>{
+			activerAlerte(buton);
+		});
+	});
+}
+
+function activerAlerte(buton){
+	let id=trouverId(buton);
+	requeteAJAX("index.php?controller=alerte&action=active&id="+id,callback1);
 }
 
 function supprimerAlerte(buton){
@@ -70,7 +81,6 @@ function trouverId(element){
 	i=0; //protection pour éviter de faire tourner la boucle indéfiniment
 	while(idDansEnfants(parent)===false && i < 5){
 		parent=parent.parentElement;
-		console.log(parent);
 		i++;
 	}
 	return idDansEnfants(parent);
@@ -84,7 +94,6 @@ function idDansEnfants(element){
 			return children[i].innerHTML;
 		}
 	}	
-	console.log(test);
 	return test;
 }
 

@@ -81,6 +81,10 @@ class ModelAlerte extends Model{
     return $this->activeMail;
   }
 
+  public function setActiveMail($bool){
+    $this->activeMail=$bool;
+  }
+
   public function setNom($nom){
   	$this->nom=$nom;
   }
@@ -118,7 +122,7 @@ class ModelAlerte extends Model{
   }
 
   public static function checkAll(){
-  	$allAlerte=ModelAlerte::selectAll();
+  	$allAlerte=ModelAlerte::selectCol("activeMail",true);
   	foreach ($allAlerte as $alerte) {
   		if($alerte->check()){
   			$alerte->envoiMail();

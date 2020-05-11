@@ -18,7 +18,7 @@ class ControllerAlerte {
             require File::build_path(array("view","view.php"));   
         }else{
             echo "il faut se connecter";
-        }
+        }   
     }
 
     public static function created(){
@@ -54,7 +54,21 @@ class ControllerAlerte {
         }else{
             echo "pas les droits";
         }
+    }
 
+    public static function active(){
+        $id=myGet("id");
+        $login=$_SESSION["login"];
+        if((Session::is_user($login) && ModelAlerte::alerteCorrespondToUser($id,$login)) || Session::is_admin()){
+            $alerte=ModelAlerte::select($id);
+            $alerte->setActiveMail(!$alerte->getActiveMail());
+            var_dump($alerte->getActiveMail());
+            var_dump(!$alerte->getActiveMail());
+            $alerte->updated();
+            echo "enregistré";
+        }else{
+            echo "pas les droits";
+        }
     }
 
 }

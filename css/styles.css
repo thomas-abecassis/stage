@@ -665,3 +665,12 @@ main {
 #descriptionWrapper{
   margin-right: calc(100% - 40em - 25%);
 }
+
+.lever{
+      padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .switch{
+    display: inline !important;
+  }
