@@ -57,11 +57,11 @@ class ModelLotApprofondi {
  // a securiser
   public static function searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page){
     if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
-      return Modellot::selectAll();
+      $sql="select * from lot";
+    }else{
+      $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
     }
-    $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
     $sql=$sql." LIMIT " . (($page-1)*15) . ", 15";
-    var_dump($sql);
     $rep=Model::$pdo->query($sql);
     if($rep==false){
       return array();
@@ -154,6 +154,13 @@ class ModelLotApprofondi {
 
   public static function getAllOptions(){
     return ModelLotApprofondi::getAllCategorie("options");
+  }
+
+  public static function unsetSession(){
+    $_SESSION['typesBien']=array();
+    $_SESSION['nombrePieces']=array();
+    $_SESSION['dataCheckBox']=array();
+    $_SESSION['dataPost']=array();
   }
 
 }

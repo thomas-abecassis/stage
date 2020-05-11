@@ -16,6 +16,7 @@ class ControllerLot {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
+    //! a refactoriser comme dans le controllerLotApprofondi  !\\
     public static function searched(){
         $page=myGet('page');
         if($page<1){

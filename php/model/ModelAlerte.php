@@ -1,4 +1,5 @@
 <?php
+//require_once "../lib/File.php";
 require_once File::build_path(array("model", "Model.php"));
 require_once File::build_path(array("model", "ModelLotApprofondi.php"));
 
@@ -110,8 +111,15 @@ class ModelAlerte extends Model{
   }
 
   public function check(){
-  	$sql=ModelLotApprofondi::getSqlForDeepSearch($this->tabTypesBien,$this->tabNombrePieces,$this->tabCheckBox,$this->tabSimple);
-  	$sql=$sql." AND dateEnregistrement >DATE_SUB(NOW(), INTERVAL 60 MINUTE);";
+    $this->decode();
+    if(!array_filter($this->tabTypesBien) && !array_filter($this->tabNombrePieces) && !array_filter($this->tabCheckBox) && !array_filter($this->tabSimple)){
+      $sql="select * from lot where dateEnregistrement >DATE_SUB(NOW(), INTERVAL 60 MINUTE)";
+    }
+    else{
+  	   $sql=ModelLotApprofondi::getSqlForDeepSearch($this->tabTypesBien,$this->tabNombrePieces,$this->tabCheckBox,$this->tabSimple);
+  	   $sql=$sql." AND dateEnregistrement >DATE_SUB(NOW(), INTERVAL 60 MINUTE);";
+    }
+    var_dump($sql);
     $rep=Model::$pdo->query($sql);
     $rep=$rep->fetchAll(PDO::FETCH_CLASS, 'ModelLot');
     return $rep!=false;
@@ -132,6 +140,8 @@ class ModelAlerte extends Model{
 
 
 }
+
+//ModelAlerte::checkAll();
 
 ?>
 
