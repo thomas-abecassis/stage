@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col s12 m8 offset-m2">
 		<div class="card searchBoxApprofondie" id="searchBox" >
-	      <form method="post" action="index.php?controller=lotApprofondi&action=searchedDeepen">
+	      <form method="post" action="index.php?controller=lotApprofondi&action=searchedDeepen&page=1">
 		       		<div class="categorie row">
 			       		<div class="titreCategorie">Localisation
 			       			<div class="col s12 ligne"></div></div>

@@ -55,11 +55,13 @@ class ModelLotApprofondi {
   }
 
  // a securiser
-  public static function searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
+  public static function searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page){
     if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
       return Modellot::selectAll();
     }
     $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+    $sql=$sql." LIMIT " . (($page-1)*15) . ", 15";
+    var_dump($sql);
     $rep=Model::$pdo->query($sql);
     if($rep==false){
       return array();
@@ -105,6 +107,23 @@ class ModelLotApprofondi {
       }
     } 
     return $sql;
+  }
+
+  public static function getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
+    if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
+      $sql="select * from lot";
+    }else{
+      $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+    }
+    $req_prep = Model::$pdo->prepare($sql);
+    $values = array(
+          //"nom_tag" => $immat,
+          //nomdutag => valeur, ...
+    );
+    $req_prep->execute($values);
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLotApprofondi');
+    $tab_lot= $req_prep->fetchAll();
+    return count($tab_lot);
   }
 
   public static function getAllCategorie($categorie){

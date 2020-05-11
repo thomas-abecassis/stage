@@ -35,6 +35,7 @@ class ControllerLot {
         $tab_v = ModelLot::selectByRecherche($data,$page);
         $page=(int)$page;
         $nbPage=(int)((ModelLot::getNbLotRecherche($data)-1)/15)+1;
+        $lot="lot";
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }

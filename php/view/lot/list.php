@@ -37,7 +37,12 @@
             echo "<li><a><i class=\" grey-text text-lighten-1 material-icons\">chevron_left</i><span class=\"surfaceText\"></a></li>";
             }
             else{
-              echo "<li><a  href=\"index.php?controller=lot&action=searched&page=" . ($page-1) . "\"> <i class=\"material-icons\">chevron_left</i><span class=\"surfaceText\"> </a></li>";
+              if(strcmp($lot, "lot")==0){
+                echo "<li><a  href=\"index.php?controller=lot&action=searched&page=" . ($page-1) . "\"> <i class=\"material-icons\">chevron_left</i><span class=\"surfaceText\"> </a></li>";
+              }
+              else{
+                echo "<li><a  href=\"index.php?controller=lotApprofondi&action=searchedDeepen&page=" . ($page-1) . "\"> <i class=\"material-icons\">chevron_left</i><span class=\"surfaceText\"> </a></li>";
+              }
             }
             if($nbPage-$page>3){
               $i=$page-3;
@@ -51,16 +56,31 @@
               }
               else{
                 if($i==$page){
-                  echo "<li class=\"pageSelection\"><a href=\"index.php?controller=lot&action=searched&page=" . $i . "\">" . $i . "</a></li>";
+                  if(strcmp($lot, "lot")==0){
+                    echo "<li class=\"pageSelection\"><a href=\"index.php?controller=lot&action=searched&page=" . $i . "\">" . $i . "</a></li>";
+                  }
+                  else{
+                    echo "<li class=\"pageSelection\"><a href=\"index.php?controller=lotApprofondi&action=searchedDeepen&page=" . $i . "\">" . $i . "</a></li>";
+                  }
                 }
                 else{
-                  echo "<li><a  href=\"index.php?controller=lot&action=searched&page=" . $i . "\">" . $i . "</a></li>";
+                  if(strcmp($lot, "lot")==0){
+                    echo "<li><a  href=\"index.php?controller=lot&action=searched&page=" . $i . "\">" . $i . "</a></li>";
+                  }
+                  else{
+                    echo "<li><a  href=\"index.php?controller=lotApprofondi&action=searchedDeepen&page=" . $i . "\">" . $i . "</a></li>";
+                  }
                 }
               }
               $i++;
             }
           if($page<$nbPage){
-            echo "<li><a  href=\"index.php?controller=lot&action=searched&page=" . ($page+1) . "\"><i class=\"material-icons\">chevron_right</i><span class=\"surfaceText\"></a></li>";
+            if(strcmp($lot, "lot")==0){
+              echo "<li><a  href=\"index.php?controller=lot&action=searched&page=" . ($page+1) . "\"><i class=\"material-icons\">chevron_right</i><span class=\"surfaceText\"></a></li>";
+            }
+            else{
+              echo "<li><a  href=\"index.php?controller=lotApprofondi&action=searchedDeepen&page=" . ($page+1) . "\"><i class=\"material-icons\">chevron_right</i><span class=\"surfaceText\"></a></li>";
+            }
           }else{
             echo "<li><a><i class=\"grey-text text-lighten-1 material-icons\">chevron_right</i><span class=\"surfaceText\"></a></li>";
           }
