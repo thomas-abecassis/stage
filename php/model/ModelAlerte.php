@@ -12,12 +12,13 @@ class ModelAlerte extends Model{
   private $tabCheckBox;
   private $nom;
   private $idAlerte;
+  private $activeMail;
   protected static $object = "alerte";
   protected static $primary='idAlerte';
 
       
-  public function __construct($idAlerte = NULL,$loginUtilisateur = NULL,$tabSimple = NULL,$tabTypesBien = NULL,$tabNombrePieces = NULL,$tabCheckBox = NULL,$nom = NULL) {
-    if ( !is_null($loginUtilisateur) && !is_null($tabSimple) && !is_null($tabTypesBien) && !is_null($tabNombrePieces) && !is_null($tabCheckBox) && !is_null($nom)) {
+  public function __construct($idAlerte = NULL,$loginUtilisateur = NULL,$tabSimple = NULL,$tabTypesBien = NULL,$tabNombrePieces = NULL,$tabCheckBox = NULL,$nom = NULL, $activeMail = NULL) {
+    if ( !is_null($loginUtilisateur) && !is_null($tabSimple) && !is_null($tabTypesBien) && !is_null($tabNombrePieces) && !is_null($tabCheckBox) && !is_null($nom) && !is_null($activeMail)) {
       $this->loginUtilisateur = $loginUtilisateur;
       $this->tabSimple = $tabSimple;
       $this->tabTypesBien = $tabTypesBien;
@@ -25,7 +26,24 @@ class ModelAlerte extends Model{
       $this->tabCheckBox = $tabCheckBox;
       $this->nom = $nom;
       $this->idAlerte = $idAlerte;
+      $this->activeMail = $activeMail;
       }
+      $this->checkArray();
+  }
+
+  private function checkArray(){
+    if(is_null(json_decode($this->tabSimple))){
+      $this->tabSimple= "[]";
+    }
+    if(is_null(json_decode($this->tabTypesBien))){
+      $this->tabTypesBien= "[]";
+    }
+    if(is_null(json_decode($this->tabNombrePieces))){
+      $this->tabNombrePieces= "[]";
+    }
+    if(is_null(json_decode($this->tabCheckBox))){
+      $this->tabCheckBox= "[]";
+    }
   }
 
   public function decode(){
@@ -57,6 +75,10 @@ class ModelAlerte extends Model{
 
   public function getId(){
   	return $this->idAlerte;
+  }
+
+  public function getActiveMail(){
+    return $this->activeMail;
   }
 
   public function setNom($nom){
@@ -135,6 +157,13 @@ class ModelAlerte extends Model{
 
   public function getTab(){
   	return get_object_vars($this);
+  }
+
+  public static function unsetSession(){
+    $_SESSION["dataFirst"]=array();
+    $_SESSION["typesBien"]=array();
+    $_SESSION["nombrePieces"]=array();
+    $_SESSION["dataCheckBox"]=array();
   }
 
 

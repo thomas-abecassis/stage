@@ -23,8 +23,9 @@ class ControllerAlerte {
 
     public static function created(){
         echo $_SESSION["login"];
-        $alerte=new ModelAlerte(null,$_SESSION["login"],json_encode($_SESSION["dataFirst"]),json_encode($_SESSION["typesBien"]),json_encode($_SESSION["nombrePieces"]),json_encode($_SESSION["dataCheckBox"]),"Nom par défault");
+        $alerte=new ModelAlerte(null,$_SESSION["login"],json_encode($_SESSION["dataFirst"]),json_encode($_SESSION["typesBien"]),json_encode($_SESSION["nombrePieces"]),json_encode($_SESSION["dataCheckBox"]),"Nom par défault",true);
         $alerte->save();
+        ModelAlerte::unsetSession();
         echo "save";
     }
 

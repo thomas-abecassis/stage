@@ -68,6 +68,8 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepenAlerte() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
+        ModelLotApprofondi::unsetSession();
+
         $alerte=urldecode(myGet("alerte"));
         $alerte=unserialize($alerte);
         
@@ -77,8 +79,16 @@ class ControllerLotApprofondi{
         $dataCheckBox=$alerte->getTabCheckBox();
         $dataPost=$alerte->getTabSimple();
 
+        $_SESSION['typesBien']=$typesBien;
+        $_SESSION['nombrePieces']=$nombrePieces;
+        $_SESSION['dataCheckBox']=$dataCheckBox;
+        $_SESSION['dataPost']=$dataPost;
+
+        $page=1;
+        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
-        $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+        $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
+        $lot="lotApprofondi";
         require File::build_path(array("view", "view.php"));
     }
 
