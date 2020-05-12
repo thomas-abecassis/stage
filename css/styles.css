@@ -525,6 +525,14 @@ main {
   border-bottom:1px solid grey;
 }
 
+.premiereCouleur{
+ 	background-color: 	#ee6e73 !important;
+}
+
+.premiereCouleurText{
+ 	color: 	#ee6e73 !important;
+}
+
 .secondeCouleur{
 	  background-color: #eeac6e !important;
 }
@@ -592,14 +600,6 @@ main {
 	display: block;
 	text-align: center;
 	padding-bottom: 1em;
-}
-
-#contactTelButton{
-	background-color: #ee6e73;
-}
-
-#contactMailButton{
-	background-color: #ee6e73;
 }
 
 .contactButton{
@@ -674,3 +674,7 @@ main {
   .switch{
     display: inline !important;
   }
+
+	.container{
+		    margin-top: 1.5em !important;
+	}

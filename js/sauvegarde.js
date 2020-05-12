@@ -19,7 +19,7 @@ function callback1(xhr){
 		    let p=document.createElement('p');
 		    p.innerHTML="mauvais identifiant ou mot de passe";
 		    p.style.color="red";
-		    p.classList.add("center");	   
+		    p.classList.add("center");
 		    co.appendChild(p);
 	    }
 	}
@@ -41,7 +41,7 @@ function creerSauvegarde(){
 function envoieConnexion(){
 	console.log("j'envoie");
 	mail=document.getElementById("inputMail");
-	mdp=document.getElementById("inputMdp"); 
+	mdp=document.getElementById("inputMdp");
 	requeteAJAX("lib/connexionAjax.php?login="+mail.value+"&mdp=" +mdp.value,callback1);
 }
 
@@ -69,9 +69,22 @@ function popUp(){
   	});
 
   	setTimeout(()=>{
-		hideOnClickOutside(newDiv,fond);	
+		hideOnClickOutside(newDiv,fond);
 	},10);
 
+}
+
+function stopScroll(){
+	document.body.style.overflow="hidden";
+	//code prit de stackOverflow
+	$(document).bind('scroll',function () {
+				window.scrollTo(0,0);
+	});
+}
+
+function canScroll(){
+	$(document).unbind('scroll');
+  document.body.style.overflow="visible";
 }
 
 function getDivConnexion(){
@@ -85,6 +98,7 @@ function hideOnClickOutside(element,elementASupprimer) {
           element.parentNode.removeChild(element);
           removeClickListener();
           elementASupprimer.parentNode.removeChild(elementASupprimer);
+					canScroll();
         }
     }
 
@@ -100,6 +114,7 @@ function clickHandler(){
 		creerSauvegarde();
 	}
 	else{
+		stopScroll();
 		popUp();
 	}
 }
