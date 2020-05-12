@@ -1,8 +1,7 @@
 <div class="container">
-    <div id="searchBox" class="card col s6 offset-s3">
-      <div class="row">
+  <div class="col s4 offset-s4">
+      <div  class="creationCompteCard card">
         <h4 class="center">Connexion</h4>
-        <div class="col s8 offset-s2  ">
          <form id="connexion" method="get" action="index.php">
               <p>
                 <input value= "" type="text" placeholder="e-mail" name="login" id="immat_id" required />
@@ -17,7 +16,6 @@
               <input type='hidden' name='controller' value='utilisateur'>
           </form>
         </div>
-      </div>
-    </div>
+      </div> 
+     </div>
     <a href="index.php?action=create&controller=utilisateur">créér un compte<a>
-  </div>

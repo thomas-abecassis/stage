@@ -678,3 +678,7 @@ main {
 	.container{
 		    margin-top: 1.5em !important;
 	}
+
+	.creationCompteCard{
+		        padding: 3% 7% 12% 6%;
+	}
