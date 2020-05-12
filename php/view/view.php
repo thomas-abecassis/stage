@@ -32,7 +32,7 @@
                             echo "<li><a href=\"index.php?action=read&controller=alerte\">Mes recherches</a></li>";
                             echo "<li><a href=\"index.php?action=disconnect&controller=utilisateur\">Deconnexion</a></li>";
                         }else{
-                           echo "<li><a href=\"index.php?action=connect&controller=utilisateur\">Connexion</a></li>";
+                           echo "<li><a id=\"connexion\">Connexion</a></li>";
                         }
                         ?>
 
@@ -96,6 +96,6 @@ if(isset($_SESSION["panier"])){
 
 </body>
 
-
+<script type="text/javascript" src="../js/sauvegarde.js"></script>
 
 </html>

@@ -1,4 +1,3 @@
-let sauvegarde=document.getElementById("sauvegardeAnnonce");
 const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 
 function requeteAJAX(url,callback) {
@@ -30,6 +29,14 @@ function callback2(xhr){
 	document.getElementById("inSauvegarde").innerHTML="recherche sauvegardée !";
 }
 
+function callback3(xhr){
+	let page = new DOMParser().parseFromString(xhr.responseText, "text/html");
+	page=page.documentElement;
+	page=page.getElementsByClassName("container")[0];
+	page=page.firstElementChild;
+	popUp(page);
+}
+
 
 function creerSauvegarde(){
 	sauvegarde.style["background-color"] = "#f0dcc8";
@@ -45,22 +52,19 @@ function envoieConnexion(){
 	requeteAJAX("lib/connexionAjax.php?login="+mail.value+"&mdp=" +mdp.value,callback1);
 }
 
-function popUp(){
+function popUp(page){
 	let fond = document.createElement("div");
 	fond.classList.add("fondTransparent");
 	let newDiv = document.createElement("div");
-	newDiv.classList.add("card");
-	newDiv.style.width="40%";
-	newDiv.style.height="40%";
-	newDiv.style.top="10%";
-	newDiv.style.left="30%";
 	newDiv.style.position="fixed";
-	newDiv.style.zIndex="1";
-	newDiv.style.borderRadius="5px";
+	newDiv.style.top="20%";
+	newDiv.style.left="40%";
+	newDiv.style.width="20%";
+	newDiv.style.zIndex="3";
   	// et lui donne un peu de contenu
   	// ajoute le nœud texte au nouveau div créé\
   	document.body.appendChild(newDiv);
-  	newDiv.innerHTML=getDivConnexion();
+  	newDiv.appendChild(page);
   	document.body.appendChild(fond);
 
   	let boutonConnexion=document.getElementById("boutonConnexion");
@@ -71,7 +75,10 @@ function popUp(){
   	setTimeout(()=>{
 		hideOnClickOutside(newDiv,fond);
 	},10);
+}
 
+function lancePopUp(){
+	requeteAJAX("view/utilisateur/connect.php",callback3);
 }
 
 function stopScroll(){
@@ -85,11 +92,6 @@ function stopScroll(){
 function canScroll(){
 	$(document).unbind('scroll');
   document.body.style.overflow="visible";
-}
-
-function getDivConnexion(){
-	//string correspondant à la view connexion
-	return "<div id=\"searchBox\" class=\" col s6 offset-s3\"><div id=\"connexion\" class=\"row\"><h4 class=  \"center\">Connexion</h4><div id=\"connexionBox\" class=\"col s8 offset-s2  \"><p><input id=\"inputMail\" value= \"\" type=\"text\" placeholder=\"e-mail\" name=\"login\" id=\"immat_id\" required /></p><p><input id=\"inputMdp\" value= \"\" type=\"password\" placeholder=\"mot de passe\" name=\"mdp\" id=\"mdp_id\" required /></p><p ><input id=\"boutonConnexion\" class=\"col s10 offset-s1\" type=\"submit\" value=\"Envoyer\" /></p><input type=\'hidden\' name=\'action\' value=\'connected\'><input type=\'hidden\' name=\'controller\' value=\'utilisateur\'></div></div></div>";
 }
 
 function hideOnClickOutside(element,elementASupprimer) {
@@ -115,8 +117,16 @@ function clickHandler(){
 	}
 	else{
 		stopScroll();
-		popUp();
+		lancePopUp();
 	}
 }
 
-sauvegarde.addEventListener("click", clickHandler);
+let sauvegarde=document.getElementById("sauvegardeAnnonce");
+if(sauvegarde!==null){
+	sauvegarde.addEventListener("click", clickHandler);
+}
+
+let connexion=document.getElementById("connexion");
+if(connexion!==null){
+	connexion.addEventListener("click", lancePopUp);
+}

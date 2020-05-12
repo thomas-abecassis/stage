@@ -31,7 +31,7 @@
         }?>
         <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover secondeCouleur">  <p id="inSauvegarde" class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>
         <div class="col s12 m10 l7 offset-m1 offset-l2">
-        <ul class="listeFinDePage">
+        <ul class="center listeFinDePage">
         <?php
             if($page<=1){
             echo "<li><a><i class=\" grey-text text-lighten-1 material-icons\">chevron_left</i><span class=\"surfaceText\"></a></li>";

@@ -77,8 +77,6 @@ footer a {
 	text-align: center;
 	}
 
-
-
 .bouton{
 	position:absolute;
 	 background-color: white;
@@ -461,6 +459,7 @@ main {
     background-color: rgba(0,0,0,.6);
     width: 100%;
     height: 100%;
+		z-index: 2;
 }
 
 
@@ -471,7 +470,7 @@ main {
 }
 
 #boutonConnexion{
-  padding: 10px;
+  padding: 10px 30px 10px 30px !important;
 }
 
 .liste li{
@@ -494,9 +493,6 @@ main {
 .listeFinDePage li{
 	display: inline-block;
 	position: relative;
-}
-.listeFinDePage{
-	text-align: center;
 }
 
 .listeFinDePage li a{
