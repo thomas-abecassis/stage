@@ -11,13 +11,9 @@ class ModelLotApprofondi {
   private $rangements;
   private $orientations;
   private $options;
-
       
   public function __construct($modelLot = NULL) {
     if (!is_null($modelLot) ) {
-      // Si aucun de $m, $c et $i sont nuls,
-      // c'est forcement qu'on les a fournis
-      // donc on retombe sur le constructeur à 3 arguments
       $this->modelLot = $modelLot;
       $this->typesDePieces = $this->getInfosFor("typeDePiecesLot");
       $this->commodites = $this->getInfosFor("commoditesLot");
@@ -97,17 +93,16 @@ class ModelLotApprofondi {
 
 
   public static function getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
-    ModelLot::unsetSession();
     $sql=ModelLot::getSqlSearch($dataPost);
-    $_SESSION['typesBien']=$typesBien;
-    $_SESSION['nombrePieces']=$nombrePieces;
-    $_SESSION['dataCheckBox']=$dataCheckBox;
+
     $isFirst=strlen($sql)==23;
+
     if(count($typesBien)!=0){
       if($isFirst){$sql=$sql." typeDeBien = :typeDeBien";}
       else{$sql=$sql." and typeDeBien = :typeDeBien"; }
       $isFirst=false;
     }
+
     if(count($nombrePieces)!=0){
       if($isFirst){$sql=$sql." nombrePiece= :nombrePiece"; }
       else{$sql=$sql." and nombrePiece= :nombrePiece";}
@@ -125,8 +120,6 @@ class ModelLotApprofondi {
           }else{
             $sqlTable=$sqlTable." AND ID IN  ";
           }
-
-          //$sqlTable=$sqlTable."( select idLot from ". $nomTable . " where ".str_replace("sLot", "",$nomTable)." = \"" .  $value . "\")  ";
           $sqlTable=$sqlTable."( select idLot from ". $nomTable . " where ".str_replace("sLot", "",$nomTable)." = :" .  str_replace("sLot", "",$nomTable) . $i . ")";
          $i++; 
         }
@@ -157,35 +150,29 @@ class ModelLotApprofondi {
     return $rep->fetchAll(PDO::FETCH_OBJ); 
   }
 
-  public static function getAllTypesBiens(){
-    return ModelLotApprofondi::getAllCategorie("typeDeBien");
-  }
+  public static function getAllTypesBiens(){ return ModelLotApprofondi::getAllCategorie("typeDeBien"); }
 
-    public static function getAllTypesPieces(){
-    return ModelLotApprofondi::getAllCategorie("typeDePieces");
-  }
+  public static function getAllTypesPieces(){ return ModelLotApprofondi::getAllCategorie("typeDePieces"); }
 
-  public static function getAllCommodites(){
-    return ModelLotApprofondi::getAllCategorie("commodites");
-  }
+  public static function getAllCommodites(){ return ModelLotApprofondi::getAllCategorie("commodites"); }
 
-  public static function getAllTypesRangements(){
-    return ModelLotApprofondi::getAllCategorie("rangement");
-  }
+  public static function getAllTypesRangements(){ return ModelLotApprofondi::getAllCategorie("rangement"); }
 
-  public static function getAllOrientations(){
-    return ModelLotApprofondi::getAllCategorie("orientation");
-  }
+  public static function getAllOrientations(){ return ModelLotApprofondi::getAllCategorie("orientation"); }
 
-  public static function getAllOptions(){
-    return ModelLotApprofondi::getAllCategorie("options");
-  }
+  public static function getAllOptions(){ return ModelLotApprofondi::getAllCategorie("options"); }
 
   public static function unsetSession(){
     $_SESSION['typesBien']=array();
     $_SESSION['nombrePieces']=array();
     $_SESSION['dataCheckBox']=array();
     $_SESSION['dataPost']=array();
+  }
+
+  public static function setSession($typesBien,$nombrePieces,$dataCheckBox){
+    $_SESSION['typesBien']=$typesBien;
+    $_SESSION['nombrePieces']=$nombrePieces;
+    $_SESSION['dataCheckBox']=$dataCheckBox;
   }
 
 }

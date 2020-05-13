@@ -4,7 +4,7 @@
 	  <div class="myCarousel" id="myCarouselImage">
 			<?php
 				$filecount = 0;
-				$files = glob("../image/".htmlspecialchars($lot->getId())."/*.*");
+				$files = glob("image/".htmlspecialchars($lot->getId())."/*.*");
 				if ($files){
 				 $filecount = count($files);
 				}
@@ -16,7 +16,7 @@
 		  <div id="slideImage" class="slide">
 		  	<?php
 				if($filecount!==0){
-			  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
+			  	foreach(glob("image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
 						echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
 				    echo "<img class=\"intoSlideImage\" src=". str_replace(' ', '%20', $file) ." \">";
 						echo"</div>";
@@ -24,7 +24,7 @@
 			}
 			else{
 				echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
-				echo "<img class=\"intoSlideImage\" src=\"../image/noPhoto.png\">";
+				echo "<img class=\"intoSlideImage\" src=\"image/noPhoto.png\">";
 			}
 			?>
 		</div>
@@ -34,7 +34,7 @@
 	  		<?php
 		  		$i=0;
 		  		echo "";
-			  	foreach(glob("../image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
+			  	foreach(glob("image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
 			  		if($i%3 ==0){
 			  			if($i!=0){
 			  				echo "</div>";
@@ -124,9 +124,9 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="../js/myCarousel.js"></script>
-<script type="text/javascript" src="../js/boutonContact.js"></script>
-<script type="text/javascript" src="../js/stickyContact.js"></script>
+<script type="text/javascript" src="js/myCarousel.js"></script>
+<script type="text/javascript" src="js/boutonContact.js"></script>
+<script type="text/javascript" src="js/stickyContact.js"></script>
 
 <?php
 

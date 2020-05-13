@@ -470,6 +470,7 @@ main {
 }
 
 #boutonConnexion{
+  cursor: pointer;
   padding: 10px 30px 10px 30px !important;
 }
 
@@ -676,5 +677,9 @@ main {
 	}
 
 	.creationCompteCard{
-		        padding: 3% 7% 12% 6%;
+		        padding: 3% 7% 6% 6%;
 	}
+
+  .sousLigner{
+    text-decoration: underline;
+  }

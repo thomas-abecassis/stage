@@ -3,17 +3,17 @@
         if($tab_v != false){
             foreach ($tab_v as $v){
                 $filecount = 0;
-                $files = glob("../image/".htmlspecialchars($v->getId())."/*.*");
+                $files = glob("image/".htmlspecialchars($v->getId())."/*.*");
                 if ($files){
                  $filecount = count($files);
                 }
                 echo '  <a href=index.php?controller=lotApprofondi&action=Read&id='.rawurlencode($v->getId()).'>
                         <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">';
                         if($filecount!=0){
-                          echo '<div class="imageBoite" ><img src="../image/'.$v->getId().'/1.jpg"></div>';
+                          echo '<div class="imageBoite" ><img src="image/'.$v->getId().'/1.jpg"></div>';
                         }
                         else{
-                          echo '<div class="imageBoite" ><img src="../image/noPhoto.png"></div>';
+                          echo '<div class="imageBoite" ><img src="image/noPhoto.png"></div>';
                         }
 
                 echo '<div class="infoBoite">

@@ -4,9 +4,9 @@
 
   <meta charset="utf-8">
   <title><?php echo $pagetitle; ?></title>
-  <link rel="stylesheet" type="text/css" href="../css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../css/alerte.css">
-  <link rel="stylesheet" type="text/css" href="../css/animation.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/alerte.css">
+  <link rel="stylesheet" type="text/css" href="css/animation.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    <!-- Social media Font -->
   <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d">
@@ -32,7 +32,8 @@
                             echo "<li><a href=\"index.php?action=read&controller=alerte\">Mes recherches</a></li>";
                             echo "<li><a id=\"deconnexion\">Deconnexion</a></li>";
                         }else{
-                           echo "<li><a id=\"connexion\">Connexion</a></li>";
+                           echo "<li><a id=\"creationCompte\">Créer un compte</a></li>";
+                           echo "<li><a id=\"connexion\">Se connecter</a></li>";
                         }
                         ?>
 
@@ -96,6 +97,6 @@ if(isset($_SESSION["panier"])){
 
 </body>
 
-<script type="text/javascript" src="../js/sauvegarde.js"></script>
+<script type="text/javascript" src="js/sauvegarde.js"></script>
 
 </html>

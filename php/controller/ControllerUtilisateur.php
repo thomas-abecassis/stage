@@ -29,6 +29,7 @@ class ControllerUtilisateur {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
+    /*
     public static function created(){
     	$login=myGet('login');
     	$nom=myGet('nom');
@@ -48,6 +49,25 @@ class ControllerUtilisateur {
             $controller='utilisateur'; $view='created'; $pagetitle='cree';     //appel au modèle pour gerer la BD
             $tab_v = Modelutilisateur::selectAll();
             require File::build_path(array("view", "view.php"));  
+        }
+    }*/
+
+    public static function createdAjax(){
+        $login=myGet('login');
+        $nom=myGet('nom');
+        $prenom=myGet('prenom');
+        $mdp=myGet('mdp');
+        if(!filter_var($login, FILTER_VALIDATE_EMAIL)){
+            $v=new ModelUtilisateur("","","","","","");
+            $isUpdate=false;
+            echo "false";
+        }else{
+            $random=Security::generateRandomHex();
+            $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0,$random);
+            $v->save();
+            $mail="http://webinfo.iutmontp.univ-montp2.fr/~abecassist/PHP/TD8/index.php?action=validate&controller=utilisateur&nonce=".$random."&login=".$v->getLogin();
+            mail($login,"activation de votre compte",$mail);
+            echo "true";
         }
     }
 

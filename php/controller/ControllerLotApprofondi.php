@@ -19,7 +19,6 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-
         ModelLotApprofondi::unsetSession();
 
         $typesBien=arrayContain($_POST,"typeBien"); 
@@ -48,6 +47,7 @@ class ControllerLotApprofondi{
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
         $page=myGet("page");
         $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
+        ModelLotApprofondi::setSession($typesBien,$nombrePieces,$dataCheckBox);
         $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
         $lot="lotApprofondi";
         require File::build_path(array("view", "view.php"));
