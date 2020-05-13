@@ -117,6 +117,7 @@ class ControllerUtilisateur {
         require File::build_path(array("view", "view.php"));
     }
 
+    /*
     static function connected(){
         if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
             $v = ModelUtilisateur::select(myGet("login"));
@@ -131,13 +132,36 @@ class ControllerUtilisateur {
         $controller='utilisateur'; $view='details'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
+    */
 
+    static function connectedAjax(){
+        if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
+            $v = ModelUtilisateur::select(myGet("login"));
+            if(is_null($v->getNonce())){
+                $_SESSION["login"] = myGet("login");
+                $_SESSION["admin"] = true;
+                echo("true");
+            }
+        }
+        else{
+            echo ("MAUVAIS LOGIN OU MDP");
+        }
+    }
+
+    /*
     static function disconnect(){
         session_unset();
         session_destroy();
         $tab_v = ModelUtilisateur::selectAll();
         $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+    }
+    */
+
+    static function disconnectAjax(){
+        session_unset();
+        session_destroy();
+        echo "true";
     }
 
     static function validate(){
@@ -149,4 +173,3 @@ class ControllerUtilisateur {
     }
 }
 ?>
-

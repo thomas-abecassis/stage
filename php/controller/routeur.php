@@ -33,7 +33,3 @@ if(class_exists($controller_classe,false)){
 
 
 ?>
-
-
-
-	

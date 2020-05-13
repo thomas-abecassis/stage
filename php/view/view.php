@@ -30,7 +30,7 @@
                         <?php
                         if(isset($_SESSION["login"])){
                             echo "<li><a href=\"index.php?action=read&controller=alerte\">Mes recherches</a></li>";
-                            echo "<li><a href=\"index.php?action=disconnect&controller=utilisateur\">Deconnexion</a></li>";
+                            echo "<li><a id=\"deconnexion\">Deconnexion</a></li>";
                         }else{
                            echo "<li><a id=\"connexion\">Connexion</a></li>";
                         }

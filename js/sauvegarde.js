@@ -10,6 +10,7 @@ function requeteAJAX(url,callback) {
 }
 
 function callback1(xhr){
+	console.log(xhr.responseText);
 	if(xhr.responseText.valueOf()=="true".valueOf()){
 	    document.location.reload(true);
 	}else{
@@ -37,6 +38,10 @@ function callback3(xhr){
 	popUp(page);
 }
 
+function callback4(xhr){
+	document.location.reload(true);
+}
+
 
 function creerSauvegarde(){
 	sauvegarde.style["background-color"] = "#f0dcc8";
@@ -46,10 +51,13 @@ function creerSauvegarde(){
 }
 
 function envoieConnexion(){
-	console.log("j'envoie");
 	mail=document.getElementById("inputMail");
 	mdp=document.getElementById("inputMdp");
-	requeteAJAX("lib/connexionAjax.php?login="+mail.value+"&mdp=" +mdp.value,callback1);
+	requeteAJAX("index.php?controller=utilisateur&action=connectedAjax&login="+mail.value+"&mdp=" +mdp.value,callback1);
+}
+
+function deconnect(){
+	requeteAJAX("index.php?controller=utilisateur&action=disconnectAjax",callback4);
 }
 
 function popUp(page){
@@ -67,8 +75,9 @@ function popUp(page){
   	newDiv.appendChild(page);
   	document.body.appendChild(fond);
 
-  	let boutonConnexion=document.getElementById("boutonConnexion");
-  	boutonConnexion.addEventListener("click",function(){
+  	let formConnexion=document.getElementById("formConnexion");
+  	formConnexion.addEventListener("submit",function(){
+  		event.preventDefault();
 		envoieConnexion();
   	});
 
@@ -105,10 +114,10 @@ function hideOnClickOutside(element,elementASupprimer) {
     }
 
     const removeClickListener = () => {
-        document.removeEventListener('click', outsideClickListener);
+        document.removeEventListener('mousedown', outsideClickListener);
     }
 
-    document.addEventListener('click', outsideClickListener);
+    document.addEventListener('mousedown', outsideClickListener);
 }
 
 function clickHandler(){
@@ -129,4 +138,9 @@ if(sauvegarde!==null){
 let connexion=document.getElementById("connexion");
 if(connexion!==null){
 	connexion.addEventListener("click", lancePopUp);
+}
+
+let deconnexion=document.getElementById("deconnexion");
+if(deconnexion!==null){
+	deconnexion.addEventListener("click", deconnect);
 }
