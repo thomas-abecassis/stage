@@ -133,7 +133,6 @@ public static function getAlllots(){
 
   }
 
-  //a securiser
   public static function selectByRecherche($data,$page){
     if(!array_filter($data)){
       $sql="select * from lot";
@@ -144,12 +143,7 @@ public static function getAlllots(){
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
-      $values = array();
-      foreach ($data as $key => $v) {
-        if(strlen($v)!=0){
-          $values[$key]=$v;
-        }
-      }
+      $values = ModelLot::getTableauPrep($data);
       // On donne les valeurs et on exécute la requête
       $req_prep->execute($values);
 
@@ -162,6 +156,16 @@ public static function getAlllots(){
     return $tab_voit;
   }
 
+  public static function getTableauPrep($data){
+    $ar=array();
+    foreach ($data as $key => $v) {
+      if(strlen($v)!=0){
+        $ar[$key]=$v;
+      }
+    }
+    return $ar;
+  }
+
   public static function getNbLotRecherche($data){
     if(!array_filter($data)){
       $sql="select * from lot";
@@ -169,12 +173,8 @@ public static function getAlllots(){
       $sql=ModelLot::getSqlSearch($data);
     }
     $req_prep = Model::$pdo->prepare($sql);
-    $values = array();
-    foreach ($data as $key => $v) {
-      if(strlen($v)!=0){
-        $values[$key]=$v;
-      }
-    }
+    $values = ModelLot::getTableauPrep($data);
+
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
     $tab_lot= $req_prep->fetchAll();

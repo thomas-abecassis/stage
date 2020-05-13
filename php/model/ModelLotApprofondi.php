@@ -62,15 +62,40 @@ class ModelLotApprofondi {
       $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
     }
     $sql=$sql." LIMIT " . (($page-1)*15) . ", 15";
-    $rep=Model::$pdo->query($sql);
-    if($rep==false){
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $values = ModelLotApprofondi::getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+
+    $req_prep->execute($values);
+    if($req_prep==false){
       return array();
     }
-    $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
-    return $rep->fetchAll();
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
+    return $req_prep->fetchAll();
   }
 
-  // a securiser
+  private static function getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
+    $values = ModelLot::getTableauPrep($dataPost);
+    if(count($typesBien)!=0){
+      $values["typeDeBien"]=$typesBien[0];
+    }
+    if(count($nombrePieces)!=0){
+      $values["nombrePiece"]=$nombrePieces[0];
+    }
+
+    foreach ($dataCheckBox as $nomTable => $arrCategorie) {
+      if(count($arrCategorie)!=0){
+        $i=1;
+        foreach ($arrCategorie as  $value) {
+          $values[str_replace("sLot", "",$nomTable) . $i]= $value;
+          $i++; 
+        }
+      }
+    } 
+    return $values;
+  }
+
+
   public static function getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
     ModelLot::unsetSession();
     $sql=ModelLot::getSqlSearch($dataPost);
@@ -79,18 +104,19 @@ class ModelLotApprofondi {
     $_SESSION['dataCheckBox']=$dataCheckBox;
     $isFirst=strlen($sql)==23;
     if(count($typesBien)!=0){
-      if($isFirst){$sql=$sql." typeDeBien = \"".$typesBien[0]."\"";}
-      else{$sql=$sql." and typeDeBien = \"".$typesBien[0]."\""; }
+      if($isFirst){$sql=$sql." typeDeBien = :typeDeBien";}
+      else{$sql=$sql." and typeDeBien = :typeDeBien"; }
       $isFirst=false;
     }
     if(count($nombrePieces)!=0){
-      if($isFirst){$sql=$sql." nombrePiece= ".$nombrePieces[0]; }
-      else{$sql=$sql." and nombrePiece= ".$nombrePieces[0];}
+      if($isFirst){$sql=$sql." nombrePiece= :nombrePiece"; }
+      else{$sql=$sql." and nombrePiece= :nombrePiece";}
       $isFirst=false;
     }
 
     foreach ($dataCheckBox as $nomTable => $arrCategorie) {
       if(count($arrCategorie)!=0){
+        $i=1;
         $sqlTable="";
         foreach ($arrCategorie as  $value) {
           if($isFirst){
@@ -100,8 +126,9 @@ class ModelLotApprofondi {
             $sqlTable=$sqlTable." AND ID IN  ";
           }
 
-          $sqlTable=$sqlTable."( select idLot from ". $nomTable . " where ".str_replace("sLot", "",$nomTable)." = \"" .  $value . "\")  ";
-          
+          //$sqlTable=$sqlTable."( select idLot from ". $nomTable . " where ".str_replace("sLot", "",$nomTable)." = \"" .  $value . "\")  ";
+          $sqlTable=$sqlTable."( select idLot from ". $nomTable . " where ".str_replace("sLot", "",$nomTable)." = :" .  str_replace("sLot", "",$nomTable) . $i . ")";
+         $i++; 
         }
         $sql=$sql.$sqlTable;
       }
@@ -116,10 +143,8 @@ class ModelLotApprofondi {
       $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
     }
     $req_prep = Model::$pdo->prepare($sql);
-    $values = array(
-          //"nom_tag" => $immat,
-          //nomdutag => valeur, ...
-    );
+    $values = ModelLotApprofondi::getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLotApprofondi');
     $tab_lot= $req_prep->fetchAll();

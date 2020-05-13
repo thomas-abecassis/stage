@@ -37,7 +37,7 @@
 
 		    </div>
 		    	  <div id="plusCriteres">
-		    	  	<a class="premiereCouleurText" ref="index.php?action=searchDeepen&controller=lotApprofondi">
+		    	  	<a class="premiereCouleurText" href="index.php?action=searchDeepen&controller=lotApprofondi">
 		    	  	plus de critères
 		    	  </a>
 		    	  	<a href="index.php?action=searchDeepen&controller=lotApprofondi" class="btn-floating btn-small waves-effect waves-light premiereCouleur">
