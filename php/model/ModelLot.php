@@ -85,53 +85,10 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
   }
 }
 
-public static function getAlllots(){
-  $rep=Model::$pdo->query('select * from lot');
-  return $rep->fetchAll(PDO::FETCH_CLASS, 'ModelLot');
-}
-
-
-
   /* une methode d'affichage.
   public function afficher() {
     echo "lot $this->prix de id $this->id (nom $this->nom)";
   }*/
-
-
-  public static function getlotByImmat($immat) {
-    $sql = "SELECT * from lot WHERE prix=:nom_tag";
-    // Préparation de la requête
-    $req_prep = Model::$pdo->prepare($sql);
-
-    $values = array(
-        "nom_tag" => $immat,
-        //nomdutag => valeur, ...
-    );
-    // On donne les valeurs et on exécute la requête
-    $req_prep->execute($values);
-
-    // On récupère les résultats comme précédemment
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'lot');
-    $tab_voit = $req_prep->fetchAll();
-    // Attention, si il n'y a pas de résultats, on renvoie false
-    if (empty($tab_voit))
-        return false;
-    return $tab_voit[0];
-  }
-
-  public static function deletelotByImmat($immat) {
-    $sql = "DELETE from lot WHERE prix=:nom_tag";
-    // Préparation de la requête
-    $req_prep = Model::$pdo->prepare($sql);
-
-    $values = array(
-        "nom_tag" => $immat,
-        //nomdutag => valeur, ...
-    );
-    // On donne les valeurs et on exécute la requête
-    $req_prep->execute($values);
-
-  }
 
   public static function selectByRecherche($data,$page){
     if(!array_filter($data)){
