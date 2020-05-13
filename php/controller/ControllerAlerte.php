@@ -17,7 +17,8 @@ class ControllerAlerte {
             $controller='alerte'; $view='list'; $pagetitle='vos alertes';     //appel au modèle pour gerer la BD
             require File::build_path(array("view","view.php"));   
         }else{
-            echo "il faut se connecter";
+        $controller='lot'; $view='recherche'; $pagetitle='Recherche de biens';     //appel au modèle pour gerer la BD
+        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
         }   
     }
 

@@ -27,7 +27,10 @@
             }
         }
         else{
-            echo "aucune annonce ne correspond à votre recherche";
+            echo '
+            <div class="col s12 m10 l7 offset-m1 offset-l2 ">  
+              aucune annonce ne correspond à votre recherche 
+            </div>';
         }?>
         <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover secondeCouleur">  <p id="inSauvegarde" class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>
         <div class="col s12 m10 l7 offset-m1 offset-l2">

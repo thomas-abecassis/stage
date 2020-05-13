@@ -144,10 +144,12 @@ public static function getAlllots(){
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
-      $values = array(
-          //"nom_tag" => $immat,
-          //nomdutag => valeur, ...
-      );
+      $values = array();
+      foreach ($data as $key => $v) {
+        if(strlen($v)!=0){
+          $values[$key]=$v;
+        }
+      }
       // On donne les valeurs et on exécute la requête
       $req_prep->execute($values);
 
@@ -167,10 +169,12 @@ public static function getAlllots(){
       $sql=ModelLot::getSqlSearch($data);
     }
     $req_prep = Model::$pdo->prepare($sql);
-    $values = array(
-          //"nom_tag" => $immat,
-          //nomdutag => valeur, ...
-    );
+    $values = array();
+    foreach ($data as $key => $v) {
+      if(strlen($v)!=0){
+        $values[$key]=$v;
+      }
+    }
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
     $tab_lot= $req_prep->fetchAll();
@@ -184,27 +188,27 @@ public static function getAlllots(){
 
       if(strlen($data["localisation"])!=0){
         $firstCondition=false;
-        $sql=$sql." localisation = \"" . $data["localisation"]."\"";
+        $sql=$sql." localisation = :localisation";
       }
       if(strlen($data["minSurface"])!=0){
         if(!$firstCondition){
           $sql=$sql." AND";
         }
-        $sql=$sql." surface > " . $data["minSurface"];
+        $sql=$sql." surface > :minSurface";
         $firstCondition=false;
       }
       if(strlen($data["minBudget"])!=0){
         if(!$firstCondition){
           $sql=$sql." AND";
         }
-        $sql=$sql." loyer > " . $data["minBudget"];
+        $sql=$sql." loyer > :minBudget";
         $firstCondition=false;
       }
       if(strlen($data["maxBudget"])!=0){
         if(!$firstCondition){
           $sql=$sql." AND";
         }
-        $sql=$sql." loyer < " . $data["maxBudget"];
+        $sql=$sql." loyer < :maxBudget" ;
         $firstCondition=false;
       }
       return $sql;
