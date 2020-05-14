@@ -138,6 +138,7 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
     return count($tab_lot);
   }
 
+  //refactorisation à faire 
   public static function getSqlSearch($data){
       $_SESSION['dataFirst']=$data;
       $sql = "SELECT * from lot WHERE";
@@ -151,21 +152,28 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
         if(!$firstCondition){
           $sql=$sql." AND";
         }
-        $sql=$sql." surface > :minSurface";
+        $sql=$sql." surface >= :minSurface";
+        $firstCondition=false;
+      }
+      if(strlen($data["maxSurface"])!=0){
+        if(!$firstCondition){
+          $sql=$sql." AND";
+        }
+        $sql=$sql." surface <= :maxSurface";
         $firstCondition=false;
       }
       if(strlen($data["minBudget"])!=0){
         if(!$firstCondition){
           $sql=$sql." AND";
         }
-        $sql=$sql." loyer > :minBudget";
+        $sql=$sql." loyer >= :minBudget";
         $firstCondition=false;
       }
       if(strlen($data["maxBudget"])!=0){
         if(!$firstCondition){
           $sql=$sql." AND";
         }
-        $sql=$sql." loyer < :maxBudget" ;
+        $sql=$sql." loyer <= :maxBudget" ;
         $firstCondition=false;
       }
       return $sql;

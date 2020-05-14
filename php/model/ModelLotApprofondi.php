@@ -52,7 +52,7 @@ class ModelLotApprofondi {
 
  // a securiser
   public static function searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page){
-    if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
+   if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
       $sql="select * from lot";
     }else{
       $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);

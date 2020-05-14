@@ -4,6 +4,13 @@ require_once File::build_path(array("lib", "Security.php"));
 
 class ModelUtilisateur extends Model{
 
+  private $login;
+  private $nom;
+  private $prenom;
+  private $mdp;
+  private $admin;
+  private $nonce;
+
   protected static $object = "utilisateur";
   protected static $primary='login';
 
@@ -46,15 +53,7 @@ class ModelUtilisateur extends Model{
   }
 
   public function getTab(){
-    $data=array(
-      "login"=>$this->login,
-     "nom"=>$this->nom,
-      "prenom"=>$this->prenom,
-      "mdp"=>$this->mdp,
-      "admin"=>$this->admin,
-      "nonce"=>$this->nonce
-    );
-    return $data;
+    return get_object_vars($this);
   }
 
   static public function checkPassword($login,$mdp){

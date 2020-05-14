@@ -15,16 +15,12 @@
 	padding: 10px 25px 10px 25px;
 }
 
-.boutonAnnonces{
-	background-color: #eeac6e;
-}
-
 .deleteAlerte span{
 	margin-top: 0.3em;
 }
 
 .boutonModification{
-	border:solid 1px #eeac6e;
+	border:solid 1px;
 	margin-left: 1.5em;
 	cursor:pointer;
 }

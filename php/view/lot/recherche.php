@@ -17,7 +17,7 @@
 		          <p>
 		          	<div class="searchBarBox input-field col s3 grey lighten-4">
 		            <label for="couleur_id"></label>
-		            <input  class="searchBarInput" placeholder="min m²" type="text" name="minSurface" autocomplete="off" />
+		            <input  class="searchBarInput" placeholder="min m²" type="number" name="minSurface" autocomplete="off" />
 		            </div>
 		          </p>
 

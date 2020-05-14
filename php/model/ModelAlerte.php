@@ -104,7 +104,7 @@ class ModelAlerte extends Model{
   	return "Toute surface";
   }
 
-    public function getBudgetStr(){
+  public function getBudgetStr(){
   	 if($this->tabSimple["minBudget"]!=="" && $this->tabSimple["maxBudget"]==""){
   		return "plus de ". $this->tabSimple["minBudget"]."€";
   	}

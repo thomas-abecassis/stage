@@ -530,12 +530,20 @@ main {
  	color: 	#ee6e73 !important;
 }
 
+.premiereCouleurBorder{
+  border-color:  #ee6e73 !important;
+}
+
 .secondeCouleur{
 	  background-color: #eeac6e !important;
 }
 
 .secondeCouleurTexte{
 	color:#eeac6e !important
+}
+
+.secondeCouleurBorder{
+  border-color:#eeac6e !important
 }
 
 .decoupageSection{
@@ -683,3 +691,13 @@ main {
   .sousLigner{
     text-decoration: underline;
   }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

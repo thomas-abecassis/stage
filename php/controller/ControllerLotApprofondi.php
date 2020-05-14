@@ -34,6 +34,7 @@ class ControllerLotApprofondi{
         $dataPost=array(
             "localisation" => myGet("localisation"),
             "minSurface" => myGet("minSurface"),
+            "maxSurface" => myGet("maxSurface"),
             "minBudget" => myGet("minBudget"),
             "maxBudget" => myGet("maxBudget")
         );
