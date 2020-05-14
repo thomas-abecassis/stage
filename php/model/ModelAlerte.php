@@ -28,10 +28,10 @@ class ModelAlerte extends Model{
       $this->idAlerte = $idAlerte;
       $this->activeMail = $activeMail;
       }
-      $this->checkArray();
+      $this->checkArrays();
   }
 
-  private function checkArray(){
+  private function checkArrays(){
     if(is_null(json_decode($this->tabSimple))){
       $this->tabSimple= "[]";
     }
