@@ -1,4 +1,6 @@
 const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+let outsideClickListener;
+let removeClickListener;
 
 function requeteAJAX(url,callback) {
 	let requete = new XMLHttpRequest();
@@ -95,8 +97,8 @@ function deconnect(){
 }
 
 function popUp(page,fctSubmit){
-	let fond = document.createElement("div");
-	fond.classList.add("fondTransparent");
+	let fond=getFond();
+
 	let newDiv = document.createElement("div");
 	newDiv.style.position="fixed";
 	newDiv.style.top="20%";
@@ -113,12 +115,33 @@ function popUp(page,fctSubmit){
   	let formConnexion=document.getElementById("formConnexion");
   	formConnexion.addEventListener("submit",function(){
   		event.preventDefault();
-		fctSubmit();
+			fctSubmit();
   	});
+
+		let boutonRedirectCreation=document.getElementById("boutonRedirectCreation");
+		if(boutonRedirectCreation!==null){
+			boutonRedirectCreation.addEventListener("click",function(){
+				removePopUp(newDiv);
+				lancePopUpCreationCompte();
+			});
+	}
 
   	setTimeout(()=>{
 		hideOnClickOutside(newDiv,fond);
 	},10);
+}
+
+function isFond(){
+	return document.getElementsByClassName("fondTransparent").length!==0;
+}
+
+function getFond(){
+	if(isFond()){
+		return document.getElementsByClassName("fondTransparent")[0];
+	}
+	fond = document.createElement("div");
+	fond.classList.add("fondTransparent");
+	return fond;
 }
 
 function lancePopUpConnexion(){
@@ -143,20 +166,28 @@ function canScroll(){
 }
 
 function hideOnClickOutside(element,elementASupprimer) {
-    const outsideClickListener = event => {
+    outsideClickListener = event => {
         if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
-          element.parentNode.removeChild(element);
-          removeClickListener();
-          elementASupprimer.parentNode.removeChild(elementASupprimer);
-					canScroll();
+					removePopUp(element);
+					removeFond(elementASupprimer);
         }
     }
 
-    const removeClickListener = () => {
+    removeClickListener = () => {
         document.removeEventListener('mousedown', outsideClickListener);
     }
 
     document.addEventListener('mousedown', outsideClickListener);
+}
+
+function removePopUp(element){
+	element.parentNode.removeChild(element);
+	removeClickListener();
+	canScroll();
+}
+
+function removeFond(fond){
+	fond.parentNode.removeChild(fond);
 }
 
 function clickHandler(){
