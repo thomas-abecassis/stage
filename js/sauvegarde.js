@@ -43,8 +43,24 @@ function callback4(xhr){
 }
 
 function callback6(xhr){
+	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
-	racine.innerHTML="<p>Votre compte a été créé</p>";
+	if(xhr.responseText.valueOf()=="true"){
+		console.log("je suis passé là");
+		racine.innerHTML="<p>Votre compte a été créé</p>";
+	}
+	else{
+		let newP = document.createElement("p");
+		newP.classList.add("center");
+		newP.style.transition="0.2s";
+		newP.style.color="white";
+		setTimeout(()=>{
+			newP.style.color="red";
+		}
+	,10);
+		newP.textContent="adresse e-mail déjà utilisée";
+		racine.appendChild(newP);
+	}
 }
 
 function popUpCallback(xhr,fctSubmit){
