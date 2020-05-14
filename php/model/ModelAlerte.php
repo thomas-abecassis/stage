@@ -28,22 +28,6 @@ class ModelAlerte extends Model{
       $this->idAlerte = $idAlerte;
       $this->activeMail = $activeMail;
       }
-      $this->checkArrays();
-  }
-
-  private function checkArrays(){
-    if(is_null(json_decode($this->tabSimple))){
-      $this->tabSimple= "[]";
-    }
-    if(is_null(json_decode($this->tabTypesBien))){
-      $this->tabTypesBien= "[]";
-    }
-    if(is_null(json_decode($this->tabNombrePieces))){
-      $this->tabNombrePieces= "[]";
-    }
-    if(is_null(json_decode($this->tabCheckBox))){
-      $this->tabCheckBox= "[]";
-    }
   }
 
   public function decode(){
@@ -51,6 +35,13 @@ class ModelAlerte extends Model{
       $this->tabTypesBien=json_decode($this->tabTypesBien, true);
       $this->tabNombrePieces=json_decode($this->tabNombrePieces, true);
       $this->tabCheckBox=json_decode($this->tabCheckBox, true);
+  }
+
+  public function encode(){
+      $this->tabSimple=json_encode($this->tabSimple, true);
+      $this->tabTypesBien=json_encode($this->tabTypesBien, true);
+      $this->tabNombrePieces=json_encode($this->tabNombrePieces, true);
+      $this->tabCheckBox=json_encode($this->tabCheckBox, true);
   }
 
   public function getTabSimple(){

@@ -81,9 +81,9 @@
 	<span class="phraseContact" >Ce bien vous intéresse ?</span>
 	<span  class="lightBold phraseContact">Contactez nous !</span>
 	<div class="contactButton displayFlex premiereCouleur" id="contactTelButton"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
-	<div class="contactContent displayNone premiereCouleur" id="contactTelContent"><i class="material-icons">local_phone</i><span>06 XX XX XX XX</span></div>
+	<div class="contactContent displayNone " id="contactTelContent"><i class="material-icons">local_phone</i><span>06 XX XX XX XX</span></div>
 	<div class="contactButton displayFlex premiereCouleur" id="contactMailButton"><i class="material-icons">email</i><span>e-mail</span></div>
-	<div class="contactContent displayNone premiereCouleur" id="contactMailContent"><i class="material-icons">email</i><span>monmail@mail.fr</span></div>
+	<div class="contactContent displayNone" id="contactMailContent"><i class="material-icons">email</i><span>monmail@mail.fr</span></div>
 	</div>
 </div>
 </div>

@@ -2,7 +2,6 @@
         <?php
         if($alertes != false){
             foreach ($alertes as $alerte){
-                $alerte->decode();
                 echo '  <div class="col s12 m10 l7 offset-m1 offset-l2 card boite">
                             <div class="idAlerte">'.htmlspecialchars($alerte->getId()).'</div>
                             <div class="infoBoite">

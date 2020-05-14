@@ -14,6 +14,9 @@ class ControllerAlerte {
     public static function Read(){
         if (isset($_SESSION["login"])){
             $alertes=ModelAlerte::selectCol("loginUtilisateur",$_SESSION["login"]);
+            foreach ($alertes as $alerte) {
+                $alerte->decode();
+            }
             $controller='alerte'; $view='list'; $pagetitle='vos alertes';     //appel au modèle pour gerer la BD
             require File::build_path(array("view","view.php"));   
         }else{
@@ -24,7 +27,8 @@ class ControllerAlerte {
 
     public static function created(){
         echo $_SESSION["login"];
-        $alerte=new ModelAlerte(null,$_SESSION["login"],json_encode($_SESSION["dataFirst"]),json_encode($_SESSION["typesBien"]),json_encode($_SESSION["nombrePieces"]),json_encode($_SESSION["dataCheckBox"]),"Nom par défault",true);
+        $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],$_SESSION["typesBien"],$_SESSION["nombrePieces"],$_SESSION["dataCheckBox"],"Nom par défault",true);
+        $alerte->encode();
         $alerte->save();
         ModelAlerte::unsetSession();
         echo "save";
