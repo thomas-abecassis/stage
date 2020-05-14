@@ -3,8 +3,6 @@ require_once File::build_path(array("model", "ModelLot.php"));
 require_once File::build_path(array("lib", "Utility.php")); // chargement du modèle
 class ControllerLot {
 
-    protected static $object="lot";
-
     public static function readAll() {
         $tab_v = ModelLot::selectAll();
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD

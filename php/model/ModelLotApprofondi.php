@@ -35,7 +35,7 @@ class ModelLotApprofondi {
     return $this->options;
   }
 
-  public function getInfosFor($nomTable){
+  private function getInfosFor($nomTable){
     $sql="SELECT " . str_replace("sLot", "",$nomTable) . " FROM " . $nomTable. " WHERE idLot= " . $this->modelLot->getId();
     $rep=Model::$pdo->query($sql);
     if($rep==false){
@@ -50,7 +50,6 @@ class ModelLotApprofondi {
     return $arr;
   }
 
- // a securiser
   public static function searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page){
    if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
       $sql="select * from lot";
