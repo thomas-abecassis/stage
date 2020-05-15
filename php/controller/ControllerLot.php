@@ -98,22 +98,6 @@ class ControllerLot {
         $tab_v = ModelLot::selectAll();
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
-
-    public static function panier(){
-        if(!isset($_SESSION["panier"])){
-            $_SESSION["panier"]=array();
-        }
-
-        $lot= ModelLot::select(myGet('id'));
-
-        array_push($_SESSION["panier"],$lot);
-
-        $tab_v=ModelLot::selectAll();
-
-        $controller='lot'; $view='list'; $pagetitle='acceuil';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-
     public static function error(){
         $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
