@@ -701,3 +701,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.noMargin{
+	margin: 0 10px 0 0   !important;
+}
+
+.legerGras{
+	font-weight: 500;
+}

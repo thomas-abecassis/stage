@@ -1,8 +1,7 @@
 .deleteAlerte{
 	float:right;
 	display: flex;
-    font-weight: 500;
-    cursor:pointer;
+  cursor:pointer;
 }
 
 .boutonsAlerte{

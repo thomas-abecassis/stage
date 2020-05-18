@@ -6,13 +6,12 @@
                             <div class="idAlerte">'.htmlspecialchars($alerte->getId()).'</div>
                             <div class="infoBoite">
                             <div>
-                			<div class="red-text text-darken-1 deleteAlerte"><i class=" material-icons small">delete_forever</i><span>supprimer la recherche</span> </div>
+                			<div class="red-text text-darken-1 deleteAlerte legerGras"><i class=" material-icons small">delete_forever</i><span>supprimer la recherche</span> </div>
                 			<div class="contientNom"><div class="nomAlerte">'.htmlspecialchars($alerte->getNom()).'</div>
                             <input class="modificationNom"  value="'.htmlspecialchars($alerte->getNom()).'" type="text" autocomplete="off" /></div>
                             <p class="grey-text grey-lighten-1">   <span >'.htmlspecialchars($alerte->getLocalisation()).", ".htmlspecialchars($alerte->getSurfaceStr()).", ".htmlspecialchars($alerte->getBudgetStr()) .' </span></p>
-                              <div class="switch">
-                                <label>
-                                  Off';
+                              <div class="switch legerGras">
+                                <label>';
 
                                   if($alerte->getActiveMail()){
                                         echo '<input checked type="checkbox">';
@@ -21,9 +20,10 @@
                                     echo '<input type="checkbox">';
                                   }
 
-                                  echo '<span class="lever"></span>
-                                  On
+                                  echo '<span class="lever noMargin"></span>
+
                                 </label>
+                                    m\'alerter par mail
                               </div>
                             <div class="boutonsAlerte">
                                 <a href="index.php?controller=lotApprofondi&action=searchedDeepenAlerte&alerte='.urlencode(serialize($alerte)).'"><div class="boutonAlerte boutonAnnonces secondeCouleur">Voir les lots</div></a>
