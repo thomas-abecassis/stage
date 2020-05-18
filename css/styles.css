@@ -1,3 +1,33 @@
+/*:root{
+  --mainColor:#ee6e73;
+  --secondColor:#eeac6e;
+}*/
+
+.premiereCouleur{
+  background-color:var(--mainColor) !important;
+}
+
+.premiereCouleurText{
+  color:  var(--mainColor) !important;
+}
+
+.premiereCouleurBorder{
+  border-color:  var(--mainColor) !important;
+}
+
+.secondeCouleur{
+    background-color: var(--secondColor) !important;
+}
+
+.secondeCouleurTexte{
+  color:var(--secondColor) !important
+}
+
+.secondeCouleurBorder{
+  border-color:var(--secondColor) !important
+}
+
+
 html,body {
 	height: 100%;
 	}
@@ -521,31 +551,6 @@ main {
   width   : 50%;
   border-bottom:1px solid grey;
 }
-
-.premiereCouleur{
- 	background-color: 	#ee6e73 !important;
-}
-
-.premiereCouleurText{
- 	color: 	#ee6e73 !important;
-}
-
-.premiereCouleurBorder{
-  border-color:  #ee6e73 !important;
-}
-
-.secondeCouleur{
-	  background-color: #eeac6e !important;
-}
-
-.secondeCouleurTexte{
-	color:#eeac6e !important
-}
-
-.secondeCouleurBorder{
-  border-color:#eeac6e !important
-}
-
 .decoupageSection{
 	border-bottom: solid 1px #c4c2c1;
 	margin-bottom: 2em;
@@ -708,4 +713,10 @@ input[type=number] {
 
 .legerGras{
 	font-weight: 500;
+}
+
+.colorPicker{
+  position: fixed;
+  top:10%;
+  left:10%;
 }

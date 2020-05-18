@@ -7,12 +7,15 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/alerte.css">
   <link rel="stylesheet" type="text/css" href="css/animation.css">
+    <link rel="stylesheet" type="text/css" href="css/couleur.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    <!-- Social media Font -->
   <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 
 
 </head>
@@ -47,6 +50,10 @@
 
             require $filepath;
             ?>
+            </div>
+            <div class="colorPicker">
+              <div id="colorPicker1">couleur principale</div>
+              <div id="colorPicker2">couleur secondaire </div>
             </div>
 
 <?php /*
@@ -96,7 +103,8 @@ if(isset($_SESSION["panier"])){
 
 
 </body>
-
+<script type="text/javascript" src="js/lib/colorPicker.js"></script>
 <script type="text/javascript" src="js/sauvegarde.js"></script>
+<script type="text/javascript" src="js/changerCouleur.js"></script>
 
 </html>
