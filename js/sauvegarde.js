@@ -16,7 +16,7 @@ function callback1(xhr){
 	if(xhr.responseText.valueOf()=="true".valueOf()){
 	    document.location.reload(true);
 	}else{
-		let co=document.getElementById("connexionBox");
+		let co=document.getElementById("racineCard");
 	    if(co.childElementCount<6){
 		    let p=document.createElement('p');
 		    p.innerHTML="mauvais identifiant ou mot de passe";

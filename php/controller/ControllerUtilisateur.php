@@ -159,8 +159,10 @@ class ControllerUtilisateur {
             $v = ModelUtilisateur::select(myGet("login"));
             if(is_null($v->getNonce())){
                 $_SESSION["login"] = myGet("login");
-                $_SESSION["admin"] = true;
                 echo("true");
+                if($v->isAdmin()){
+                    $_SESSION["admin"]=true;
+                }
             }
         }
         else{

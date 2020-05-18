@@ -1,4 +1,4 @@
-function createColorPicker(element,variableCouleur, url){
+function createColorPicker(element,variableCouleur){
 	var picker = new Picker(element);
 
 	picker.onChange = function(color) {
@@ -6,11 +6,36 @@ function createColorPicker(element,variableCouleur, url){
 	};
 
 	picker.onDone = function(color){
-		requeteAJAX(url+color.rgbaString,callbackCouleur);
+		let url;
+		if(variableCouleur=="--mainColor"){
+			url="php/lib/changerCouleur.php?secondColor="+previousSecondColor+"&mainColor="+color.rgbaString;
+			previousMainColor=color.rgbaString;
+		}
+		else{
+			url="php/lib/changerCouleur.php?secondColor="+color.rgbaString+"&mainColor="+previousMainColor;
+			previousSecondColor=color.rgbaString;
+		}
+		console.log(url);
+		requeteAJAX(url,callbackCouleur);
+		checkCouleur=true;
+	}
+
+	picker.onOpen = function(){
+		checkCouleur=false;
 	}
 
 	picker.onClose = function(color){
-		requeteAJAX(url+color.rgbaString,callbackCouleur);
+		setTimeout(function () {
+	        if (!checkCouleur) {
+	        	if(variableCouleur=="--mainColor"){
+	        		document.body.style.setProperty(variableCouleur,previousMainColor); 
+				}
+				else{
+					document.body.style.setProperty(variableCouleur,previousSecondColor); 
+				}
+	        }
+	    }, 10);
+		
 	}
 }
 
@@ -21,6 +46,10 @@ function callbackCouleur(xhr){
 
 let picker1 = document.querySelector('#colorPicker1');
 let picker2 = document.querySelector('#colorPicker2');
-console.log(getComputedStyle(document.documentElement).getPropertyValue('--mainColor'));
-createColorPicker(picker1,"--mainColor","php/lib/changerCouleur.php?secondColor="+getComputedStyle(document.documentElement).getPropertyValue('--secondColor')+"&mainColor=");
-createColorPicker(picker2,"--secondColor","php/lib/changerCouleur.php?mainColor="+getComputedStyle(document.documentElement).getPropertyValue('--mainColor')+"&secondColor=");
+previousMainColor=getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+previousSecondColor=getComputedStyle(document.documentElement).getPropertyValue('--secondColor');
+
+let checkCouleur=false;
+
+createColorPicker(picker1,"--mainColor");
+createColorPicker(picker2,"--secondColor");

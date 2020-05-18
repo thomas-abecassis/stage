@@ -43,7 +43,16 @@
             	</nav>
 
         </header>
-        <main>
+        <main><?php
+        if(Session::is_admin()) {  
+         echo '<div class="colorPicker card">
+            <h6>Modifier les couleur</h6>
+            <div class="ligne"></div>
+              <button id="colorPicker1">couleur principale</button>
+              <button id="colorPicker2">couleur secondaire </button>
+          </div>';
+        }
+          ?>
             <div class="row">
             <?php
             $filepath = File::build_path(array("view", $controller, "$view.php"));
@@ -51,10 +60,7 @@
             require $filepath;
             ?>
             </div>
-            <div class="colorPicker">
-              <div id="colorPicker1">couleur principale</div>
-              <div id="colorPicker2">couleur secondaire </div>
-            </div>
+
 
 <?php /*
 if(isset($_SESSION["panier"])){

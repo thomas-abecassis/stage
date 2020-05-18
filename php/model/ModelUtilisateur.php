@@ -40,6 +40,10 @@ class ModelUtilisateur extends Model{
     return $this->prenom;
   }
 
+  public function isAdmin(){
+    return $this->admin;
+  }
+
   public function getMdp(){
     return $this->mdp;
   }
