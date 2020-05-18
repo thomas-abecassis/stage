@@ -23,3 +23,7 @@ Quelques diagrammes pour présenter le fonctionmment du global pattern
 ### Diagramme de classe des controllers
 
 ![site controllers](doc/images/classesController.png)
+
+## Base de données 
+
+![diagramme base de données](doc/images/bd.png)
