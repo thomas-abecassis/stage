@@ -14,12 +14,16 @@ require_once File::build_path(array("controller", "ControllerAlerte.php"));
  	return NULL;
  }
 
- function getParameters(){
+ function getURLParametersWithout($arrayParametersNotWanted){
  	$url="&";
- 	foreach ($_GET as $key => $value) {
- 		if(strcmp($key, "controller")!==0 && strcmp($key, "action")!==0 && strcmp($key, "page")!==0){
- 			$url=$url.$key."=".$value."&";
- 		}
+ 	$arrayCopy=$_GET;
+
+ 	foreach ($arrayParametersNotWanted as  $valueNotWanted) {
+		unset($arrayCopy[$valueNotWanted]);
+ 	}
+
+ 	foreach ($arrayCopy as $key => $value) {
+ 		$url=$url.$key."=".rawurlencode($value)."&";
  	}
  	return $url;
  }

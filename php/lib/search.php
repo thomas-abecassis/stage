@@ -28,17 +28,17 @@ function getVille($str){
         return false;
       }
     return $tab_ville;
-
-
   }
 
 
 $tab=getVille($_GET["mot"]);
 if($tab!==false){
-	foreach ($tab as $ville) {
-		echo "<div class=\"resultWord\" >" . $ville->nom . " (".$ville->codePostal.") "."</div>" ;
-	}
+        echo json_encode($tab);
 }
+else{
+    echo "false";
+}
+
 
 
 ?>

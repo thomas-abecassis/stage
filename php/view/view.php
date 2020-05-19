@@ -4,6 +4,7 @@
 
   <meta charset="utf-8">
   <title><?php echo $pagetitle; ?></title>
+    <base href='http://localhost/stage/'>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/alerte.css">
   <link rel="stylesheet" type="text/css" href="css/animation.css">
@@ -26,13 +27,12 @@
                <!-- <img href="#index.html" id="logo" src="https://www.logolynx.com/images/logolynx/0a/0a541bcbcef40a7c1058c0d02db88762.png"alt="Le logo."> -->
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-                		<li><a href="index.php">Accueil</a></li>
-                        <li ><a href="index.php?action=readAll">Produits</a></li>
-                		<li ><a href=" index.php?action=readAll&controller=utilisateur">Utilisateurs</a></li>
+                		<li><a href="index">Accueil</a></li>
+                		<li ><a href=" index/utilisateur/readAll/">Utilisateurs</a></li>
 
                         <?php
                         if(isset($_SESSION["login"])){
-                            echo "<li><a href=\"index.php?action=read&controller=alerte\">Mes recherches</a></li>";
+                            echo "<li><a href=\"index/alerte/read/\">Mes recherches</a></li>";
                             echo "<li><a id=\"deconnexion\">Deconnexion</a></li>";
                         }else{
                            echo "<li><a id=\"creationCompte\">Créer un compte</a></li>";

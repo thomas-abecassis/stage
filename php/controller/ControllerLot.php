@@ -16,6 +16,7 @@ class ControllerLot {
 
     //! a refactoriser comme dans le controllerLotApprofondi  !\\
     public static function searched(){
+         var_dump($_GET);
         $page=myGet('page');
         if($page<1){
             $page=1;
@@ -33,7 +34,7 @@ class ControllerLot {
         $nbPage=(int)((ModelLot::getNbLotRecherche($data)-1)/15)+1;
         $lot="lot";
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
-        $getURL=getParameters();
+        $getURL=getURLParametersWithout(array("controller","action","page"));
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 

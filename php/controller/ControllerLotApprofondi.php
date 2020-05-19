@@ -19,7 +19,7 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-
+        var_dump($_GET);
         $typesBien=arrayContain($_GET,"typeBien"); 
         $nombrePieces=arrayContain($_GET,"nombrePieces");
 
@@ -43,7 +43,7 @@ class ControllerLotApprofondi{
         $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
         $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
         $lot="lotApprofondi";
-        $getURL = getParameters();
+        $getURL = getURLParametersWithout(array("controller","action","page"));
         require File::build_path(array("view", "view.php"));
     }
 
@@ -81,11 +81,30 @@ class ControllerLotApprofondi{
             require File::build_path(array('view','view.php'));  //"redirige" vers la vue
         }
         else{     
-            $lotApprofondi=new ModelLotApprofondi($lot); 
+            $lotApprofondi=new ModelLotApprofondi($lot);
+            //$options=ControllerLotApprofondi::optionsToIcons($lotApprofondi->getCommodites()); 
+            $getURL=getURLParametersWithout(array("controller", "action","id"));
             $controller='lot'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
         }
     }
+
+    //cette fonction sert à convertir le noms des options ou des commodites vers une icone html.
+    /*private static function optionToIcon($option){
+        if(strcmp($option, "piscine")==0){
+            return ' <i title="piscine" class="material-icons">pool</i>';
+        }
+        else{
+            return $option;
+        }
+    }
+
+    private static function optionsToIcons($options){
+        for($i=0;$i<count($options);$i++){
+            $options[$i]=ControllerLotApprofondi::optionToIcon($options[$i]);
+        }
+        return $options; 
+    }*/
 
 }
 ?>

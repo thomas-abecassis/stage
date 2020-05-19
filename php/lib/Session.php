@@ -5,7 +5,11 @@ class Session {
     }
 
     public static function is_admin() {
-    return (!empty($_SESSION['admin']) && $_SESSION['admin']);
+    	return (!empty($_SESSION['role']) && $_SESSION['role']==2);
+	}
+
+	public static function is_commercial() {
+    	return (!empty($_SESSION['role']) && $_SESSION['role']=1);
 	}
 }
 ?>

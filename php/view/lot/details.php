@@ -1,6 +1,11 @@
-<input type="button" value="back" onclick="history.back()"/> 
 
 <div class="containerLot">
+<div id="retour">
+<?php
+	echo '<a href="index.php?controller=lotApprofondi&action=searchedDeepen'. $getURL.'"> <i class="material-icons">keyboard_backspace</i> <span class="absolute">Retour aux résultats </span></a>';
+?>
+
+</div>
 <div class="card offset-l3 carteLot">
 	<div class="relative">
 	  <div class="myCarousel" id="myCarouselImage">

@@ -8,14 +8,14 @@ class ModelUtilisateur extends Model{
   private $nom;
   private $prenom;
   private $mdp;
-  private $admin;
+  private $role;
   private $nonce;
 
   protected static $object = "utilisateur";
   protected static $primary='login';
 
-  public function __construct($l = NULL, $n = NULL, $p = NULL, $m = NULL, $a = NULL,$nonce = NULL ) {
-    if (!is_null($l) && !is_null($n) && !is_null($p) && !is_null($m) && !is_null($a) && !is_null($nonce)) {
+  public function __construct($l = NULL, $n = NULL, $p = NULL, $m = NULL, $r = NULL,$nonce = NULL ) {
+    if (!is_null($l) && !is_null($n) && !is_null($p) && !is_null($m) && !is_null($r) && !is_null($nonce)) {
       // Si aucun de $m, $c et $i sont nuls,
       // c'est forcement qu'on les a fournis
       // donc on retombe sur le constructeur à 3 arguments
@@ -23,7 +23,7 @@ class ModelUtilisateur extends Model{
       $this->nom = $n;
       $this->prenom = $p;
       $this->mdp = $m;
-      $this->admin = $a;
+      $this->role = $a;
       $this->nonce = $nonce;
     }
   }
@@ -41,7 +41,11 @@ class ModelUtilisateur extends Model{
   }
 
   public function isAdmin(){
-    return $this->admin;
+    return $this->role==2;
+  }
+
+  public function isCommercial(){
+    return $this->role==1;
   }
 
   public function getMdp(){

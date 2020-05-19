@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="col s12 m8 offset-m2">
 		<div class="card" id="searchBox">
-	      <form method="get" action="index.php?controller=lot&action=searched&page=1">
+	      <form method="get" action="index/lot/searched&page=1">
 		       <div class="row">
 		          <p>
 		          	<div class="col s5" id="contenantVille" style="padding: 0px;">

@@ -161,7 +161,10 @@ class ControllerUtilisateur {
                 $_SESSION["login"] = myGet("login");
                 echo("true");
                 if($v->isAdmin()){
-                    $_SESSION["admin"]=true;
+                    $_SESSION["role"]=2;
+                }
+                if($v->isCommercial()){
+                    $_SESSION["role"]=1;
                 }
             }
         }

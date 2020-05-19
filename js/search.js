@@ -3,8 +3,12 @@ var xhr2= new XMLHttpRequest();
 	xhr2.addEventListener('readystatechange', function() { // On gère ici une requête asynchrone
 
     if (xhr2.readyState === XMLHttpRequest.DONE && searchBox.value.length!==0) {
-	        document.getElementById('resultSearchVille').innerHTML =  xhr2.responseText ;
-	        eventOnCity(); 
+    	if(xhr2.responseText!=="false"){
+    		let tabVilles=JSON.parse(xhr2.responseText);
+    		tabVilles=trierVilles(tabVilles);
+    		miseEnFormeResultat(tabVilles);
+    		eventOnCity(); 
+    	}
 	    }
 	});
 
@@ -15,13 +19,45 @@ searchBox.addEventListener("input", function(){
 	}
 });
 
+function trierVilles(tabVilles){
+	let input=searchBox.value;
+	tabVilles.sort(function(a,b){return nombreLettreEnCommun(input,a)-nombreLettreEnCommun(input,b)});
+	return tabVilles;
+}
+
+function nombreLettreEnCommun(input,ville){
+	let nbDifferent=0;
+	for(let i=0; i<input.length; i++){
+		if(input[i]!==ville.nom[i]){
+			nbDifferent++;
+		}
+	}
+	nbDifferent+=ville.nom.length-input.length;
+	return nbDifferent;
+}
+
 function eventOnCity(){
 	let children = Array.from(document.getElementById("resultSearchVille").children);
+	if(children.length > 0){
+			children[0].classList.add("resultWordHover");
+	}
 	children.forEach(function(element){
 		element.addEventListener("click",()=>{searchBox.value=element.innerHTML.split("(")[0].trim();
 		document.getElementById('resultSearchVille').innerHTML=null;});
 	}
 	);
+}
+
+function miseEnFormeResultat(tabVilles){
+		let div;
+		let result=document.getElementById('resultSearchVille');
+		result.innerHTML=null;
+		tabVilles.forEach(function(ville){
+			div=document.createElement("div");
+			div.textContent=ville.nom+ " (" +ville.codePostal + ")";
+			div.classList.add("resultWord");
+			result.appendChild(div);
+		});
 }
 
 
@@ -66,3 +102,14 @@ document.onkeydown = function (e) {
     	}
 	}
 };
+
+let searchBoxCard=document.getElementById("searchBox");
+searchBoxCard.addEventListener( "click", function() {
+	console.log("coucou");
+	let elementHover=document.getElementsByClassName("resultWordHover");
+	if(elementHover.length>0){
+		elementHover=elementHover[0];
+		searchBox.value=elementHover.innerHTML.split("(")[0].trim();
+		document.getElementById('resultSearchVille').innerHTML=null;
+	}	
+});
