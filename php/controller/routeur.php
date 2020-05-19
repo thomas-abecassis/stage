@@ -14,6 +14,16 @@ require_once File::build_path(array("controller", "ControllerAlerte.php"));
  	return NULL;
  }
 
+ function getParameters(){
+ 	$url="&";
+ 	foreach ($_GET as $key => $value) {
+ 		if(strcmp($key, "controller")!==0 && strcmp($key, "action")!==0 && strcmp($key, "page")!==0){
+ 			$url=$url.$key."=".$value."&";
+ 		}
+ 	}
+ 	return $url;
+ }
+
 $action='search';
 if(!is_null(myGet('action'))){
 	$action = myGet('action');

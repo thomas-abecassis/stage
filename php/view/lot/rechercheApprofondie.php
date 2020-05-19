@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col s12 m8 offset-m2">
 		<div class="card searchBoxApprofondie" id="searchBox" >
-	      <form method="post" action="index.php?controller=lotApprofondi&action=searchedDeepen&page=1">
+	      <form method="get" action="index.php?controller=lotApprofondi&action=searchedDeepen&page=1">
 		       		<div class="categorie row">
 			       		<div class="titreCategorie">Localisation
 			       			<div class="col s12 ligne"></div></div>
@@ -123,6 +123,9 @@
 		            <input  class="inputButton inputButtonApprofondie secondeCouleur" type="submit" value="Envoyer" />
 	  		</div>
 		    </div>
+		    <input type='hidden' name='controller' value='lotApprofondi'>
+            <input type='hidden' name='action' value='searchedDeepen'>
+            <input type='hidden' name='page' value='1'>
 	      </form>
 		</div>
 	</div>

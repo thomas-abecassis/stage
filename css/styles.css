@@ -631,7 +631,7 @@ main {
 	font-weight: 400;
 	align-items: center;
 	justify-content: center;
-	border: solid 1px #ee6e73;
+	border: solid 1px;
 }
 
 .contactContent i{

@@ -140,7 +140,6 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
 
   //refactorisation à faire 
   public static function getSqlSearch($data){
-      $_SESSION['dataFirst']=$data;
       $sql = "SELECT * from lot WHERE";
       $firstCondition=true;
 
@@ -179,10 +178,5 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
       return $sql;
   }
 
-  public static function unsetSession(){
-    $_SESSION['typesBien']=array();
-    $_SESSION['nombrePieces']=array();
-    $_SESSION['dataCheckBox']=array();
-  }
 }
 ?>

@@ -87,8 +87,8 @@ function envoieConnexion(){
 function envoieCreationCompte(){
 	mail=document.getElementById("inputMail");
 	mdp=document.getElementById("inputMdp");
-	nom=document.getElementById("inputMdp");
-	prenom=document.getElementById("inputMdp");
+	nom=document.getElementById("inputNom");
+	prenom=document.getElementById("inputPrenom");
 	requeteAJAX("index.php?controller=utilisateur&action=createdAjax&login="+mail.value+"&mdp=" +mdp.value+"&nom=" +nom.value+"&prenom=" +prenom.value,callback6);
 }
 
@@ -196,7 +196,7 @@ function clickHandler(){
 	}
 	else{
 		stopScroll();
-		lancePopUp();
+		lancePopUpConnexion();
 	}
 }
 

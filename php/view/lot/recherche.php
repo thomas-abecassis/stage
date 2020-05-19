@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="col s12 m8 offset-m2">
 		<div class="card" id="searchBox">
-	      <form method="post" action="index.php?controller=lot&action=searched&page=1">
+	      <form method="get" action="index.php?controller=lot&action=searched&page=1">
 		       <div class="row">
 		          <p>
 		          	<div class="col s5" id="contenantVille" style="padding: 0px;">
@@ -34,7 +34,9 @@
 		            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget" autocomplete="off"/>
 		            </div>
 		          </p>
-
+		      		<input type='hidden' name='controller' value='lot'>
+              		<input type='hidden' name='action' value='searched'>
+              		<input type='hidden' name='page' value='1'>
 		    </div>
 		    	  <div id="plusCriteres">
 		    	  	<a class="premiereCouleurText" href="index.php?action=searchDeepen&controller=lotApprofondi">

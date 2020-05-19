@@ -19,17 +19,16 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-        ModelLotApprofondi::unsetSession();
 
-        $typesBien=arrayContain($_POST,"typeBien"); 
-        $nombrePieces=arrayContain($_POST,"nombrePieces");
+        $typesBien=arrayContain($_GET,"typeBien"); 
+        $nombrePieces=arrayContain($_GET,"nombrePieces");
 
         $dataCheckBox=array(
-            "typeDePiecesLot"=>arrayContain($_POST,"typePiece"),
-            "commoditesLot"=>arrayContain($_POST,"commodite"),
-            "rangementsLot"=>arrayContain($_POST,"rangement"),
-            "orientationsLot"=>arrayContain($_POST,"orientation"),
-            "myOptionsLot"=>arrayContain($_POST,"myOptions")
+            "typeDePiecesLot"=>arrayContain($_GET,"typePiece"),
+            "commoditesLot"=>arrayContain($_GET,"commodite"),
+            "rangementsLot"=>arrayContain($_GET,"rangement"),
+            "orientationsLot"=>arrayContain($_GET,"orientation"),
+            "myOptionsLot"=>arrayContain($_GET,"myOptions")
         );
         $dataPost=array(
             "localisation" => myGet("localisation"),
@@ -39,33 +38,14 @@ class ControllerLotApprofondi{
             "maxBudget" => myGet("maxBudget")
         );
 
-        $_SESSION['typesBien']=$typesBien;
-        $_SESSION['nombrePieces']=$nombrePieces;
-        $_SESSION['dataCheckBox']=$dataCheckBox;
-        $_SESSION['dataPost']=$dataPost;
-
-
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
         $page=myGet("page");
         $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
-        ModelLotApprofondi::setSession($typesBien,$nombrePieces,$dataCheckBox);
         $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
         $lot="lotApprofondi";
+        $getURL = getParameters();
         require File::build_path(array("view", "view.php"));
     }
-
-        public static function searchedDeepenPage() {
-        //j'appelle cette fonction quand l'utilisateur parcours les différentes pages d'une recherche.
-        //Les données de recherches ont été préalablement enregistré dans la session.
-        $controller='lot'; $view='list'; $pagetitle='Liste des lots';    
-        $page=myGet("page");
-        $tab_v=ModelLotApprofondi::searchDeep($_SESSION["typesBien"],$_SESSION["nombrePieces"],$_SESSION["dataCheckBox"],$_SESSION["dataPost"],myGet("page"));
-        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($_SESSION["typesBien"],$_SESSION["nombrePieces"],$_SESSION["dataCheckBox"],$_SESSION["dataPost"],myGet("page"))-1)/15)+1;
-        $lot="lotApprofondi";
-        require File::build_path(array("view", "view.php"));
-    }
-
-
 
     public static function searchedDeepenAlerte() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
