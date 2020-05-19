@@ -15,6 +15,7 @@ Quelques diagrammes pour présenter le fonctionmment du global pattern
 ![MVC sequence](doc/images/sequenceMVC.png)
 
 ## Présentation de la structure du site
+Les diagrammes suivants sont sujets à être modifié
 
 ### Diagramme de classe des models
 
