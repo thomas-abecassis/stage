@@ -4,14 +4,15 @@
 
   <meta charset="utf-8">
   <title><?php echo $pagetitle; ?></title>
-    <base href='http://localhost/stage/'>
+  <base href='http://localhost/stage/'>
+
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/alerte.css">
   <link rel="stylesheet" type="text/css" href="css/animation.css">
-    <link rel="stylesheet" type="text/css" href="css/couleur.css">
+  <link rel="stylesheet" type="text/css" href="css/couleur.css">
+  <link rel="stylesheet" type="text/css" href="css/socicon/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-   <!-- Social media Font -->
-  <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d">
+
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
   <script src="js/lib/colorPicker.js" defer></script>
@@ -92,10 +93,10 @@ if(isset($_SESSION["panier"])){
         <!-- Footer social -->
           <section class="ft-social">
             <ul class="ft-social-list">
-              <!--<li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook grey-text text-darken-1"></span></a></li>
+              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook grey-text text-darken-1"></span></a></li>
               <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-twitter grey-text text-darken-1"></span></a></li>
               <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-linkedin grey-text text-darken-1"></span></a></li>
-              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-instagram grey-text text-darken-1"></span></a></li>-->
+              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-instagram grey-text text-darken-1"></span></a></li>
             </ul>
           </section>
 

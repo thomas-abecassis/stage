@@ -105,4 +105,3 @@
                 echo "connecte = false";
             };
         ?></script>
-        <script type="text/javascript" src="../js/sauvegarde.js"></script>
