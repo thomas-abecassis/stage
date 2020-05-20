@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title><?php echo $pagetitle; ?></title>
   <base href='http://localhost/stage/'>
-
+  <link rel="shortcut icon" href="image/favicon.png" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/alerte.css">
   <link rel="stylesheet" type="text/css" href="css/animation.css">
