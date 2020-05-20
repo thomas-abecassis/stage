@@ -2,7 +2,7 @@
 <div class="containerLot">
 <div id="retour">
 <?php
-	echo '<a href="index.php?controller=lotApprofondi&action=searchedDeepen'. $getURL.'"> <i class="material-icons">keyboard_backspace</i> <span class="absolute">Retour aux résultats </span></a>';
+	echo '<a href="index/lotApprofondi/searchedDeepen/?'. $getURL.'"> <i class="material-icons">keyboard_backspace</i> <span class=" sousLignerHover absolute">Retour aux résultats </span></a>';
 ?>
 
 </div>

@@ -1,4 +1,9 @@
 <div class="container">
+  <div  class="col s12 m10 l7 offset-m1 offset-l2 noPadding" id="retour">
+
+ <a href="index"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Retour à la recherche </span></a>
+
+</div>
         <?php
         if($tab_v != false){
             foreach ($tab_v as $v){
@@ -7,7 +12,7 @@
                 if ($files){
                  $filecount = count($files);
                 }
-                echo '  <a href=index.php?controller=lotApprofondi&action=Read&id='.rawurlencode($v->getId()).$getURL."page=".$page.'>
+                echo '  <a href=index/lotApprofondi/Read/?id='.rawurlencode($v->getId()).$getURL."page=".$page.'>
                         <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">';
                         if($filecount!=0){
                           echo '<div class="imageBoite" ><img src="image/'.$v->getId().'/1.jpg"></div>';

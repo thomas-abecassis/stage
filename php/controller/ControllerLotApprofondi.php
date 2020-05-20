@@ -68,6 +68,7 @@ class ControllerLotApprofondi{
         $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
+        $getURL = getURLParametersWithout(array("controller","action","page"));
         $lot="lotApprofondi";
         require File::build_path(array("view", "view.php"));
     }

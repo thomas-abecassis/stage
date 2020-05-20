@@ -677,25 +677,29 @@ main {
 }
 
 .lever{
-      padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
 
-  .switch{
-    display: inline !important;
-  }
+.switch{
+  display: inline !important;
+}
 
-	.container{
-		    margin-top: 1.5em !important;
-	}
+.container{
+	    margin-top: 1.5em !important;
+}
 
-	.creationCompteCard{
-		        padding: 3% 7% 6% 6%;
-	}
+.creationCompteCard{
+	padding: 3% 7% 6% 6%;
+}
 
-  .sousLigner{
+.sousLigner{
+  text-decoration: underline;
+}
+
+.sousLignerHover:hover{
     text-decoration: underline;
-  }
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

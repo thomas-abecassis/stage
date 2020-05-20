@@ -1,4 +1,9 @@
 <div class="container">
+    <div  class="col s12 m10 l7 offset-m1 offset-l2 noPadding" id="retour">
+
+ <a href="index"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Aller à la recherche </span></a>
+
+</div>
         <?php
         if($alertes != false){
             foreach ($alertes as $alerte){
