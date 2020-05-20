@@ -6,10 +6,10 @@
          <form id="formConnexion" method="get" action="index.php">
               <!--<form id="connexion">-->
               <p>
-                <input value= "" type="text" placeholder="e-mail" name="login" id="inputMail" required />
+                <input value= "" autocomplete="email" type="text" placeholder="e-mail" name="login" id="inputMail" required />
               </p>
               <p>
-                <input value= "" type="password" placeholder="mot de passe" name="mdp" id="inputMdp" required />
+                <input value= "" autocomplete="current-password" type="password" placeholder="mot de passe" name="mdp" id="inputMdp" required />
               </p>
               <p class="center">
                 <input id="boutonConnexion" class="col s10 offset-s1  secondeCouleur" type="submit" value="se connecter" />

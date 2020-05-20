@@ -23,7 +23,7 @@ class ModelUtilisateur extends Model{
       $this->nom = $n;
       $this->prenom = $p;
       $this->mdp = $m;
-      $this->role = $a;
+      $this->role = $r;
       $this->nonce = $nonce;
     }
   }

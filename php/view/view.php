@@ -28,9 +28,11 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
 
                 		<li><a href="index">Accueil</a></li>
-                		<li ><a href=" index/utilisateur/readAll/">Utilisateurs</a></li>
 
                         <?php
+                        if(Session::is_admin()){
+                          echo '<li ><a href=" index/utilisateur/readAll/">Utilisateurs</a></li>';
+                        }
                         if(isset($_SESSION["login"])){
                             echo "<li><a href=\"index/alerte/read/\">Mes recherches</a></li>";
                             echo "<li><a id=\"deconnexion\">Deconnexion</a></li>";

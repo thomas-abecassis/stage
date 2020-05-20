@@ -28,6 +28,12 @@ class ControllerLot {
             "maxBudget" => myGet("maxBudget")
         );
 
+        //j'enregistre la recherche en session pour enregistrer les alertes
+        $_SESSION["dataFirst"]=$data;
+        $_SESSION["typesBien"]=array();
+        $_SESSION["nombrePieces"]=array();
+        $_SESSION["dataCheckBox"]=array();
+
         $tab_v = ModelLot::selectByRecherche($data,$page);
         $page=(int)$page;
         $nbPage=(int)((ModelLot::getNbLotRecherche($data)-1)/15)+1;

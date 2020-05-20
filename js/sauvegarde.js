@@ -52,16 +52,7 @@ function callback6(xhr){
 		racine.innerHTML="<p>Votre compte a été créé</p>";
 	}
 	else{
-		let newP = document.createElement("p");
-		newP.classList.add("center");
-		newP.style.transition="0.2s";
-		newP.style.color="white";
-		setTimeout(()=>{
-			newP.style.color="red";
-		}
-	,10);
-		newP.textContent="adresse e-mail déjà utilisée";
-		racine.appendChild(newP);
+		notification("mauvais fomat d'adresse e-mail");
 	}
 }
 
@@ -79,17 +70,23 @@ function creerSauvegarde(){
 }
 
 function envoieConnexion(){
-	mail=document.getElementById("inputMail");
-	mdp=document.getElementById("inputMdp");
-	requeteAJAX("index.php?controller=utilisateur&action=connectedAjax&login="+mail.value+"&mdp=" +mdp.value,callback1);
+	mail=document.getElementById("inputMail").value;
+	mdp=document.getElementById("inputMdp").value;
+	requeteAJAX("index.php?controller=utilisateur&action=connectedAjax&login="+mail+"&mdp=" +mdp,callback1);
 }
 
 function envoieCreationCompte(){
-	mail=document.getElementById("inputMail");
-	mdp=document.getElementById("inputMdp");
-	nom=document.getElementById("inputNom");
-	prenom=document.getElementById("inputPrenom");
-	requeteAJAX("index.php?controller=utilisateur&action=createdAjax&login="+mail.value+"&mdp=" +mdp.value+"&nom=" +nom.value+"&prenom=" +prenom.value,callback6);
+	mail=document.getElementById("inputMail").value;
+	nom=document.getElementById("inputNom").value;
+	prenom=document.getElementById("inputPrenom").value;
+	mdp=document.getElementById("inputMdp").value;
+	confirmMdp=document.getElementById("confirmMdp").value;
+	if(mdp==confirmMdp){
+		requeteAJAX("index.php?controller=utilisateur&action=createdAjax&login="+mail+"&mdp=" +mdp+"&nom=" +nom+"&prenom=" +prenom,callback6);
+	}
+	else{
+		notification("les mots de passes ne correspondent pas");
+	}
 }
 
 function deconnect(){
@@ -189,6 +186,21 @@ function removePopUp(element){
 function removeFond(fond){
 	fond.parentNode.removeChild(fond);
 }
+
+function notification(text){
+	let racine=document.getElementById("racineCard");
+	let newP = document.createElement("p");
+	newP.classList.add("center");
+	newP.style.transition="0.2s";
+	newP.style.color="white";
+	setTimeout(()=>{
+		newP.style.color="red";
+	}
+	,10);
+	newP.textContent=text;
+	racine.appendChild(newP);
+}
+
 
 function clickHandler(){
 	if(connecte){

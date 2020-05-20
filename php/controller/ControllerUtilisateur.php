@@ -6,18 +6,24 @@ class ControllerUtilisateur {
     protected static $object="utilisateur";
 
     public static function readAll() {
-        $tab_v = ModelUtilisateur::selectAll();
-        $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        if(Session::is_admin()){
+            $tab_v = ModelUtilisateur::selectAll();
+            $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        }else{
+            $controller='lot'; $view='recherche'; $pagetitle='acceuil';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        }
     }
 
     public static function Read(){
     	$v=ModelUtilisateur::select($_GET['id']);
-    	if($v==false){
-            $controller='utilisateur'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    	}else{      
+    	if(isset($_SESSION["login"]) && ($v->getLogin()==$_SESSION["login"] || Session::is_admin())){
             $controller='utilisateur'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+
+    	}else{      
+            $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 	    }
     }
