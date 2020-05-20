@@ -19,7 +19,6 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-        var_dump($_GET);
         $typesBien=arrayContain($_GET,"typeBien"); 
         $nombrePieces=arrayContain($_GET,"nombrePieces");
 

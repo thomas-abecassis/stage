@@ -16,7 +16,6 @@ class ControllerLot {
 
     //! a refactoriser comme dans le controllerLotApprofondi  !\\
     public static function searched(){
-         var_dump($_GET);
         $page=myGet('page');
         if($page<1){
             $page=1;

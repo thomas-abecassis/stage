@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="col s12 m8 offset-m2">
 		<div class="card" id="searchBox">
-	      <form method="get" action="index/lot/searched&page=1">
+	      <form method="get" action="index/lot/searched/">
 		       <div class="row">
 		          <p>
 		          	<div class="col s5" id="contenantVille" style="padding: 0px;">
@@ -34,15 +34,15 @@
 		            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget" autocomplete="off"/>
 		            </div>
 		          </p>
-		      		<input type='hidden' name='controller' value='lot'>
-              		<input type='hidden' name='action' value='searched'>
+		      		<!--<input type='hidden' name='controller' value='lot'>
+              		<input type='hidden' name='action' value='searched'> -->
               		<input type='hidden' name='page' value='1'>
 		    </div>
 		    	  <div id="plusCriteres">
-		    	  	<a class="premiereCouleurText" href="index.php?action=searchDeepen&controller=lotApprofondi">
+		    	  	<a class="premiereCouleurText" href="index/lotApprofondi/searchDeepen/">
 		    	  	plus de critères
 		    	  </a>
-		    	  	<a href="index.php?action=searchDeepen&controller=lotApprofondi" class="btn-floating btn-small waves-effect waves-light premiereCouleur">
+		    	  	<a href="index/lotApprofondi/searchDeepen/" class="btn-floating btn-small waves-effect waves-light premiereCouleur">
 		    	  		<i class="material-icons">add</i>
 		    	  	</a>
 		    	  </div>
