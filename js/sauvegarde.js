@@ -1,4 +1,4 @@
-const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+const isVisible= elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 let outsideClickListener;
 let removeClickListener;
 
@@ -212,22 +212,28 @@ function clickHandler(){
 	}
 }
 
-let sauvegarde=document.getElementById("sauvegardeAnnonce");
-if(sauvegarde!==null){
-	sauvegarde.addEventListener("click", clickHandler);
-}
+document.addEventListener("DOMContentLoaded", function() {
+	
+	let sauvegarde=document.getElementById("sauvegardeAnnonce");
 
-let connexion=document.getElementById("connexion");
-if(connexion!==null){
-	connexion.addEventListener("click", lancePopUpConnexion);
-}
+	if(sauvegarde!==null){
+		sauvegarde.addEventListener("click", clickHandler);
+	}
 
-let deconnexion=document.getElementById("deconnexion");
-if(deconnexion!==null){
-	deconnexion.addEventListener("click", deconnect);
-}
+	let connexion=document.getElementById("connexion");
+	if(connexion!==null){
+		connexion.addEventListener("click", lancePopUpConnexion);
+	}
 
-let creationCompteBouton=document.getElementById("creationCompte");
-if(creationCompteBouton!==null){
-	creationCompteBouton.addEventListener("click",  lancePopUpCreationCompte);
-}
+	let deconnexion=document.getElementById("deconnexion");
+	if(deconnexion!==null){
+		deconnexion.addEventListener("click", deconnect);
+	}
+
+	let creationCompteBouton=document.getElementById("creationCompte");
+	if(creationCompteBouton!==null){
+		creationCompteBouton.addEventListener("click",  lancePopUpCreationCompte);
+	}
+});
+
+

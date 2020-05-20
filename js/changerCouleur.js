@@ -44,12 +44,15 @@ function callbackCouleur(xhr){
 	console.log(xhr.responseText);
 }
 
-let picker1 = document.querySelector('#colorPicker1');
-let picker2 = document.querySelector('#colorPicker2');
-previousMainColor=getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
-previousSecondColor=getComputedStyle(document.documentElement).getPropertyValue('--secondColor');
+document.addEventListener("DOMContentLoaded", function() {
+	let picker1 = document.querySelector('#colorPicker1');
+	let picker2 = document.querySelector('#colorPicker2');
+	previousMainColor=getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+	previousSecondColor=getComputedStyle(document.documentElement).getPropertyValue('--secondColor');
 
-let checkCouleur=false;
+	let checkCouleur=false;
 
-createColorPicker(picker1,"--mainColor");
-createColorPicker(picker2,"--secondColor");
+	createColorPicker(picker1,"--mainColor");
+	createColorPicker(picker2,"--secondColor");
+});
+

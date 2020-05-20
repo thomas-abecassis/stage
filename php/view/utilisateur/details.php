@@ -1,9 +1,15 @@
+<div  class="container">
+    <div class="col s12 m10 l7 offset-m1 offset-l2">
+        <?php
 
-    		<?php
-    			echo htmlspecialchars($v->getLogin());
-    			echo htmlspecialchars($v->getNom());
-    			echo htmlspecialchars($v->getPrenom());
-                echo '<a href=index.php?action=delete&controller=utilisateur&id='.htmlspecialchars($v->getLogin()).'>supprimer le compte</a>';
-                echo '<a href=index.php?action=update&controller=utilisateur&id='.htmlspecialchars($v->getLogin()).'>mettre à jour le compte </a>';
-			?>
+        	echo '<p> login : <span class="legerGras">'.htmlspecialchars($v->getLogin()).'</span></p>
+        	<p> Nom : <span class="legerGras">'.htmlspecialchars($v->getNom()).'</span></p>
+        	<p> Prenom : <span class="legerGras">'.htmlspecialchars($v->getPrenom()).'</span></p>
+            <p><a href=index.php/utilisateur/update/?&id='.htmlspecialchars($v->getLogin()).'><button>mettre à jour le compte </button></a></p>
+            <p><a href=index/utilisateur/delete/?id='.htmlspecialchars($v->getLogin()).'><button class="red-text text-darken-1 ">supprimer le compte</button></a></p>';
+    	?>
+    </div>
+</div>
+
+
 
