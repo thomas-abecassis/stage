@@ -48,6 +48,20 @@ class ModelUtilisateur extends Model{
     return $this->role==1;
   }
 
+  public function isSimpleUtilisateur(){
+    return $this->role==0;
+  }
+
+  public function getRoleStr(){
+      if($this->isSimpleUtilisateur()){
+        return "simple utilisateur";
+      }
+      if($this->isCommercial()){
+        return "commercial";
+      }
+      return "admin";
+  }
+
   public function getMdp(){
     return $this->mdp;
   }

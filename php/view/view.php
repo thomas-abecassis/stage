@@ -18,6 +18,7 @@
   <script src="js/lib/colorPicker.js" defer></script>
   <script src="js/sauvegarde.js" defer></script>
   <script src="js/changerCouleur.js" defer></script>
+  <script src="js/initialize.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -39,7 +40,13 @@
                         }
                         if(isset($_SESSION["login"])){
                             echo "<li><a href=\"index/alerte/read/\">Mes recherches</a></li>";
-                            echo "<li><a id=\"deconnexion\">Deconnexion</a></li>";
+                            echo  '<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Mon compte</a></li>
+
+                          <!-- Dropdown Structure -->
+                          <ul id="dropdown1" class="dropdown-content">
+                            <li><a href="index/utilisateur/Read/?id='.rawurlencode($_SESSION["login"]).'" >Paramètres</a></li>
+                            <li><a id="deconnexion">Déconnexion</a></li>
+                          </ul>';
                         }else{
                            echo "<li><a id=\"creationCompte\">Créer un compte</a></li>";
                            echo "<li><a id=\"connexion\">Se connecter</a></li>";
@@ -83,7 +90,6 @@ if(isset($_SESSION["panier"])){
     echo "<br>-----------------------panier--------------------<br>";
 } */
 ?>
-
 
     </div>
   </main>

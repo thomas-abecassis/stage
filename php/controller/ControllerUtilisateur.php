@@ -82,6 +82,9 @@ class ControllerUtilisateur {
         if(Session::is_user($login) || Session::is_admin()){
             Modelutilisateur::delete($login);
             $tab_v=Modelutilisateur::selectAll();
+            if(Session::is_user($login)){
+                unset($_SESSION["login"]);
+            }
             $controller='utilisateur'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));   
         }
@@ -94,7 +97,6 @@ class ControllerUtilisateur {
 
     public static function update(){
         $id=myGet("id");
-
         if(Session::is_user($id) || Session::is_admin()){
             $v=ModelUtilisateur::select($id);
             $isUpdate=true;
@@ -108,27 +110,26 @@ class ControllerUtilisateur {
     }
 
 
-    public static function updated(){
+    public static function updatedAJAX(){
         if(Session::is_user(myGet('login')) || Session::is_admin()){
-            $admin=0;
-            if(!is_null(myGet("admin")) && Session::is_admin()){
-                $admin=1;
+            $role=0;
+            if(Session::is_admin()){
+                $role=myGet("role");
             }
-            $controller='utilisateur'; $view='updated'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
+            $utilisateur=ModelUtilisateur::select(myGet('login'));
             $data=array(
             "login"=>myGet('login'),
             "nom"=>myGet('nom'),
             "prenom"=>myGet('prenom'),
-            "mdp"=>Security::chiffrer(myGet('mdp')),
-            "admin"=>$admin
+            "mdp"=>$utilisateur->getMdp(),
+            "role"=>$role
             );
             ModelUtilisateur::update($data);
             $tab_v = ModelUtilisateur::selectAll();
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+            echo $role;
         }
         else{
-            $controller='utilisateur'; $view='connect'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+            echo "false";
         }
 
     }
