@@ -1,34 +1,34 @@
 .iconeNotif{
-          -webkit-animation: wobble-hor-bottom 5s both;
-          animation: wobble-hor-bottom 5s both;
+          -webkit-animation: wobble-hor-bottom 2.5s both;
+          animation: wobble-hor-bottom 2.5s both;
           animation-iteration-count: infinite;
           }
 
 @keyframes wobble-hor-bottom {
-  0%,24%,80%
+  0%,40%,80%
   100% {
     -webkit-transform: translateX(0%);
             transform: translateX(0%);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
   }
-  4% {
+  8% {
     -webkit-transform: translateX(3px) rotate(-20deg);
             transform: translateX(3px) rotate(-20deg);
   }
-  8% {
+  16% {
     -webkit-transform: translateX(-3px) rotate(20deg);
             transform: translateX(-3px) rotate(20deg);
   }
-  12% {
+  24% {
     -webkit-transform: rotate(-10deg);
             transform: rotate(-10deg);
   }
-  16% {
+  32% {
     -webkit-transform: rotate(6deg);
             transform: rotate(6deg);
   }
-  20% {
+  40% {
     -webkit-transform: rotate(-4deg);
             transform: rotate(-4deg);
   }
