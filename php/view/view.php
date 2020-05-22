@@ -62,7 +62,7 @@
         <main><?php
         if(Session::is_admin()) {  
          echo '<div class="colorPicker card">
-            <h6>Modifier l\'apparence du site</h6>
+            <h6 class="center" >Modifier l\'apparence du site</h6>
             <div class="ligne"></div>
             <h6 class="center">Modifier le logo</h6> 
             <form id="form">
