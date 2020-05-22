@@ -34,7 +34,10 @@
         else{
             echo '
             <div class="col s12 m10 l7 offset-m1 offset-l2 ">  
-              aucune annonce ne correspond à votre recherche 
+              <div class="center">
+                <p class="grandeTailleFont">Aucune annonce ne correspond à vos critères</p>
+                <p class=" grey-text "> Enregistrez votre recherche pour ne pas rater les nouvelles offres</p>
+              </div>
             </div>';
         }?>
         <div id="sauvegardeAnnonce" class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover secondeCouleur">  <p id="inSauvegarde" class="flex"><i class="iconeNotif material-icons">notifications</i>Sauvegarder la recherche</p></div>

@@ -767,3 +767,7 @@ input[type=number] {
   bottom:5%;
   right:10%;
 }
+
+.grandeTailleFont{
+  font-size: 1.5em;
+}
