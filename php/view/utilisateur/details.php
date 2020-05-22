@@ -7,15 +7,31 @@
 	        	echo '
 	        	<p>Vos informations</p>
 	        	<div class="ligne"></div>
-	        	<p> <span class="legerGras">Login </span><input value='.htmlspecialchars($v->getLogin()).'></input></p>
+	        	<p> <span class="legerGras">Login </span><input id="loginUtilisateur" value='.htmlspecialchars($v->getLogin()).'></input></p>
 				<div class="ligne"></div>
-				<p> <span class="legerGras">Nom </span><input value='.htmlspecialchars($v->getNom()).'></input></p>
+				<p> <span class="legerGras">Nom </span><input id="nomUtilisateur" value='.htmlspecialchars($v->getNom()).'></input></p>
 	        	<div class="ligne"></div>
-	        	<p> <span class="legerGras">Prenom </span><input value='.htmlspecialchars($v->getPrenom()).'></input></p>
-	        	<div class="ligne"></div>
-	        	<p> Role : <span id="role" class="legerGras">'.htmlspecialchars($v->getRoleStr()).'</span></p>
+	        	<p> <span class="legerGras">Prenom </span><input id="prenomUtilisateur" value='.htmlspecialchars($v->getPrenom()).'></input></p>
 	        	<div class="ligne"></div>';
-	            echo '<p><a href=index/utilisateur/update/?&id='.htmlspecialchars($v->getLogin()).'><button>mettre à jour le compte </button></a></p>';
+	        	if(Session::is_admin()){
+	        		echo '<p> Role : <span id="role" class="legerGras">'.ucFirst(htmlspecialchars($v->getRoleStr())).'</span></p>';
+	        	}
+
+	            echo '
+
+	            <p><div id="boutonUpdate" class=" inputButton secondeCouleur inputButtonCentre">mettre à jour le compte </div>	              
+		            <div id="load" class="displayNone absolute preloader-wrapper active">
+					    <div class="spinner-layer premiereCouleurBorder">
+					      <div class="circle-clipper left">
+					        <div class="circle"></div>
+					      </div><div class="gap-patch">
+					        <div class="circle"></div>
+					      </div><div class="circle-clipper right">
+					        <div class="circle"></div>
+					      </div>
+					    </div>
+					  </div>
+				  </p>';
             ?>
         	</form>
         </div>
@@ -35,15 +51,9 @@
         			</div>';
         	}
         	if(Session::is_admin()){
-        		echo '
-        			<script>
-        				let nomUtilisateur="'.htmlspecialchars($v->getNom()).'"
-        				let prenomUtilisateur="'.htmlspecialchars($v->getPrenom()).'"
-        				let loginUtilisateur="'.htmlspecialchars($v->getLogin()).'"
-        			</script>
-        			 <script src="js/modifierRoleUtilisateur.js" defer></script>';
+        		echo '<script src="js/modifierRoleUtilisateur.js" defer></script>';
         	}
-
+        	echo '<script src="js/modifierUtilisateur.js" defer></script>';
     	?>
     </div>
 </div>

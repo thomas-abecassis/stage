@@ -120,7 +120,7 @@
 				       				?>
 		      					</div>
 		      	</div>
-		            <input  class="inputButton inputButtonApprofondie secondeCouleur" type="submit" value="Envoyer" />
+		            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
 	  		</div>
 		    </div>
 		    <input type='hidden' name='controller' value='lotApprofondi'>

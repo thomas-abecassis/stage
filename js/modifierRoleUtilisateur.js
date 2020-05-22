@@ -3,21 +3,24 @@ document.addEventListener("DOMContentLoaded", function() {
 	let boutonCommercial=document.getElementById("boutonCommercial");
 	let boutonAdmin=document.getElementById("boutonAdmin");
 
+	loginUtilisateur=document.getElementById("loginUtilisateur").value;
+	nomUtilisateur=document.getElementById("nomUtilisateur").value;
+	prenomUtilisateur=document.getElementById("prenomUtilisateur").value;
+
 	if(boutonSimpleUtilisateur!==null){
 		boutonSimpleUtilisateur.addEventListener("click", function(){
-			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&role=0",callback);
+			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=0",callback);
 		});
 	}
-
 	if(boutonCommercial!==null){
 		boutonCommercial.addEventListener("click", function(){
-			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&role=1",callback);
+			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=1",callback);
 		});
 	}
 
 	if(boutonAdmin!==null){
 		boutonAdmin.addEventListener("click", function(){
-			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&role=2",callback);
+			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=2",callback);
 		});
 	}
 });

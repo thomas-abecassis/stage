@@ -40,6 +40,10 @@ class ModelUtilisateur extends Model{
     return $this->prenom;
   }
 
+  public function getRole(){
+    return $this->role;
+  }
+
   public function isAdmin(){
     return $this->role==2;
   }

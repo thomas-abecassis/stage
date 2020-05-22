@@ -161,7 +161,7 @@ footer a {
   cursor:pointer;
 }
 
-.inputButtonApprofondie{
+.inputButtonCentre{
   display: table;
   margin-left: auto;
   margin-right: auto;
@@ -650,11 +650,11 @@ main {
 }
 
 .displayNone{
-	display:none;
+	display:none !important;
 }
 
 .displayFlex{
-	display: flex;
+	display: flex !important;
 }
 
 .sticky-top {
@@ -735,7 +735,7 @@ input[type=number] {
 }
 
 .absolute{
-  position: absolute;
+  position: absolute !important;
 }
 
 #cardPrivileges{
@@ -761,4 +761,9 @@ input[type=number] {
   border: solid grey 1px;
   padding-left: 5px;
   margin-top: 0.5em;
+}
+
+#load{
+  bottom:5%;
+  right:10%;
 }

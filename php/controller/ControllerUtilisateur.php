@@ -112,11 +112,13 @@ class ControllerUtilisateur {
 
     public static function updatedAJAX(){
         if(Session::is_user(myGet('login')) || Session::is_admin()){
-            $role=0;
-            if(Session::is_admin()){
+            $utilisateur=ModelUtilisateur::select(myGet('login'));
+            if(Session::is_admin() && !is_null(myGet("role"))){
                 $role=myGet("role");
             }
-            $utilisateur=ModelUtilisateur::select(myGet('login'));
+            else{
+                $role=$utilisateur->getRole();
+            }
             $data=array(
             "login"=>myGet('login'),
             "nom"=>myGet('nom'),
