@@ -8,11 +8,11 @@ function createColorPicker(element,variableCouleur){
 	picker.onDone = function(color){
 		let url;
 		if(variableCouleur=="--mainColor"){
-			url="php/lib/changerCouleur.php?secondColor="+previousSecondColor+"&mainColor="+color.rgbaString;
+			url="index/Utility/changerCouleur/?secondColor="+previousSecondColor+"&mainColor="+color.rgbaString;
 			previousMainColor=color.rgbaString;
 		}
 		else{
-			url="php/lib/changerCouleur.php?secondColor="+color.rgbaString+"&mainColor="+previousMainColor;
+			url="index/Utility/changerCouleur/?secondColor="+color.rgbaString+"&mainColor="+previousMainColor;
 			previousSecondColor=color.rgbaString;
 		}
 		console.log(url);

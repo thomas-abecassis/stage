@@ -5,7 +5,7 @@
     		<form>
         	<?php
 	        	echo '
-	        	<p>Vos informations</p>
+	        	<p class="center grandeTailleFont legerGras">Modifier vos informations</p>
 	        	<div class="ligne"></div>
 	        	<p> <span class="legerGras">Login </span><input id="loginUtilisateur" value='.htmlspecialchars($v->getLogin()).'></input></p>
 				<div class="ligne"></div>

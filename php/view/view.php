@@ -18,6 +18,7 @@
   <script src="js/lib/colorPicker.js" defer></script>
   <script src="js/sauvegarde.js" defer></script>
   <script src="js/changerCouleur.js" defer></script>
+  <script src="js/sauvegardePhoto.js" defer></script>
   <script src="js/initialize.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -29,7 +30,9 @@
 <body class=" grey lighten-3">
         <header>
         	 <nav   id="menu" class="nav-wraper premiereCouleur">
-               <!-- <img href="#index.html" id="logo" src="https://www.logolynx.com/images/logolynx/0a/0a541bcbcef40a7c1058c0d02db88762.png"alt="Le logo."> -->
+               <a href="index">
+                <img id="logo" src="image/logo.png"alt="Le logo.">
+              </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
 
                 		<li><a href="index">Accueil</a></li>
@@ -59,10 +62,20 @@
         <main><?php
         if(Session::is_admin()) {  
          echo '<div class="colorPicker card">
-            <h6>Modifier les couleur</h6>
+            <h6>Modifier l\'apparence du site</h6>
             <div class="ligne"></div>
+            <h6 class="center">Modifier le logo</h6> 
+            <form id="form">
+            <input type="file" id="inputPhoto" name="inputPhoto"></input>
+            <input type="submit"> submit</input>
+            </form>
+            <div class="ligne"></div>
+
+            <h6 class="center">Modifier les couleur</h6>
+              
               <button id="colorPicker1">couleur principale</button>
               <button id="colorPicker2">couleur secondaire </button>
+              <div class="ligne"></div>
           </div>';
         }
           ?>
