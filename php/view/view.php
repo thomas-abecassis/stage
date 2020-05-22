@@ -66,8 +66,8 @@
             <div class="ligne"></div>
             <h6 class="center">Modifier le logo</h6> 
             <form id="form">
-            <input type="file" id="inputPhoto" name="inputPhoto"></input>
-            <input type="submit"> submit</input>
+            <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto"></input>
+            <input class="displayBlock" type="submit"> </input>
             </form>
             <div class="ligne"></div>
 

@@ -657,6 +657,10 @@ main {
 	display: flex !important;
 }
 
+.displayBlock{
+  display: block !important;
+}
+
 .sticky-top {
 	position:fixed!important;
 	top:0!important;
@@ -771,3 +775,4 @@ input[type=number] {
 .grandeTailleFont{
   font-size: 1.5em;
 }
+
