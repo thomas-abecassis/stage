@@ -20,12 +20,12 @@
 
 		          	<div class="searchBarBox input-field col s2  grey lighten-4">
 		            <label></label>
-		            <input  class="searchBarInput" placeholder="min €" type="text" name="minBudget" autocomplete="off"/>
+		            <input  class="searchBarInput" placeholder="min €" type="number" name="minBudget" autocomplete="off"/>
 		            </div>
 
 		          	<div class="searchBarBox input-field col s2 grey lighten-4">
 		            <label></label>
-		            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget" autocomplete="off"/>
+		            <input  class="searchBarInput" placeholder="max €" type="number" name="maxBudget" autocomplete="off"/>
 		            </div>
 		      		<!--<input type='hidden' name='controller' value='lot'>
               		<input type='hidden' name='action' value='searched'> -->

@@ -55,7 +55,9 @@ function popUpCallback(xhr,fctSubmit){
 }
 
 function creerSauvegarde(){
-	sauvegarde.style["background-color"] = "#f0dcc8";
+	let rgb=getComputedStyle(document.documentElement).getPropertyValue('--secondColor');
+	rgb = rgb.replace(/[^\d,]/g, '').split(',');
+	sauvegarde.style.setProperty("background-color", lighten(rgb,1.1), "important");
 	sauvegarde.removeEventListener("click",clickHandler);
 	sauvegarde.classList.remove("boite_hover");
 	requeteAJAX("index.php?controller=alerte&action=created",callback2);
@@ -202,6 +204,13 @@ function clickHandler(){
 		stopScroll();
 		lancePopUpConnexion();
 	}
+}
+
+function lighten(rgb,ratio){
+	r=parseInt(rgb[0])*ratio;
+	g=parseInt(rgb[1])*ratio;
+	b=parseInt(rgb[2])*ratio;
+	return "rgb("+r+" , "+ g+" , "+b+")";
 }
 
 document.addEventListener("DOMContentLoaded", function() {

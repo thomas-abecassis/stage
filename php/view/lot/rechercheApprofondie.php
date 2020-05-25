@@ -28,17 +28,17 @@
 				       		<div class="titreCategorie">Budget
 				       			<div class="col s12 ligne"></div></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="text"  name="minBudget" autocomplete="off" /></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number"  name="minBudget" autocomplete="off" /></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="text"  name="maxBudget" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number"  name="maxBudget" autocomplete="off"/></div>
 				    	</div>
 				    	<div class="categorie row">
 				       		<div class="titreCategorie">Surface
 				       			<div class="col s12 ligne"></div></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="text"  name="minSurface" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number"  name="minSurface" autocomplete="off"/></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="text"  name="maxSurface" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number"  name="maxSurface" autocomplete="off"/></div>
 				    	</div>
 				    	<!--<div class="categorie row">
 				       		<div class="titreCategorie">Nombre de chambre(s)
