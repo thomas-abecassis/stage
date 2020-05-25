@@ -18,9 +18,7 @@ if(inputPhoto!=null){
 	}, false);
 
 	function callbackPhoto(xhr){
-		caches.delete("image/logo.png").then(function() {
-  			//do nothing
-		});
+		console.log("coucou");
 		document.location.reload();
 	}
 }
