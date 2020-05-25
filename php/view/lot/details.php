@@ -25,13 +25,13 @@
 				if($filecount!==0){
 			  	foreach(glob("image/".htmlspecialchars($lot->getId())."/*.*") as $file) {
 						echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
-				    echo "<img class=\"intoSlideImage\" src=". str_replace(' ', '%20', $file) ." \">";
+				    echo "<img alt=\"Photo de l'annonce\" class=\"intoSlideImage\" src=\"". str_replace(' ', '%20', $file) ." \">";
 						echo"</div>";
 					}
 			}
 			else{
 				echo "<div class=\"flexSlide intoSlide intoSlideImage\" >";
-				echo "<img class=\"intoSlideImage\" src=\"image/noPhoto.png\">";
+				echo "<img alt=\"Photo absente\" class=\"intoSlideImage\" src=\"image/noPhoto.png\">";
 			}
 			?>
 		</div>
@@ -131,10 +131,6 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="js/myCarousel.js"></script>
-<script type="text/javascript" src="js/boutonContact.js"></script>
-<script type="text/javascript" src="js/stickyContact.js"></script>
-
-<?php
-
-?>
+<script src="js/myCarousel.js" defer></script>
+<script src="js/boutonContact.js" defer></script>
+<script src="js/stickyContact.js" defer></script>

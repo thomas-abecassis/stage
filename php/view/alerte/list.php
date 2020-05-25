@@ -51,4 +51,4 @@
         ?>
       </div>
 
-        <script type="text/javascript" src="js/deleteAlerte.js" defer></script>
+        <script src="js/deleteAlerte.js" defer></script>

@@ -15,10 +15,10 @@
                 echo '  <a href=index/lotApprofondi/Read/?id='.rawurlencode($v->getId()).$getURL."page=".$page.'>
                         <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">';
                         if($filecount!=0){
-                          echo '<div class="imageBoite" ><img src="image/'.$v->getId().'/1.jpg"></div>';
+                          echo '<div class="imageBoite" ><img alt="photo de l\'annonce" src="image/'.$v->getId().'/1.jpg"></div>';
                         }
                         else{
-                          echo '<div class="imageBoite" ><img src="image/noPhoto.png"></div>';
+                          echo '<div class="imageBoite" ><img alt="photo manquante" src="image/noPhoto.png"></div>';
                         }
 
                 echo '<div class="infoBoite">

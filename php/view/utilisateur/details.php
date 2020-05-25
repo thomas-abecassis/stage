@@ -37,7 +37,7 @@
         </div>
             <?php
             if((Session::is_admin() && !Session::is_user($v->getLogin())) || (Session::is_user($v->getLogin() && !Session::is_admin()))){
-            	echo '<p><a href=index/utilisateur/delete/?id='.htmlspecialchars($v->getLogin()).'><button class="red-text text-darken-1 ">supprimer le compte</button></a></p>';
+            	echo '<p><form action="index/utilisateur/delete/?id='.htmlspecialchars($v->getLogin()).'"><button class="red-text text-darken-1 ">supprimer le compte</button></form></p>';
        	 	}
         	if(Session::is_admin() && !Session::is_user($v->getLogin())){
         		echo '

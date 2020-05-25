@@ -7,24 +7,24 @@
 		          	
 		          	<div class="col s5" id="contenantVille" style="padding: 0px;">
 			          	<div class="searchBarBox input-field grey lighten-4">
-				            <label for="immat_id"></label>
+				            <label></label>
 				            <input id= "searchBoxVille" class="searchBarInput" placeholder="où ?" type="text"  name="localisation" autocomplete="off" />
 			        	</div>
 			        	<div class="card" id="resultSearchVille"></div>
 		        	</div>
 
 		          	<div class="searchBarBox input-field col s3 grey lighten-4">
-		            <label for="couleur_id"></label>
+		            <label></label>
 		            <input  class="searchBarInput" placeholder="min m²" type="number" name="minSurface" autocomplete="off" />
 		            </div>
 
 		          	<div class="searchBarBox input-field col s2  grey lighten-4">
-		            <label for="couleur_id"></label>
+		            <label></label>
 		            <input  class="searchBarInput" placeholder="min €" type="text" name="minBudget" autocomplete="off"/>
 		            </div>
 
 		          	<div class="searchBarBox input-field col s2 grey lighten-4">
-		            <label for="couleur_id"></label>
+		            <label></label>
 		            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget" autocomplete="off"/>
 		            </div>
 		      		<!--<input type='hidden' name='controller' value='lot'>
@@ -51,7 +51,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="js/search.js"></script>
+<script src="js/search.js"></script>
 
 <?php
 
