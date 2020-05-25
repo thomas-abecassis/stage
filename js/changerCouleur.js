@@ -25,18 +25,21 @@ function createColorPicker(element,variableCouleur){
 	}
 
 	picker.onClose = function(color){
-		console.log("coucou");
-		setTimeout(function () {
-	        if (!checkCouleur) {
-	        	if(variableCouleur=="--mainColor"){
-	        		document.body.style.setProperty(variableCouleur,previousMainColor); 
-				}
-				else{
-					document.body.style.setProperty(variableCouleur,previousSecondColor); 
-				}
-	        }
-	    }, 10);
-		
+		if (!window.document.documentMode) {
+			setTimeout(function () {
+		        if (!checkCouleur) {
+		        	if(variableCouleur=="--mainColor"){
+		        		console.log("je set");
+		        		document.body.style.setProperty(variableCouleur,previousMainColor); 
+					}
+					else{
+						console.log("je set");
+						document.body.style.setProperty(variableCouleur,previousSecondColor); 
+					}
+		        }
+		    }, 10);
+			
+		}
 	}
 }
 

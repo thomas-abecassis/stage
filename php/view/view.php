@@ -57,10 +57,10 @@
                           </ul>';
                         }else{
                            echo "<li><a id=\"creationCompte\">Créer un compte</a></li>";
-                           echo "<li><a id=\"connexion\">Se connecter</a></li> </ul>";
+                           echo "<li><a id=\"connexion\">Se connecter</a></li>";
                         }
                         ?>
-
+                 </ul>
             	</nav>
 
         </header>
@@ -71,14 +71,14 @@
             <div class="ligne"></div>
             <h6 class="center">Modifier le logo</h6> 
             <form id="form">
-            <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto" ></input>
+            <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto" >
             </form>
             <div class="ligne"></div>
 
             <h6 class="center">Modifier les couleur</h6>
               
-              <button id="colorPicker1">couleur principale</button>
-              <button id="colorPicker2">couleur secondaire </button>
+              <button class="displayBlock" id="colorPicker1">couleur principale</button>
+              <button class="displayBlock" id="colorPicker2">couleur secondaire </button>
               <div class="ligne"></div>
           </div>';
         }
