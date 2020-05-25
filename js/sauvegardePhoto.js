@@ -1,7 +1,8 @@
 let inputPhoto=document.getElementById("inputPhoto");
+var form = document.getElementById("form");
 
 if(form!=null){
-	var form = document.getElementById("form");
+
 	form.addEventListener('submit', function(ev) {
 
 	  oData = new FormData(form);
