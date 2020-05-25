@@ -105,7 +105,6 @@ document.onkeydown = function (e) {
 
 let searchBoxCard=document.getElementById("searchBox");
 searchBoxCard.addEventListener( "click", function() {
-	console.log("coucou");
 	let elementHover=document.getElementsByClassName("resultWordHover");
 	if(elementHover.length>0){
 		elementHover=elementHover[0];

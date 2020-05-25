@@ -1,9 +1,9 @@
 let inputPhoto=document.getElementById("inputPhoto");
 var form = document.getElementById("form");
 
-if(form!=null){
+if(inputPhoto!=null){
 
-	form.addEventListener('submit', function(ev) {
+	inputPhoto.addEventListener('change', function(ev) {
 
 	  oData = new FormData(form);
 
@@ -22,6 +22,9 @@ if(form!=null){
 	}, false);
 
 	function callbackPhoto(xhr){
-		console.log(xhr.responseText);
+		caches.delete("image/logo.png").then(function() {
+  			//do nothing
+		});
+		document.location.reload();
 	}
 }
