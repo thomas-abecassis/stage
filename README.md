@@ -4,7 +4,7 @@ Il est développé selon le design pattern MVC.
 
 ## Présentation du modèle MVC
 
-Quelques diagrammes pour présenter le fonctionmment du global pattern
+Quelques diagrammes pour présenter le fonctionnement global du pattern
 
 ### Fonctionnement global du MVC 
 
