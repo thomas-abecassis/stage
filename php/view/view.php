@@ -15,12 +15,17 @@
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <script src="js/util.js" defer></script>
   <script src="js/lib/colorPicker.js" defer></script>
   <script src="js/sauvegarde.js" defer></script>
   <script src="js/changerCouleur.js" defer></script>
   <script src="js/sauvegardePhoto.js" defer></script>
   <script src="js/initialize.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script>
+    window.MSInputMethodContext && document.documentMode && document.write('<script src="js/lib/ie11CustomProperties.js"><\x2fscript>');
+  </script>
 
 
 
@@ -31,7 +36,7 @@
         <header>
         	 <nav   id="menu" class="nav-wraper premiereCouleur">
                <a href="index">
-                <img id="logo" src="image/logo.png"alt="Le logo.">
+                <img id="logo" src="image/logo.png" alt="Le logo.">
               </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -52,7 +57,7 @@
                           </ul>';
                         }else{
                            echo "<li><a id=\"creationCompte\">Créer un compte</a></li>";
-                           echo "<li><a id=\"connexion\">Se connecter</a></li>";
+                           echo "<li><a id=\"connexion\">Se connecter</a></li> </ul>";
                         }
                         ?>
 
@@ -66,7 +71,7 @@
             <div class="ligne"></div>
             <h6 class="center">Modifier le logo</h6> 
             <form id="form">
-            <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto"></input>
+            <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto" ></input>
             </form>
             <div class="ligne"></div>
 
@@ -103,7 +108,6 @@ if(isset($_SESSION["panier"])){
 } */
 ?>
 
-    </div>
   </main>
 
     <div class="pad1">

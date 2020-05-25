@@ -25,6 +25,7 @@ function createColorPicker(element,variableCouleur){
 	}
 
 	picker.onClose = function(color){
+		console.log("coucou");
 		setTimeout(function () {
 	        if (!checkCouleur) {
 	        	if(variableCouleur=="--mainColor"){

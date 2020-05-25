@@ -40,9 +40,15 @@
             }
         }
         else{
-            echo "aucune annonce ne correspond à votre recherche";
+            echo '
+            <div class="col s12 m10 l7 offset-m1 offset-l2 ">  
+              <div class="center">
+                <p class="grandeTailleFont">Vous n\'avez pas encore enregistré de recherches  !</p>
+                <p class=" grey-text "> Enregistrez vos recherches pour ne pas rater les nouvelles offres</p>
+              </div>
+            </div>';  
         }
         ?>
       </div>
 
-        <script type="text/javascript" src="js/deleteAlerte.js"></script>
+        <script type="text/javascript" src="js/deleteAlerte.js" defer></script>

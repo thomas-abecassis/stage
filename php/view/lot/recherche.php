@@ -4,7 +4,7 @@
 		<div class="card" id="searchBox">
 	      <form method="get" action="index/lot/searched/">
 		       <div class="row">
-		          <p>
+		          	
 		          	<div class="col s5" id="contenantVille" style="padding: 0px;">
 			          	<div class="searchBarBox input-field grey lighten-4">
 				            <label for="immat_id"></label>
@@ -12,28 +12,21 @@
 			        	</div>
 			        	<div class="card" id="resultSearchVille"></div>
 		        	</div>
-		          </p>
 
-		          <p>
 		          	<div class="searchBarBox input-field col s3 grey lighten-4">
 		            <label for="couleur_id"></label>
 		            <input  class="searchBarInput" placeholder="min m²" type="number" name="minSurface" autocomplete="off" />
 		            </div>
-		          </p>
 
-		          <p>
 		          	<div class="searchBarBox input-field col s2  grey lighten-4">
 		            <label for="couleur_id"></label>
 		            <input  class="searchBarInput" placeholder="min €" type="text" name="minBudget" autocomplete="off"/>
 		            </div>
-		          </p>
 
-		          <p>
 		          	<div class="searchBarBox input-field col s2 grey lighten-4">
 		            <label for="couleur_id"></label>
 		            <input  class="searchBarInput" placeholder="max €" type="text" name="maxBudget" autocomplete="off"/>
 		            </div>
-		          </p>
 		      		<!--<input type='hidden' name='controller' value='lot'>
               		<input type='hidden' name='action' value='searched'> -->
               		<input type='hidden' name='page' value='1'>
@@ -53,9 +46,7 @@
 		            <input  class="secondeCouleur inputButton" type="submit" value="Envoyer" />
 	    		</div>
 	  		</div>
-
-
-		          </p>
+	  		
 	      </form>
 		</div>
 	</div>

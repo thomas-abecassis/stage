@@ -1,15 +1,7 @@
-const isVisible= elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+const isVisible= function(elem) { return !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length )};
 let outsideClickListener;
 let removeClickListener;
-
-function requeteAJAX(url,callback) {
-	let requete = new XMLHttpRequest();
-	requete.open("GET", url, true);
-	requete.addEventListener("load", function () {
-		callback(requete);
-	});
-	requete.send(null);
-}
+let sauvegarde;
 
 function callback1(xhr){
 	console.log(xhr.responseText);
@@ -123,7 +115,7 @@ function popUp(page,fctSubmit){
 			});
 	}
 
-  	setTimeout(()=>{
+  	setTimeout(function(){
 		hideOnClickOutside(newDiv,fond);
 	},10);
 }
@@ -163,14 +155,14 @@ function canScroll(){
 }
 
 function hideOnClickOutside(element,elementASupprimer) {
-    outsideClickListener = event => {
+    outsideClickListener = function(event) {
         if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
 					removePopUp(element);
 					removeFond(elementASupprimer);
         }
     }
 
-    removeClickListener = () => {
+    removeClickListener = function() {
         document.removeEventListener('mousedown', outsideClickListener);
     }
 
@@ -193,7 +185,7 @@ function notification(text){
 	newP.classList.add("center");
 	newP.style.transition="0.2s";
 	newP.style.color="white";
-	setTimeout(()=>{
+	setTimeout(function(){
 		newP.style.color="red";
 	}
 	,10);
@@ -214,7 +206,7 @@ function clickHandler(){
 
 document.addEventListener("DOMContentLoaded", function() {
 	
-	let sauvegarde=document.getElementById("sauvegardeAnnonce");
+	sauvegarde=document.getElementById("sauvegardeAnnonce");
 
 	if(sauvegarde!==null){
 		sauvegarde.addEventListener("click", clickHandler);

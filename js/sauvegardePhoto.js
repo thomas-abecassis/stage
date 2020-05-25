@@ -10,11 +10,7 @@ if(inputPhoto!=null){
 	  var oReq = new XMLHttpRequest();
 	  oReq.open("POST", "index/Utility/saveImage/", true);
 	  oReq.onload = function(oEvent) {
-	    if (oReq.status == 200) {
 	      callbackPhoto(oReq);
-	    } else {
-	      callbackPhoto(oReq);
-	    }
 	  };
 
 	  oReq.send(oData);

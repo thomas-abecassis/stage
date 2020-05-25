@@ -1,4 +1,5 @@
 let searchBox=document.getElementById("searchBoxVille");
+
 var xhr2= new XMLHttpRequest();
 	xhr2.addEventListener('readystatechange', function() { // On gère ici une requête asynchrone
 
@@ -15,7 +16,7 @@ var xhr2= new XMLHttpRequest();
 searchBox.addEventListener("input", function(){
 	search();
 	if(searchBox.value.length==0){
-		document.getElementById('resultSearchVille').innerHTML=null;
+		document.getElementById('resultSearchVille').innerHTML="";
 	}
 });
 
@@ -37,13 +38,13 @@ function nombreLettreEnCommun(input,ville){
 }
 
 function eventOnCity(){
-	let children = Array.from(document.getElementById("resultSearchVille").children);
+	let children = inArray(document.getElementById("resultSearchVille").children);
 	if(children.length > 0){
 			children[0].classList.add("resultWordHover");
 	}
 	children.forEach(function(element){
-		element.addEventListener("click",()=>{searchBox.value=element.innerHTML.split("(")[0].trim();
-		document.getElementById('resultSearchVille').innerHTML=null;});
+		element.addEventListener("click",function(){searchBox.value=element.innerHTML.split("(")[0].trim();
+		document.getElementById('resultSearchVille').innerHTML="";});
 	}
 	);
 }
@@ -51,7 +52,7 @@ function eventOnCity(){
 function miseEnFormeResultat(tabVilles){
 		let div;
 		let result=document.getElementById('resultSearchVille');
-		result.innerHTML=null;
+		result.innerHTML="";
 		tabVilles.forEach(function(ville){
 			div=document.createElement("div");
 			div.textContent=ville.nom+ " (" +ville.codePostal + ")";
@@ -62,7 +63,7 @@ function miseEnFormeResultat(tabVilles){
 
 
 function indexHover(){
-	let children = Array.from(document.getElementById("resultSearchVille").children);
+	let children = inArray(document.getElementById("resultSearchVille").children);
 	let i=0;
 	let e=-1;
 	children.forEach(function(element){
@@ -82,7 +83,7 @@ function search(){
 
 document.onkeydown = function (e) {
     e = e || window.event;
-    let children = Array.from(document.getElementById("resultSearchVille").children);
+    let children = inArray(document.getElementById("resultSearchVille").children);
     let ih=indexHover();
     if(children.length!=0){
 	    if(ih===-1 && e.keyCode==40){
@@ -98,7 +99,7 @@ document.onkeydown = function (e) {
     	}else if(e.keyCode==13){
     	event.preventDefault();
     	searchBox.value=children[ih].innerHTML.split("(")[0].trim();
-		document.getElementById('resultSearchVille').innerHTML=null;
+		document.getElementById('resultSearchVille').innerHTML="";
     	}
 	}
 };
@@ -109,6 +110,6 @@ searchBoxCard.addEventListener( "click", function() {
 	if(elementHover.length>0){
 		elementHover=elementHover[0];
 		searchBox.value=elementHover.innerHTML.split("(")[0].trim();
-		document.getElementById('resultSearchVille').innerHTML=null;
+		document.getElementById('resultSearchVille').innerHTML="";
 	}	
 });

@@ -17,21 +17,21 @@ function callback1(xhr){
 }
 
 function mettreEvents(){
-	let deleteButons=Array.from(document.getElementsByClassName("deleteAlerte"));
-	let modificationButons=Array.from(document.getElementsByClassName("boutonModification"));
-	let activationButons=Array.from(document.getElementsByClassName("switch"));
-	deleteButons.forEach((buton)=>{
-		buton.addEventListener("click",()=>{
+	let deleteButons=inArray(document.getElementsByClassName("deleteAlerte"));
+	let modificationButons=inArray(document.getElementsByClassName("boutonModification"));
+	let activationButons=inArray(document.getElementsByClassName("switch"));
+	deleteButons.forEach(function(buton){
+		buton.addEventListener("click",function(){
 			supprimerAlerte(buton);
 		});
 	});
-	modificationButons.forEach((buton)=>{
-		buton.addEventListener("click",()=>{
+	modificationButons.forEach(function(buton){
+		buton.addEventListener("click",function(){
 			modifierAlerte(buton);
 		});
 	});
-	activationButons.forEach((buton)=>{
-		buton.addEventListener("change",()=>{
+	activationButons.forEach(function(buton){
+		buton.addEventListener("change",function(){
 			activerAlerte(buton);
 		});
 	});
@@ -50,7 +50,7 @@ function supprimerAlerte(buton){
 
 function modifierAlerte(buton){
 	lastButon=buton;
-	let boite=buton.closest(".boite");
+	let boite=$(buton).closest(".boite")[0];
 	let inputNom=boite.getElementsByClassName("modificationNom")[0];
 	let displayNom=boite.getElementsByClassName("nomAlerte")[0];
 	if(!modifie){
@@ -88,7 +88,7 @@ function trouverId(element){
 
 function idDansEnfants(element){
 	let test = false;
-	let children = Array.from(element.children);
+	let children = inArray(element.children);
 	for(let i=0;i<children.length;i++){
 		if(children[i].classList.contains("idAlerte")){
 			return children[i].innerHTML;
