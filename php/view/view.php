@@ -36,7 +36,12 @@
         <header>
         	 <nav   id="menu" class="nav-wraper premiereCouleur">
                <a href="index">
-                <img id="logo" src="image/logo.png" alt="Le logo.">
+                <?php
+                date_default_timezone_set('Europe/Paris');
+                $date = date_create();
+                $timestamp = date_timestamp_get($date);
+                echo '<img id="logo" src="image/logo.png?t=' . $timestamp . '" alt="Le logo.">';
+                ?>
               </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -71,11 +76,12 @@
             <div class="ligne"></div>
             <h6 class="center">Modifier le logo</h6> 
             <form id="form">
-            <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto" >
+              <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto" >
+              <input class="displayBlock" type="submit">
             </form>
             <div class="ligne"></div>
 
-            <h6 class="center">Modifier les couleur</h6>
+            <h6 class="center">Modifier les couleurs</h6>
               
               <button class="displayBlock" id="colorPicker1">couleur principale</button>
               <button class="displayBlock" id="colorPicker2">couleur secondaire </button>
@@ -113,13 +119,26 @@ if(isset($_SESSION["panier"])){
     <div class="pad1">
         <footer >
         <!-- Footer social -->
-          <div class="ft-social">
-            <ul class="ft-social-list">
-              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook grey-text text-darken-1"></span></a></li>
-              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-twitter grey-text text-darken-1"></span></a></li>
-              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-linkedin grey-text text-darken-1"></span></a></li>
-              <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-instagram grey-text text-darken-1"></span></a></li>
-            </ul>
+          <div class=" ft-social">
+            <div class="ligne"></div>
+              <div class="container">
+                <div class="row">
+                  <div class="col l6 s12">
+                    <h5 class="white-text">Contactez nous </h5>
+                    <p class="grey-text text-lighten-4">Par téléphone : XX XX XX XX XX</p>
+                    <p class="grey-text text-lighten-4">Par mail : toast@gmail.com</p>
+                  </div>
+                  <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Retrouvez nous sur </h5>
+                 <ul class="ft-social-list">
+                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook"></span></a></li>
+                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-twitter"></span></a></li>
+                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-linkedin"></span></a></li>
+                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-instagram"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
           </div>
 
           <!-- Footer legal -->
@@ -130,8 +149,8 @@ if(isset($_SESSION["panier"])){
               <li><a href="#">Données personnelles</a></li>
               <li>&copy; 2019 Copyright Sofuto Inc.</li>
             </ul>
+            
           </div>
-
         </footer>
     </div>
 
