@@ -2,12 +2,12 @@ function createColorPicker(element,variableCouleur){
 	var picker = new Picker(element);
 
 	picker.onChange = function(color) {
-	    document.body.style.setProperty(variableCouleur,color.rgbaString); 
+		modifierCouleur(variableCouleur,color.rgbaString);
 	};
 
 	picker.onDone = function(color){
 		let url;
-		if(variableCouleur=="--mainColor"){
+		if(variableCouleur=="premiereCouleur"){
 			url="index/Utility/changerCouleur/?secondColor="+previousSecondColor+"&mainColor="+color.rgbaString;
 			previousMainColor=color.rgbaString;
 		}
@@ -28,13 +28,13 @@ function createColorPicker(element,variableCouleur){
 		if (!window.document.documentMode) {
 			setTimeout(function () {
 		        if (!checkCouleur) {
-		        	if(variableCouleur=="--mainColor"){
+		        	if(variableCouleur=="premiereCouleur"){
 		        		console.log("je set");
-		        		document.body.style.setProperty(variableCouleur,previousMainColor); 
+		        		modifierCouleur("premiereCouleur",previousMainColor); 
 					}
 					else{
-						console.log("je set");
-						document.body.style.setProperty(variableCouleur,previousSecondColor); 
+						console.log("je set secnode");
+						modifierCouleur("secondeCouleur",previousSecondColor); 
 					}
 		        }
 		    }, 10);
@@ -48,15 +48,32 @@ function callbackCouleur(xhr){
 	console.log(xhr.responseText);
 }
 
+function modifierCouleur(nomCouleur, couleur){
+	let selects = document.getElementsByClassName(nomCouleur);
+ 	for(let i =0, il = selects.length;i<il;i++){
+     	selects[i].setAttribute('style', 'background-color :  '+couleur+' !important');
+  	}
+  	selects = document.getElementsByClassName(nomCouleur+"Text");
+ 	for(let i =0, il = selects.length;i<il;i++){
+ 		selects[i].setAttribute('style', 'color : '+couleur+' !important');
+ 	}
+  	selects = document.getElementsByClassName(nomCouleur+"Border");
+ 	for(let i =0, il = selects.length;i<il;i++){
+ 		selects[i].setAttribute('style', 'border-color :  '+couleur+' !important');
+  	}
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
 	let picker1 = document.querySelector('#colorPicker1');
 	let picker2 = document.querySelector('#colorPicker2');
-	previousMainColor=getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
-	previousSecondColor=getComputedStyle(document.documentElement).getPropertyValue('--secondColor');
+	//dans la page html il y a toujours ces elements en display none
+	previousMainColor=window.getComputedStyle(document.getElementById("premiereCouleur")).getPropertyValue('color');
+	previousSecondColor=window.getComputedStyle(document.getElementById("secondeCouleur")).getPropertyValue('color');
 
 	let checkCouleur=false;
 
-	createColorPicker(picker1,"--mainColor");
-	createColorPicker(picker2,"--secondColor");
+	createColorPicker(picker1,"premiereCouleur");
+	createColorPicker(picker2,"secondeCouleur");
 });
 

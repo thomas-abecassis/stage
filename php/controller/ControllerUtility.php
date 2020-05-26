@@ -4,10 +4,31 @@ class ControllerUtility{
 
 	public static function changerCouleur(){
 		if(Session::is_admin()){
-			file_put_contents(File::build_path(array("..","css","couleur.css")), ':root{
-	  		--mainColor:'.$_GET['mainColor'].';
-	  		--secondColor:'.$_GET['secondColor'].';
-			}');
+			file_put_contents(File::build_path(array("..","css","couleur.css")), '
+				.premiereCouleur{
+				  background-color:'.$_GET['mainColor'].' !important;
+				}
+
+				.premiereCouleurText{
+				  color:  '.$_GET['mainColor'].' !important;
+				}
+
+				.premiereCouleurBorder{
+				  border-color:  '.$_GET['mainColor'].' !important;
+				}
+
+				.secondeCouleur{
+				    background-color: '.$_GET['secondColor'].' !important;
+				}
+
+				.secondeCouleurText{
+				  color: '.$_GET['secondColor'].' !important
+				}
+
+				.secondeCouleurBorder{
+				  border-color: '.$_GET['secondColor'].' !important
+				}'
+			);
 		}
 	}
 

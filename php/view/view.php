@@ -23,10 +23,6 @@
   <script src="js/initialize.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <script>
-    window.MSInputMethodContext && document.documentMode && document.write('<script src="js/lib/ie11CustomProperties.js"><\x2fscript>');
-  </script>
-
 
 
 
@@ -69,7 +65,10 @@
             	</nav>
 
         </header>
-        <main><?php
+        <main>
+          <div id="premiereCouleur" class="premiereCouleurText displayNone"></div>
+          <div id="secondeCouleur" class="secondeCouleurText displayNone"></div>
+          <?php
         if(Session::is_admin()) {  
          echo '<div class="colorPicker card">
             <h6 class="center" >Modifier l\'apparence du site</h6>
