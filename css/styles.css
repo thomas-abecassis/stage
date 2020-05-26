@@ -120,6 +120,7 @@ footer a {
   padding-right:20px;
   padding-bottom: 10px;
   padding-top: 1em;
+  margin-top: 1.5em;
 }
 
 .inputButton{
@@ -677,6 +678,10 @@ input[type=number] {
 	margin: 0 10px 0 0   !important;
 }
 
+.noMarginTop{
+  margin-top: 0 !important;
+}
+
 .legerGras{
 	font-weight: 500;
 }
@@ -735,3 +740,13 @@ input[type=number] {
   font-size: 1.5em;
 }
 
+.fond{
+  background-position: center center;
+  background-image: url("../image/banniere.png");
+  background-size: cover;
+  position: absolute;
+  left:0;
+  width:100vw;
+  height: 17em;
+  z-index: -1;
+}

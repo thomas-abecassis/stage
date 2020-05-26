@@ -75,8 +75,14 @@
             <h6 class="center" >Modifier l\'apparence du site</h6>
             <div class="ligne"></div>
             <h6 class="center">Modifier le logo</h6> 
-            <form id="form">
-              <input class="displayBlock" type="file" id="inputPhoto" name="inputPhoto" >
+            <form id="formLogo">
+              <input class="displayBlock" type="file" id="inputPhotoLogo" name="inputPhoto" >
+              <input class="displayBlock" type="submit">
+            </form>
+            <div class="ligne"></div>
+            <h6 class="center">Modifier la bannière</h6> 
+            <form id="formBanniere">
+              <input class="displayBlock" type="file" id="inputPhotoBanniere" name="inputPhoto" >
               <input class="displayBlock" type="submit">
             </form>
             <div class="ligne"></div>

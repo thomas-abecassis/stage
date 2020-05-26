@@ -1,5 +1,5 @@
-
-<div class="container">
+<div class="container noMarginTop">
+	<div id="banniere" class="fond"></div>
 	<div class="col s12 m8 offset-m2">
 		<div class="card" id="searchBox">
 	      <form method="get" action="index/lot/searched/">

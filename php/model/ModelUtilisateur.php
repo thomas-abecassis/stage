@@ -48,6 +48,10 @@ class ModelUtilisateur extends Model{
     return $this->role==2;
   }
 
+  public function isSuperAdmin(){
+    return $this->role==3;
+  }
+
   public function isCommercial(){
     return $this->role==1;
   }

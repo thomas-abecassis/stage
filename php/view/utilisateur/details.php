@@ -7,14 +7,14 @@
 	        	echo '
 	        	<p class="center grandeTailleFont legerGras">Modifier vos informations</p>
 	        	<div class="ligne"></div>
-	        	<p> <span class="legerGras">Login </span><input id="loginUtilisateur" value='.htmlspecialchars($v->getLogin()).'></input></p>
+	        	<p> <span class="legerGras">Login </span><input id="loginUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
 				<div class="ligne"></div>
-				<p> <span class="legerGras">Nom </span><input id="nomUtilisateur" value='.htmlspecialchars($v->getNom()).'></input></p>
+				<p> <span class="legerGras">Nom </span><input id="nomUtilisateur" value='.htmlspecialchars($u->getNom()).'></input></p>
 	        	<div class="ligne"></div>
-	        	<p> <span class="legerGras">Prenom </span><input id="prenomUtilisateur" value='.htmlspecialchars($v->getPrenom()).'></input></p>
+	        	<p> <span class="legerGras">Prenom </span><input id="prenomUtilisateur" value='.htmlspecialchars($u->getPrenom()).'></input></p>
 	        	<div class="ligne"></div>';
 	        	if(Session::is_admin()){
-	        		echo '<p> Role : <span id="role" class="legerGras">'.ucFirst(htmlspecialchars($v->getRoleStr())).'</span></p>';
+	        		echo '<p> Role : <span id="role" class="legerGras">'.ucFirst(htmlspecialchars($u->getRoleStr())).'</span></p>';
 	        	}
 
 	            echo '
@@ -36,10 +36,10 @@
         	</form>
         </div>
             <?php
-            if((Session::is_admin() && !Session::is_user($v->getLogin())) || (Session::is_user($v->getLogin() && !Session::is_admin()))){
-            	echo '<p><form action="index/utilisateur/delete/?id='.htmlspecialchars($v->getLogin()).'"><button class="red-text text-darken-1 ">supprimer le compte</button></form></p>';
+            if(!$u->isAdmin() || Session::is_super_admin()){
+            	echo '<p><form action="index/utilisateur/delete/?id='.htmlspecialchars($u->getLogin()).'"><button class="red-text text-darken-1 ">supprimer le compte</button></form></p>';
        	 	}
-        	if(Session::is_admin() && !Session::is_user($v->getLogin())){
+        	if((Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
         		echo '
         			<div id="cardPrivileges" class="card">
         			Modifier les privilèges de l\'utilisateur
@@ -50,7 +50,7 @@
 	        			</p>
         			</div>';
         	}
-        	if(Session::is_admin()){
+        	if((Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
         		echo '<script src="js/modifierRoleUtilisateur.js" defer></script>';
         	}
         	echo '<script src="js/modifierUtilisateur.js" defer></script>';

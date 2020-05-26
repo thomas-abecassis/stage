@@ -17,8 +17,8 @@ class ControllerUtilisateur {
     }
 
     public static function Read(){
-    	$v=ModelUtilisateur::select($_GET['id']);
-    	if(isset($_SESSION["login"]) && ($v->getLogin()==$_SESSION["login"] || Session::is_admin())){
+    	$u=ModelUtilisateur::select($_GET['id']);
+    	if(isset($_SESSION["login"]) && ($u->getLogin()==$_SESSION["login"] || Session::is_admin())){
             $controller='utilisateur'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 
@@ -169,6 +169,9 @@ class ControllerUtilisateur {
             if(is_null($v->getNonce())){
                 $_SESSION["login"] = myGet("login");
                 echo("true");
+                if($v->isSuperAdmin()){
+                    $_SESSION["role"]=3;
+                }
                 if($v->isAdmin()){
                     $_SESSION["role"]=2;
                 }

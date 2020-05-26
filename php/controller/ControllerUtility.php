@@ -13,7 +13,7 @@ class ControllerUtility{
 
 	public static function saveImage(){
 		if(Session::is_admin()){
-			move_uploaded_file( $_FILES['inputPhoto']['tmp_name'],File::build_path(array("..","image","logo.png")));
+			move_uploaded_file( $_FILES['inputPhoto']['tmp_name'],File::build_path(array("..","image",myGet("nomFichier").".png")));
 		}
 	}
 }
