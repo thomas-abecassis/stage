@@ -123,12 +123,12 @@ if(isset($_SESSION["panier"])){
             <div class="ligne"></div>
               <div class="container">
                 <div class="row">
-                  <div class="col l6 s12">
+                  <div class="col l3 push-l2">
                     <h5 class="white-text">Contactez nous </h5>
                     <p class="grey-text text-lighten-4">Par téléphone : XX XX XX XX XX</p>
                     <p class="grey-text text-lighten-4">Par mail : toast@gmail.com</p>
                   </div>
-                  <div class="col l4 offset-l2 s12">
+                  <div class="col l3 push-l4">
                     <h5 class="white-text">Retrouvez nous sur </h5>
                  <ul class="ft-social-list">
                   <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook"></span></a></li>

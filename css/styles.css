@@ -73,6 +73,7 @@ footer a {
 .ft-social-list li {
   margin: 0.5rem;
   font-size: 1.25rem;
+  padding-right: 1em;
 }
 /* Footer legal */
 .ft-legal {
