@@ -111,18 +111,19 @@ footer a {
 }
 
 .searchBarBox{
-      border: 3px solid white;
-      margin-bottom: 0px !important;
-      width:100%;
+  border: 3px solid white;
+  margin-bottom: 0px !important;
+  width:100%;
 }
 
 .searchBarInput{
-      font-size: 1.3rem !important;
+  font-size: 1.3rem !important;
 }
 
 #plusCriteres{
- text-align: right;
- color:#ff392f !important;
+  margin-bottom: 1em;
+  text-align: right;
+  color:#ff392f !important;
 }
 
 a { color: inherit !important; }
@@ -239,7 +240,7 @@ input[type=checkbox] +span{
 .surfaceText{
   position: absolute;
   bottom: 0;
-  left:1.5rem;
+  left:1.5em;
 }
 
 .relative{
@@ -310,13 +311,8 @@ main {
 	margin: 0.2em 0.5em 0.2em 0.5em;
 }
 
-.titrePartie{
-  font-size: 20px;
-  font-weight:600;
-}
-
 .liste{
-  padding-left:2em !important;
+  padding-left:0.75em !important;
 }
 
 .listeFinDePage li{
@@ -589,4 +585,23 @@ input[type=number] {
     display: grid;
     grid-gap: 10px;
   }
+}
+
+@media (min-width: 100px) and (max-width: 1100px) {
+  html{
+    font-size: 11px !important;
+  }
+
+  #containerRecherche{
+    width:98% !important;
+  }
+
+  .prix{
+    font-size: 13px;
+  }
+
+  .material-icons{
+    font-size: 17px !important; 
+  }
+
 }

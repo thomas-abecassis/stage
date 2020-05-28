@@ -8,12 +8,7 @@
 }
 
 .nom{
-    font-size: 25px;
     font-weight: bold;
-}
-
-.loyer{
-  font-size: 20px;
 }
 
 #boutonDroite{
@@ -158,9 +153,30 @@
   .descriptionWrap{
     width:62vh;
   }
+
+  .titrePartie{
+    font-size: 20px;
+    font-weight:600;
+  }
+
+
+  .nom{
+      font-size: 25px;
+  }
+
+  .loyer{
+    font-size: 20px;
+  }
+
 }
 
 @media (min-width: 100px) and (max-width: 1100px) {
+
+  .infosEssentiels{
+    font-size: 1.8em;
+    padding:1rem 2rem 1.5rem 2rem;
+  }
+
   .carteLot{
     padding:0 !important;
     width:auto !important;
@@ -184,6 +200,7 @@
     float: left;
     font-size: 19px;
     width: 100vw;
+    font-size: 1.5em;
   }
 
   #descriptionWrapper{
@@ -196,6 +213,11 @@
   }
 
   .paddingSmall{
-    padding: 2em;
+    padding-left: 1em;
+  }
+
+  .titrePartie{
+    font-size: 1.5em;
+    font-weight:600;
   }
 }

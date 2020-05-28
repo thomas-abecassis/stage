@@ -103,39 +103,40 @@
 <div id="descriptionWrapper" class="noPadding">
 	<div class="decoupageSection"></div>
 	<div class="descriptionWrap">
-
-		<span class="titrePartie" >Critères</span>
 		<div class="paddingSmall">
-			<div class="row">
-				
+		<span class="titrePartie" >Critères</span>
+			<div class="row">	
 				<?php
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Adresse : </div><div class=\"critereLot\">". $lot->getLocalisation() ."</div></div>";
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Surface : </div><div class=\"critereLot\">". $lot->getSurface() ."m²</div></div>";
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Nombre de pièces : </div><div class=\"critereLot\">". $lot->getNombrePiece() ."</div></div>";
 				?>
-				
 			</div>
 		</div>
 		<div class="decoupageSection"></div>
+		<div class="paddingSmall">
 		<span class="titrePartie" >Les plus</span>
-		<ul class="liste">
-			<?php
-				foreach ($lotApprofondi->getCommodites() as $value ) {
-					echo "<li>" . $value . "</li>";
-				}
-				foreach ($lotApprofondi->getOptions() as $value ) {
-					echo "<li>" . $value . "</li>";
-				}
-		?>
-		</ul>
+			<ul class="liste">
+				<?php
+					foreach ($lotApprofondi->getCommodites() as $value ) {
+						echo "<li>" . $value . "</li>";
+					}
+					foreach ($lotApprofondi->getOptions() as $value ) {
+						echo "<li>" . $value . "</li>";
+					}
+			?>
+			</ul>
+		</div>
 		<div class="decoupageSection"></div>
+		<div class="paddingSmall">
 		<span class="titrePartie" >Description</span>
-			<div class="paddingSmall" id="description">
+			<div  id="description">
 				<?php
 					echo $lot->getDescription();
 				?>
 			</div>
+		</div>
 		<div class="decoupageSection"></div>
 	</div>
 </div>

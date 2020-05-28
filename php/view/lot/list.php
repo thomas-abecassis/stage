@@ -1,5 +1,5 @@
-<div class="container">
-  <div  class="col s12 m10 l7 offset-m1 offset-l2 noPadding" id="retour">
+<div id="containerRecherche" class="container">
+  <div  class="col s12 l7 offset-l2 noPadding" id="retour">
 
  <a href="index"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Retour à la recherche </span></a>
 
@@ -13,7 +13,7 @@
                  $filecount = count($files);
                 }
                 echo '  <a href=index/lotApprofondi/Read/?id='.rawurlencode($v->getId()).$getURL."page=".$page.'>
-                        <div class="col s12 m10 l7 offset-m1 offset-l2 card boite boite_hover">';
+                        <div class="col s12 l7 offset-l2 card boite boite_hover">';
                         if($filecount!=0){
                           echo '<div class="imageBoite" ><img alt="photo de l\'annonce" src="image/'.$v->getId().'/1.jpg"></div>';
                         }
@@ -33,7 +33,7 @@
         }
         else{
             echo '
-            <div class="col s12 m10 l7 offset-m1 offset-l2 ">  
+            <div class="col s12 l7 offset-l2 ">  
               <div class="center">
                 <p class="grandeTailleFont">Aucune annonce ne correspond à vos critères</p>
                 <p class=" grey-text "> Enregistrez votre recherche pour ne pas rater les nouvelles offres</p>
