@@ -216,7 +216,7 @@ input[type=checkbox] +span{
 
 .boite_hover:hover{
   border-radius: 7px !important;
-  box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
+  box-shadow: 0 0px 3px 0 rgba(0,0,0,0.2), 0 3px 3px -3px rgba(0,0,0,0.16), 0 3px 6px 0 rgba(0,0,0,0.3) !important;
   cursor:pointer;
 }
 
@@ -242,139 +242,10 @@ input[type=checkbox] +span{
   left:1.5rem;
 }
 
-.myCarousel{
-    position: relative;
-    flex-shrink: 0;
-    overflow: hidden;
-}
-
-#myCarouselImage{
-    background-color: #cad1d9;
-    width: 62vh;
-    min-height: 52vh;
-}
-
-#myCarouselBouton{
-    width: 62vh;
-    min-height: 8vh;
-    position: absolute;
-    bottom: 0rem;
-
-}
-
-.slide{
-  position: absolute;
-  max-height: 100%;
-  max-width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transition: 1s;
-  display:flex;
-}
-
-.intoSlide{
-  height: 100%;
-	width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-	position: relative;
-}
-
-.flexSlide{
-	  flex: 0 0 100%;
-}
-
-.intoSlideBouton{
-  max-width: 75% !important;
-  margin-left: 12.5% !important;
-  margin-right: 12.5% !important;
-}
-
-.intoSlideImage{
-  max-width: 100%;
-	max-height: 100%;
-	margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-.intoSlide img{
-	position: absolute;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-.boutonSlider{
-  padding:0 !important;
-  border-radius: 0.5rem;
-  height: 6vh;
-  border: solid black 1px;
-  transition: box-shadow .25s;
-  transition: box-shadow .25s;
-  background-color: white;
-}
-
-
-.boutonSlider:hover{
-  box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
-  cursor:pointer;
-}
-
-.carteLot{
-	float: left;
-  padding:0 !important;
-  width:auto !important;
-}
-
-.ImageBoutonSlide{
-  border-radius: 0.5rem;
-  background-position: 50%;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  transition: opacity .3s;
-}
-
-.selectionne{
-  opacity: .3;
-}
-
-#boutonDroite{
-  position: absolute;
-  top:50%;
-  right:-1rem;
-  opacity: 0.8;
-}
-
-#boutonGauche{
-  position: absolute;
-  top:50%;
-  left:-1rem;
-  opacity: 0.8;
-}
-
 .relative{
   position: relative;
 }
 
-.infosEssentiels{
-  padding:1rem 2rem 1.5rem 2rem;
-}
-
-.nom{
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.loyer{
-  font-size: 20px;
-}
 
 .main{
   min-height: 100%;
@@ -484,10 +355,6 @@ main {
   margin-top: 2em;
 }
 
-.descriptionWrap{
-	width:62vh;
-}
-
 .noPadding{
 	padding: 0 !important;
 }
@@ -517,20 +384,10 @@ main {
 	grid-auto-rows: minmax(100px, auto);
 }
 
-.containerLot{
-		margin-top: 1em !important;
-		margin-left: 25%;
-}
-
-#contact{
-	float:left;
-	margin-left: 1em;
-	font-size: 19px;
-	min-width: 29vh;
-}
-
 .contenuContact{
-	padding: 1em;
+	padding-top: 1em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
 }
 
 .phraseContact{
@@ -592,7 +449,7 @@ main {
 .sticky-top {
 	position:fixed!important;
 	top:0!important;
-	z-index:10000!important;
+	z-index:100!important;
 }
 
 .floatLeft{
@@ -601,10 +458,6 @@ main {
 
 .container{
 	max-width: 1780px !important;
-}
-
-#descriptionWrapper{
-  margin-right: calc(100% - 40em - 25%);
 }
 
 .lever{
@@ -656,15 +509,7 @@ input[type=number] {
 	font-weight: 500;
 }
 
-.colorPicker{
-  position: fixed !important;
-  top:9%;
-  left:3%;
-  padding: 10px;
-  z-index: 1;
-  display: grid;
-  grid-gap: 10px;
-}
+
 
 #ligneRetour{
   position: absolute;
@@ -731,4 +576,17 @@ input[type=number] {
 #menu{
   height: 70px !important;
   line-height: 70px!important;
+}
+
+
+@media (min-width: 1101px){
+  .colorPicker{
+    position: fixed !important;
+    top:9%;
+    left:3%;
+    padding: 10px;
+    z-index: 1;
+    display: grid;
+    grid-gap: 10px;
+  }
 }

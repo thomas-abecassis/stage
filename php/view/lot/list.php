@@ -21,8 +21,8 @@
                           echo '<div class="imageBoite" ><img alt="photo manquante" src="image/noPhoto.png"></div>';
                         }
 
-                echo '<div class="infoBoite">
-                			<p class="">' . htmlspecialchars($v->getnom()) . ' </p>
+                echo '<div class="infoBoite ">
+                			<p class="grey-text text-darken-1"> vente ' . htmlspecialchars($v->getnom()) . ' </p>
                 			<p class="prix">'.htmlspecialchars($v->getLoyer()).' €/mois </p>
                             <p class="surface">   <i class="material-icons">home</i><span class="surfaceText">'.htmlspecialchars($v->getSurface()) . 'm² </span></p>
                             <p class="surface">   <i class="material-icons">place</i><span class="surfaceText">'.htmlspecialchars($v->getLocalisation()) .' </span></p>

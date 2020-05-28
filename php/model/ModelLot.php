@@ -35,7 +35,7 @@ class Modellot extends Model{
   }
 
   public function getnom(){
-    return $this->nom;
+    return $this->typeDeBien . " " . $this->nombrePiece . " pièces ";
   }
 
   public function setnom($nom){

@@ -85,29 +85,38 @@
 	<div id="anchor"></div>
 <div id="contact" class="card ">
 	<div class="contenuContact">
-	<span class="phraseContact" >Ce bien vous intéresse ?</span>
-	<span  class="lightBold phraseContact">Contactez nous !</span>
-	<div class="contactButton displayFlex premiereCouleur" id="contactTelButton"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
-	<div class="contactContent displayNone premiereCouleurBorder" id="contactTelContent"><i class="material-icons">local_phone</i><span>06 XX XX XX XX</span></div>
-	<div class="contactButton displayFlex premiereCouleur" id="contactMailButton"><i class="material-icons">email</i><span>e-mail</span></div>
-	<div class="contactContent displayNone premiereCouleurBorder" id="contactMailContent"><i class="material-icons">email</i><span>monmail@mail.fr</span></div>
+		<span class="phraseContact" >Ce bien vous intéresse ?</span>
+		<span  class="lightBold phraseContact">Contactez nous !</span>
+		<div class="col s6 m6 l12">
+			<div class="contactButton displayFlex premiereCouleur" id="contactTelButton"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
+			<div class="contactContent displayNone premiereCouleurBorder" id="contactTelContent"><i class="material-icons">local_phone</i><span>06 XX XX XX XX</span></div>
+		</div>
+		<div class="col s6 m6 l12">
+			<div class="contactButton displayFlex premiereCouleur" id="contactMailButton"><i class="material-icons">email</i><span>e-mail</span></div>
+			<div class="contactContent displayNone premiereCouleurBorder" id="contactMailContent"><i class="material-icons">email</i><span>monmail@mail.fr</span></div>
+		</div>
 	</div>
 </div>
 </div>
 </div>
 </div>
-<div id="descriptionWrapper" class=" col offset-l3 noPadding">
+<div id="descriptionWrapper" class="noPadding">
 	<div class="decoupageSection"></div>
 	<div class="descriptionWrap">
+
 		<span class="titrePartie" >Critères</span>
-		<div class="row">
-		<?php
-			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
-			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Adresse : </div><div class=\"critereLot\">". $lot->getLocalisation() ."</div></div>";
-			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Surface : </div><div class=\"critereLot\">". $lot->getSurface() ."m²</div></div>";
-			echo "<div class=\" critere col s6\"><div class=\"nomCritere\">Nombre de pièces : </div><div class=\"critereLot\">". $lot->getNombrePiece() ."</div></div>";
-		?>
-	</div>
+		<div class="paddingSmall">
+			<div class="row">
+				
+				<?php
+					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
+					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Adresse : </div><div class=\"critereLot\">". $lot->getLocalisation() ."</div></div>";
+					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Surface : </div><div class=\"critereLot\">". $lot->getSurface() ."m²</div></div>";
+					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Nombre de pièces : </div><div class=\"critereLot\">". $lot->getNombrePiece() ."</div></div>";
+				?>
+				
+			</div>
+		</div>
 		<div class="decoupageSection"></div>
 		<span class="titrePartie" >Les plus</span>
 		<ul class="liste">
@@ -122,11 +131,11 @@
 		</ul>
 		<div class="decoupageSection"></div>
 		<span class="titrePartie" >Description</span>
-		<div id="description">
-		<?php
-			echo $lot->getDescription();
-		?>
-		</div>
+			<div class="paddingSmall" id="description">
+				<?php
+					echo $lot->getDescription();
+				?>
+			</div>
 		<div class="decoupageSection"></div>
 	</div>
 </div>

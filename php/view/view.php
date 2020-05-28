@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="css/animation.css">
   <link rel="stylesheet" type="text/css" href="css/couleur.css">
   <link rel="stylesheet" type="text/css" href="css/socicon/style.css">
+  <link rel="stylesheet" type="text/css" href="css/detailLot.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
@@ -39,7 +40,7 @@
                 echo '<img id="logo" src="image/logo.png?t=' . $timestamp . '" alt="Le logo.">';
                 ?>
               </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ul id="nav-mobile" class="right ">
 
                 		<li><a href="index">Accueil</a></li>
 
@@ -68,6 +69,16 @@
         <main>
           <div id="premiereCouleur" class="premiereCouleurText displayNone"></div>
           <div id="secondeCouleur" class="secondeCouleurText displayNone"></div>
+            <div class="row">
+            <?php
+            $filepath = File::build_path(array("view", $controller, "$view.php"));
+
+            require $filepath;
+            ?>
+            </div>
+
+             <div class="container"> 
+              <div class="row">
           <?php
         if(Session::is_admin()) {  
          echo '<div class="colorPicker card">
@@ -94,30 +105,8 @@
           </div>';
         }
           ?>
-            <div class="row">
-            <?php
-            $filepath = File::build_path(array("view", $controller, "$view.php"));
-
-            require $filepath;
-            ?>
             </div>
-
-
-<?php /*
-if(isset($_SESSION["panier"])){
-    echo "<br>-----------------------panier--------------------<br>";
-    $prix=0;
-    foreach ($_SESSION["panier"] as $value) {
-        echo $value->getNom()."<br>";
-        $prix+=$value->getPrix();
-    }
-    echo strval($prix)."€";
-    if(isset($_SESSION["login"])){
-      echo '<a href=index.php?controller=commande&action=created>commander</a>';
-    }
-    echo "<br>-----------------------panier--------------------<br>";
-} */
-?>
+        </div>
 
   </main>
 
