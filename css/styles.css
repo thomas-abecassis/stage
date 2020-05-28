@@ -8,8 +8,6 @@ html,body {
 
 #logo {
     height: 64px;
-    left: 3%;
-    position: absolute;
 }
 
 .pad1 {
@@ -574,8 +572,22 @@ input[type=number] {
   line-height: 70px!important;
 }
 
+#burger{
+  font-size:30px !important;
+}
+
+#burgerWrapper{
+  left:0;
+}
+
 
 @media (min-width: 1101px){
+
+  #logo{
+    left: 3%;
+    position: absolute;
+  }
+
   .colorPicker{
     position: fixed !important;
     top:9%;
@@ -602,6 +614,14 @@ input[type=number] {
 
   .material-icons{
     font-size: 17px !important; 
+  }
+
+  #nav-mobile{
+    display: none;
+  }
+
+  #menu{
+    text-align: center;
   }
 
 }

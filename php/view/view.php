@@ -41,17 +41,33 @@
                 echo '<img id="logo" src="image/logo.png?t=' . $timestamp . '" alt="Le logo.">';
                 ?>
               </a>
+    <ul id="slide-out" class="sidenav grey-text text-darken-2">
+    <li><a href="#!">acceuil</a></li>
+    <li><div class="divider"></div></li>
+    <?php
+    if(isset($_SESSION["login"])){
+    echo '<li><a href="index/alerte/read/">Mes recherches</a></li>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader grey-text">Mon compte</a></li>
+          <li><a href="index/utilisateur/Read/?id='.rawurlencode($_SESSION["login"]).'" >Paramètres</a></li>
+          <li><a id="deconnexion">Déconnexion</a></li>';
+    }
+    else{
+      echo "<li><a id=\"creationCompte1\">Créer un compte</a></li>";
+      echo "<li><a id=\"connexion1\">Se connecter</a></li>";
+    }
+    ?>
+  </ul>
+  <a id="burgerWrapper" href="#" data-target="slide-out" class="absolute sidenav-trigger"><i id="burger" class="absolute medium material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right ">
-
                 		<li><a href="index">Accueil</a></li>
-
                         <?php
                         if(Session::is_admin()){
                           echo '<li ><a href=" index/utilisateur/readAll/">Utilisateurs</a></li>';
                         }
                         if(isset($_SESSION["login"])){
                             echo "<li><a href=\"index/alerte/read/\">Mes recherches</a></li>";
-                            echo  '<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Mon compte</a></li>
+                            echo '<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Mon compte</a></li>
 
                           <!-- Dropdown Structure -->
                           <ul id="dropdown1" class="dropdown-content">
@@ -59,8 +75,8 @@
                             <li><a id="deconnexion">Déconnexion</a></li>
                           </ul>';
                         }else{
-                           echo "<li><a id=\"creationCompte\">Créer un compte</a></li>";
-                           echo "<li><a id=\"connexion\">Se connecter</a></li>";
+                           echo "<li><a id=\"creationCompte2\">Créer un compte</a></li>";
+                           echo "<li><a id=\"connexion2\">Se connecter</a></li>";
                         }
                         ?>
                  </ul>

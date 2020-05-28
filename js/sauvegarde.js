@@ -136,6 +136,7 @@ function getFond(){
 }
 
 function lancePopUpConnexion(){
+	console.log("coucou");
 	requeteAJAX("php/view/utilisateur/connect.php",callback3);
 }
 
@@ -221,9 +222,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		sauvegarde.addEventListener("click", clickHandler);
 	}
 
-	let connexion=document.getElementById("connexion");
-	if(connexion!==null){
-		connexion.addEventListener("click", lancePopUpConnexion);
+	//connexion1 et creationCompteBouton1 correspondent aux <a> dans le menu "Desktop" (en haut à droite)
+	let connexion1=document.getElementById("connexion1");
+	if(connexion1!==null){
+		connexion1.addEventListener("click", lancePopUpConnexion);
+	}
+
+
+	let creationCompteBouton1=document.getElementById("creationCompte1");
+	if(creationCompteBouton1!==null){
+		creationCompteBouton1.addEventListener("click",  lancePopUpCreationCompte);
+	}
+
+	//eux correspondent aux <a> dans le burger menu
+	let connexion2=document.getElementById("connexion2");
+	if(connexion2!==null){
+		connexion2.addEventListener("click", lancePopUpConnexion);
+	}
+
+	
+	let creationCompteBouton2=document.getElementById("creationCompte2");
+	if(creationCompteBouton2!==null){
+		creationCompteBouton2.addEventListener("click",  lancePopUpCreationCompte);
 	}
 
 	let deconnexion=document.getElementById("deconnexion");
@@ -231,10 +251,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		deconnexion.addEventListener("click", deconnect);
 	}
 
-	let creationCompteBouton=document.getElementById("creationCompte");
-	if(creationCompteBouton!==null){
-		creationCompteBouton.addEventListener("click",  lancePopUpCreationCompte);
-	}
 });
 
 
