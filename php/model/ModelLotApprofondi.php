@@ -71,11 +71,17 @@ class ModelLotApprofondi {
 
   private static function getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
     $values = ModelLot::getTableauPrep($dataPost);
-    if(count($typesBien)!=0){
-      $values["typeDeBien"]=$typesBien[0];
+
+    $i=1;
+    foreach ($typesBien as  $tb) {
+      $values["typeDeBien".$i]=$tb;
+      $i++;
     }
-    if(count($nombrePieces)!=0){
-      $values["nombrePiece"]=$nombrePieces[0];
+
+    $i=1;
+    foreach ($nombrePieces as  $np) {
+      $values["nombrePiece".$i]=$np;
+      $i++;
     }
 
     foreach ($dataCheckBox as $nomTable => $arrCategorie) {
@@ -95,17 +101,38 @@ class ModelLotApprofondi {
     $sql=ModelLot::getSqlSearch($dataPost);
 
     $isFirst=strlen($sql)==23;
-
-    if(count($typesBien)!=0){
-      if($isFirst){$sql=$sql." typeDeBien = :typeDeBien";}
-      else{$sql=$sql." and typeDeBien = :typeDeBien"; }
-      $isFirst=false;
+    $firstTypeBien=true;
+    $i=1;
+    foreach ($typesBien as  $value) {
+      if($isFirst){
+        $sql=$sql." typeDeBien = :typeDeBien".$i;
+        $isFirst=false;
+        $firstTypeBien=false;
+      }
+      else if($firstTypeBien){
+        $sql=$sql." and typeDeBien = :typeDeBien".$i; 
+        $firstTypeBien=false;
+      }else{
+        $sql=$sql." or typeDeBien = :typeDeBien".$i; 
+      }
+      $i++;
     }
 
-    if(count($nombrePieces)!=0){
-      if($isFirst){$sql=$sql." nombrePiece= :nombrePiece"; }
-      else{$sql=$sql." and nombrePiece= :nombrePiece";}
-      $isFirst=false;
+    $firstNombrePieces=true;
+    $i=1;
+    foreach ($nombrePieces as  $value) {
+      if($isFirst){
+        $sql=$sql." nombrePiece = :nombrePiece".$i;
+        $isFirst=false;
+        $firstNombrePieces=false;
+      }
+      else if($firstNombrePieces){
+        $sql=$sql." and nombrePiece = :nombrePiece".$i; 
+        $firstNombrePieces=false;
+      }else{
+        $sql=$sql." or nombrePiece = :nombrePiece".$i; 
+      }
+      $i++;
     }
 
     foreach ($dataCheckBox as $nomTable => $arrCategorie) {

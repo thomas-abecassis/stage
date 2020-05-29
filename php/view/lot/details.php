@@ -103,6 +103,14 @@
 <div id="descriptionWrapper" class="noPadding">
 	<div class="decoupageSection"></div>
 	<div class="descriptionWrap">
+		<?php
+			if(SESSION::is_commercial()){
+				echo '<div class="paddingSmall">
+						<span class="titrePartie" >Informations commercial</span>
+					</div>
+						<div class="decoupageSection"></div>';
+			}
+		?>
 		<div class="paddingSmall">
 		<span class="titrePartie" >Critères</span>
 			<div class="row">	
