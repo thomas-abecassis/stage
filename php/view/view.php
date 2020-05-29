@@ -23,6 +23,7 @@
   <script src="js/changerCouleur.js" defer></script>
   <script src="js/sauvegardePhoto.js" defer></script>
   <script src="js/initialize.js" defer></script>
+  <script src="js/validForm.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 

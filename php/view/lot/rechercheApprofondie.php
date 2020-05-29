@@ -1,7 +1,7 @@
 	<div class="container">
 		<div class="col s12 m8 offset-m2">
 			<div class="card searchBoxApprofondie" id="searchBox" >
-		      <form method="get" action="index/lotApprofondi/searchedDeepen/">
+		      <form id="submitForm" method="get" action="index/lotApprofondi/searchedDeepen/">
 			       		<div class="categorie row">
 				       		<div class="titreCategorie">Localisation
 				       			<div class="col s12 ligne"></div></div>
@@ -28,17 +28,20 @@
 				       		<div class="titreCategorie">Budget
 				       			<div class="col s12 ligne"></div></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"   name="minBudget" autocomplete="off" /></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input id="minEur" class="searchBarInput" placeholder="min" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"   name="minBudget" autocomplete="off" /></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="maxBudget" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input id="maxEur" class="searchBarInput" placeholder="max" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="maxBudget" autocomplete="off"/></div>
+				          		<span id="notifEur" class="displayNone red-text text-darken-1 col s7">Le budget minimum doit être inférieur au maximum</span>
 				    	</div>
 				    	<div class="categorie row">
 				       		<div class="titreCategorie">Surface
 				       			<div class="col s12 ligne"></div></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="minSurface" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input id="minSurface" class="searchBarInput" placeholder="min" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="minSurface" autocomplete="off"/></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="maxSurface" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input id="maxSurface" class="searchBarInput" placeholder="max" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="maxSurface" autocomplete="off"/></div>
+
+				          		<span id="notifSurface" class="displayNone red-text text-darken-1 col s7">La surface minimum doit être inférieur au maximum</span>
 				    	</div>
 				    	<!--<div class="categorie row">
 				       		<div class="titreCategorie">Nombre de chambre(s)
@@ -120,7 +123,7 @@
 					       				?>
 			      					</div>
 			      	</div>
-			            <input id="submitForm" class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
+			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
 		  		</div>
 			    </div>
 			    <input type='hidden' name='controller' value='lotApprofondi'>
