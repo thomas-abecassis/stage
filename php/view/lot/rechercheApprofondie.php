@@ -28,17 +28,17 @@
 				       		<div class="titreCategorie">Budget
 				       			<div class="col s12 ligne"></div></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number"  name="minBudget" autocomplete="off" /></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"   name="minBudget" autocomplete="off" /></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number"  name="maxBudget" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="maxBudget" autocomplete="off"/></div>
 				    	</div>
 				    	<div class="categorie row">
 				       		<div class="titreCategorie">Surface
 				       			<div class="col s12 ligne"></div></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number"  name="minSurface" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="min" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="minSurface" autocomplete="off"/></div>
 
-				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number"  name="maxSurface" autocomplete="off"/></div>
+				          		<div class=" input-field col s3 grey lighten-4"><input class="searchBarInput" placeholder="max" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="maxSurface" autocomplete="off"/></div>
 				    	</div>
 				    	<!--<div class="categorie row">
 				       		<div class="titreCategorie">Nombre de chambre(s)
@@ -120,7 +120,7 @@
 					       				?>
 			      					</div>
 			      	</div>
-			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
+			            <input id="submitForm" class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
 		  		</div>
 			    </div>
 			    <input type='hidden' name='controller' value='lotApprofondi'>

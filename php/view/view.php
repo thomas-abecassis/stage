@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php echo $pagetitle; ?></title>
   <base href='http://localhost/stage/'>
   <link rel="shortcut icon" href="image/favicon.png" />
@@ -50,11 +50,16 @@
           <li><div class="divider"></div></li>
           <li><a class="subheader grey-text">Mon compte</a></li>
           <li><a href="index/utilisateur/Read/?id='.rawurlencode($_SESSION["login"]).'" >Paramètres</a></li>
-          <li><a id="deconnexion">Déconnexion</a></li>';
+          <li><a id="deconnexion1">Déconnexion</a></li>';
     }
     else{
       echo "<li><a id=\"creationCompte1\">Créer un compte</a></li>";
       echo "<li><a id=\"connexion1\">Se connecter</a></li>";
+    }
+    if(Session::is_admin()){
+
+      echo '<li><div class="divider"></div></li>
+            <li><a href="index/utilisateur/readAll/">Utilisateurs</a></li>';
     }
     ?>
   </ul>
@@ -72,7 +77,7 @@
                           <!-- Dropdown Structure -->
                           <ul id="dropdown1" class="dropdown-content">
                             <li><a href="index/utilisateur/Read/?id='.rawurlencode($_SESSION["login"]).'" >Paramètres</a></li>
-                            <li><a id="deconnexion">Déconnexion</a></li>
+                            <li><a id="deconnexion2">Déconnexion</a></li>
                           </ul>';
                         }else{
                            echo "<li><a id=\"creationCompte2\">Créer un compte</a></li>";

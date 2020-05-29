@@ -15,17 +15,17 @@
 
 		          	<div class="searchBarBox input-field col s6 l3 grey lighten-4">
 		            <label></label>
-		            <input  class="searchBarInput" placeholder="min m²" type="number" name="minSurface" autocomplete="off" />
+		            <input  class="searchBarInput" placeholder="min m²" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="minSurface" autocomplete="off" />
 		            </div>
 
 		          	<div class="searchBarBox input-field col s6 l2  grey lighten-4">
 		            <label></label>
-		            <input  class="searchBarInput" placeholder="min €" type="number" name="minBudget" autocomplete="off"/>
+		            <input  class="searchBarInput" placeholder="min €" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="minBudget" autocomplete="off"/>
 		            </div>
 
 		          	<div class="hide-on-med-and-down searchBarBox input-field col s6 l2 grey lighten-4">
 		            <label></label>
-		            <input  class="searchBarInput" placeholder="max €" type="number" name="maxBudget" autocomplete="off"/>
+		            <input  class="searchBarInput" placeholder="max €" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="maxBudget" autocomplete="off"/>
 		            </div>
 		      		<!--<input type='hidden' name='controller' value='lot'>
               		<input type='hidden' name='action' value='searched'> -->
@@ -43,7 +43,7 @@
 
 		    <div id="wrapperButtonRecherche" class="absolute">
 	    		<div class="relative" style="left: -50%;">
-		            <input  class="secondeCouleur inputButton" type="submit" value="Envoyer" />
+		            <input  id="submitForm" class="secondeCouleur inputButton" type="submit" value="Envoyer" />
 	    		</div>
 	  		</div>
 	  		

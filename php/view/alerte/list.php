@@ -28,7 +28,9 @@
                                   echo '<span class="lever noMargin"></span>
 
                                 </label>
+                                <span class="textAlerteMail">
                                     m\'alerter par mail
+                                </span>
                               </div>
                             <div class="boutonsAlerte">
                                 <a href="index/lotApprofondi/searchedDeepenAlerte/?alerte='.urlencode(serialize($alerte)).'"><div class="boutonAlerte boutonAnnonces secondeCouleur">Voir les lots</div></a>

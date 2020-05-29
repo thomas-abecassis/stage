@@ -3,7 +3,7 @@ let outsideClickListener;
 let removeClickListener;
 let sauvegarde;
 
-function callback1(xhr){
+function callbackIdentifiantCheck(xhr){
 	console.log(xhr.responseText);
 	if(xhr.responseText.valueOf()=="true".valueOf()){
 	    document.location.reload(true);
@@ -19,28 +19,19 @@ function callback1(xhr){
 	}
 }
 
-function callback2(xhr){
+function callbackRechercheSave(xhr){
 	console.log(xhr.responseText);
 	document.getElementById("inSauvegarde").innerHTML="recherche sauvegardée !";
 }
 
-function callback3(xhr){
-	popUpCallback(xhr,envoieConnexion);
-}
-
-function callback5(xhr){
-	popUpCallback(xhr,envoieCreationCompte);
-}
-
-function callback4(xhr){
+function reload(xhr){
 	document.location.reload(true);
 }
 
-function callback6(xhr){
+function callbackCreationCheck(xhr){
 	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
 	if(xhr.responseText.valueOf()=="true"){
-		console.log("je suis passé là");
 		racine.innerHTML="<p>Votre compte a été créé</p>";
 	}
 	else{
@@ -48,10 +39,10 @@ function callback6(xhr){
 	}
 }
 
-function popUpCallback(xhr,fctSubmit){
+function popUpCallback(xhr,fctSubmit,mobile){
 	let page = new DOMParser().parseFromString(xhr.responseText, "text/html");
 	page=page.getElementById("racine");
-	popUp(page,fctSubmit);
+	popUp(page,fctSubmit,mobile);
 }
 
 function creerSauvegarde(){
@@ -60,13 +51,13 @@ function creerSauvegarde(){
 	sauvegarde.style.setProperty("background-color", lighten(rgb,1.1), "important");
 	sauvegarde.removeEventListener("click",clickHandler);
 	sauvegarde.classList.remove("boite_hover");
-	requeteAJAX("index.php?controller=alerte&action=created",callback2);
+	requeteAJAX("index.php?controller=alerte&action=created",callbackRechercheSave);
 }
 
 function envoieConnexion(){
 	mail=document.getElementById("inputMail").value;
 	mdp=document.getElementById("inputMdp").value;
-	requeteAJAX("index.php?controller=utilisateur&action=connectedAjax&login="+mail+"&mdp=" +mdp,callback1);
+	requeteAJAX("index.php?controller=utilisateur&action=connectedAjax&login="+mail+"&mdp=" +mdp,callbackIdentifiantCheck);
 }
 
 function envoieCreationCompte(){
@@ -76,7 +67,7 @@ function envoieCreationCompte(){
 	mdp=document.getElementById("inputMdp").value;
 	confirmMdp=document.getElementById("confirmMdp").value;
 	if(mdp==confirmMdp){
-		requeteAJAX("index.php?controller=utilisateur&action=createdAjax&login="+mail+"&mdp=" +mdp+"&nom=" +nom+"&prenom=" +prenom,callback6);
+		requeteAJAX("index.php?controller=utilisateur&action=createdAjax&login="+mail+"&mdp=" +mdp+"&nom=" +nom+"&prenom=" +prenom,callbackCreationCheck);
 	}
 	else{
 		notification("les mots de passes ne correspondent pas");
@@ -84,19 +75,29 @@ function envoieCreationCompte(){
 }
 
 function deconnect(){
-	requeteAJAX("index.php?controller=utilisateur&action=disconnectAjax",callback4);
+	requeteAJAX("index.php?controller=utilisateur&action=disconnectAjax",reload);
 }
 
-function popUp(page,fctSubmit){
+function popUp(page,fctSubmit,mobile){
 	let fond=getFond();
-
 	let newDiv = document.createElement("div");
-	newDiv.style.position="fixed";
-	newDiv.style.top="20%";
-	newDiv.style.left="40%";
-	newDiv.style.width="20%";
-	newDiv.style.zIndex="3";
-	newDiv.id="boxFixed";
+	if(mobile){
+		newDiv.style.position="fixed";
+		newDiv.style.top="0";
+		newDiv.style.left="0";
+		newDiv.style.width="100vw";
+		newDiv.style.height="100vh";
+		newDiv.style.zIndex="1000";
+		newDiv.id="boxFixed";
+	}
+	else{
+		newDiv.style.position="fixed";
+		newDiv.style.top="20%";
+		newDiv.style.left="40%";
+		newDiv.style.width="20%";
+		newDiv.style.zIndex="3";
+		newDiv.id="boxFixed";
+	}
   	// et lui donne un peu de contenu
   	// ajoute le nœud texte au nouveau div créé\
   	document.body.appendChild(newDiv);
@@ -135,13 +136,28 @@ function getFond(){
 	return fond;
 }
 
-function lancePopUpConnexion(){
-	console.log("coucou");
-	requeteAJAX("php/view/utilisateur/connect.php",callback3);
+function lancePopUpConnexion1(){
+	requeteAJAX("php/view/utilisateur/connect.php",function(xhr){
+		popUpCallback(xhr,envoieConnexion,true);
+	});
 }
 
-function lancePopUpCreationCompte(){
-	requeteAJAX("php/view/utilisateur/update.php",callback5);
+function lancePopUpCreationCompte1(){
+	requeteAJAX("php/view/utilisateur/update.php",function(xhr){
+		popUpCallback(xhr,envoieCreationCompte,true);
+	});
+}
+
+function lancePopUpConnexion2(){
+	requeteAJAX("php/view/utilisateur/connect.php",function(xhr){
+		popUpCallback(xhr,envoieConnexion,false);
+	});
+}
+
+function lancePopUpCreationCompte2(){
+	requeteAJAX("php/view/utilisateur/update.php",function(xhr){
+		popUpCallback(xhr,envoieCreationCompte,false);
+	});
 }
 
 function stopScroll(){
@@ -159,7 +175,7 @@ function canScroll(){
 
 function hideOnClickOutside(element,elementASupprimer) {
     outsideClickListener = function(event) {
-        if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
+        if (!element.contains(event.target) && isVisible(element)) {
 					removePopUp(element);
 					removeFond(elementASupprimer);
         }
@@ -167,7 +183,14 @@ function hideOnClickOutside(element,elementASupprimer) {
 
     removeClickListener = function() {
         document.removeEventListener('mousedown', outsideClickListener);
+        let close=document.getElementById("close");
     }
+
+    let close=document.getElementById("close");
+    close.addEventListener("click",function(){
+    	removePopUp(element);
+		removeFond(elementASupprimer);
+    });
 
     document.addEventListener('mousedown', outsideClickListener);
 }
@@ -225,30 +248,34 @@ document.addEventListener("DOMContentLoaded", function() {
 	//connexion1 et creationCompteBouton1 correspondent aux <a> dans le menu "Desktop" (en haut à droite)
 	let connexion1=document.getElementById("connexion1");
 	if(connexion1!==null){
-		connexion1.addEventListener("click", lancePopUpConnexion);
+		connexion1.addEventListener("click", lancePopUpConnexion1);
 	}
 
 
 	let creationCompteBouton1=document.getElementById("creationCompte1");
 	if(creationCompteBouton1!==null){
-		creationCompteBouton1.addEventListener("click",  lancePopUpCreationCompte);
+		creationCompteBouton1.addEventListener("click",  lancePopUpCreationCompte1);
 	}
 
 	//eux correspondent aux <a> dans le burger menu
 	let connexion2=document.getElementById("connexion2");
 	if(connexion2!==null){
-		connexion2.addEventListener("click", lancePopUpConnexion);
+		connexion2.addEventListener("click", lancePopUpConnexion2);
 	}
 
-	
 	let creationCompteBouton2=document.getElementById("creationCompte2");
 	if(creationCompteBouton2!==null){
-		creationCompteBouton2.addEventListener("click",  lancePopUpCreationCompte);
+		creationCompteBouton2.addEventListener("click",  lancePopUpCreationCompte2);
 	}
 
-	let deconnexion=document.getElementById("deconnexion");
-	if(deconnexion!==null){
-		deconnexion.addEventListener("click", deconnect);
+	let deconnexion1=document.getElementById("deconnexion1");
+	if(deconnexion1!==null){
+		deconnexion1.addEventListener("click", deconnect);
+	}
+
+	let deconnexion2=document.getElementById("deconnexion2");
+	if(deconnexion2!==null){
+		deconnexion2.addEventListener("click", deconnect);
 	}
 
 });

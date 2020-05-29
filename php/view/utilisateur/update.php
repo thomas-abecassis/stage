@@ -1,6 +1,7 @@
 
   <div id="racine" class="col s4 offset-s4">
       <div  id="racineCard" class="creationCompteCard card">
+        <i id="close" class="small grey-text absolute material-icons">close</i>
           <form   id="formConnexion" method=post action=index.php>
             <h4 class="center">creation de compte</h4>
             <div class="ligne"></div>

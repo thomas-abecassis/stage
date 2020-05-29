@@ -467,10 +467,6 @@ main {
 	    margin-top: 1.5em !important;
 }
 
-.creationCompteCard{
-	padding: 3% 7% 6% 6%;
-}
-
 .sousLigner{
   text-decoration: underline;
 }
@@ -580,6 +576,15 @@ input[type=number] {
   left:0;
 }
 
+#close{
+  right:3%;
+  top:3%;
+  cursor: pointer;
+}
+
+.creationCompteCard{
+  padding: 5% 7% 6% 6%;
+}
 
 @media (min-width: 1101px){
 
@@ -604,7 +609,7 @@ input[type=number] {
     font-size: 11px !important;
   }
 
-  #containerRecherche{
+  .container{
     width:98% !important;
   }
 
@@ -624,4 +629,23 @@ input[type=number] {
     text-align: center;
   }
 
+  .creationCompteCard{
+    height: 100vh;
+  }
+
+  #burgerWrapper{
+    display: inline;
+  }
+
+  #racineCard{
+    margin:0 !important;
+  }
+
+  #close{
+    font-size: 30px !important;
+  }
+
+  .textAlerteMail{
+    display: none;
+  }
 }
