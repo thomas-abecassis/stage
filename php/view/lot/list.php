@@ -1,8 +1,13 @@
 <div id="containerRecherche" class="container">
   <div  class="col s12 l7 offset-l2 noPadding" id="retour">
-
- <a href="index"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Retour à la recherche </span></a>
-
+    <?php
+      if(strcmp(myGet("recherche"),"simple")==0){
+       echo '<a href="index"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Retour à la recherche </span></a>';
+      }
+      else{
+        echo '<a href="index/lotApprofondi/searchDeepen/"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Retour à la recherche </span></a>';
+      }
+    ?>
 </div>
         <?php
         if($tab_v != false){

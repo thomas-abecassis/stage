@@ -32,6 +32,7 @@
 		      		<!--<input type='hidden' name='controller' value='lot'>
               		<input type='hidden' name='action' value='searched'> -->
               		<input type='hidden' name='page' value='1'>
+              		<input type='hidden' name='recherche' value='simple'>
 		    </div>
 		    	  <div id="plusCriteres">
 		    	  	<a class="premiereCouleurText" href="index/lotApprofondi/searchDeepen/">

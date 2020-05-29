@@ -126,9 +126,8 @@
 			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
 		  		</div>
 			    </div>
-			    <input type='hidden' name='controller' value='lotApprofondi'>
-	            <input type='hidden' name='action' value='searchedDeepen'>
 	            <input type='hidden' name='page' value='1'>
+	            <input type='hidden' name='recherche' value='approfondi'>
 		      </form>
 			</div>
 		</div>
