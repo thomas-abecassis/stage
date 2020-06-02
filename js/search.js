@@ -38,9 +38,6 @@ function eventOnCity(){
 			});
 			element.classList.add("resultWordHover");
 		});
-		element.addEventListener("mouseleave",function(){
-			element.classList.remove("resultWordHover");
-		});
 	});
 }
 
