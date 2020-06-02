@@ -5,7 +5,6 @@ require_once File::build_path(array("model", "Model.php"));
 class Modellot extends Model{
 
   private $id;
-  private $nom;
   private $localisation;
   private $surface;
   private $loyer;
@@ -38,10 +37,6 @@ class Modellot extends Model{
     return $this->typeDeBien . " " . $this->nombrePiece . " pièces ";
   }
 
-  public function setnom($nom){
-    $this->nom=$nom;
-  }
-
   public function getLoyer(){
     return $this->loyer;
   }
@@ -71,13 +66,12 @@ class Modellot extends Model{
     return get_object_vars($this);
   }
 
-public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL) {
-  if (!is_null($i) && !is_null($n) && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d)) {
+public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL) {
+  if (!is_null($i)  && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d)) {
     // Si aucun de $m, $c et $i sont nuls,
     // c'est forcement qu'on les a fournis
     // donc on retombe sur le constructeur à 3 arguments
     $this->id = $i;
-    $this->nom = $n;
     $this->localisation = $loc;
     $this->loyer = $loy;
     $this->surface = $sur;
@@ -85,10 +79,6 @@ public function __construct($i = NULL, $n = NULL, $loc = NULL, $loy = NULL, $sur
   }
 }
 
-  /* une methode d'affichage.
-  public function afficher() {
-    echo "lot $this->prix de id $this->id (nom $this->nom)";
-  }*/
 
   public static function selectByRecherche($data,$page){
     if(!array_filter($data)){
