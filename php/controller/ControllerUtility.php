@@ -37,6 +37,7 @@ class ControllerUtility{
 			move_uploaded_file( $_FILES['inputPhoto']['tmp_name'],File::build_path(array("..","image",myGet("nomFichier").".png")));
 		}
 	}
+
 }
 
 ?>

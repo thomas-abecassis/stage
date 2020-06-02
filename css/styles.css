@@ -176,10 +176,6 @@ input[type=checkbox] +span{
   text-overflow: ellipsis;
 }
 
-.resultWord:hover{
-  background-color: #d9d7d6;
-}
-
 .resultWordHover{
   background-color: #d9d7d6;
 }

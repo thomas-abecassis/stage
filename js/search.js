@@ -1,18 +1,5 @@
 let searchBox=document.getElementById("searchBoxVille");
 
-var xhr2= new XMLHttpRequest();
-	xhr2.addEventListener('readystatechange', function() { // On gère ici une requête asynchrone
-
-    if (xhr2.readyState === XMLHttpRequest.DONE && searchBox.value.length!==0) {
-    	if(xhr2.responseText!=="false"){
-    		let tabVilles=JSON.parse(xhr2.responseText);
-    		tabVilles=trierVilles(tabVilles);
-    		miseEnFormeResultat(tabVilles);
-    		eventOnCity(); 
-    	}
-	    }
-	});
-
 searchBox.addEventListener("input", function(){
 	search();
 	if(searchBox.value.length==0){
@@ -45,8 +32,16 @@ function eventOnCity(){
 	children.forEach(function(element){
 		element.addEventListener("click",function(){searchBox.value=element.innerHTML.split("(")[0].trim();
 		document.getElementById('resultSearchVille').innerHTML="";});
-	}
-	);
+		element.addEventListener("mouseenter",function(){
+			children.forEach(function(ville){
+				ville.classList.remove("resultWordHover");
+			});
+			element.classList.add("resultWordHover");
+		});
+		element.addEventListener("mouseleave",function(){
+			element.classList.remove("resultWordHover");
+		});
+	});
 }
 
 function miseEnFormeResultat(tabVilles){
@@ -77,8 +72,16 @@ function indexHover(){
 }
 
 function search(){	
-	xhr2.open("get", "php/lib/search.php?mot="+searchBox.value, true);
-	xhr2.send(null);
+	requeteAJAX("php/lib/search.php?mot="+searchBox.value, callback);
+}
+
+function callback(xhr){
+	if(xhr.responseText!=="false"){
+		let tabVilles=JSON.parse(xhr.responseText);
+		tabVilles=trierVilles(tabVilles);
+		miseEnFormeResultat(tabVilles);
+		eventOnCity(); 
+	}
 }
 
 document.onkeydown = function (e) {

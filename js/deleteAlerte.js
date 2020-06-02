@@ -3,15 +3,6 @@ let lastName;
 let lastInput;
 let lastButon;
 
-function requeteAJAX(url,callback) {
-	let requete = new XMLHttpRequest();
-	requete.open("GET", url, true);
-	requete.addEventListener("load", function () {
-		callback(requete);
-	});
-	requete.send(null);
-}
-
 function callback1(xhr){
 	console.log(xhr.responseText);
 }
