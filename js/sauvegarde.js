@@ -39,10 +39,10 @@ function callbackCreationCheck(xhr){
 	}
 }
 
-function popUpCallback(xhr,fctSubmit,mobile){
+function popUpCallback(xhr,fctSubmit){
 	let page = new DOMParser().parseFromString(xhr.responseText, "text/html");
 	page=page.getElementById("racine");
-	popUp(page,fctSubmit,mobile);
+	popUp(page,fctSubmit);
 }
 
 function creerSauvegarde(){
@@ -78,26 +78,11 @@ function deconnect(){
 	requeteAJAX("index.php?controller=utilisateur&action=disconnectAjax",reload);
 }
 
-function popUp(page,fctSubmit,mobile){
+function popUp(page,fctSubmit){
 	let fond=getFond();
 	let newDiv = document.createElement("div");
-	if(mobile){
-		newDiv.style.position="fixed";
-		newDiv.style.top="0";
-		newDiv.style.left="0";
-		newDiv.style.width="100vw";
-		newDiv.style.height="100vh";
-		newDiv.style.zIndex="1000";
-		newDiv.id="boxFixed";
-	}
-	else{
-		newDiv.style.position="fixed";
-		newDiv.style.top="20%";
-		newDiv.style.left="40%";
-		newDiv.style.width="20%";
-		newDiv.style.zIndex="3";
-		newDiv.id="boxFixed";
-	}
+	newDiv.id="boxFixed";
+
   	// et lui donne un peu de contenu
   	// ajoute le nœud texte au nouveau div créé\
   	document.body.appendChild(newDiv);
@@ -129,34 +114,23 @@ function isFond(){
 
 function getFond(){
 	if(isFond()){
-		return document.getElementsByClassName("fondTransparent")[0];
+		fond = document.getElementsByClassName("fondTransparent")[0];
+		return fond;
 	}
 	fond = document.createElement("div");
 	fond.classList.add("fondTransparent");
 	return fond;
 }
 
-function lancePopUpConnexion1(){
+function lancePopUpConnexion(){
 	requeteAJAX("php/view/utilisateur/connect.php",function(xhr){
-		popUpCallback(xhr,envoieConnexion,true);
+		popUpCallback(xhr,envoieConnexion);
 	});
 }
 
-function lancePopUpCreationCompte1(){
+function lancePopUpCreationCompte(){
 	requeteAJAX("php/view/utilisateur/update.php",function(xhr){
-		popUpCallback(xhr,envoieCreationCompte,true);
-	});
-}
-
-function lancePopUpConnexion2(){
-	requeteAJAX("php/view/utilisateur/connect.php",function(xhr){
-		popUpCallback(xhr,envoieConnexion,false);
-	});
-}
-
-function lancePopUpCreationCompte2(){
-	requeteAJAX("php/view/utilisateur/update.php",function(xhr){
-		popUpCallback(xhr,envoieCreationCompte,false);
+		popUpCallback(xhr,envoieCreationCompte);
 	});
 }
 
@@ -196,6 +170,8 @@ function hideOnClickOutside(element,elementASupprimer) {
 }
 
 function removePopUp(element){
+	var instance = M.Sidenav.getInstance(document.getElementById("slide-out"));
+	instance.close();
 	element.parentNode.removeChild(element);
 	removeClickListener();
 	canScroll();
@@ -248,24 +224,24 @@ document.addEventListener("DOMContentLoaded", function() {
 	//connexion1 et creationCompteBouton1 correspondent aux <a> dans le menu "Desktop" (en haut à droite)
 	let connexion1=document.getElementById("connexion1");
 	if(connexion1!==null){
-		connexion1.addEventListener("click", lancePopUpConnexion1);
+		connexion1.addEventListener("click", lancePopUpConnexion);
 	}
 
 
 	let creationCompteBouton1=document.getElementById("creationCompte1");
 	if(creationCompteBouton1!==null){
-		creationCompteBouton1.addEventListener("click",  lancePopUpCreationCompte1);
+		creationCompteBouton1.addEventListener("click",  lancePopUpCreationCompte);
 	}
 
 	//eux correspondent aux <a> dans le burger menu
 	let connexion2=document.getElementById("connexion2");
 	if(connexion2!==null){
-		connexion2.addEventListener("click", lancePopUpConnexion2);
+		connexion2.addEventListener("click", lancePopUpConnexion);
 	}
 
 	let creationCompteBouton2=document.getElementById("creationCompte2");
 	if(creationCompteBouton2!==null){
-		creationCompteBouton2.addEventListener("click",  lancePopUpCreationCompte2);
+		creationCompteBouton2.addEventListener("click",  lancePopUpCreationCompte);
 	}
 
 	let deconnexion1=document.getElementById("deconnexion1");
@@ -277,6 +253,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	if(deconnexion2!==null){
 		deconnexion2.addEventListener("click", deconnect);
 	}
+
+	window.addEventListener('resize', function(){
+		if(window.matchMedia("(min-width: 1101px)").matches){
+			var instance = M.Sidenav.getInstance(document.getElementById("slide-out"));
+			instance.close();			
+		}
+	});
 
 });
 
