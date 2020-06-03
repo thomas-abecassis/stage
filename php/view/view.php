@@ -52,7 +52,7 @@
     if(Session::is_admin()){
 
       echo '<li><div class="divider"></div></li>
-            <li><a href="index/utilisateur/readAll/">Utilisateurs</a></li>';
+            <li><a href="index/utilisateur/readAll/?page=1">Utilisateurs</a></li>';
     }
     ?>
   </ul>
@@ -61,7 +61,7 @@
                 		<li><a href="index">Accueil</a></li>
                         <?php
                         if(Session::is_admin()){
-                          echo '<li ><a href=" index/utilisateur/readAll/">Utilisateurs</a></li>';
+                          echo '<li ><a href=" index/utilisateur/readAll/?page=1">Utilisateurs</a></li>';
                         }
                         if(isset($_SESSION["login"])){
                             echo "<li><a href=\"index/alerte/read/\">Mes recherches</a></li>";

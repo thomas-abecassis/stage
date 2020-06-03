@@ -86,6 +86,15 @@ class ModelUtilisateur extends Model{
     return get_object_vars($this);
   }
 
+  public static function selectAllByPage($page){
+    $sql = "select * from utilisateur limit " . (($page-1)*30) . ", 30";
+    $req_prep = Model::$pdo->query($sql);
+
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelUtilisateur");
+    $tab_utilisateur= $req_prep->fetchAll();
+    return $tab_utilisateur;
+  }
+
   static public function checkPassword($login,$mdp){
     $u=ModelUtilisateur::select($login);
     if($u==false){

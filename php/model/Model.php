@@ -114,6 +114,13 @@ class Model{
     $req_prep->execute($data);
   }
 
+  public static function count(){
+  	$sql = "select count(*) as nb from " . static::$object ;
+    $req_prep = Model::$pdo->query($sql);
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    $nombre = $req_prep->fetchAll();
+    return $nombre[0]->nb;
+  }
 }
 
 Model::Init();

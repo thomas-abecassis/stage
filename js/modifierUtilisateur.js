@@ -12,8 +12,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function callback(xhr){
+	let role = document.getElementById("role");
 	console.log(xhr.responseText);
 	if(xhr.responseText!="false"){
 		document.getElementById("load").classList.add("displayNone");
+	}
+	if(xhr.responseText==0){
+		role.innerHTML="Simple utilisateur";
+	}
+	else if(xhr.responseText==1){
+		role.innerHTML="Commercial";
+	}
+	else if(xhr.responseText==2){
+		role.innerHTML="Admin";
 	}
 }

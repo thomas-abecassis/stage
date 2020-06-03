@@ -7,7 +7,12 @@ class ControllerUtilisateur {
 
     public static function readAll() {
         if(Session::is_admin()){
-            $tab_v = ModelUtilisateur::selectAll();
+            $page=(int)myGet("page");
+            if($page<1){
+                $page=1;
+            }
+            $nbPage=(int)((ModelUtilisateur::count()-1)/30)+1;;
+            $tab_v = ModelUtilisateur::selectAllByPage($page);
             $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
         }else{
@@ -18,7 +23,7 @@ class ControllerUtilisateur {
 
     public static function Read(){
     	$u=ModelUtilisateur::select($_GET['id']);
-    	if(isset($_SESSION["login"]) && ($u->getLogin()==$_SESSION["login"] || Session::is_admin())){
+    	if($u!==false && isset($_SESSION["login"]) && ($u->getLogin()==$_SESSION["login"] || Session::is_admin()) && !$u->isSuperAdmin()){
             $controller='utilisateur'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 

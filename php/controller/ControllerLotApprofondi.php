@@ -42,7 +42,7 @@ class ControllerLotApprofondi{
         $_SESSION["typesBien"]=$typesBien;
         $_SESSION["nombrePieces"]=$nombrePieces;
         $_SESSION["dataCheckBox"]=$dataCheckBox;
-
+        
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
         $page=myGet("page");
         $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);

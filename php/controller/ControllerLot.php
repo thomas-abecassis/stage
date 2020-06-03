@@ -16,7 +16,7 @@ class ControllerLot {
 
     //! a refactoriser comme dans le controllerLotApprofondi  !\\
     public static function searched(){
-        $page=myGet('page');
+        $page=(int)myGet('page');
         if($page<1){
             $page=1;
         }
@@ -35,7 +35,7 @@ class ControllerLot {
         $_SESSION["dataCheckBox"]=array();
 
         $tab_v = ModelLot::selectByRecherche($data,$page);
-        $page=(int)$page;
+       
         $nbPage=(int)((ModelLot::getNbLotRecherche($data)-1)/15)+1;
         $lot="lot";
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
