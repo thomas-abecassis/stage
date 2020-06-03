@@ -10,7 +10,7 @@ try
       'exceptions' => 0
   ));
 
-  $ret = $clientSOAP->__call('coucou', array());
+  $ret = $clientSOAP->__call('creerLot', array("124", "Montpellier", "123", "123", "maison", "123", "123", "123", "123", "123", "123", "123", "123"));
   echo $ret;
 }
 catch(SoapFault $e)
