@@ -37,14 +37,20 @@ class ControllerUtilisateur {
         if(!filter_var($login, FILTER_VALIDATE_EMAIL)){
             $v=new ModelUtilisateur("","","","","","");
             $isUpdate=false;
-            echo "false";
+            echo "bad_mail_syntax";
         }else{
             $random=Security::generateRandomHex();
-            $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0,$random);
-            $v->save();
-            $mail="http://webinfo.iutmontp.univ-montp2.fr/~abecassist/PHP/TD8/index.php?action=validate&controller=utilisateur&nonce=".$random."&login=".$v->getLogin();
-            mail($login,"activation de votre compte",$mail);
-            echo "true";
+            if(ModelUtilisateur::select($login)!==false){
+                echo "mail_allready_taken";
+                return;
+            }
+            else{
+                $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0,$random);
+                $v->save();
+                $mail="http://webinfo.iutmontp.univ-montp2.fr/~abecassist/PHP/TD8/index.php?action=validate&controller=utilisateur&nonce=".$random."&login=".$v->getLogin();
+                mail($login,"activation de votre compte",$mail);
+                echo "register";
+            }
         }
     }
 

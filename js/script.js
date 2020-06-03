@@ -48,11 +48,15 @@ function reload(xhr){
 function callbackCreationCheck(xhr){
 	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
-	if(xhr.responseText.valueOf()=="true"){
-		racine.innerHTML="<p>Votre compte a été créé</p>";
+	if(xhr.responseText.valueOf()=="register"){
+		racine.innerHTML="  <p class=\"center\"><i class=\"green-text small material-icons\">check</i> </p><p class=\"center\">Votre compte a été créé</p><div class=\"ligne\"></div><p class=\"center\">Allez vérifier votre adresse e-mail</p>";
 	}
-	else{
+	else if(xhr.responseText.valueOf()=="bad_mail_syntax"){
 		notification("mauvais fomat d'adresse e-mail");
+	}else if(xhr.responseText.valueOf()=="mail_allready_taken"){
+		notification("Un compte existe déjà avec cette adresse e-mail");
+	}else{
+		notification("Le compte n'a pas pu être créé");
 	}
 }
 

@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="image/favicon.png" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/couleur.css">
+  <link rel="stylesheet" type="text/css" href="css/socicon/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
@@ -131,12 +132,12 @@
             <div class="ligne"></div>
               <div class="container">
                 <div class="row">
-                  <div class="col l3 push-l2">
+                  <div class="col s6 m3 push-m2">
                     <h5 class="white-text">Contactez nous </h5>
                     <p class="grey-text text-lighten-4">Par téléphone : XX XX XX XX XX</p>
                     <p class="grey-text text-lighten-4">Par mail : toast@gmail.com</p>
                   </div>
-                  <div class="col l3 push-l4">
+                  <div class="col s6 m3 push-m4">
                     <h5 class="white-text">Retrouvez nous sur </h5>
                  <ul class="ft-social-list">
                   <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook"></span></a></li>
