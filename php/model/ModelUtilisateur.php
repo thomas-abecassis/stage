@@ -95,6 +95,39 @@ class ModelUtilisateur extends Model{
     return $tab_utilisateur;
   }
 
+  public static function selectByLoginAndPage($login,$page){
+     $sql = "SELECT * from utilisateur WHERE lower(login) LIKE lower(:tag)";
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+          "tag" => $login . "%",
+      );
+ 
+      $req_prep->execute($values);
+      if($req_prep==false){
+        return false;
+      }
+      $req_prep->setFetchMode(PDO::FETCH_CLASS,"ModelUtilisateur");
+      $tab_utilisateur = $req_prep->fetchAll();
+      return $tab_utilisateur;
+  }
+
+  public static function countByName($login){
+      $sql = "SELECT count(*) as nb from utilisateur WHERE lower(login) LIKE lower(:tag)";
+      // Préparation de la requête
+      $req_prep = Model::$pdo->prepare($sql);
+
+      $values = array(
+          "tag" => $login . "%",
+      );
+ 
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_OBJ);
+      $tab_voit = $req_prep->fetchAll();
+     return $tab_voit[0]->nb;
+  }
+
   static public function checkPassword($login,$mdp){
     $u=ModelUtilisateur::select($login);
     if($u==false){

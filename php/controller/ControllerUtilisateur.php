@@ -21,6 +21,23 @@ class ControllerUtilisateur {
         }
     }
 
+    public static function readByName() {
+        if(Session::is_admin()){
+            $page=(int)myGet("page");
+            if($page<1){
+                $page=1;
+            }
+            $login=myGet("login");
+            $nbPage=(int)((ModelUtilisateur::countByName($login)-1)/30)+1;;
+            $tab_v = ModelUtilisateur::selectByLoginAndPage($login,$page);
+            $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        }else{
+            $controller='lot'; $view='recherche'; $pagetitle='acceuil';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        }
+    }
+
     public static function Read(){
     	$u=ModelUtilisateur::select($_GET['id']);
     	if($u!==false && isset($_SESSION["login"]) && ($u->getLogin()==$_SESSION["login"] || Session::is_admin()) && !$u->isSuperAdmin()){

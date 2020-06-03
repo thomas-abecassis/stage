@@ -1,9 +1,15 @@
 	<div class="container">
+		<form  method="get" action="index/utilisateur/readByName/" class="col s12 m10 l7 offset-m1 offset-l2">
+			<input id= "searchUsers" class="searchBarInput" placeholder="nom d'utilisateur" type="text"  name="login" autocomplete="off"/>
+		</form>
         <?php
-        foreach ($tab_v as $u)
-        	if(!$u->isSuperAdmin()){
-            echo '<div class="col s12 m10 l7 offset-m1 offset-l2"><p> <span >Login : </span><a class="legerGras" href=index/utilisateur/Read/?id='.rawurlencode($u->getLogin()).">" . htmlspecialchars($u->getLogin()) . '</a></p></div>';
-            }
+        if($tab_v!=false){
+	        foreach ($tab_v as $u){
+	        	if(!$u->isSuperAdmin()){
+	            echo '<div class="col s12 m10 l7 offset-m1 offset-l2"><p> <span >Login : </span><a class="legerGras" href=index/utilisateur/Read/?id='.rawurlencode($u->getLogin()).">" . htmlspecialchars($u->getLogin()) . '</a></p></div>';
+	            }
+	        }
+        }
         ?>
 
 
