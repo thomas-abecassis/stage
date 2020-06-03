@@ -1,0 +1,26 @@
+	httpRequest = CREATEOBJECT("WinHttp.WinHttpRequest.5.1")
+	httpRequest.Open("POST", "http://srv.priamftp.fr/ws2/srv2.php", .F.)
+	httpRequest.SetRequestHeader("Content-Type", "text/xml; charset=utf-8")
+	ON ERROR
+	IF bOk
+		IF FILE(strFic)
+			ERASE &strFic
+		ENDIF
+		STORE FCREATE(strFic) TO _text
+		IF _TEXT # -1
+			SET TEXTMERGE ON
+			TEXT NOSHOW
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+				<soapenv:Header/>
+				<soapenv:Body>
+					<getLibEtude><ident><<strHuis>></ident></getLibEtude>
+				</soapenv:Body>
+			</soapenv:Envelope>
+			ENDTEXT
+			FCLOSE(_TEXT)
+			_TEXT = -1
+		ENDIF
+
+		ON ERROR bOk = .F.
+		requestCtlString = FILETOSTR(strFic )
+		httpRequest.Send(requestCtlString )

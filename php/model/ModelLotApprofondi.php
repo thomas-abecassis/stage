@@ -56,7 +56,7 @@ class ModelLotApprofondi {
     }else{
       $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
     }
-    $sql=$sql." LIMIT " . (($page-1)*15) . ", 15";
+    $sql=$sql." order by dateEnregistrement LIMIT " . (($page-1)*15) . ", 15";
     $req_prep = Model::$pdo->prepare($sql);
 
     $values = ModelLotApprofondi::getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
