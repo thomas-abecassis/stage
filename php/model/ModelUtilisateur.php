@@ -87,7 +87,7 @@ class ModelUtilisateur extends Model{
   }
 
   public static function selectAllByPage($page){
-    $sql = "select * from utilisateur limit " . (($page-1)*30) . ", 30";
+    $sql = "select * from utilisateur where role!=3 limit " . (($page-1)*30) . ", 30 ";
     $req_prep = Model::$pdo->query($sql);
 
     $req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelUtilisateur");
@@ -96,7 +96,7 @@ class ModelUtilisateur extends Model{
   }
 
   public static function selectByLoginAndPage($login,$page){
-     $sql = "SELECT * from utilisateur WHERE lower(login) LIKE lower(:tag)";
+     $sql = "SELECT * from utilisateur WHERE lower(login) LIKE lower(:tag) and role !=3 limit " . (($page-1)*30) . ", 30 ";
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 
@@ -113,8 +113,18 @@ class ModelUtilisateur extends Model{
       return $tab_utilisateur;
   }
 
+  public static function count(){
+    $sql = "SELECT count(*) as nb from utilisateur where role!=3";
+    // Préparation de la requête
+ 
+    $req_prep=Model::$pdo->query($sql);
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    $tab_voit = $req_prep->fetchAll();
+     return $tab_voit[0]->nb;
+  }
+
   public static function countByName($login){
-      $sql = "SELECT count(*) as nb from utilisateur WHERE lower(login) LIKE lower(:tag)";
+      $sql = "SELECT count(*) as nb from utilisateur WHERE lower(login) LIKE lower(:tag) and role!=3";
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 

@@ -5,10 +5,15 @@
         <?php
         if($tab_v!=false){
 	        foreach ($tab_v as $u){
-	        	if(!$u->isSuperAdmin()){
 	            echo '<div class="col s12 m10 l7 offset-m1 offset-l2"><p> <span >Login : </span><a class="legerGras" href=index/utilisateur/Read/?id='.rawurlencode($u->getLogin()).">" . htmlspecialchars($u->getLogin()) . '</a></p></div>';
-	            }
 	        }
+        }else{
+        	echo '
+            <div class="col s12 l7 offset-l2 ">  
+              <div class="center">
+                <p class="grandeTailleFont">Aucun utilisateur ne correspond à votre recherche</p>
+              </div>
+            </div>';
         }
         ?>
 
