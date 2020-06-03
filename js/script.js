@@ -213,7 +213,9 @@ function notification(text){
 	}
 	,10);
 	newP.textContent=text;
-	racine.appendChild(newP);
+	if(racine!==null){
+		racine.appendChild(newP);
+	}
 }
 
 
