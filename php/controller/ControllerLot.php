@@ -43,36 +43,6 @@ class ControllerLot {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 
-    /*(public static function Read(){
-    	$v=ModelLot::select(myGet('id'));
-    	if($v==false){
-        $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
-        require File::build_path(array('view','view.php'));  //"redirige" vers la vue
-    	}else{
-        $controller='lot'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
-        $model=$v;
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-	    }
-    }*/
-
-    public static function create(){
-        $v=new ModelLot("","","");
-        $isUpdate=false;
-    	$controller='lot'; $view='update'; $pagetitle='creation de lot';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-
-    public static function created(){
-    	$id=myGet('id');
-    	$nom=myGet('nom');
-    	$prix=myGet('prix');
- 		$v=new ModelLot($id,$nom,$prix);
- 		$v->save();
-        $controller='lot'; $view='created'; $pagetitle='cree';     //appel au modèle pour gerer la BD
-        $tab_v = ModelLot::selectAll();
-        require File::build_path(array("view", "view.php"));
-    }
-
     public static function delete(){
         $id=myGet('id');
         ModelLot::delete($id);
@@ -81,26 +51,7 @@ class ControllerLot {
         require File::build_path(array("view", "view.php"));
     }
 
-    public static function update(){
-        $im=myGet('id');
-        $v=ModelLot::select($im);
-        $isUpdate=true;
-        $controller='lot'; $view='update'; $pagetitle='mise à jour de lot';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-
-
-    public static function updated(){
-        $controller='lot'; $view='updated'; $pagetitle='mise à jour de lot';     //appel au modèle pour gerer la BD
-        $data=array(
-            "id"=>myGet("id"),
-            "nom"=>myGet("nom"),
-            "prix"=>myGet("prix")
-        );
-        ModelLot::update($data);
-        $tab_v = ModelLot::selectAll();
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
+  
     public static function error(){
         $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue

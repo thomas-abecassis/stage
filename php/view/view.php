@@ -8,22 +8,13 @@
   <base href='http://localhost/stage/'>
   <link rel="shortcut icon" href="image/favicon.png" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" type="text/css" href="css/alerte.css">
-  <link rel="stylesheet" type="text/css" href="css/animation.css">
   <link rel="stylesheet" type="text/css" href="css/couleur.css">
-  <link rel="stylesheet" type="text/css" href="css/socicon/style.css">
-  <link rel="stylesheet" type="text/css" href="css/detailLot.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-  <script src="js/util.js" defer></script>
   <script src="js/lib/colorPicker.js" defer></script>
-  <script src="js/sauvegarde.js" defer></script>
-  <script src="js/changerCouleur.js" defer></script>
-  <script src="js/sauvegardePhoto.js" defer></script>
-  <script src="js/initialize.js" defer></script>
-  <script src="js/validForm.js" defer></script>
+  <script src="js/script.js" defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 

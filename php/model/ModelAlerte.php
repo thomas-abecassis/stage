@@ -81,6 +81,11 @@ class ModelAlerte extends Model{
   }
 
 
+  public function getLoginUtilisateur(){
+    return $this->loginUtilisateur;
+  }
+
+
   public function getLocalisation(){
   	if($this->tabSimple["localisation"]!==""){
   		return $this->tabSimple["localisation"];
@@ -108,10 +113,6 @@ class ModelAlerte extends Model{
   	return "Tout Budget";
   }
 
-  public function getLoginUtilisateur(){
-  	return $this->loginUtilisateur;
-  }
-
   public static function checkAll(){
   	$allAlerte=ModelAlerte::selectCol("activeMail",true);
   	foreach ($allAlerte as $alerte) {
@@ -122,7 +123,6 @@ class ModelAlerte extends Model{
   }
 
   public static function alerteCorrespondToUser($id,$login){
-  	echo $id;
   	$alerte=ModelAlerte::select($id);
   	return $alerte->getLoginUtilisateur()==$login;
   }

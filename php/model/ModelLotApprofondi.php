@@ -157,17 +157,17 @@ class ModelLotApprofondi {
 
   public static function getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
     if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
-      $sql="select * from lot";
+      $sql="select count(*) as nbLot from lot";
     }else{
-      $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+      $sql="select count(*) as nbLot from ( " . ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost) . " ) as recherche ";
     }
     $req_prep = Model::$pdo->prepare($sql);
     $values = ModelLotApprofondi::getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
 
     $req_prep->execute($values);
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLotApprofondi');
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
     $tab_lot= $req_prep->fetchAll();
-    return count($tab_lot);
+    return $tab_lot[0]->nbLot;
   }
 
   public static function getAllCategorie($categorie){

@@ -363,7 +363,7 @@ main {
 		margin-left: 5px;
 }
 
-#description{
+.description{
 	margin-top: 1em;
 }
 
@@ -582,6 +582,57 @@ input[type=number] {
   padding: 5% 7% 6% 6%;
 }
 
+/*------------------- alerte ---------------*/
+
+.deleteAlerte{
+  float:right;
+  display: flex;
+  cursor:pointer;
+}
+
+.boutonsAlerte{
+  float:right;
+  display: flex;
+}
+
+.boutonAlerte{
+  border-radius:5px;
+  padding: 10px 25px 10px 25px;
+}
+
+.deleteAlerte span{
+  margin-top: 0.3em;
+}
+
+.boutonModification{
+  border:solid 1px;
+  margin-left: 1.5em;
+  cursor:pointer;
+}
+
+.idAlerte{
+  display:none;
+}
+
+.nomAlerte{
+  font-size: 20px;
+    font-weight: bold;
+    color: #2f2f2f;
+}
+
+.modificationNom{
+  display:none;
+  border-radius: 5px !important;
+    border: solid grey 1px !important;
+    padding-left: 5px !important;
+    width:95% !important;
+}
+
+.contientNom{
+  width: 50%;
+    overflow: hidden;
+}
+
 @media (min-width: 1101px){
 
   #logo{
@@ -608,6 +659,302 @@ input[type=number] {
   }
 
 }
+
+/* --- animation --- */
+
+.iconeNotif{
+          -webkit-animation: wobble-hor-bottom 2.5s both;
+          animation: wobble-hor-bottom 2.5s both;
+          animation-iteration-count: infinite;
+          }
+
+@keyframes wobble-hor-bottom {
+  0%,40%,80%
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  8% {
+    -webkit-transform: translateX(3px) rotate(-20deg);
+            transform: translateX(3px) rotate(-20deg);
+  }
+  16% {
+    -webkit-transform: translateX(-3px) rotate(20deg);
+            transform: translateX(-3px) rotate(20deg);
+  }
+  24% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  32% {
+    -webkit-transform: rotate(6deg);
+            transform: rotate(6deg);
+  }
+  40% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+}
+
+@-webkit-keyframes wobble-hor-bottom {
+  0%,24%,80%
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  4% {
+    -webkit-transform: translateX(3px) rotate(-6deg);
+            transform: translateX(3px) rotate(-6deg);
+  }
+  8% {
+    -webkit-transform: translateX(-3px) rotate(6deg);
+            transform: translateX(3px) rotate(6deg);
+  }
+  12% {
+    -webkit-transform: rotate(-3.6deg);
+            transform: rotate(-3.6deg);
+  }
+  16% {
+    -webkit-transform: rotate(2.4deg);
+            transform: rotate(2.4deg);
+  }
+  20% {
+    -webkit-transform: rotate(-1.2deg);
+            transform: rotate(-1.2deg);
+  }
+}
+
+/* ------- detail lot -------- */
+
+
+.selectionne{
+  opacity: .3;
+}
+
+.infosEssentiels{
+  padding:1rem 2rem 1.5rem 2rem;
+}
+
+.nom{
+    font-weight: bold;
+}
+
+#boutonDroite{
+  position: absolute;
+  top:50%;
+  right:-1rem;
+  opacity: 0.8;
+}
+
+#boutonGauche{
+  position: absolute;
+  top:50%;
+  left:-1rem;
+  opacity: 0.8;
+}
+
+.myCarousel{
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+
+#myCarouselBouton{
+    width: 62vh;
+    min-height: 8vh;
+    position: absolute;
+    bottom: 0rem;
+
+}
+
+.slide{
+  position: absolute;
+  max-height: 100%;
+  max-width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: 1s;
+  display:flex;
+}
+
+.intoSlide{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: relative;
+}
+
+.flexSlide{
+    flex: 0 0 100%;
+}
+
+.intoSlideBouton{
+  max-width: 75% !important;
+  margin-left: 12.5% !important;
+  margin-right: 12.5% !important;
+}
+
+.intoSlideImage{
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.intoSlide img{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.boutonSlider{
+  padding:0 !important;
+  border-radius: 0.5rem;
+  height: 6vh;
+  border: solid black 1px;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s;
+  background-color: white;
+}
+
+
+.boutonSlider:hover{
+  box-shadow: 0 0px 3px 0 rgba(0,0,0,0.14), 0 3px 3px -3px rgba(0,0,0,0.12), 0 3px 6px 0 rgba(0,0,0,0.2) !important;
+  cursor:pointer;
+}
+
+
+.ImageBoutonSlide{
+  border-radius: 0.5rem;
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  transition: opacity .3s;
+}
+
+
+
+@media (min-width: 1101px){
+
+  .carteLot{
+    float: left;
+    padding:0 !important;
+    width:auto !important;
+  }
+
+
+  .containerLot{
+      margin-top: 1em !important;
+      margin-left: 25%;
+  }
+
+
+  #myCarouselImage{
+      background-color: #cad1d9;
+      width: 62vh;
+     min-height: 52vh;
+  }
+
+  #contact{
+    float: left;
+    margin-left: 1em;
+    font-size: 19px;
+    min-width: 29vh;
+  }
+
+  #descriptionWrapper{
+    margin-right: calc(100% - 40em - 25%);
+    margin-left: 25%;
+    display: inline-block;
+  }
+
+  .descriptionWrap{
+    width:62vh;
+  }
+
+  .titrePartie{
+    font-size: 20px;
+    font-weight:600;
+  }
+
+
+  .nom{
+      font-size: 25px;
+  }
+
+  .loyer{
+    font-size: 20px;
+  }
+
+}
+
+@media (min-width: 100px) and (max-width: 1100px) {
+
+  .infosEssentiels{
+    font-size: 1.8em;
+    padding:1rem 2rem 1.5rem 2rem;
+  }
+
+  .carteLot{
+    padding:0 !important;
+    width:auto !important;
+  }
+
+  .containerLot{
+      margin-top: 1em !important;
+  }
+
+  #myCarouselImage{
+      background-color: #cad1d9;
+     min-height: 32vh;
+  }
+
+  #myCarouselBouton{
+    display: none;
+  }
+
+  #contact{
+    margin-top:2em;
+    float: left;
+    font-size: 19px;
+    width: 100vw;
+    font-size: 1.5em;
+  }
+
+  #descriptionWrapper{
+    width:100vw;
+    display: inline-block;
+  }
+
+  .descriptionWrap{
+    width:100vw;
+  }
+
+  .paddingSmall{
+    padding-left: 1em;
+  }
+
+  .titrePartie{
+    font-size: 1.5em;
+    font-weight:600;
+  }
+}
+
+/* ------- smartphone ------ */
 
 @media (min-width: 100px) and (max-width: 1100px) {
   html{

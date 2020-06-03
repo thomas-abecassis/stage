@@ -107,8 +107,10 @@
 			if(SESSION::is_commercial()){
 				echo '<div class="paddingSmall">
 						<span class="titrePartie" >Informations commercial</span>
-					</div>
-						<div class="decoupageSection"></div>';
+						<div class="description">';
+				echo $lot->getInformationsCommercial();
+				echo '</div>
+					  <div class="decoupageSection"></div>';
 			}
 		?>
 		<div class="paddingSmall">
@@ -139,7 +141,7 @@
 		<div class="decoupageSection"></div>
 		<div class="paddingSmall">
 		<span class="titrePartie" >Description</span>
-			<div  id="description">
+			<div  class="description">
 				<?php
 					echo $lot->getDescription();
 				?>

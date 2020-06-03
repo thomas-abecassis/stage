@@ -3,12 +3,6 @@ require_once File::build_path(array("model", "ModelAlerte.php")); // chargement 
 
 class ControllerAlerte {
 
-    public static function readAll() {
-        $tab_v = ModelUtilisateur::selectAll();
-        $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-
     public static function Read(){
         if (isset($_SESSION["login"])){
             $alertes=ModelAlerte::selectCol("loginUtilisateur",$_SESSION["login"]);

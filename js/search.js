@@ -1,8 +1,10 @@
 let searchBox=document.getElementById("searchBoxVille");
 
 searchBox.addEventListener("input", function(){
-	search();
-	if(searchBox.value.length==0){
+	if(searchBox.value.length!==0){
+		search();
+	}
+	else{
 		document.getElementById('resultSearchVille').innerHTML="";
 	}
 });
@@ -73,7 +75,7 @@ function search(){
 }
 
 function callback(xhr){
-	if(xhr.responseText!=="false"){
+	if(xhr.responseText!=="false" && searchBox.value.length!==0){
 		let tabVilles=JSON.parse(xhr.responseText);
 		tabVilles=trierVilles(tabVilles);
 		miseEnFormeResultat(tabVilles);

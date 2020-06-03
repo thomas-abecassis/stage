@@ -1,3 +1,20 @@
+function requeteAJAX(url,callback) {
+	let requete = new XMLHttpRequest();
+	requete.open("GET", url, true);
+	requete.addEventListener("load", function () {
+		callback(requete);
+	});
+	requete.send(null);
+}
+
+function inArray(arr){
+	let tmp=[];
+	for(let i=0;i<arr.length;i++){
+		tmp.push(arr[i]);
+	}
+	return tmp;
+}
+
 const isVisible= function(elem) { return !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length )};
 let outsideClickListener;
 let removeClickListener;
@@ -213,6 +230,98 @@ function lighten(rgb,ratio){
 	return "rgb("+r+" , "+ g+" , "+b+")";
 }
 
+function createColorPicker(element,variableCouleur){
+	var picker = new Picker(element);
+
+	picker.onChange = function(color) {
+		modifierCouleur(variableCouleur,color.rgbaString);
+	};
+
+	picker.onDone = function(color){
+		let url;
+		if(variableCouleur=="premiereCouleur"){
+			url="index/Utility/changerCouleur/?secondColor="+previousSecondColor+"&mainColor="+color.rgbaString;
+			previousMainColor=color.rgbaString;
+		}
+		else{
+			url="index/Utility/changerCouleur/?secondColor="+color.rgbaString+"&mainColor="+previousMainColor;
+			previousSecondColor=color.rgbaString;
+		}
+		console.log(url);
+		requeteAJAX(url,callbackCouleur);
+		checkCouleur=true;
+	}
+
+	picker.onOpen = function(){
+		checkCouleur=false;
+	}
+
+	picker.onClose = function(color){
+		if (!window.document.documentMode) {
+			setTimeout(function () {
+		        if (!checkCouleur) {
+		        	if(variableCouleur=="premiereCouleur"){
+		        		console.log("je set");
+		        		modifierCouleur("premiereCouleur",previousMainColor); 
+					}
+					else{
+						console.log("je set secnode");
+						modifierCouleur("secondeCouleur",previousSecondColor); 
+					}
+		        }
+		    }, 10);
+			
+		}
+	}
+}
+
+
+function callbackCouleur(xhr){
+	console.log(xhr.responseText);
+}
+
+function modifierCouleur(nomCouleur, couleur){
+	let selects = document.getElementsByClassName(nomCouleur);
+ 	for(let i =0, il = selects.length;i<il;i++){
+     	selects[i].setAttribute('style', 'background-color :  '+couleur+' !important');
+  	}
+  	selects = document.getElementsByClassName(nomCouleur+"Text");
+ 	for(let i =0, il = selects.length;i<il;i++){
+ 		selects[i].setAttribute('style', 'color : '+couleur+' !important');
+ 	}
+  	selects = document.getElementsByClassName(nomCouleur+"Border");
+ 	for(let i =0, il = selects.length;i<il;i++){
+ 		selects[i].setAttribute('style', 'border-color :  '+couleur+' !important');
+  	}
+}
+
+function modifieImage(input,element){
+	element.src=window.URL.createObjectURL(input.files[0]);
+}
+
+function modifieImageStyle(input,element){
+	element.style.backgroundImage = "url('" + window.URL.createObjectURL(input.files[0]) + "')";
+}
+
+function metAJourImage(ev,form,nomFichier){
+	oData = new FormData(form);
+	oData.append("nomFichier", nomFichier);
+	var oReq = new XMLHttpRequest();
+	oReq.open("POST", "index/Utility/saveImage/", true);
+	oReq.onload = function(oEvent) {
+	    callbackPhoto(oReq);
+	};
+	oReq.send(oData);
+}
+
+function callbackPhoto(xhr){
+	document.location.reload(true);
+}
+
+function compareElementValue(elementX, elementY){
+	return elementX.value && elementY.value && elementX.value > elementY.value;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	
 	sauvegarde=document.getElementById("sauvegardeAnnonce");
@@ -261,6 +370,76 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	});
 
+
+	let picker1 = document.querySelector('#colorPicker1');
+	let picker2 = document.querySelector('#colorPicker2');
+	//dans la page html il y a toujours ces elements en display none
+	previousMainColor=window.getComputedStyle(document.getElementById("premiereCouleur")).getPropertyValue('color');
+	previousSecondColor=window.getComputedStyle(document.getElementById("secondeCouleur")).getPropertyValue('color');
+
+	let checkCouleur=false;
+
+	createColorPicker(picker1,"premiereCouleur");
+	createColorPicker(picker2,"secondeCouleur");
+
+
+	let inputPhotoLogo=document.getElementById("inputPhotoLogo");
+	var formLogo = document.getElementById("formLogo");
+	let inputPhotoBanniere=document.getElementById("inputPhotoBanniere");
+	var formBanniere = document.getElementById("formBanniere");
+
+		if(inputPhotoLogo!=null){
+			inputPhotoLogo.addEventListener('change', function() {
+				modifieImage(this,document.getElementById("logo"));
+			});
+
+			formLogo.addEventListener('submit', function(ev) {
+				ev.preventDefault();
+				metAJourImage(ev,formLogo,"logo");
+			});
+
+			inputPhotoBanniere.addEventListener('change', function() {
+				modifieImageStyle(this,document.getElementById("banniere"));
+			});
+
+			formBanniere.addEventListener('submit', function(ev) {
+				ev.preventDefault();
+				metAJourImage(ev,formBanniere,"banniere");
+			});
+		}
+
+	$('.sidenav').sidenav();
+    $('.modal').modal();
+	$('.dropdown-trigger').dropdown({
+	 	'coverTrigger':false
+	});
+
+	
+	let submit=document.getElementById("submitForm");
+
+	if (submit!==null){
+		let minEur=document.getElementById("minEur");
+		let maxEur=document.getElementById("maxEur");
+
+		let minSurface=document.getElementById("minSurface");
+		let maxSurface;
+		if(minSurface!==null){
+			maxSurface=document.getElementById("maxSurface");
+		}
+
+		submit.addEventListener("submit",function(event){
+			if(compareElementValue(minEur, maxEur)){
+				event.preventDefault();
+				let notEur=document.getElementById("notifEur");
+				notEur.classList.remove("displayNone");
+			}
+			if(minSurface!==null && compareElementValue(minSurface, maxSurface)){
+				event.preventDefault();
+				let notSurface=document.getElementById("notifSurface");
+				notSurface.classList.remove("displayNone");
+			}
+		});
+	}
 });
 
 

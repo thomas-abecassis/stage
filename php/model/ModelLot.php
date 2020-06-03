@@ -11,6 +11,7 @@ class Modellot extends Model{
   private $description;
   private $typeDeBien;
   private $nombrePiece;
+  private $informationsCommercial;
   protected static $object = "lot";
   protected static $primary='id';
 
@@ -41,6 +42,10 @@ class Modellot extends Model{
     return $this->loyer;
   }
 
+  public function getInformationsCommercial(){
+    return $this->informationsCommercial;
+  }
+
   public function setprix($prix){
     if(strlen($prix)==8){
     $this->prix=$prix;
@@ -66,16 +71,14 @@ class Modellot extends Model{
     return get_object_vars($this);
   }
 
-public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL) {
+public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL,$inf = NULL) {
   if (!is_null($i)  && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d)) {
-    // Si aucun de $m, $c et $i sont nuls,
-    // c'est forcement qu'on les a fournis
-    // donc on retombe sur le constructeur à 3 arguments
     $this->id = $i;
     $this->localisation = $loc;
     $this->loyer = $loy;
     $this->surface = $sur;
     $this->d=$d;
+    $this->informationsCommercial=$inf;
   }
 }
 
@@ -96,36 +99,36 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
 
           // On récupère les résultats comme précédemment
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
-    $tab_voit = $req_prep->fetchAll();
+    $tab_lot = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
-    if (empty($tab_voit))
+    if (empty($tab_lot))
         return false;
-    return $tab_voit;
+    return $tab_lot;
   }
 
   public static function getTableauPrep($data){
-    $ar=array();
+    $tabPrep=array();
     foreach ($data as $key => $v) {
       if(strlen($v)!=0){
-        $ar[$key]=$v;
+        $tabPrep[$key]=$v;
       }
     }
-    return $ar;
+    return $tabPrep;
   }
 
   public static function getNbLotRecherche($data){
     if(!array_filter($data)){
-      $sql="select * from lot";
+      $sql="select count(*) as nbLot from lot";
     }else{
-      $sql=ModelLot::getSqlSearch($data);
+      $sql="select count(*) as nbLot from ( " . ModelLot::getSqlSearch($data) . " ) as recherche";
     }
     $req_prep = Model::$pdo->prepare($sql);
     $values = ModelLot::getTableauPrep($data);
 
     $req_prep->execute($values);
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
     $tab_lot= $req_prep->fetchAll();
-    return count($tab_lot);
+    return $tab_lot[0]->nbLot;
   }
 
   //refactorisation à faire 

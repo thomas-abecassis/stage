@@ -94,23 +94,5 @@ class ControllerLotApprofondi{
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
         }
     }
-
-    //cette fonction sert à convertir le noms des options ou des commodites vers une icone html.
-    /*private static function optionToIcon($option){
-        if(strcmp($option, "piscine")==0){
-            return ' <i title="piscine" class="material-icons">pool</i>';
-        }
-        else{
-            return $option;
-        }
-    }
-
-    private static function optionsToIcons($options){
-        for($i=0;$i<count($options);$i++){
-            $options[$i]=ControllerLotApprofondi::optionToIcon($options[$i]);
-        }
-        return $options; 
-    }*/
-
 }
 ?>

@@ -28,35 +28,6 @@ class ControllerUtilisateur {
 	    }
     }
 
-    public static function create(){  
-        $v=new ModelUtilisateur("","","","","","");
-        $isUpdate=false;
-        $controller='utilisateur'; $view='update'; $pagetitle='creation de utilisateur';
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-
-    /*
-    public static function created(){
-    	$login=myGet('login');
-    	$nom=myGet('nom');
-    	$prenom=myGet('prenom');
-        $mdp=myGet('mdp');
-        if(!filter_var($login, FILTER_VALIDATE_EMAIL)){
-            $v=new ModelUtilisateur("","","","","","");
-            $isUpdate=false;
-            $controller='utilisateur'; $view='update'; $pagetitle='creation de utilisateur';
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-        }else{
-            $random=Security::generateRandomHex();
-     		$v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0,$random);
-     		$v->save();
-            $mail="http://webinfo.iutmontp.univ-montp2.fr/~abecassist/PHP/TD8/index.php?action=validate&controller=utilisateur&nonce=".$random."&login=".$v->getLogin();
-            mail($login,"activation de votre compte",$mail);
-            $controller='utilisateur'; $view='created'; $pagetitle='cree';     //appel au modèle pour gerer la BD
-            $tab_v = Modelutilisateur::selectAll();
-            require File::build_path(array("view", "view.php"));  
-        }
-    }*/
 
     public static function createdAjax(){
         $login=myGet('login');
@@ -141,28 +112,6 @@ class ControllerUtilisateur {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue        
     }
 
-    public static function connect(){
-        $controller="utilisateur"; $view="connect"; $pagetitle="connectez vous";
-        require File::build_path(array("view", "view.php"));
-    }
-
-    /*
-    static function connected(){
-        if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
-            $v = ModelUtilisateur::select(myGet("login"));
-            if(is_null($v->getNonce())){
-                $_SESSION["login"] = myGet("login");
-                $_SESSION["admin"] = true;
-            }
-        }
-        else{
-            echo ("MAUVAIS LOGIN OU MDP");
-        }
-        $controller='utilisateur'; $view='details'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-    */
-
     static function connectedAjax(){
         if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
             $v = ModelUtilisateur::select(myGet("login"));
@@ -185,16 +134,6 @@ class ControllerUtilisateur {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
         }
     }
-
-    /*
-    static function disconnect(){
-        session_unset();
-        session_destroy();
-        $tab_v = ModelUtilisateur::selectAll();
-        $controller='utilisateur'; $view='list'; $pagetitle='Liste des utilisateur';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
-    }
-    */
 
     static function disconnectAjax(){
         session_unset();
