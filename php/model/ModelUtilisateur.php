@@ -101,7 +101,7 @@ class ModelUtilisateur extends Model{
       $req_prep = Model::$pdo->prepare($sql);
 
       $values = array(
-          "tag" => $login . "%",
+          "tag" => "%" . $login . "%",
       );
  
       $req_prep->execute($values);
@@ -129,7 +129,7 @@ class ModelUtilisateur extends Model{
       $req_prep = Model::$pdo->prepare($sql);
 
       $values = array(
-          "tag" => $login . "%",
+          "tag" =>"%" . $login . "%",
       );
  
       $req_prep->execute($values);
