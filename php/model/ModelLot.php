@@ -131,43 +131,28 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
     return $tab_lot[0]->nbLot;
   }
 
-  //refactorisation à faire 
   public static function getSqlSearch($data){
       $sql = "SELECT * from lot WHERE";
       $firstCondition=true;
 
-      if(strlen($data["localisation"])!=0){
-        $firstCondition=false;
-        $sql=$sql." localisation = :localisation";
-      }
-      if(strlen($data["minSurface"])!=0){
-        if(!$firstCondition){
-          $sql=$sql." AND";
+      $arr=array(
+        "localisation" => "localisation =",
+        "minSurface" => " surface >=",
+        "maxSurface" => "surface <=",
+        "minBudget" => "loyer >=",
+        "maxBudget" => "loyer <="
+      );
+
+      foreach($arr as $key => $value){
+        if(strlen($data[$key])!=0){
+          if(!$firstCondition){
+            $sql=$sql." AND";
+          }
+          $sql=$sql. " " . $value ." :". $key;
+          $firstCondition=false;
         }
-        $sql=$sql." surface >= :minSurface";
-        $firstCondition=false;
       }
-      if(strlen($data["maxSurface"])!=0){
-        if(!$firstCondition){
-          $sql=$sql." AND";
-        }
-        $sql=$sql." surface <= :maxSurface";
-        $firstCondition=false;
-      }
-      if(strlen($data["minBudget"])!=0){
-        if(!$firstCondition){
-          $sql=$sql." AND";
-        }
-        $sql=$sql." loyer >= :minBudget";
-        $firstCondition=false;
-      }
-      if(strlen($data["maxBudget"])!=0){
-        if(!$firstCondition){
-          $sql=$sql." AND";
-        }
-        $sql=$sql." loyer <= :maxBudget" ;
-        $firstCondition=false;
-      }
+
       return $sql;
   }
 
