@@ -10,6 +10,8 @@ class Serv{
     public static $login = 'abecassist';
     public static $password = 'iutthomas2019';
 
+    private $auth = false;
+
 
 	public static function Init(){
 		$hostname=Serv::$hostname;
@@ -25,11 +27,34 @@ class Serv{
 	}
 
 
+	public function authentification($auth){
+		if(strcmp($auth->login, "test") == 0 && strcmp($auth->password, "toast") == 0){
+			$this->auth = true;
+			return "ok";
+		}
+		return "ko";
+	}
+
+
 	public function coucou(){
-		return "cucouc";
+		if(!$this->auth){
+			return "pas co ";
+		}
+		return "co ";
+	}
+
+	public function test($cc){
+		return "te".$cc;
+	}
+
+	public function test2($cc){
+		return "to".$cc;
 	}
 
 	public function creerLot($id, $ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $typesDePieces, $commodites, $rangements, $orientations, $options){
+		if(!$this->auth){
+			exit();
+		}
 		$sql="INSERT INTO lot (id, localisation, surface, loyer, typeDeBien, nombrePiece,description,informationsCommercial) VALUES ($id,\"$ville\", $surface, $loyer, \"$typeDeBien\", $nombrePiece,\"$description\",\"$informationsCommercial\")";
 		//on enregistre le lot simple
 		Serv::$pdo->exec($sql);
@@ -58,7 +83,21 @@ class Serv{
 	}
 
 	public function saveImage($id, $image){
-
+		if(!$this->auth){
+			exit();
+		}
+		if (!file_exists(File::build_path(array("..","image",$id)))) {
+		    mkdir(File::build_path(array("..","image",$id)), 0777, true);
+		}
+		$i=1;
+		while(file_exists(File::build_path(array("..","image",$id,$i.".jpg")))){
+			$i++;
+		}
+		$location = File::build_path(array("..","image",$id,$i.".jpg"));   // Mention where to upload the file
+        $current = file_get_contents($location);                     // Get the file content. This will create an empty file if the file does not exist     
+        $current = base64_decode($image);                          // Now decode the content which was sent by the client     
+        file_put_contents($location, $current);                      // Write the decoded content in the file mentioned at particular location   
+        return "fait";
 	}
 }
 
