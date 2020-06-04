@@ -14,7 +14,7 @@ class authentificateur{
 try
 {
 
-  $service=new SoapClient("http://localhost/stage/php/lib/test.xml?wsdl");
+  $service=new SoapClient("http://localhost/stage/php/lib/webservice.xml?wsdl");
 
 
   var_dump($service->__getFunctions());
@@ -22,6 +22,17 @@ try
   echo $a;
   $a=$service->__call('test2',array("ast"));
   echo $a;
+
+  $path = '../../image/fond.jpg';
+  $type = pathinfo($path, PATHINFO_EXTENSION);
+  $data = file_get_contents($path);
+  $base64 = base64_encode($data);
+  $ret= $service->__call('saveImage', array("100",$base64));
+  echo $ret;
+
+  $ret = $service->__call('creerLot', array("178", "Montpellier", "123", "123", "maison", "123", "123", "123", array("salle de bain"), array("commodites"), array("cave"), array("sud"), array("gardien")));
+  echo $ret;
+
   //$auth=new authentificateur("test","toast");
   //$soapHeaders[] = new SoapHeader("http://localhost", 'authentification', $auth);
 

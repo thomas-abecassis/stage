@@ -1,0 +1,132 @@
+<definitions name = "HelloService"
+   targetNamespace = "http://localhost/stage/php/lib/webservice.xml"
+   xmlns = "http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns = "http://localhost/stage/php/lib/webservice.xml"
+   xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+
+   <message name = "testParam">
+      <part name = "cc" type = "xsd:string"/>
+   </message>
+      
+   <message name = "testResponse">
+      <part name = "ccRep" type = "xsd:string"/>
+   </message>
+
+   <message name = "saveImageParam">
+      <part name = "idLot" type = "xsd:string"/>
+      <part name = "imageString" type = "xsd:string"/>
+   </message>
+
+   <message name= "creerLotParam">
+      <part name = "idLot" type = "xsd:string"/>
+      <part name = "ville" type = "xsd:string"/>
+      <part name = "surface" type = "xsd:string"/>
+      <part name = "loyer" type = "xsd:string"/>
+      <part name = "typeDeBien" type = "xsd:string"/>
+      <part name = "nombrePiece" type = "xsd:string"/>
+      <part name = "description" type = "xsd:string"/>
+      <part name = "informationsCommercial" type = "xsd:string"/>
+      <part name = "typesDePieces" type = "xsd:anyType"/>
+      <part name = "commodites" type = "xsd:anyType"/>
+      <part name = "rangements" type = "xsd:anyType"/>
+      <part name = "orientations" type = "xsd:anyType"/>
+      <part name = "options" type = "xsd:anyType"/>
+   </message>
+
+   <portType name = "test_PortType">
+      <operation name = "test">
+         <input message = "tns:testParam"/>
+         <output message = "tns:testResponse"/>
+      </operation>
+      <operation name = "test2">
+         <input message = "tns:testParam"/>
+         <output message = "tns:testResponse"/>
+      </operation>
+      <operation name = "saveImage">
+         <input message = "tns:saveImageParam"/>
+         <output message = "tns:testResponse"/>
+      </operation>
+      <operation name = "creerLot">
+         <input message = "tns:creerLotParam"/>
+         <output message = "tns:testResponse"/>
+      </operation>
+   </portType>
+
+   <binding name = "test_Binding" type = "tns:test_PortType">
+      <soap:binding style = "rpc"
+         transport = "http://schemas.xmlsoap.org/soap/http"/>
+      <operation name = "test">
+         <soap:operation soapAction = "test"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "test2">
+         <soap:operation soapAction = "test2"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "saveImage">
+         <soap:operation soapAction = "saveImage"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "creerLot">
+         <soap:operation soapAction = "creerLot"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+   </binding>
+
+   <service name = "test">
+      <documentation>WSDL File for HelloService</documentation>
+      <port binding = "tns:test_Binding" name = "test_Port">
+         <soap:address
+            location = "http://localhost/stage/php/lib/soap.php" />
+      </port>
+   </service>
+</definitions>

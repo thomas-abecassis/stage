@@ -52,9 +52,10 @@ class Serv{
 	}
 
 	public function creerLot($id, $ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $typesDePieces, $commodites, $rangements, $orientations, $options){
-		if(!$this->auth){
-			exit();
-		}
+
+		//if(!$this->auth){
+			//exit();
+		//}
 		$sql="INSERT INTO lot (id, localisation, surface, loyer, typeDeBien, nombrePiece,description,informationsCommercial) VALUES ($id,\"$ville\", $surface, $loyer, \"$typeDeBien\", $nombrePiece,\"$description\",\"$informationsCommercial\")";
 		//on enregistre le lot simple
 		Serv::$pdo->exec($sql);
