@@ -27,35 +27,18 @@ class Serv{
 	}
 
 
-	public function authentification($auth){
-		if(strcmp($auth->login, "test") == 0 && strcmp($auth->password, "toast") == 0){
+	public function authentification($obj){
+		if(strcmp($obj->login, "test") == 0 && strcmp($obj->password, "toast") == 0){
 			$this->auth = true;
 			return "ok";
 		}
 		return "ko";
 	}
 
-
-	public function coucou(){
+	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $typesDePieces, $commodites, $rangements, $orientations, $options){
 		if(!$this->auth){
-			return "pas co ";
+			exit();
 		}
-		return "co ";
-	}
-
-	public function test($cc){
-		return "te".$cc;
-	}
-
-	public function test2($cc){
-		return "to".$cc;
-	}
-
-	public function creerLot($id, $ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $typesDePieces, $commodites, $rangements, $orientations, $options){
-
-		//if(!$this->auth){
-			//exit();
-		//}
 		$sql="INSERT INTO lot (id, localisation, surface, loyer, typeDeBien, nombrePiece,description,informationsCommercial) VALUES ($id,\"$ville\", $surface, $loyer, \"$typeDeBien\", $nombrePiece,\"$description\",\"$informationsCommercial\")";
 		//on enregistre le lot simple
 		Serv::$pdo->exec($sql);
@@ -83,9 +66,9 @@ class Serv{
 		return "fait";
 	}
 
-	public function saveImage($id, $image){
+	public function saveImage($id,$image){
 		if(!$this->auth){
-			exit();
+			return "pas connecté";
 		}
 		if (!file_exists(File::build_path(array("..","image",$id)))) {
 		    mkdir(File::build_path(array("..","image",$id)), 0777, true);
@@ -99,6 +82,15 @@ class Serv{
         $current = base64_decode($image);                          // Now decode the content which was sent by the client     
         file_put_contents($location, $current);                      // Write the decoded content in the file mentioned at particular location   
         return "fait";
+	}
+
+	public function supprimeLots(){
+		if(!$this->auth){
+			return "pas connecté";
+		}
+		$sql="delete from lot";
+		Serv::$pdo->exec($sql);
+		return "fait";
 	}
 }
 

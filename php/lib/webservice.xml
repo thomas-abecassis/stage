@@ -1,3 +1,5 @@
+
+
 <definitions name = "HelloService"
    targetNamespace = "http://localhost/stage/php/lib/webservice.xml"
    xmlns = "http://schemas.xmlsoap.org/wsdl/"
@@ -9,13 +11,18 @@
       <part name = "cc" type = "xsd:string"/>
    </message>
       
-   <message name = "testResponse">
+   <message name = "returnString">
       <part name = "ccRep" type = "xsd:string"/>
    </message>
 
    <message name = "saveImageParam">
       <part name = "idLot" type = "xsd:string"/>
       <part name = "imageString" type = "xsd:string"/>
+   </message>
+
+   <message name = "authentificationParam">
+      <part name = "login" type = "xsd:string"/>
+      <part name = "password" type = "xsd:string"/>
    </message>
 
    <message name= "creerLotParam">
@@ -35,59 +42,27 @@
    </message>
 
    <portType name = "test_PortType">
-      <operation name = "test">
-         <input message = "tns:testParam"/>
-         <output message = "tns:testResponse"/>
-      </operation>
-      <operation name = "test2">
-         <input message = "tns:testParam"/>
-         <output message = "tns:testResponse"/>
+      <operation name = "authentification">
+         <input message = "tns:authentificationParam"/>
+         <output message = "tns:returnString"/>
       </operation>
       <operation name = "saveImage">
          <input message = "tns:saveImageParam"/>
-         <output message = "tns:testResponse"/>
+         <output message = "tns:returnString"/>
       </operation>
       <operation name = "creerLot">
          <input message = "tns:creerLotParam"/>
-         <output message = "tns:testResponse"/>
+         <output message = "tns:returnString"/>
+      </operation>
+      <operation name = "supprimeLots">
+         <output message = "tns:returnString"/>
       </operation>
    </portType>
 
    <binding name = "test_Binding" type = "tns:test_PortType">
       <soap:binding style = "rpc"
          transport = "http://schemas.xmlsoap.org/soap/http"/>
-      <operation name = "test">
-         <soap:operation soapAction = "test"/>
-         <input>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "http://localhost/stage/php/lib/webservice.xml"
-               use = "encoded"/>
-         </input>
-            
-         <output>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "http://localhost/stage/php/lib/webservice.xml"
-               use = "encoded"/>
-         </output>
-      </operation>
-      <operation name = "test2">
-         <soap:operation soapAction = "test2"/>
-         <input>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "http://localhost/stage/php/lib/webservice.xml"
-               use = "encoded"/>
-         </input>
-            
-         <output>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "http://localhost/stage/php/lib/webservice.xml"
-               use = "encoded"/>
-         </output>
-      </operation>
+
       <operation name = "saveImage">
          <soap:operation soapAction = "saveImage"/>
          <input>
@@ -106,6 +81,38 @@
       </operation>
       <operation name = "creerLot">
          <soap:operation soapAction = "creerLot"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "supprimeLots">
+         <soap:operation soapAction = "creerLot"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "authentification">
+         <soap:operation soapAction = "authentification"/>
          <input>
             <soap:body
                encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"

@@ -1,0 +1,71 @@
+ <!-- Pour supprimer tout les lots -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+		<authentification>
+			<login>test</login>
+			<password>toast</password>
+		</authentification>
+    </soapenv:Header>
+	<soapenv:Body>
+	<supprimeLots></supprimeLots>
+	</soapenv:Body>
+</soapenv:Envelope>
+
+ <!-- enregistrer une image -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+		<authentification>
+			<login>test</login>
+			<password>toast</password>
+		</authentification>
+    </soapenv:Header>
+	<soapenv:Body>
+	<saveImage>
+		<idLot>58008</idLot>
+		<imageString>Ym9uam91cg==</imageString>
+	</saveImage>
+	</soapenv:Body>
+</soapenv:Envelope>
+
+ <!-- enregistrer un lot -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+		<authentification>
+			<login>test</login>
+			<password>toast</password>
+		</authentification>
+    </soapenv:Header>
+	<soapenv:Body>
+	<creerLot>
+      <idLot>5365</idLot>
+      <ville>Montpellier</ville>
+      <surface>11</surface>
+      <loyer>11</loyer>
+      <typeDeBien>maison</typeDeBien>
+      <nombrePiece>2</nombrePiece>
+      <description>2</description>
+      <informationsCommercial>2</informationsCommercial>
+      <typesDePieces>
+      	 <!-- typesDePieces est un tableau, le nom des balises à l'intérieur sont osef -->
+      	<typesDePieces1>salle de bain</typesDePieces1>
+      	<typesDePieces2>toilettes séparée</typesDePieces2>
+      </typesDePieces>
+      <commodites>
+      	<commodites1>alarme</commodites1>
+      	<commodites2>balcon</commodites2>
+      </commodites>
+      <rangements>
+      	<rangements1>cave</rangements1>
+      	<rangements2>garage</rangements2>      	
+      </rangements>
+      <orientations>
+      	<orientations1>est</orientations1>
+      	<orientations2>nord</orientations2>
+      </orientations>
+      <options>
+      	<options1>gardien</options1>
+      	<options2>interphone</options2>
+      </options>
+	</creerLot>
+	</soapenv:Body>
+</soapenv:Envelope>
