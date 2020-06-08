@@ -14,17 +14,6 @@
 				        	</div>
 				    	</div>
 				    	<div class="categorie row">
-				       		<div class="titreCategorie">Type(s) de bien
-				       			<div class="col s12 ligne"></div></div>
-				       			<div class="contientCheckBox">
-				       				<?php
-				       					foreach ($typesDeBiens as $type) {
-				       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeBien". ucfirst($type->typeDeBien) ."\" /><span> ".$type->typeDeBien." </span></label>";
-				       					}
-				       				?>
-		      					</div>
-				    	</div>
-				    	<div class="categorie row">
 				       		<div class="titreCategorie">Budget
 				       			<div class="col s12 ligne"></div></div>
 
@@ -43,86 +32,23 @@
 
 				          		<span id="notifSurface" class="displayNone red-text text-darken-1 col s7">La surface minimum doit être inférieur au maximum</span>
 				    	</div>
-				    	<!--<div class="categorie row">
-				       		<div class="titreCategorie">Nombre de chambre(s)
-				       			<div class="col s12 ligne"></div>
-				       			<div class="contientCheckBox">
-		      						<label ><input type="checkbox" class="filled-in" name="nombreChambre1" /><span> 1 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombreChambre2"/><span> 2 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombreChambre3"/><span> 3 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombreChambre4"/><span> 4 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombreChambre5"/><span> 5 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombreChambre6Plus"/><span> 6+ </span></label>
-		      					</div>
-				        	</div>
-				    	</div>-->
-				    	<div class="categorie row">
-				       		<div class="titreCategorie">Nombre de pièces
-				       			<div class="col s12 ligne"></div></div>
-				       			<div class="contientCheckBox">
-		      						<label ><input type="checkbox" class="filled-in" name="nombrePieces1" /><span> 1 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombrePieces2"/><span> 2 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombrePieces3" /><span> 3 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombrePieces4" /><span> 4 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombrePieces5" /><span> 5 </span></label>
-		      						<label ><input type="checkbox" class="filled-in" name="nombrePieces6Plus" /><span> 6+ </span></label>
-				        		</div>
-				    		</div>
-				    	<div class="categorie row">
-				       		<div class="titreCategorie">Type(s) de pièces
-				       			<div class="col s12 ligne"></div></div>
-				       			<div class="contientCheckBox">
-				       				<?php
-				       					foreach ($typesDePieces as $piece) {
-				       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typePiece". ucfirst($piece->typeDePieces) ."\" /><span> ".$piece->typeDePieces." </span></label>";
-				       					}
-				       				?>
-				        		</div>
-				    		</div>
-				    	<div class="categorie row">
-				       		<div class="titreCategorie">Commodité(s)
-				       			<div class="col s12 ligne"></div></div>
-				       				<div class="contientCheckBox">
-				       				<?php
-				       					foreach ($commodites as $commodite) {
-				       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"commodite". ucfirst($commodite->commodites) ."\" /><span> ".$commodite->commodites." </span></label>";
-				       					}
-				       				?>
-			      					</div>
-				    	</div>
-				    		<div class="categorie row">
-				       		<div class="titreCategorie">Rangement(s)
-				       			<div class="col s12 ligne"></div></div>
-				       				<div class="contientCheckBox">
-				       				<?php
-				       					foreach ($rangements as $rangement) {
-				       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"rangement". ucfirst($rangement->rangement) ."\" /><span> ".$rangement->rangement." </span></label>";
-				       					}
-				       				?>
-			      					</div>
-				    	</div>
-				    		<div class="categorie row">
-				       		<div class="titreCategorie">Orientation(s)
-				       			<div class="col s12 ligne"></div></div>
-				       				<div class="contientCheckBox">
-				       				<?php
-				       					foreach ($orientations as $orientation) {
-				       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"orientation". ucfirst($orientation->orientation) ."\"/><span> ".$orientation->orientation." </span></label>";
-				       					}
-				       				?>
-			      					</div>
-				    	</div>
-				    	<div class="categorie row">
-				       		<div class="titreCategorie">Option(s)
-				       			<div class="col s12 ligne"></div></div>
-				       				<div class="contientCheckBox">
-					       				<?php
-					       					foreach ($options as $option) {
-					       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"myOptions". ucfirst($option->options) ."\" /><span> ".$option->options." </span></label>";
-					       					}
-					       				?>
-			      					</div>
-			      	</div>
+
+				    	<?php
+				    		foreach ($categorieValeurs as $nomCategorie => $values) {
+
+				    			echo "
+						    	<div class=\"categorie row\">
+						       		<div class=\"titreCategorie\">$nomCategorie
+						       			<div class=\"col s12 ligne\"></div></div>
+						       				<div class=\"contientCheckBox\">";
+							       					foreach ($values as $value) {
+							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"myOptions". ucfirst($value) ."\" /><span> ".$value." </span></label>";
+							       					}
+							    echo "
+					      					</div>
+					      	</div>";
+				    		}
+				    	?>
 			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
 		  		</div>
 			    </div>

@@ -30,9 +30,10 @@ class Serv{
 	public function authentification($obj){
 		if(strcmp($obj->login, "test") == 0 && strcmp($obj->password, "toast") == 0){
 			$this->auth = true;
-			return "ok";
 		}
-		return "ko";
+		else{
+			return "mauvais login et mdp";
+		}
 	}
 
 	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $typesDePieces, $commodites, $rangements, $orientations, $options){
@@ -41,7 +42,10 @@ class Serv{
 		}
 		$sql="INSERT INTO lot (id, localisation, surface, loyer, typeDeBien, nombrePiece,description,informationsCommercial) VALUES ($id,\"$ville\", $surface, $loyer, \"$typeDeBien\", $nombrePiece,\"$description\",\"$informationsCommercial\")";
 		//on enregistre le lot simple
-		Serv::$pdo->exec($sql);
+
+		if(!Serv::$pdo->exec($sql)){
+			return false;
+		}
 
 		$tables=array(	"typeDePiecesLot" => $typesDePieces,
 						"commoditesLot" => $commodites,
@@ -63,7 +67,7 @@ class Serv{
 			Serv::$pdo->exec($sql);
 		}
 		
-		return "fait";
+		return true;
 	}
 
 	public function saveImage($id,$image){
@@ -82,6 +86,12 @@ class Serv{
         $current = base64_decode($image);                          // Now decode the content which was sent by the client     
         file_put_contents($location, $current);                      // Write the decoded content in the file mentioned at particular location   
         return "fait";
+	}
+
+	public function supprimerImage(){
+	  //foreach(glob($dir . '/*') as $file) { 
+	    //if(is_dir($file)) delete_files($file); else unlink($file); 
+	  //} rmdir($dir); 
 	}
 
 	public function supprimeLots(){

@@ -170,23 +170,27 @@ class ModelLotApprofondi {
     return $tab_lot[0]->nbLot;
   }
 
-  public static function getAllCategorie($categorie){
-    $sql="SELECT " . $categorie . " FROM " . $categorie;
+  public static function getAllCategories(){
+    $sql="SELECT * FROM categories";
     $rep=Model::$pdo->query($sql);
-    return $rep->fetchAll(PDO::FETCH_OBJ); 
+    return $rep->fetchAll(PDO::FETCH_OBJ);
   }
 
-  public static function getAllTypesBiens(){ return ModelLotApprofondi::getAllCategorie("typeDeBien"); }
-
-  public static function getAllTypesPieces(){ return ModelLotApprofondi::getAllCategorie("typeDePieces"); }
-
-  public static function getAllCommodites(){ return ModelLotApprofondi::getAllCategorie("commodites"); }
-
-  public static function getAllTypesRangements(){ return ModelLotApprofondi::getAllCategorie("rangement"); }
-
-  public static function getAllOrientations(){ return ModelLotApprofondi::getAllCategorie("orientation"); }
-
-  public static function getAllOptions(){ return ModelLotApprofondi::getAllCategorie("options"); }
+  public static function getAllValeursCategories(){
+    $categories=ModelLotApprofondi::getAllCategories();
+    $valeurs=array();
+    foreach ($categories as $categorie) {
+      $ar=array();
+      $sql="select valeur from sousCategorie where categorieId=".$categorie->id;
+      $rep=Model::$pdo->query($sql);
+      $rep=$rep->fetchAll(PDO::FETCH_OBJ);
+      foreach ($rep as $valeurCategorie) {
+        array_push($ar, $valeurCategorie->valeur);
+      }
+      $valeurs[$categorie->categorie]=$ar;
+    }
+    return $valeurs;
+  }
 
   public static function unsetSession(){
     $_SESSION['typesBien']=array();

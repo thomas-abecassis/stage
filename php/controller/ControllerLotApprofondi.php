@@ -8,12 +8,7 @@ class ControllerLotApprofondi{
 
     public static function searchDeepen() {
         $controller='lot'; $view='rechercheApprofondie'; $pagetitle='Recherche de biens approfondie';     //appel au modèle pour gerer la BD
-        $typesDeBiens=ModelLotApprofondi::getAllTypesBiens();
-        $typesDePieces=ModelLotApprofondi::getAllTypesPieces();
-        $commodites=ModelLotApprofondi::getAllCommodites();
-        $rangements=ModelLotApprofondi::getAllTypesRangements();
-        $orientations=ModelLotApprofondi::getAllOrientations();
-        $options=ModelLotApprofondi::getAllOptions();
+        $categorieValeurs=ModelLotApprofondi::getAllValeursCategories();
         require File::build_path(array("view", "view.php"));
     }
 

@@ -37,7 +37,7 @@
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>5365</idLot>
+      <idLot>1</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>
@@ -46,7 +46,7 @@
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
       <typesDePieces>
-      	 <!-- typesDePieces est un tableau, le nom des balises à l'intérieur sont osef -->
+      	 <!-- typesDePieces est un tableau, les noms des balises à l'intérieur ne sont pas importants -->
       	<typesDePieces1>salle de bain</typesDePieces1>
       	<typesDePieces2>toilettes séparée</typesDePieces2>
       </typesDePieces>
