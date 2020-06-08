@@ -42,7 +42,7 @@
 						       			<div class=\"col s12 ligne\"></div></div>
 						       				<div class=\"contientCheckBox\">";
 							       					foreach ($values as $value) {
-							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"myOptions". ucfirst($value) ."\" /><span> ".$value." </span></label>";
+							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"" . $value->id ."\" /><span> ".$value->valeur." </span></label>";
 							       					}
 							    echo "
 					      					</div>

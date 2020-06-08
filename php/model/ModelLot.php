@@ -9,8 +9,6 @@ class Modellot extends Model{
   private $surface;
   private $loyer;
   private $description;
-  private $typeDeBien;
-  private $nombrePiece;
   private $informationsCommercial;
   protected static $object = "lot";
   protected static $primary='id';
@@ -24,14 +22,6 @@ class Modellot extends Model{
   // un setter
   public function setid($id2) {
        $this->id = $id2;
-  }
-
-  public function getTypeDeBien(){
-    return $this->typeDeBien;
-  }
-
-  public function getNombrePiece(){
-    return $this->nombrePiece;
   }
 
   public function getnom(){
@@ -152,8 +142,10 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
           $firstCondition=false;
         }
       }
-
-      return $sql;
+      if(!$firstCondition){
+        return $sql;
+      }
+      return "SELECT * from lot";
   }
 
 }

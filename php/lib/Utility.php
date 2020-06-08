@@ -12,4 +12,14 @@ function arrayContain($array,$substring){
 	return $newArray;
 }
 
+function intInArray($array){
+	$ar=array();
+	foreach ($array as $key => $value) {
+		if(is_int($key)){
+			array_push($ar, $key);
+		}
+	}
+	return $ar;
+}
+
 ?>

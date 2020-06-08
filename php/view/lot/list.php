@@ -10,8 +10,8 @@
     ?>
 </div>
         <?php
-        if($tab_v != false){
-            foreach ($tab_v as $v){
+        if($tab_lot != false){
+            foreach ($tab_lot as $v){
                 $filecount = 0;
                 $files = glob("image/".htmlspecialchars($v->getId())."/*.*");
                 if ($files){

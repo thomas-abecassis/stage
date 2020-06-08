@@ -6,60 +6,29 @@ require_once File::build_path(array("model", "ModelLot.php"));
 class ModelLotApprofondi {
    
   private $modelLot;
-  private $typesDePieces;
-  private $commodites;
-  private $rangements;
-  private $orientations;
-  private $options;
+  private $plus;
       
   public function __construct($modelLot = NULL) {
     if (!is_null($modelLot) ) {
       $this->modelLot = $modelLot;
-      $this->typesDePieces = $this->getInfosFor("typeDePiecesLot");
-      $this->commodites = $this->getInfosFor("commoditesLot");
-      $this->rangements = $this->getInfosFor("rangementsLot");
-      $this->orientations = $this->getInfosFor("orientationsLot");
-      $this->options = $this->getInfosFor("myOptionsLot");
+      $this->plus=$this->getValeursCategories();
       }
   }
 
-  public function getLot(){
-    return $this->modelLot;
+  public function getPlus(){
+    return $this->plus;
   }
 
-  public function getCommodites(){
-    return $this->commodites;
-  }
-
-  public function getOptions(){
-    return $this->options;
-  }
-
-  private function getInfosFor($nomTable){
-    $sql="SELECT " . str_replace("sLot", "",$nomTable) . " FROM " . $nomTable. " WHERE idLot= " . $this->modelLot->getId();
-    $rep=Model::$pdo->query($sql);
-    if($rep==false){
-      return array();
-    }
-    $rep=$rep->fetchAll(PDO::FETCH_OBJ);
-    $arr=array();
-    foreach ($rep as $value) {
-      $nomChamp=str_replace("sLot", "",$nomTable);
-      array_push($arr, $value->$nomChamp);
-    }
-    return $arr;
-  }
-
-  public static function searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page){
-   if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
+  public static function searchDeep($dataCheckBox,$dataPost,$page){
+   if( !array_filter($dataCheckBox) && !array_filter($dataPost)){
       $sql="select * from lot";
     }else{
-      $sql=ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+      $sql=ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost);
     }
-    $sql=$sql." order by dateEnregistrement LIMIT " . (($page-1)*15) . ", 15";
+    $sql=$sql." group by id order by dateEnregistrement LIMIT " . (($page-1)*15) . ", 15";
     $req_prep = Model::$pdo->prepare($sql);
 
-    $values = ModelLotApprofondi::getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+    $values = ModelLot::getTableauPrep($dataPost);
 
     $req_prep->execute($values);
     if($req_prep==false){
@@ -69,105 +38,57 @@ class ModelLotApprofondi {
     return $req_prep->fetchAll();
   }
 
-  private static function getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
-    $values = ModelLot::getTableauPrep($dataPost);
 
-    $i=1;
-    foreach ($typesBien as  $tb) {
-      $values["typeDeBien".$i]=$tb;
-      $i++;
-    }
-
-    $i=1;
-    foreach ($nombrePieces as  $np) {
-      $values["nombrePiece".$i]=$np;
-      $i++;
-    }
-
-    foreach ($dataCheckBox as $nomTable => $arrCategorie) {
-      if(count($arrCategorie)!=0){
-        $i=1;
-        foreach ($arrCategorie as  $value) {
-          $values[str_replace("sLot", "",$nomTable) . $i]= $value;
-          $i++; 
-        }
-      }
-    } 
-    return $values;
-  }
-
-
-  public static function getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
+  public static function getSqlForDeepSearch($dataCheckBox,$dataPost){
     $sql=ModelLot::getSqlSearch($dataPost);
-
-    $isFirst=strlen($sql)==23;
-    $firstTypeBien=true;
-    $i=1;
-    foreach ($typesBien as  $value) {
-      if($isFirst){
-        $sql=$sql." typeDeBien = :typeDeBien".$i;
-        $isFirst=false;
-        $firstTypeBien=false;
-      }
-      else if($firstTypeBien){
-        $sql=$sql." and typeDeBien = :typeDeBien".$i; 
-        $firstTypeBien=false;
-      }else{
-        $sql=$sql." or typeDeBien = :typeDeBien".$i; 
-      }
-      $i++;
+    if(!count($dataCheckBox)){
+      return $sql;
     }
-
-    $firstNombrePieces=true;
-    $i=1;
-    foreach ($nombrePieces as  $value) {
+    $sql="select * from ($sql) as lot join lotCategorie on lotCategorie.idLot=lot.id";
+    $isFirst=true;
+    foreach ($dataCheckBox as  $value ) {
       if($isFirst){
-        $sql=$sql." nombrePiece = :nombrePiece".$i;
+        $sql=$sql . " where idValeurCategorie=" . $value;
         $isFirst=false;
-        $firstNombrePieces=false;
       }
-      else if($firstNombrePieces){
-        $sql=$sql." and nombrePiece = :nombrePiece".$i; 
-        $firstNombrePieces=false;
-      }else{
-        $sql=$sql." or nombrePiece = :nombrePiece".$i; 
+      else{
+        $sql=$sql . " or idValeurCategorie=" . $value;
       }
-      $i++;
     }
-
-    foreach ($dataCheckBox as $nomTable => $arrCategorie) {
-      if(count($arrCategorie)!=0){
-        $i=1;
-        $sqlTable="";
-        foreach ($arrCategorie as  $value) {
-          if($isFirst){
-            $sqlTable=$sqlTable." id IN ";
-            $isFirst=false;
-          }else{
-            $sqlTable=$sqlTable." AND ID IN  ";
-          }
-          $sqlTable=$sqlTable."( select idLot from ". $nomTable . " where ".str_replace("sLot", "",$nomTable)." = :" .  str_replace("sLot", "",$nomTable) . $i . ")";
-         $i++; 
-        }
-        $sql=$sql.$sqlTable;
-      }
-    } 
     return $sql;
   }
 
-  public static function getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost){
-    if(!array_filter($typesBien) && !array_filter($nombrePieces) && !array_filter($dataCheckBox) && !array_filter($dataPost)){
+  public static function getNbLotRecherche($dataCheckBox,$dataPost){
+    if( !array_filter($dataCheckBox) && !array_filter($dataPost)){
       $sql="select count(*) as nbLot from lot";
     }else{
-      $sql="select count(*) as nbLot from ( " . ModelLotApprofondi::getSqlForDeepSearch($typesBien,$nombrePieces,$dataCheckBox,$dataPost) . " ) as recherche ";
+      $sql="select count(*) as nbLot from ( " . ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost) . " ) as recherche ";
     }
     $req_prep = Model::$pdo->prepare($sql);
-    $values = ModelLotApprofondi::getTableauPrep($typesBien,$nombrePieces,$dataCheckBox,$dataPost);
+    $values = ModelLot::getTableauPrep($dataPost);
 
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_OBJ);
     $tab_lot= $req_prep->fetchAll();
     return $tab_lot[0]->nbLot;
+  }
+
+  public function getValeursCategories(){
+    $sqlCategories = "select distinct categorie,categories.id from lotCategorie join sousCategorie on lotCategorie.idValeurCategorie=sousCategorie.id join categories on categories.id=sousCategorie.categorieId where idLot=\"".$this->modelLot->getId()."\""; 
+    $rep=Model::$pdo->query($sqlCategories);
+    $rep=$rep->fetchAll(PDO::FETCH_OBJ);
+    $valeurs=array();
+    foreach ($rep as $categorie) {
+      $ar=array();
+      $sql="select * from lotCategorie join sousCategorie on lotCategorie.idValeurCategorie=sousCategorie.id join categories on categories.id=sousCategorie.categorieId where categorieId=".$categorie->id. "  and idLot=\"" . $this->modelLot->getId() . "\"";
+      $repVal=Model::$pdo->query($sql);
+      $repVal=$repVal->fetchAll(PDO::FETCH_OBJ);
+      foreach ($repVal as $valeurCategorie) {
+        array_push($ar, $valeurCategorie->valeur);
+      }
+      $valeurs[$categorie->categorie]=$ar;
+    }
+    return $valeurs;
   }
 
   public static function getAllCategories(){
@@ -181,11 +102,11 @@ class ModelLotApprofondi {
     $valeurs=array();
     foreach ($categories as $categorie) {
       $ar=array();
-      $sql="select valeur from sousCategorie where categorieId=".$categorie->id;
+      $sql="select valeur,id from sousCategorie where categorieId=".$categorie->id;
       $rep=Model::$pdo->query($sql);
       $rep=$rep->fetchAll(PDO::FETCH_OBJ);
       foreach ($rep as $valeurCategorie) {
-        array_push($ar, $valeurCategorie->valeur);
+        array_push($ar, $valeurCategorie);
       }
       $valeurs[$categorie->categorie]=$ar;
     }

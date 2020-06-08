@@ -17,13 +17,8 @@ class ControllerLotApprofondi{
         $typesBien=arrayContain($_GET,"typeBien"); 
         $nombrePieces=arrayContain($_GET,"nombrePieces");
 
-        $dataCheckBox=array(
-            "typeDePiecesLot"=>arrayContain($_GET,"typePiece"),
-            "commoditesLot"=>arrayContain($_GET,"commodite"),
-            "rangementsLot"=>arrayContain($_GET,"rangement"),
-            "orientationsLot"=>arrayContain($_GET,"orientation"),
-            "myOptionsLot"=>arrayContain($_GET,"myOptions")
-        );
+        $dataCheckBox=intInArray($_GET);
+
         $dataPost=array(
             "localisation" => myGet("localisation"),
             "minSurface" => myGet("minSurface"),
@@ -40,8 +35,8 @@ class ControllerLotApprofondi{
         
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
         $page=myGet("page");
-        $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
-        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
+        $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$page);
+        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$page)-1)/15)+1;
         $lot="lotApprofondi";
         $getURL = getURLParametersWithout(array("controller","action","page"));
         require File::build_path(array("view", "view.php"));
@@ -68,7 +63,7 @@ class ControllerLotApprofondi{
         $page=1;
         $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
-        $tab_v=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
+        $tab_lot=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
         $getURL = getURLParametersWithout(array("controller","action","page"));
         $lot="lotApprofondi";
         require File::build_path(array("view", "view.php"));
