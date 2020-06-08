@@ -81,17 +81,30 @@ class Serv{
 		while(file_exists(File::build_path(array("..","image",$id,$i.".jpg")))){
 			$i++;
 		}
-		$location = File::build_path(array("..","image",$id,$i.".jpg"));   // Mention where to upload the file
-        $current = file_get_contents($location);                     // Get the file content. This will create an empty file if the file does not exist     
-        $current = base64_decode($image);                          // Now decode the content which was sent by the client     
-        file_put_contents($location, $current);                      // Write the decoded content in the file mentioned at particular location   
+		$location = File::build_path(array("..","image",$id,$i.".jpg"));
+        $current = file_get_contents($location);  
+        $current = base64_decode($image);   
+        file_put_contents($location, $current);
         return "fait";
 	}
 
-	public function supprimerImage(){
-	  //foreach(glob($dir . '/*') as $file) { 
-	    //if(is_dir($file)) delete_files($file); else unlink($file); 
-	  //} rmdir($dir); 
+	public function supprimerImages(){
+		$files = glob(File::build_path(array("..","image","*"))); 
+		foreach($files as $file){ 
+			if(is_file($file)){
+		    unlink($file);
+		    }
+		    else{
+		    	//dans les dossiers images de lots il n'y a pas d'autres dossiers, en partant de ce principte il n'est pas nécessaire de faire de la récursivité
+		    	$filesInDir=glob(File::build_path(array("..","image",basename($file),"*")));
+		    	foreach ($filesInDir as $fileInDir) {
+		    		$test=$test.$fileInDir;
+		    		unlink($fileInDir);
+		    	}
+		    	rmdir($file);
+		    }
+		}
+		return "fait";
 	}
 
 	public function supprimeLots(){

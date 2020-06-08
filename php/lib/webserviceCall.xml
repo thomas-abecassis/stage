@@ -11,6 +11,19 @@
 	</soapenv:Body>
 </soapenv:Envelope>
 
+ <!-- Pour supprimer toutes les images -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerImages></supprimerImages>
+   </soapenv:Body>
+</soapenv:Envelope>
+
  <!-- enregistrer une image -->
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
    <soapenv:Header>

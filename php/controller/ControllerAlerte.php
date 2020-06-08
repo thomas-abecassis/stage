@@ -69,6 +69,5 @@ class ControllerAlerte {
             echo "pas les droits";
         }
     }
-
 }
 ?>

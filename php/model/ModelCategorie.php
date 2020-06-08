@@ -89,8 +89,5 @@ class ModelCategorie{
     }
     return $tabId;
   }
-
-
 }
-
 ?>

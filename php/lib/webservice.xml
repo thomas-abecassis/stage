@@ -57,6 +57,9 @@
       <operation name = "supprimeLots">
          <output message = "tns:returnString"/>
       </operation>
+      <operation name = "supprimerImages">
+         <output message = "tns:returnString"/>
+      </operation>
    </portType>
 
    <binding name = "test_Binding" type = "tns:test_PortType">
@@ -113,6 +116,22 @@
       </operation>
       <operation name = "authentification">
          <soap:operation soapAction = "authentification"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "supprimerImages">
+         <soap:operation soapAction = "supprimerImages"/>
          <input>
             <soap:body
                encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
