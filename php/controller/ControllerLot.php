@@ -30,8 +30,6 @@ class ControllerLot {
 
         //j'enregistre la recherche en session pour enregistrer les alertes
         $_SESSION["dataFirst"]=$data;
-        $_SESSION["typesBien"]=array();
-        $_SESSION["nombrePieces"]=array();
         $_SESSION["dataCheckBox"]=array();
 
         $tab_lot = ModelLot::selectByRecherche($data,$page);

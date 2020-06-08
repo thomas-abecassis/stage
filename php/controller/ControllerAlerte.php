@@ -1,5 +1,6 @@
 <?php
 require_once File::build_path(array("model", "ModelAlerte.php")); // chargement du modèle
+require_once File::build_path(array("model", "ModelCategorie.php"));
 
 class ControllerAlerte {
 
@@ -20,7 +21,7 @@ class ControllerAlerte {
     }
 
     public static function created(){
-        $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],$_SESSION["typesBien"],$_SESSION["nombrePieces"],$_SESSION["dataCheckBox"],"Nom par défault",true);
+        $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],ModelCategorie::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]),"Nom par défault",true);
         $alerte->encode();
         $alerte->save();
         ModelAlerte::unsetSession();

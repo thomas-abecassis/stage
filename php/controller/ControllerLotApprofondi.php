@@ -2,13 +2,14 @@
 require_once File::build_path(array("model", "ModelAlerte.php"));
 require_once File::build_path(array("model", "ModelLotApprofondi.php"));
 require_once File::build_path(array("model", "ModelLot.php"));
+require_once File::build_path(array("model", "ModelCategorie.php"));
 require_once File::build_path(array("lib", "Utility.php")); // chargement du modèle
 
 class ControllerLotApprofondi{
 
     public static function searchDeepen() {
         $controller='lot'; $view='rechercheApprofondie'; $pagetitle='Recherche de biens approfondie';     //appel au modèle pour gerer la BD
-        $categorieValeurs=ModelLotApprofondi::getAllValeursCategories();
+        $categorieValeurs=ModelCategorie::getAllValeursCategories();
         require File::build_path(array("view", "view.php"));
     }
 
@@ -29,8 +30,6 @@ class ControllerLotApprofondi{
 
         //j'enregistre la recherche en session pour enregistrer les alertes
         $_SESSION["dataFirst"]=$dataPost;
-        $_SESSION["typesBien"]=$typesBien;
-        $_SESSION["nombrePieces"]=$nombrePieces;
         $_SESSION["dataCheckBox"]=$dataCheckBox;
         
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
@@ -48,22 +47,17 @@ class ControllerLotApprofondi{
 
         $alerte=urldecode(myGet("alerte"));
         $alerte=unserialize($alerte);
-        
-        $typesBien=$alerte->getTabTypesBien(); 
-        $nombrePieces=$alerte->getTabNombrePieces();
 
-        $dataCheckBox=$alerte->getTabCheckBox();
+        $dataCheckBox=ModelCategorie::arrayCategorieAndValeurToId($alerte->getTabCheckBox());
         $dataPost=$alerte->getTabSimple();
 
-        $_SESSION['typesBien']=$typesBien;
-        $_SESSION['nombrePieces']=$nombrePieces;
         $_SESSION['dataCheckBox']=$dataCheckBox;
         $_SESSION['dataPost']=$dataPost;
 
         $page=1;
-        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page)-1)/15)+1;
+        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$page)-1)/15)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
-        $tab_lot=ModelLotApprofondi::searchDeep($typesBien,$nombrePieces,$dataCheckBox,$dataPost,$page);
+        $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$page);
         $getURL = getURLParametersWithout(array("controller","action","page"));
         $lot="lotApprofondi";
         require File::build_path(array("view", "view.php"));
