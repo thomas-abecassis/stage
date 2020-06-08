@@ -4,7 +4,7 @@ require_once File::build_path(array("lib", "Utility.php")); // chargement du mod
 class ControllerLot {
 
     public static function readAll() {
-        $tab_v = ModelLot::selectAll();
+        $tab_lot = ModelLot::selectAll();
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
@@ -34,7 +34,7 @@ class ControllerLot {
         $_SESSION["nombrePieces"]=array();
         $_SESSION["dataCheckBox"]=array();
 
-        $tab_v = ModelLot::selectByRecherche($data,$page);
+        $tab_lot = ModelLot::selectByRecherche($data,$page);
        
         $nbPage=(int)((ModelLot::getNbLotRecherche($data)-1)/15)+1;
         $lot="lot";
@@ -46,7 +46,7 @@ class ControllerLot {
     public static function delete(){
         $id=myGet('id');
         ModelLot::delete($id);
-        $tab_v=ModelLot::selectAll();
+        $tab_lot=ModelLot::selectAll();
         $controller='lot'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
         require File::build_path(array("view", "view.php"));
     }
