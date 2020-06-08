@@ -1,13 +1,12 @@
 <div  class="container">
     <div class="col s12 m10 l7 offset-m1 offset-l2">
-       
-    	<div class="card " id="modificationCompte">
-    		<form>
         	<?php
 	        	echo '
-	        	<p class="center grandeTailleFont legerGras">Modifier vos informations</p>
-	        	<div class="ligne"></div>
-	        	<p> <span class="legerGras">Login </span><input id="loginUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
+	     <div class="card " id="modificationCompte">
+    		<form>
+	        	<p class="grandeTailleFont legerGras">Modifier vos informations</p>
+
+	        	<input type="hidden" id="loginUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input>
 				<div class="ligne"></div>
 				<p> <span class="legerGras">Nom </span><input id="nomUtilisateur" value='.htmlspecialchars($u->getNom()).'></input></p>
 	        	<div class="ligne"></div>
@@ -19,7 +18,7 @@
 
 	            echo '
 
-	            <p><div id="boutonUpdate" class=" inputButton secondeCouleur inputButtonCentre">mettre à jour le compte </div>	              
+	            <p><div id="boutonUpdateInfos" class=" inputButton secondeCouleur inputButtonCentre">Mettre à jour vos informations </div>              
 		            <div id="load" class="displayNone absolute preloader-wrapper active">
 					    <div class="spinner-layer premiereCouleurBorder">
 					      <div class="circle-clipper left">
@@ -31,10 +30,58 @@
 					      </div>
 					    </div>
 					  </div>
-				  </p>';
+				  	</p>
+				</form>
+        	</div>';
+
+echo '	<div class="card " id="modificationCompte">
+    		<form>
+	        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>
+	        	<div class="ligne"></div>
+	        	<p><span class="legerGras">E-mail</span><input  id="mailUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
+	        	<div class="ligne"></div>
+	        	<p><span class="legerGras">Mot de passe</span><input  id="mdpUtilisateurMail" ></input></p>
+	        	<div class="ligne"></div>
+	            <p><div id="boutonUpdateMail" class=" inputButton secondeCouleur inputButtonCentre">Mettre à jour votre e-mail</div>	              
+		            <div id="load" class="displayNone absolute preloader-wrapper active">
+					    <div class="spinner-layer premiereCouleurBorder">
+					      <div class="circle-clipper left">
+					        <div class="circle"></div>
+					      </div><div class="gap-patch">
+					        <div class="circle"></div>
+					      </div><div class="circle-clipper right">
+					        <div class="circle"></div>
+					      </div>
+					    </div>
+					  </div>
+				  	</p>
+        		</form>
+        	</div>';
+
+echo '	<div class="card " id="modificationCompte">
+    		<form>
+	        	<p class="grandeTailleFont legerGras">mettre à jour votre mot de passe</p>
+	        	<div class="ligne"></div>
+	        	<p><span class="legerGras">Nouveau mot de passe</span><input  id="nouveauMdp" value='.htmlspecialchars($u->getLogin()).'></input></p>
+	        	<div class="ligne"></div>
+	        	<p><span class="legerGras">Ancien mot de passe</span><input  id="ancienMdp" ></input></p>
+	        	<div class="ligne"></div>
+	            <p><div id="boutonUpdateMdp" class=" inputButton secondeCouleur inputButtonCentre">mettre à jour le compte </div>	              
+		            <div id="load" class="displayNone absolute preloader-wrapper active">
+					    <div class="spinner-layer premiereCouleurBorder">
+					      <div class="circle-clipper left">
+					        <div class="circle"></div>
+					      </div><div class="gap-patch">
+					        <div class="circle"></div>
+					      </div><div class="circle-clipper right">
+					        <div class="circle"></div>
+					      </div>
+					    </div>
+					  </div>
+				  	</p>
+        		</form>
+        	</div>';
             ?>
-        	</form>
-        </div>
             <?php
             if(!$u->isAdmin() || Session::is_super_admin()){
             	echo '<p><form action="index/utilisateur/delete/?id='.htmlspecialchars($u->getLogin()).'"><button class="red-text text-darken-1 ">supprimer le compte</button></form></p>';

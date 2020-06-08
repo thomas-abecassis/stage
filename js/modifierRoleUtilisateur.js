@@ -9,23 +9,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	if(boutonSimpleUtilisateur!==null){
 		boutonSimpleUtilisateur.addEventListener("click", function(){
-			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=0",callback);
+			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=0",callbackAdmin);
 		});
 	}
 	if(boutonCommercial!==null){
 		boutonCommercial.addEventListener("click", function(){
-			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=1",callback);
+			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=1",callbackAdmin);
 		});
 	}
 
 	if(boutonAdmin!==null){
 		boutonAdmin.addEventListener("click", function(){
-			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=2",callback);
+			requeteAJAX("index/utilisateur/updatedAJAX/?login="+loginUtilisateur+"&nom="+nomUtilisateur+"&prenom="+prenomUtilisateur+"&role=2",callbackAdmin);
 		});
 	}
 });
 
-function callback(xhr){
+function callbackAdmin(xhr){
 	if(xhr.responseText!="false"){
 		if(xhr.responseText=="0"){
 			document.getElementById("role").textContent="Simple utilisateur";

@@ -126,14 +126,30 @@ class ControllerUtilisateur {
             "role"=>$role
             );
             ModelUtilisateur::update($data);
-            $tab_v = ModelUtilisateur::selectAll();
             echo $role;
         }
         else{
             echo "false";
         }
-
     }
+
+    public static function updatedMailAJAX(){
+        if((Session::is_user(myGet('mail')) && (ModelUtilisateur::checkPassword(myGet("mail"),myGet("mdp")))) || Session::is_admin()){
+            $utilisateur=ModelUtilisateur::select(myGet('mail'));
+            $data=array(
+            "login"=>myGet('mail'),
+            "nom"=>$utilisateur->getNom(),
+            "prenom"=>$utilisateur->getPrenom(),
+            "mdp"=>$utilisateur->getMdp(),
+            "role"=>$utilisateur->getRole()
+            );
+            ModelUtilisateur::update($data);
+            echo "true";
+        }
+        else{
+            echo "false";
+        }
+    }    
 
     public static function error(){
         $controller='utilisateur'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
