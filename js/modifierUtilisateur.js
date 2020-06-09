@@ -8,8 +8,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	modifie(boutonUpdateInfos,"index/utilisateur/updatedAJAX/?",document.getElementById("load"), arrayGet);
 
-	arrayGet={"mail" : document.getElementById("mailUtilisateur"), "mdp" : document.getElementById("mdpUtilisateurMail")};
-
+	//si on est admin on ne demande pas de mot de passe donc deux liste de paramètres différentes
+	let mdpMail=document.getElementById("mdpUtilisateurMail");
+	if(mdpMail!=null){
+		arrayGet={"mail" : document.getElementById("mailUtilisateur"), "mdp" :mdpMail};
+	}
+	else{
+		arrayGet={"mail" : document.getElementById("mailUtilisateur"), "oldMail" : document.getElementById("loginUtilisateur")};
+	}
+	
 	modifie(document.getElementById("boutonUpdateMail"), "index/utilisateur/updatedMailAJAX/?", document.getElementById("loadMail"), arrayGet)
 
 	arrayGet={"oldMdp" : document.getElementById("ancienMdp"), "newMdp" : document.getElementById("nouveauMdp")}
@@ -19,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function callback(xhr, load){
 	console.log(xhr.responseText);
-	if(xhr.responseText=="true"){
+	if(["0","1","2","true"].indexOf(xhr.responseText)>-1){
 		notification(load, "votre compte a été mis à jour","green-text");
 	}
 	else if(xhr.responseText=="no_null_field"){
@@ -33,6 +40,13 @@ function callback(xhr, load){
 	}
 	else if(xhr.responseText=="bad_password"){
 		notification(load, "vérifiez votre mot de passe","red-text");
+	}
+	else if(xhr.responseText.includes("trueMail")){
+		//ce cas correspond au changement de mail par un utilisateur
+		//comme l'id de l'utilisateur est mis à jour on recharge la page avec le bon identifiant
+		//window.location.href = 'index/utilisateur/Read/?id='+xhr.responseText.replace('trueMail', '');
+		document.getElementById("loginUtilisateur").value=xhr.responseText.replace('trueMail', '');
+		window.history.pushState('utilisateur', 'Vos paramètres', 'index/utilisateur/Read/?id='+xhr.responseText.replace('trueMail', ''));
 	}
 }
 

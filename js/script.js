@@ -21,23 +21,14 @@ let removeClickListener;
 let sauvegarde;
 
 function callbackIdentifiantCheck(xhr){
-	console.log(xhr.responseText);
 	if(xhr.responseText.valueOf()=="true".valueOf()){
 	    document.location.reload(true);
 	}else{
-		let co=document.getElementById("racineCard");
-	    if(co.childElementCount<6){
-		    let p=document.createElement('p');
-		    p.innerHTML="mauvais identifiant ou mot de passe";
-		    p.style.color="red";
-		    p.classList.add("center");
-		    co.appendChild(p);
-	    }
+		notification("mauvais identifiant ou mot de passe");
 	}
 }
 
 function callbackRechercheSave(xhr){
-	console.log(xhr.responseText);
 	document.getElementById("inSauvegarde").innerHTML="recherche sauvegardée !";
 }
 
@@ -46,7 +37,6 @@ function reload(xhr){
 }
 
 function callbackCreationCheck(xhr){
-	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
 	if(xhr.responseText.valueOf()=="register"){
 		racine.innerHTML="  <p class=\"center\"><i class=\"green-text small material-icons\">check</i> </p><p class=\"center\">Votre compte a été créé</p><div class=\"ligne\"></div><p class=\"center\">Allez vérifier votre adresse e-mail</p>";
@@ -202,7 +192,11 @@ function removeFond(fond){
 	fond.parentNode.removeChild(fond);
 }
 
+var canNotif=true;
+
 function notification(text){
+	if(!canNotif) return;
+	canNotif=false;
 	let racine=document.getElementById("racineCard");
 	let newP = document.createElement("p");
 	newP.classList.add("center");
@@ -216,6 +210,10 @@ function notification(text){
 	if(racine!==null){
 		racine.appendChild(newP);
 	}
+	setTimeout(function(){
+		newP.parentNode.removeChild(newP);
+		canNotif=true;
+	}, 1000);
 }
 
 
@@ -253,7 +251,6 @@ function createColorPicker(element,variableCouleur){
 			url="index/Utility/changerCouleur/?secondColor="+color.rgbaString+"&mainColor="+previousMainColor;
 			previousSecondColor=color.rgbaString;
 		}
-		console.log(url);
 		requeteAJAX(url,callbackCouleur);
 		checkCouleur=true;
 	}
@@ -267,11 +264,9 @@ function createColorPicker(element,variableCouleur){
 			setTimeout(function () {
 		        if (!checkCouleur) {
 		        	if(variableCouleur=="premiereCouleur"){
-		        		console.log("je set");
 		        		modifierCouleur("premiereCouleur",previousMainColor); 
 					}
 					else{
-						console.log("je set secnode");
 						modifierCouleur("secondeCouleur",previousSecondColor); 
 					}
 		        }

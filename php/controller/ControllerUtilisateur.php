@@ -46,7 +46,7 @@ class ControllerUtilisateur {
         else if(Session::is_connected()){
             $u=ModelUtilisateur::select($_SESSION["login"]);
         }
-    	if($u!==false || (Session::is_admin()) && !$u->isSuperAdmin()){
+    	if($u!==false && (Session::is_admin()) && !$u->isSuperAdmin()){
             $controller='utilisateur'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 
@@ -119,37 +119,58 @@ class ControllerUtilisateur {
             echo "no_null_field";
             return;
         }
-        if(Session::is_admin()){
-            if( !is_null(myGet("role"))){
-                $role=myGet("role");
-            }
-        }
+
         else if(Session::is_connected()){
-            $utilisateur=ModelUtilisateur::select($_SESSION["login"]);
+            if(Session::is_admin() && !Session::is_user(myGet("id"))){
+                $utilisateur=ModelUtilisateur::select(myGet("login"));
+                $role=myGet("role");
+                if(is_null($role)){
+                    $role=$utilisateur->getRole();
+                }
+            }
+            else{
+                $utilisateur=ModelUtilisateur::select($_SESSION["login"]);
+                $role=$utilisateur->getRole();
+            }
             $data=array(
-            "login"=>$_SESSION["login"],
+            "login"=>$utilisateur->getLogin(),
             "nom"=>myGet('nom'),
             "prenom"=>myGet('prenom'),
             "mdp"=>$utilisateur->getMdp(),
-            "role"=>$utilisateur->getRole()
+            "role"=>$role
             );
             ModelUtilisateur::update($data);
-            echo "true";
+            echo $role;
         }
+
         else{
             echo "false";
         }
     }
 
     public static function updatedMailAJAX(){
+        if(Session::is_admin() && !Session::is_user(myGet("id"))){
+            if(strlen(myGet("mail"))==0){
+                echo "no_null_field";
+                return;
+            }
+
+            ModelUtilisateur::updatePrimaryKey(myGet("oldMail"),myGet("mail"));
+            echo "trueMail".myGet("mail");
+            return;
+
+        }
+
         if(strlen(myGet("mdp")) * strlen(myGet("mail"))==0){
             echo "no_null_field";
             return;
         }
+
         if(!filter_var(myGet("mail"), FILTER_VALIDATE_EMAIL)){
             echo "mail_bad_syntax";
             return;
         }
+
         if((ModelUtilisateur::checkPassword($_SESSION["login"],myGet("mdp"))) || Session::is_admin()){
             if(ModelUtilisateur::select(myGet("mail"))==false){
             ModelUtilisateur::updatePrimaryKey($_SESSION["login"],myGet("mail"));
@@ -166,13 +187,15 @@ class ControllerUtilisateur {
     } 
 
     public static function updatedMdpAJAX(){
+        if(Session::is_admin() && !Session::is_user(myGet("id"))){
+            //todo
+        }
+
         if(strlen(myGet("newMdp")) * strlen(myGet("oldMdp"))==0){
             echo "no_null_field";
             return;
         }
-        if(Session::is_admin()){
-            //todo
-        }
+
         else if(ModelUtilisateur::checkPassword($_SESSION["login"],myGet("oldMdp"))){
             $u=ModelUtilisateur::select($_SESSION["login"]);
             $data=array(
@@ -185,6 +208,7 @@ class ControllerUtilisateur {
             ModelUtilisateur::update($data);
             echo "true";
         }
+
         else{
             return "bad_password";
         }
@@ -200,7 +224,7 @@ class ControllerUtilisateur {
             $v = ModelUtilisateur::select(myGet("login"));
             if(is_null($v->getNonce())){
                 $_SESSION["login"] = myGet("login");
-                echo("true");
+                echo "true";
                 if($v->isSuperAdmin()){
                     $_SESSION["role"]=3;
                 }
@@ -213,8 +237,7 @@ class ControllerUtilisateur {
             }
         }
         else{
-        $controller='lot'; $view='recherche'; $pagetitle='Recherche de biens';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+            echo "false";
         }
     }
 
