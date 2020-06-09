@@ -74,6 +74,10 @@ class ModelUtilisateur extends Model{
     return $this->mdp;
   }
 
+  public function setMdp($mdp){
+    $this->mdp=Security::chiffrer($mdp);
+  }
+
   public function getNonce(){
     return $this->nonce;
   }

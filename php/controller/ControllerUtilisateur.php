@@ -46,7 +46,7 @@ class ControllerUtilisateur {
         else if(Session::is_connected()){
             $u=ModelUtilisateur::select($_SESSION["login"]);
         }
-    	if($u!==false && (Session::is_admin()) && !$u->isSuperAdmin()){
+    	if($u!==false || (Session::is_admin()) && ($u!==false && !$u->isSuperAdmin())){
             $controller='utilisateur'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 
@@ -149,12 +149,15 @@ class ControllerUtilisateur {
     }
 
     public static function updatedMailAJAX(){
-        if(Session::is_admin() && !Session::is_user(myGet("id"))){
+        if(Session::is_admin() && myGet("oldMail")!==null){ //on vérifie que l'admin n'est pas sur sa propre page en vérifiant oldMail 
             if(strlen(myGet("mail"))==0){
                 echo "no_null_field";
                 return;
             }
-
+            if(ModelUtilisateur::select(myGet("mail"))!==false) {
+                echo "mail_allready_taken";
+                return;
+            }
             ModelUtilisateur::updatePrimaryKey(myGet("oldMail"),myGet("mail"));
             echo "trueMail".myGet("mail");
             return;
@@ -187,8 +190,23 @@ class ControllerUtilisateur {
     } 
 
     public static function updatedMdpAJAX(){
-        if(Session::is_admin() && !Session::is_user(myGet("id"))){
-            //todo
+        if(Session::is_admin() && myGet("oldMail")!==null){
+            if(strlen(myGet("newMdp"))==0){
+                echo "no_null_field";
+                return;
+            }
+            $u=ModelUtilisateur::select(myGet("oldMail"));
+
+            $data=array(
+            "login"=>$u->getLogin(),
+            "nom"=>$u->getNom(),
+            "prenom"=>$u->getPrenom(),
+            "mdp"=>Security::chiffrer(myGet("newMdp")),
+            "role"=>$u->getRole()
+            );
+            ModelUtilisateur::update($data);
+            echo "true";
+            return;
         }
 
         if(strlen(myGet("newMdp")) * strlen(myGet("oldMdp"))==0){
@@ -210,7 +228,7 @@ class ControllerUtilisateur {
         }
 
         else{
-            return "bad_password";
+            echo "bad_password";
         }
     }   
 

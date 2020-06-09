@@ -3,7 +3,7 @@
         	<?php
 	        	echo '
 	     <div class="card " id="modificationCompte">
-    		<form>
+    		<div>
 	        	<p class="grandeTailleFont legerGras">Modifier vos informations</p>
 
 	        	<input type="hidden" id="loginUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input>
@@ -23,11 +23,11 @@
 		            	votre compte a été mis à jour
 					  </div>
 				  	</p>
-				</form>
+				</div>
         	</div>';
 
 echo '	<div class="card " id="modificationCompte">
-    		<form>
+    		<div>
 	        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>
 	        	<div class="ligne"></div>
 	        	<p><span class="legerGras">E-mail</span><input  id="mailUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
@@ -42,11 +42,11 @@ echo '	<div class="card " id="modificationCompte">
 						votre compte a été mis à jour
 					  </div>
 				  	</p>
-        		</form>
+        		</div>
         	</div>';
 
 echo '	<div class="card " id="modificationCompte">
-    		<form>
+    		<div>
 	        	<p class="grandeTailleFont legerGras">Modifier votre mot de passe</p>
 	        	<div class="ligne"></div>
 	        	<p><span class="legerGras">Nouveau mot de passe</span><input type="password" id="nouveauMdp"></input></p>
@@ -61,7 +61,7 @@ echo '	<div class="card " id="modificationCompte">
 		            	votre compte a été mis à jour
 					  </div>
 				  	</p>
-        		</form>
+        		</div>
         	</div>';
             ?>
             <?php
