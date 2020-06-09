@@ -19,16 +19,8 @@
 	            echo '
 
 	            <p><div id="boutonUpdateInfos" class=" inputButton secondeCouleur inputButtonCentre">Mettre à jour vos informations </div>              
-		            <div id="load" class="displayNone absolute preloader-wrapper active">
-					    <div class="spinner-layer premiereCouleurBorder">
-					      <div class="circle-clipper left">
-					        <div class="circle"></div>
-					      </div><div class="gap-patch">
-					        <div class="circle"></div>
-					      </div><div class="circle-clipper right">
-					        <div class="circle"></div>
-					      </div>
-					    </div>
+		            <div id="load" class="displayNone load  text-darken-1">
+		            	votre compte a été mis à jour
 					  </div>
 				  	</p>
 				</form>
@@ -40,19 +32,11 @@ echo '	<div class="card " id="modificationCompte">
 	        	<div class="ligne"></div>
 	        	<p><span class="legerGras">E-mail</span><input  id="mailUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
 	        	<div class="ligne"></div>
-	        	<p><span class="legerGras">Mot de passe</span><input  id="mdpUtilisateurMail" ></input></p>
+	        	<p><span class="legerGras">Mot de passe</span><input type="password" id="mdpUtilisateurMail" ></input></p>
 	        	<div class="ligne"></div>
 	            <p><div id="boutonUpdateMail" class=" inputButton secondeCouleur inputButtonCentre">Mettre à jour votre e-mail</div>	              
-		            <div id="load" class="displayNone absolute preloader-wrapper active">
-					    <div class="spinner-layer premiereCouleurBorder">
-					      <div class="circle-clipper left">
-					        <div class="circle"></div>
-					      </div><div class="gap-patch">
-					        <div class="circle"></div>
-					      </div><div class="circle-clipper right">
-					        <div class="circle"></div>
-					      </div>
-					    </div>
+		            <div id="loadMail" class="displayNone load text-darken-1">
+						votre compte a été mis à jour
 					  </div>
 				  	</p>
         		</form>
@@ -60,23 +44,15 @@ echo '	<div class="card " id="modificationCompte">
 
 echo '	<div class="card " id="modificationCompte">
     		<form>
-	        	<p class="grandeTailleFont legerGras">mettre à jour votre mot de passe</p>
+	        	<p class="grandeTailleFont legerGras">Modifier votre mot de passe</p>
 	        	<div class="ligne"></div>
-	        	<p><span class="legerGras">Nouveau mot de passe</span><input  id="nouveauMdp" value='.htmlspecialchars($u->getLogin()).'></input></p>
+	        	<p><span class="legerGras">Nouveau mot de passe</span><input type="password" id="nouveauMdp"></input></p>
 	        	<div class="ligne"></div>
-	        	<p><span class="legerGras">Ancien mot de passe</span><input  id="ancienMdp" ></input></p>
+	        	<p><span class="legerGras">Ancien mot de passe</span><input type="password" id="ancienMdp" ></input></p>
 	        	<div class="ligne"></div>
 	            <p><div id="boutonUpdateMdp" class=" inputButton secondeCouleur inputButtonCentre">mettre à jour le compte </div>	              
-		            <div id="load" class="displayNone absolute preloader-wrapper active">
-					    <div class="spinner-layer premiereCouleurBorder">
-					      <div class="circle-clipper left">
-					        <div class="circle"></div>
-					      </div><div class="gap-patch">
-					        <div class="circle"></div>
-					      </div><div class="circle-clipper right">
-					        <div class="circle"></div>
-					      </div>
-					    </div>
+		            <div id="loadMdp" class="displayNone load text-darken-1">
+		            	votre compte a été mis à jour
 					  </div>
 				  	</p>
         		</form>

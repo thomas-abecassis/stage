@@ -84,7 +84,7 @@ class Model{
 
  public function save(){
  	    Model::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    Model::$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    	Model::$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		$data=$this->getTab();
 	  	$sql = "INSERT INTO " . static::$object . " VALUES ( ";
 	  	foreach($data as $cle => $valeur){
@@ -97,9 +97,9 @@ class Model{
 	    $req_prep = Model::$pdo->prepare($sql);
 
 	    $req_prep->execute($data);
-
   }
 
+  //avec cette fonction on ne peut pas mettre à jour la clé primaire
   public static function update($data){
   	$sql = "UPDATE " . static::$object . " SET ";
   	foreach($data as $cle => $valeur){
@@ -114,6 +114,17 @@ class Model{
     $req_prep->execute($data);
   }
 
+  //Cette fonction sert à mettre à jour seulement la clé primaire
+  public static function updatePrimaryKey($oldPrimaryKey, $newPrimaryKey){
+  	$sql="UPDATE " . static::$object . " SET " . static::$primary . '=:newPrimaryKey' . " WHERE ".static::$primary.'=:oldPrimaryKey';
+
+  	$req_prep = Model::$pdo->prepare($sql);
+
+  	$data=array("newPrimaryKey" => $newPrimaryKey,
+  				"oldPrimaryKey" => $oldPrimaryKey);
+
+    $req_prep->execute($data);
+  }
 }
 
 Model::Init();

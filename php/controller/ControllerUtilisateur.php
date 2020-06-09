@@ -39,8 +39,14 @@ class ControllerUtilisateur {
     }
 
     public static function Read(){
-    	$u=ModelUtilisateur::select($_GET['id']);
-    	if($u!==false && isset($_SESSION["login"]) && ($u->getLogin()==$_SESSION["login"] || Session::is_admin()) && !$u->isSuperAdmin()){
+        $u=false;
+        if(Session::is_admin()){
+    	   $u=ModelUtilisateur::select(myGet("id"));
+        }
+        else if(Session::is_connected()){
+            $u=ModelUtilisateur::select($_SESSION["login"]);
+        }
+    	if($u!==false || (Session::is_admin()) && !$u->isSuperAdmin()){
             $controller='utilisateur'; $view='details'; $pagetitle='les d\'etails';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
 
@@ -64,7 +70,6 @@ class ControllerUtilisateur {
             $random=Security::generateRandomHex();
             if(ModelUtilisateur::select($login)!==false){
                 echo "mail_allready_taken";
-                return;
             }
             else{
                 $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0,$random);
@@ -110,36 +115,21 @@ class ControllerUtilisateur {
 
 
     public static function updatedAJAX(){
-        if(Session::is_user(myGet('login')) || Session::is_admin()){
-            $utilisateur=ModelUtilisateur::select(myGet('login'));
-            if(Session::is_admin() && !is_null(myGet("role"))){
+        if(strlen(myGet("nom")) * strlen(myGet("prenom")) == 0){
+            echo "no_null_field";
+            return;
+        }
+        if(Session::is_admin()){
+            if( !is_null(myGet("role"))){
                 $role=myGet("role");
             }
-            else{
-                $role=$utilisateur->getRole();
-            }
+        }
+        else if(Session::is_connected()){
+            $utilisateur=ModelUtilisateur::select($_SESSION["login"]);
             $data=array(
-            "login"=>myGet('login'),
+            "login"=>$_SESSION["login"],
             "nom"=>myGet('nom'),
             "prenom"=>myGet('prenom'),
-            "mdp"=>$utilisateur->getMdp(),
-            "role"=>$role
-            );
-            ModelUtilisateur::update($data);
-            echo $role;
-        }
-        else{
-            echo "false";
-        }
-    }
-
-    public static function updatedMailAJAX(){
-        if((Session::is_user(myGet('mail')) && (ModelUtilisateur::checkPassword(myGet("mail"),myGet("mdp")))) || Session::is_admin()){
-            $utilisateur=ModelUtilisateur::select(myGet('mail'));
-            $data=array(
-            "login"=>myGet('mail'),
-            "nom"=>$utilisateur->getNom(),
-            "prenom"=>$utilisateur->getPrenom(),
             "mdp"=>$utilisateur->getMdp(),
             "role"=>$utilisateur->getRole()
             );
@@ -149,7 +139,56 @@ class ControllerUtilisateur {
         else{
             echo "false";
         }
-    }    
+    }
+
+    public static function updatedMailAJAX(){
+        if(strlen(myGet("mdp")) * strlen(myGet("mail"))==0){
+            echo "no_null_field";
+            return;
+        }
+        if(!filter_var(myGet("mail"), FILTER_VALIDATE_EMAIL)){
+            echo "mail_bad_syntax";
+            return;
+        }
+        if((ModelUtilisateur::checkPassword($_SESSION["login"],myGet("mdp"))) || Session::is_admin()){
+            if(ModelUtilisateur::select(myGet("mail"))==false){
+            ModelUtilisateur::updatePrimaryKey($_SESSION["login"],myGet("mail"));
+            $_SESSION["login"]=myGet("mail");
+            echo "true";
+            }
+            else{
+                echo "mail_allready_taken";
+            }
+        }
+        else{
+            echo "bad_password";
+        }
+    } 
+
+    public static function updatedMdpAJAX(){
+        if(strlen(myGet("newMdp")) * strlen(myGet("oldMdp"))==0){
+            echo "no_null_field";
+            return;
+        }
+        if(Session::is_admin()){
+            //todo
+        }
+        else if(ModelUtilisateur::checkPassword($_SESSION["login"],myGet("oldMdp"))){
+            $u=ModelUtilisateur::select($_SESSION["login"]);
+            $data=array(
+            "login"=>$u->getLogin(),
+            "nom"=>$u->getNom(),
+            "prenom"=>$u->getPrenom(),
+            "mdp"=>Security::chiffrer(myGet("newMdp")),
+            "role"=>$u->getRole()
+            );
+            ModelUtilisateur::update($data);
+            echo "true";
+        }
+        else{
+            return "bad_password";
+        }
+    }   
 
     public static function error(){
         $controller='utilisateur'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
