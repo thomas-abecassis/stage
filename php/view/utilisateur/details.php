@@ -25,44 +25,45 @@
 				  	</p>
 				</div>
         	</div>';
+if(true){
+	echo '	<div class="card " id="modificationCompte">
+	    		<div>
+		        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>
+		        	<div class="ligne"></div>
+		        	<p><span class="legerGras">E-mail</span><input  id="mailUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
+		        	<div class="ligne"></div>';
+		        	if(!Session::is_admin() || Session::is_user(myGet("id"))){
+		        		echo'<p><span class="legerGras">Mot de passe</span><input type="password" id="mdpUtilisateurMail" ></input></p>
+		        		<div class="ligne"></div>';
+		        	}
+		            
+		            echo '<p><div id="boutonUpdateMail" class=" inputButton secondeCouleur inputButtonCentre">Mettre à jour votre e-mail</div>	              
+			            <div id="loadMail" class="displayNone load text-darken-1">
+							votre compte a été mis à jour
+						  </div>
+					  	</p>
+	        		</div>
+	        	</div>';
 
-echo '	<div class="card " id="modificationCompte">
-    		<div>
-	        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>
-	        	<div class="ligne"></div>
-	        	<p><span class="legerGras">E-mail</span><input  id="mailUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
-	        	<div class="ligne"></div>';
-	        	if(!Session::is_admin() || Session::is_user(myGet("id"))){
-	        		echo'<p><span class="legerGras">Mot de passe</span><input type="password" id="mdpUtilisateurMail" ></input></p>
-	        		<div class="ligne"></div>';
-	        	}
-	            
-	            echo '<p><div id="boutonUpdateMail" class=" inputButton secondeCouleur inputButtonCentre">Mettre à jour votre e-mail</div>	              
-		            <div id="loadMail" class="displayNone load text-darken-1">
-						votre compte a été mis à jour
-					  </div>
-				  	</p>
-        		</div>
-        	</div>';
+	echo '	<div class="card " id="modificationCompte">
+	    		<div>
+		        	<p class="grandeTailleFont legerGras">Modifier votre mot de passe</p>
+		        	<div class="ligne"></div>
+		        	<p><span class="legerGras">Nouveau mot de passe</span><input type="password" id="nouveauMdp"></input></p>
+		        	<div class="ligne"></div>';
+		        	if(!Session::is_admin() || Session::is_user(myGet("id"))){
+		        		echo'<p><span class="legerGras">Ancien mot de passe</span><input type="password" id="ancienMdp" ></input></p>
+		        		<div class="ligne"></div>';
+		        	}
 
-echo '	<div class="card " id="modificationCompte">
-    		<div>
-	        	<p class="grandeTailleFont legerGras">Modifier votre mot de passe</p>
-	        	<div class="ligne"></div>
-	        	<p><span class="legerGras">Nouveau mot de passe</span><input type="password" id="nouveauMdp"></input></p>
-	        	<div class="ligne"></div>';
-	        	if(!Session::is_admin() || Session::is_user(myGet("id"))){
-	        		echo'<p><span class="legerGras">Ancien mot de passe</span><input type="password" id="ancienMdp" ></input></p>
-	        		<div class="ligne"></div>';
-	        	}
-
-	            echo '<p><div id="boutonUpdateMdp" class=" inputButton secondeCouleur inputButtonCentre">mettre à jour le compte </div>	              
-		            <div id="loadMdp" class="displayNone load text-darken-1">
-		            	votre compte a été mis à jour
-					  </div>
-				  	</p>
-        		</div>
-        	</div>';
+		            echo '<p><div id="boutonUpdateMdp" class=" inputButton secondeCouleur inputButtonCentre">mettre à jour le compte </div>	              
+			            <div id="loadMdp" class="displayNone load text-darken-1">
+			            	votre compte a été mis à jour
+						  </div>
+					  	</p>
+	        		</div>
+	        	</div>';
+	}
             ?>
             <?php
             if(!$u->isAdmin() || Session::is_super_admin()){

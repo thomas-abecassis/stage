@@ -124,8 +124,13 @@ class ControllerUtilisateur {
         else if(Session::is_connected()){
             if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){
                 $utilisateur=ModelUtilisateur::select(myGet("login"));
-                $role=myGet("role");
-                if(is_null($role)){
+                if(!$utilisateur->isAdmin() || Session::is_super_admin()){
+                    $role=myGet("role");
+                    if(is_null($role)){
+                        $role=$utilisateur->getRole();
+                    }
+                }
+                else{
                     $role=$utilisateur->getRole();
                 }
             }
@@ -151,6 +156,11 @@ class ControllerUtilisateur {
 
     public static function updatedMailAJAX(){
         if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){ //on vérifie que l'admin n'est pas sur sa propre page en vérifiant oldMail
+
+            if(ModelUtilisateur::select(myGet("oldMail"))->isAdmin() && !Session::is_super_admin()){
+                //un admin ne doit pas pouvoir modifier le mail d'un autre admin A PART dans le cas du super admin
+                return;
+            }
 
             if(strlen(myGet("mail"))==0){
                 echo "no_null_field";
@@ -194,11 +204,18 @@ class ControllerUtilisateur {
 
     public static function updatedMdpAJAX(){
         if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){
+
             if(strlen(myGet("newMdp"))==0){
                 echo "no_null_field";
                 return;
             }
+
             $u=ModelUtilisateur::select(myGet("oldMail"));
+
+            if($u->isAdmin() && !Session::is_super_admin()){
+                //un admin ne doit pas pouvoir modifier le mot de passe d'un autre admin A PART dans le cas du super admin
+                return;
+            }
 
             $data=array(
             "login"=>$u->getLogin(),

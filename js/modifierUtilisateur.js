@@ -4,33 +4,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	let boutonUpdateInfos=document.getElementById("boutonUpdateInfos");
 
-	arrayGet={"login" : document.getElementById("loginUtilisateur"), "nom" : document.getElementById("nomUtilisateur"), "prenom" : document.getElementById("prenomUtilisateur")};
+	if(boutonUpdateInfos!==null){
+		arrayGet={"login" : document.getElementById("loginUtilisateur"), "nom" : document.getElementById("nomUtilisateur"), "prenom" : document.getElementById("prenomUtilisateur")};
 
-	modifie(boutonUpdateInfos,"index/utilisateur/updatedAJAX/?",document.getElementById("load"), arrayGet);
+		modifie(boutonUpdateInfos,"index/utilisateur/updatedAJAX/?",document.getElementById("load"), arrayGet);
+	}
 
 	//si on est admin on ne demande pas de mot de passe donc deux liste de paramètres différentes
+	let boutonUpdateMail = document.getElementById("boutonUpdateMail");
 	let mdpMail=document.getElementById("mdpUtilisateurMail");
-	if(mdpMail!=null){
-		arrayGet={"mail" : document.getElementById("mailUtilisateur"), "mdp" :mdpMail};
-	}
-	else{
-		arrayGet={"mail" : document.getElementById("mailUtilisateur"), "oldMail" : document.getElementById("loginUtilisateur")};
-	}
-	
-	modifie(document.getElementById("boutonUpdateMail"), "index/utilisateur/updatedMailAJAX/?", document.getElementById("loadMail"), arrayGet)
 
-	if(mdpMail!=null){
-		arrayGet={"oldMdp" : document.getElementById("ancienMdp"), "newMdp" : document.getElementById("nouveauMdp")};
-	}else{
-		arrayGet={"newMdp" : document.getElementById("nouveauMdp"), "oldMail" : document.getElementById("loginUtilisateur")};
+	if(boutonUpdateMail!==null){
+			if(mdpMail!=null){
+				arrayGet={"mail" : document.getElementById("mailUtilisateur"), "mdp" :mdpMail};
+			}
+			else{
+				arrayGet={"mail" : document.getElementById("mailUtilisateur"), "oldMail" : document.getElementById("loginUtilisateur")};
+			}
+			modifie(boutonUpdateMail, "index/utilisateur/updatedMailAJAX/?", document.getElementById("loadMail"), arrayGet)
 	}
 
-	modifie(document.getElementById("boutonUpdateMdp"), "index/utilisateur/updatedMdpAJAX/?", document.getElementById("loadMdp"), arrayGet)
+	let boutonUpdateMdp = document.getElementById("boutonUpdateMdp");
+
+	if(boutonUpdateMdp!==null){
+		if(mdpMail!=null){
+			arrayGet={"oldMdp" : document.getElementById("ancienMdp"), "newMdp" : document.getElementById("nouveauMdp")};
+		}else{
+			arrayGet={"newMdp" : document.getElementById("nouveauMdp"), "oldMail" : document.getElementById("loginUtilisateur")};
+		}
+		modifie(boutonUpdateMdp, "index/utilisateur/updatedMdpAJAX/?", document.getElementById("loadMdp"), arrayGet);
+	}
 });
 
 function callback(xhr, load){
 	console.log(xhr.responseText);
-	if(["0","1","2","true"].indexOf(xhr.responseText)>-1){
+	if(["0","1","2","3","true"].indexOf(xhr.responseText)>-1){
 		notification(load, "le compte a été mis à jour","green-text");
 	}
 	else if(xhr.responseText=="no_null_field"){
@@ -70,11 +78,8 @@ function modifie(bouton, url, loadElement, getUrl){
 	});
 }
 
-let canNotify = true;
 
 function notification(load,text,color){
-	if(!canNotify) return;
-	canNotify=false;
 	load.textContent=text;
 	load.classList.remove("displayNone");
 	load.classList.remove("green-text");
