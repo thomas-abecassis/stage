@@ -31,6 +31,7 @@ function callbackAdmin(xhr){
 		}
 		else if(xhr.responseText=="2"){
 			document.getElementById("role").textContent="Admin";
+			document.location.reload(true);
 		}
 	}
 }

@@ -25,7 +25,7 @@
 				  	</p>
 				</div>
         	</div>';
-if(true){
+if((Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
 	echo '	<div class="card " id="modificationCompte">
 	    		<div>
 		        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>

@@ -122,12 +122,15 @@ class ControllerUtilisateur {
         }
 
         else if(Session::is_connected()){
+            $roleChanged=false;
             if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){
                 $utilisateur=ModelUtilisateur::select(myGet("login"));
                 if(!$utilisateur->isAdmin() || Session::is_super_admin()){
                     $role=myGet("role");
                     if(is_null($role)){
                         $role=$utilisateur->getRole();
+                    }else{
+                        $roleChanged=true;
                     }
                 }
                 else{
@@ -146,7 +149,12 @@ class ControllerUtilisateur {
             "role"=>$role
             );
             ModelUtilisateur::update($data);
-            echo $role;
+            if($roleChanged){
+                echo $role;
+            }
+            else{
+                echo "true";
+            }
         }
 
         else{
