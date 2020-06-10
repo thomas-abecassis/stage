@@ -79,7 +79,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
     }else{
       $sql=ModelLot::getSqlSearch($data);
     }
-    $sql=$sql." order by dateEnregistrement LIMIT " . (($page-1)*15) . ", 15 ";
+    $sql=$sql." LIMIT " . (($page-1)*15) . ", 15 ";
       // Préparation de la requête
       $req_prep = Model::$pdo->prepare($sql);
 

@@ -1,6 +1,9 @@
 <?php
 
 require_once "File.php";
+require_once File::build_path(array("model","ModelLot.php"));
+require_once File::build_path(array("model","ModelCategorie.php"));
+
 class Serv{
 
 	public static $pdo;
@@ -36,16 +39,18 @@ class Serv{
 		}
 	}
 
-	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $typesDePieces, $commodites, $rangements, $orientations, $options){
+	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
 		if(!$this->auth){
 			exit();
 		}
 		$sql="INSERT INTO lot (id, localisation, surface, loyer, typeDeBien, nombrePiece,description,informationsCommercial) VALUES ($id,\"$ville\", $surface, $loyer, \"$typeDeBien\", $nombrePiece,\"$description\",\"$informationsCommercial\")";
 		//on enregistre le lot simple
-
 		if(!Serv::$pdo->exec($sql)){
 			return false;
 		}
+
+		/*$test=new ModelLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial);
+		$test->save();
 
 		$tables=array(	"typeDePiecesLot" => $typesDePieces,
 						"commoditesLot" => $commodites,

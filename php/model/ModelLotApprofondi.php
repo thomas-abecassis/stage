@@ -30,7 +30,7 @@ class ModelLotApprofondi {
     }else{
       $sql=ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost);
     }
-    $sql=$sql." group by id order by dateEnregistrement LIMIT " . (($page-1)*15) . ", 15";
+    $sql=$sql." group by id LIMIT " . (($page-1)*15) . ", 15";
     $req_prep = Model::$pdo->prepare($sql);
 
     $values = ModelLot::getTableauPrep($dataPost);

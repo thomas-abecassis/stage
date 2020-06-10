@@ -2,7 +2,7 @@
 	<div id="banniere" class="fond"></div>
 	<div class="col s12 l8 offset-l2">
 		<div class="card" id="searchBox">
-	      <form id="submitForm" method="get" action="index/lot/searched/">
+	      <form id="submitForm" method="get" action="index/lotApprofondi/searchedDeepen/">
 		       <div class="row">
 		          	
 		          	<div class="col s12 l5" id="contenantVille" style="padding: 0px;">
@@ -37,7 +37,7 @@
 		    	  <div id="plusCriteres">
 		    	  	<a class="premiereCouleurText" href="index/lotApprofondi/searchDeepen/">
 		    	  	plus de critères
-		    	  </a>
+		    	  	</a>
 		    	  	<a href="index/lotApprofondi/searchDeepen/" class="btn-floating btn-small waves-effect waves-light premiereCouleur">
 		    	  		<i class="material-icons">add</i>
 		    	  	</a>
