@@ -40,16 +40,11 @@ class Serv{
 	}
 
 	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
-		if(!$this->auth){
+		if($this->auth){
 			exit();
 		}
-		$sql="INSERT INTO lot (id, localisation, surface, loyer, typeDeBien, nombrePiece,description,informationsCommercial) VALUES ($id,\"$ville\", $surface, $loyer, \"$typeDeBien\", $nombrePiece,\"$description\",\"$informationsCommercial\")";
-		//on enregistre le lot simple
-		if(!Serv::$pdo->exec($sql)){
-			return false;
-		}
 
-		/*$test=new ModelLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial);
+		$test=new ModelLot($id,$ville, $surface, $loyer, $description, $informationsCommercial);
 		$test->save();
 
 		$tables=array(	"typeDePiecesLot" => $typesDePieces,
@@ -59,20 +54,13 @@ class Serv{
 						"myOptionsLot" => $options
 					);
 		//on ajoute toutes ses "options"
-		foreach ($tables as $table => $values) {
-			$sql = "insert into ". $table . " values ";
-			$isFirst = true;
-			foreach ($values as $value) {
-				if(!$isFirst){
-					$sql=$sql.", ";
-				}
-				$sql=$sql . "(" . $id . " , \"" . $value . "\")";
-				$isFirst = false;
-			}
+
+		$tabIdValeurs=ModelCategorie::arrayCategorieAndValeurToId($plus);
+		foreach ($tabIdValeurs as $idValeur) {
+			$sql="insert into lotCategorie values (\"$id\", $idValeur)";
 			Serv::$pdo->exec($sql);
 		}
-		
-		return true;
+		return "oui";
 	}
 
 	public function saveImage($id,$image){

@@ -89,5 +89,16 @@ class ModelCategorie{
     }
     return $tabId;
   }
+
+  public static function searchId($arrayValeurs,$id){
+    foreach ($arrayValeurs as $key=>$tab) {
+      foreach ($tab as $v) {
+        if($id==$v->id){
+          return $v;
+        }
+      }
+    }
+  }
+  
 }
 ?>

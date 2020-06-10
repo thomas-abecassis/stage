@@ -13,16 +13,16 @@ class authentificateur{
 
 try
 {
-  //ini_set("soap.wsdl_cache_enabled", 0);
-  //$service=new SoapClient("http://localhost/stage/php/lib/webservice.xml?wsdl");
+  ini_set("soap.wsdl_cache_enabled", 0);
+  $service=new SoapClient("http://localhost/stage/php/lib/webservice.xml?wsdl");
 
-  $clientSOAP = new SoapClient( null,
+  /*$clientSOAP = new SoapClient( null,
       array (
         'uri' => 'http://localhost/stage/php/lib/soap.php',
         'location' => 'http://localhost/stage/php/lib/soap.php',
         'trace' => 1,
         'exceptions' => 0
-    ));
+    ));*/
 
   //var_dump($clientSOAP->__getFunctions());
 
@@ -35,10 +35,10 @@ try
   /**/
 
   //$clientSOAP->__setSoapHeaders($soapHeaders);
-
-  $ret = $clientSOAP->__call('creerLot', array("toast", "Montpellier", "123", "123", "maison", "123", "123", "123", array()));
+  /*
+  $ret = $clientSOAP->__call('creerLot', array("toest", "Montpellier", "123", "123", "maison", "123", "123", "123", array(array("categorie"=>"Type(s) de bien","valeur"=>"appartement"))));
   echo $clientSOAP->__getLastResponse();
-  echo $ret;
+  echo $ret;*/
 
   /*$path = '../../image/fond.jpg';
   $type = pathinfo($path, PATHINFO_EXTENSION);

@@ -16,6 +16,34 @@ class ModelLotApprofondi {
       }
   }
 
+  public function getnom(){
+    $getTypeDeBien=$this->getTypeDeBien();
+    $nombreDePiece=$this->getNombreDePiece();
+
+    $nom=$this->getTypeDeBien();
+    if($nombreDePiece!==false){
+      $nom=$nom . " " . $nombreDePiece . " pièces ";
+    }
+    if(empty($nom)){
+      return " de bien";
+    }
+    return $nom;
+  }
+
+  public function getTypeDeBien(){
+    if(array_key_exists("Type(s) de bien",$this->plus)){
+      return $this->plus["Type(s) de bien"][0];
+    }
+      return "";
+  }
+
+  public function getNombreDePiece(){
+    if(array_key_exists("Nombre de pièces",$this->plus)){
+      return $this->plus["Nombre de pièces"][0];
+    }
+      return false;
+  }
+
   public function getPlus(){
     return $this->plus;
   }
@@ -23,6 +51,7 @@ class ModelLotApprofondi {
   public function getLot(){
     return $this->modelLot;
   }
+
 
   public static function searchDeep($dataCheckBox,$dataPost,$page){
    if( !array_filter($dataCheckBox) && !array_filter($dataPost)){
@@ -40,9 +69,38 @@ class ModelLotApprofondi {
       return array();
     }
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
-    return $req_prep->fetchAll();
+    //return $req_prep->fetchAll();
+    $test=$req_prep->fetchAll();
+    return ModelLotApprofondi::lotsToLotsApprofondi($test);
+
   }
 
+  private static function lotToLotApprofondi($lot,$tabValeursCategories){
+    $id=$lot->getId();
+    $sql="select idValeurCategorie FROM `lotCategorie` where idLot=:id";
+
+    $values=array("id" => $id );
+
+    $req_prep = Model::$pdo->prepare($sql);
+    $req_prep->execute($values);
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    $rep = $req_prep->fetchAll();
+
+    $tabValeurs= array();
+    foreach ($rep as $valeur){
+      array_push($tabValeurs, ModelCategorie::searchId($tabValeursCategories, $valeur->idValeurCategorie));
+    }
+    return new ModelLotApprofondi($lot, $tabValeurs);
+  }
+
+  private static function lotsToLotsApprofondi($tabLots){
+    $valeurs=ModelCategorie::getAllValeursCategories();
+    $tabLotsApprofondis = array();
+    foreach ($tabLots as $lot) {
+      array_push($tabLotsApprofondis, ModelLotApprofondi::lotToLotApprofondi($lot,$valeurs));
+    }
+    return $tabLotsApprofondis;
+  }
 
   public static function getSqlForDeepSearch($dataCheckBox,$dataPost){
     $sql=ModelLot::getSqlSearch($dataPost);

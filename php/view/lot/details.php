@@ -77,7 +77,7 @@
 	    	</div></div> -->
 	  </div>
 	</div>
-    	<?php echo '<div class="infosEssentiels "><div class="nom">' .htmlspecialchars($lot->getNom()). '</div><div class=
+    	<?php echo '<div class="infosEssentiels "><div class="nom">' .htmlspecialchars($lotApprofondi->getNom()). '</div><div class=
     	"loyer premiereCouleurText">' . htmlspecialchars($lot->getLoyer()) . '€/mois CC</div></div>' ; ?>
 </div>
 <div class="floatLeft">

@@ -24,10 +24,6 @@ class Modellot extends Model{
        $this->id = $id2;
   }
 
-  public function getnom(){
-    return $this->typeDeBien . " " . $this->nombrePiece . " pièces ";
-  }
-
   public function getLoyer(){
     return $this->loyer;
   }
@@ -67,7 +63,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
     $this->localisation = $loc;
     $this->loyer = $loy;
     $this->surface = $sur;
-    $this->d=$d;
+    $this->description=$d;
     $this->informationsCommercial=$inf;
   }
 }
