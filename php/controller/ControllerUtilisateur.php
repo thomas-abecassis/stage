@@ -90,12 +90,12 @@ class ControllerUtilisateur {
             if(Session::is_user($login)){
                 unset($_SESSION["login"]);
             }
-            $controller='utilisateur'; $view='deleted'; $pagetitle='supprimé';     //appel au modèle pour gerer la BD
+            $controller='lot'; $view='recherche'; $pagetitle='recherche de lots';     //appel au modèle pour gerer la BD
             require File::build_path(array("view", "view.php"));   
         }
         else{
-            $controller='utilisateur'; $view='connect'; $pagetitle='mise à jour de utilisateur';     //appel au modèle pour gerer la BD
-            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue  
+            $controller='lot'; $view='recherche'; $pagetitle='recherche de lots';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));
         }
 
     }
@@ -199,7 +199,7 @@ class ControllerUtilisateur {
                 ModelUtilisateur::updatePrimaryKey($_SESSION["login"],myGet("mail"));
                 $_SESSION["login"]=myGet("mail");
                 $_SESSION["pageName"]=myGet("mail");
-                echo "true";
+                echo "trueMail".myGet("mail");
             }
             else{
                 echo "mail_allready_taken";

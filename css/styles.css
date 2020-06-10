@@ -899,6 +899,10 @@ input[type=number] {
     font-size: 20px;
   }
 
+  .buttonHover:hover{
+    background-color: rgba(0,0,0,0.1) !important;
+  }
+
 }
 
 @media (min-width: 100px) and (max-width: 1100px) {
@@ -1008,6 +1012,4 @@ input[type=number] {
     height:100vh;
     z-index:1000;
   }
-
-
 }

@@ -25,7 +25,7 @@
 				  	</p>
 				</div>
         	</div>';
-if((Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
+if( strcmp($_SESSION["login"], $u->getLogin())==0 || (Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
 	echo '	<div class="card " id="modificationCompte">
 	    		<div>
 		        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>
@@ -67,7 +67,20 @@ if((Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
             ?>
             <?php
             if(!$u->isAdmin() || Session::is_super_admin()){
-            	echo '<p><form action="index/utilisateur/delete/?id='.htmlspecialchars($u->getLogin()).'"><button class="red-text text-darken-1 ">supprimer le compte</button></form></p>';
+            	echo '<!-- Modal Trigger -->
+					  <a class="waves-effect waves-light btn modal-trigger red darken-2 white-text" href="#modal1">Supprimer le compte</a>
+
+					  <!-- Modal Structure -->
+					  <div id="modal1" class="modal">
+					    <div class="modal-content">
+					      <h4>Voulez vous vraiment supprimer votre compte ?</h4>
+					      <p>Cette action est définitive</p>
+					    </div>
+					    <div class="modal-footer">
+					    	<a class="buttonHover modal-close waves-effect waves-green btn-flat">Non</a>
+					      	<a href="index/utilisateur/delete/?id='.htmlspecialchars($u->getLogin()).'" class="buttonHover waves-effect waves-green btn-flat">Oui</a>
+					    </div>
+					  </div>';
        	 	}
         	if((Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
         		echo '
