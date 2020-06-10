@@ -50,7 +50,7 @@
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>1</idLot>
+      <idLot>test</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>
@@ -58,27 +58,16 @@
       <nombrePiece>2</nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
-      <typesDePieces>
-      	 <!-- typesDePieces est un tableau, les noms des balises à l'intérieur ne sont pas importants -->
-      	<typesDePieces1>salle de bain</typesDePieces1>
-      	<typesDePieces2>toilettes séparée</typesDePieces2>
-      </typesDePieces>
-      <commodites>
-      	<commodites1>alarme</commodites1>
-      	<commodites2>balcon</commodites2>
-      </commodites>
-      <rangements>
-      	<rangements1>cave</rangements1>
-      	<rangements2>garage</rangements2>      	
-      </rangements>
-      <orientations>
-      	<orientations1>est</orientations1>
-      	<orientations2>nord</orientations2>
-      </orientations>
-      <options>
-      	<options1>gardien</options1>
-      	<options2>interphone</options2>
-      </options>
+      <plus>
+      	<plus1>
+            <categorie>Type(s) de bien</categorie>
+            <valeur>appartement</valeur>
+         </plus1>
+      	<plus2>
+            <categorie>Nombre de pièces</categorie>
+            <valeur>1</valeur>  
+         </plus2>
+      </plus>
 	</creerLot>
 	</soapenv:Body>
 </soapenv:Envelope>

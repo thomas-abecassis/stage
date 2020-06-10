@@ -34,11 +34,7 @@
       <part name = "nombrePiece" type = "xsd:string"/>
       <part name = "description" type = "xsd:string"/>
       <part name = "informationsCommercial" type = "xsd:string"/>
-      <part name = "typesDePieces" type = "xsd:anyType"/>
-      <part name = "commodites" type = "xsd:anyType"/>
-      <part name = "rangements" type = "xsd:anyType"/>
-      <part name = "orientations" type = "xsd:anyType"/>
-      <part name = "options" type = "xsd:anyType"/>
+      <part name = "plus" type = "xsd:anyType"/>
    </message>
 
    <portType name = "test_PortType">

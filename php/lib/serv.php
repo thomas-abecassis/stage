@@ -40,27 +40,29 @@ class Serv{
 	}
 
 	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
-		if($this->auth){
+		if(!$this->auth){
 			exit();
 		}
 
 		$test=new ModelLot($id,$ville, $surface, $loyer, $description, $informationsCommercial);
 		$test->save();
-
-		$tables=array(	"typeDePiecesLot" => $typesDePieces,
-						"commoditesLot" => $commodites,
-						"rangementsLot" => $rangements,
-						"orientationsLot" => $orientations,
-						"myOptionsLot" => $options
-					);
 		//on ajoute toutes ses "options"
 
-		$tabIdValeurs=ModelCategorie::arrayCategorieAndValeurToId($plus);
+		//on transforme les stdClass en tableau
+		$plusTab=array();
+		foreach ($plus as $value) {
+			$tabTemp=array();
+			$tabTemp["categorie"]=$value->categorie;
+			$tabTemp["valeur"]=$value->valeur;
+			array_push($plusTab, $tabTemp);
+		}
+
+		$tabIdValeurs=ModelCategorie::arrayCategorieAndValeurToId($plusTab);
 		foreach ($tabIdValeurs as $idValeur) {
 			$sql="insert into lotCategorie values (\"$id\", $idValeur)";
 			Serv::$pdo->exec($sql);
 		}
-		return "oui";
+		return "fait";
 	}
 
 	public function saveImage($id,$image){

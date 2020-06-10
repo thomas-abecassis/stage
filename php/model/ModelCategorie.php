@@ -84,8 +84,8 @@ class ModelCategorie{
 
   public static function arrayCategorieAndValeurToId($tabValeurAndCategorie){
     $tabId=array();
-    for($i=0;$i<count($tabValeurAndCategorie);$i++){
-      $tabId[$i]=ModelCategorie::CategorieAndValeurToId($tabValeurAndCategorie[$i]["categorie"],$tabValeurAndCategorie[$i]["valeur"]);
+    foreach ($tabValeurAndCategorie as $valeurEtCategorie) {
+      array_push($tabId,ModelCategorie::CategorieAndValeurToId($valeurEtCategorie["categorie"],$valeurEtCategorie["valeur"]));
     }
     return $tabId;
   }
