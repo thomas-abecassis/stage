@@ -39,6 +39,7 @@ class ControllerUtilisateur {
     }
 
     public static function Read(){
+        $_SESSION["pageName"]=myGet("id");
         $u=false;
         if(Session::is_admin()){
     	   $u=ModelUtilisateur::select(myGet("id"));
@@ -121,7 +122,7 @@ class ControllerUtilisateur {
         }
 
         else if(Session::is_connected()){
-            if(Session::is_admin() && !Session::is_user(myGet("id"))){
+            if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){
                 $utilisateur=ModelUtilisateur::select(myGet("login"));
                 $role=myGet("role");
                 if(is_null($role)){
@@ -149,7 +150,8 @@ class ControllerUtilisateur {
     }
 
     public static function updatedMailAJAX(){
-        if(Session::is_admin() && myGet("oldMail")!==null){ //on vérifie que l'admin n'est pas sur sa propre page en vérifiant oldMail 
+        if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){ //on vérifie que l'admin n'est pas sur sa propre page en vérifiant oldMail
+
             if(strlen(myGet("mail"))==0){
                 echo "no_null_field";
                 return;
@@ -174,11 +176,12 @@ class ControllerUtilisateur {
             return;
         }
 
-        if((ModelUtilisateur::checkPassword($_SESSION["login"],myGet("mdp"))) || Session::is_admin()){
+        if((ModelUtilisateur::checkPassword($_SESSION["login"],myGet("mdp")))){
             if(ModelUtilisateur::select(myGet("mail"))==false){
-            ModelUtilisateur::updatePrimaryKey($_SESSION["login"],myGet("mail"));
-            $_SESSION["login"]=myGet("mail");
-            echo "true";
+                ModelUtilisateur::updatePrimaryKey($_SESSION["login"],myGet("mail"));
+                $_SESSION["login"]=myGet("mail");
+                $_SESSION["pageName"]=myGet("mail");
+                echo "true";
             }
             else{
                 echo "mail_allready_taken";
@@ -190,7 +193,7 @@ class ControllerUtilisateur {
     } 
 
     public static function updatedMdpAJAX(){
-        if(Session::is_admin() && myGet("oldMail")!==null){
+        if(Session::is_admin() && $_SESSION["login"]!==$_SESSION["pageName"]){
             if(strlen(myGet("newMdp"))==0){
                 echo "no_null_field";
                 return;
