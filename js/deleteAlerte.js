@@ -30,12 +30,12 @@ function mettreEvents(){
 
 function activerAlerte(buton){
 	let id=trouverId(buton);
-	requeteAJAX("index.php?controller=alerte&action=active&id="+id,callback1);
+	requeteAJAX("index/alerte/activeAJAX/?id="+id,callback1);
 }
 
 function supprimerAlerte(buton){
 	let id=trouverId(buton);
-	requeteAJAX("index.php?controller=alerte&action=delete&id="+id,callback1);
+	requeteAJAX("index/alerte/deleteAJAX/?id="+id,callback1);
 	supprimerBoiteParent(buton);
 };
 
@@ -91,7 +91,7 @@ function idDansEnfants(element){
 function modifierNom(display,nom){
 	display.textContent=nom;
 	let id=trouverId(display);
-	requeteAJAX("index.php?controller=alerte&action=update&id="+id+"&nom="+nom,callback1);
+	requeteAJAX("index/alerte/update/?id="+id+"&nom="+nom,callback1);
 }
 
 document.onkeydown = function (e) {

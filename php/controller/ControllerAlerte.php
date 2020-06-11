@@ -5,7 +5,7 @@ require_once File::build_path(array("model", "ModelCategorie.php"));
 class ControllerAlerte {
 
     public static function Read(){
-        if (isset($_SESSION["login"])){
+        if (Session::is_connected()){
             $alertes=ModelAlerte::selectCol("loginUtilisateur",$_SESSION["login"]);
             if($alertes != false){
                 foreach ($alertes as $alerte) {
@@ -21,14 +21,20 @@ class ControllerAlerte {
     }
 
     public static function created(){
-        $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],ModelCategorie::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]),"Nom par défault",true);
-        $alerte->encode();
-        $alerte->save();
-        ModelAlerte::unsetSession();
-        echo "save";
+        if(Session::is_connected() && !empty($_SESSION["dataFirst"])){
+            $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],ModelCategorie::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]),"Nom par défault",true);
+            $alerte->encode();
+            $alerte->save();
+            ModelAlerte::unsetSession();
+            echo "save";
+        }
+        else{
+            $controller='lot'; $view='recherche'; $pagetitle='Recherche de biens';     //appel au modèle pour gerer la BD
+            require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
+        }
     }
 
-    public static function delete(){
+    public static function deleteAJAX(){
         $id=myGet('id');
         $login=$_SESSION["login"];
         if((Session::is_user($login) && ModelAlerte::alerteCorrespondToUser($id,$login)) || Session::is_admin()){
@@ -55,7 +61,7 @@ class ControllerAlerte {
         }
     }
 
-    public static function active(){
+    public static function activeAJAX(){
         $id=myGet("id");
         $login=$_SESSION["login"];
         if((Session::is_user($login) && ModelAlerte::alerteCorrespondToUser($id,$login)) || Session::is_admin()){

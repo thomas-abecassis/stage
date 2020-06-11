@@ -16,7 +16,7 @@ class ModelLotApprofondi {
       }
   }
 
-  public function getnom(){
+  /*public function getnom(){
     $getTypeDeBien=$this->getTypeDeBien();
     $nombreDePiece=$this->getNombreDePiece();
 
@@ -28,7 +28,7 @@ class ModelLotApprofondi {
       return " de bien";
     }
     return $nom;
-  }
+  }*/
 
   public function getTypeDeBien(){
     if(array_key_exists("Type(s) de bien",$this->plus)){

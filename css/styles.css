@@ -330,6 +330,7 @@ main {
 	left: 0;
 }
 
+/*
 .progress{
   margin-top: 1.6em !important;
   margin-bottom: 1.6em!important;
@@ -342,6 +343,7 @@ main {
 .indeterminate{
   background-color: #e8e3e0 !important;
 }
+*/
 
 .pageSelection :before {
   content : "";
