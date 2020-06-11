@@ -20,7 +20,7 @@
           </form>
           <div class="ligne"></div>
           <p class="center">
-          Pas de compte ? Créez en un <a id="boutonRedirectCreation" class="sousLigner" href="#">ici</a>.
+          Pas de compte ? Créez en un <a id="boutonRedirectCreation" class="sousLigner pointer" >ici</a>.
           </p>
         </div>
       </div>

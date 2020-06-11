@@ -71,7 +71,8 @@ class ModelLotApprofondi {
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
     //return $req_prep->fetchAll();
     $test=$req_prep->fetchAll();
-    return ModelLotApprofondi::lotsToLotsApprofondi($test);
+    return $test; 
+    return ModelLotApprofondi::lotsToLotsApprofondi($test); //Je peux optimiser ça en utilisant de l'ajax
 
   }
 
@@ -93,7 +94,7 @@ class ModelLotApprofondi {
     return new ModelLotApprofondi($lot, $tabValeurs);
   }
 
-  private static function lotsToLotsApprofondi($tabLots){
+  public static function lotsToLotsApprofondi($tabLots){
     $valeurs=ModelCategorie::getAllValeursCategories();
     $tabLotsApprofondis = array();
     foreach ($tabLots as $lot) {

@@ -46,6 +46,20 @@ class ControllerLotApprofondi{
         require File::build_path(array("view", "view.php"));
     }
 
+    public static function getNomLotsAJax(){
+        $tabIdLots=json_decode(stripslashes(myGet('idLots')));
+        $tabLots=array();
+        foreach ($tabIdLots as $idLot ) {
+            array_push($tabLots, ModelLot::select($idLot));
+        }
+        $tabLotsApprofondi=ModelLotApprofondi::lotsToLotsApprofondi($tabLots);
+        $tabNomsLots=array();
+        foreach ($tabLotsApprofondi as $lotApprofondi) {
+            array_push($tabNomsLots, $lotApprofondi->getNom());
+        }
+        echo json_encode($tabNomsLots);
+    }
+
     public static function searchedDeepenAlerte() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
         ModelLotApprofondi::unsetSession();

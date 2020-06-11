@@ -330,6 +330,19 @@ main {
 	left: 0;
 }
 
+.progress{
+  margin-top: 1.6em !important;
+  margin-bottom: 1.6em!important;
+  max-width: 7em;
+  height: 0.6em !important;
+  background-color: #f7f2ee !important;
+  border-radius: 4px !important;
+}
+
+.indeterminate{
+  background-color: #e8e3e0 !important;
+}
+
 .pageSelection :before {
   content : "";
   position: absolute;
@@ -505,6 +518,10 @@ input[type=number] {
 
 .absolute{
   position: absolute !important;
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 #cardPrivileges{

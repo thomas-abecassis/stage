@@ -85,5 +85,5 @@ function notification(load,text,color){
 	load.classList.remove("green-text");
 	load.classList.remove("red-text");
 	load.classList.add(color);
-	setTimeout(function(){ load.classList.add("displayNone"); canNotify=true;}, 3000);
+	setTimeout(function(){ load.classList.add("displayNone");}, 3000);
 }

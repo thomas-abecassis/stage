@@ -1,5 +1,6 @@
 <div id="containerRecherche" class="container">
   <div  class="col s12 l7 offset-l2 noPadding" id="retour">
+        
     <?php
       if(strcmp(myGet("recherche"),"approfondi")==0){
       echo '<a href="index/lotApprofondi/searchDeepen/"> <i class="material-icons">keyboard_backspace</i> <span class="absolute sousLignerHover">Retour à la recherche </span></a>';
@@ -13,24 +14,29 @@
         if($tab_lot != false){
             foreach ($tab_lot as $v){
                 $filecount = 0;
-                $files = glob("image/".htmlspecialchars($v->getLot()->getId())."/*.*");
+                $files = glob("image/".htmlspecialchars($v->getId())."/*.*");
                 if ($files){
                  $filecount = count($files);
                 }
-                echo '  <a href=index/lotApprofondi/Read/?id='.rawurlencode($v->getLot()->getId()).$getURL."page=".$page.'>
+                echo '  <a href=index/lotApprofondi/Read/?id='.rawurlencode($v->getId()).$getURL."page=".$page.'>
                         <div class="col s12 l7 offset-l2 card boite boite_hover">';
                         if($filecount!=0){
-                          echo '<div class="imageBoite" ><img alt="photo de l\'annonce" src="image/'.$v->getLot()->getId().'/1.jpg"></div>';
+                          echo '<div class="imageBoite" ><img alt="photo de l\'annonce" src="image/'.$v->getId().'/1.jpg"></div>';
                         }
                         else{
                           echo '<div class="imageBoite" ><img alt="photo manquante" src="image/noPhoto.png"></div>';
                         }
 
                 echo '<div class="infoBoite ">
-                			<p class="grey-text text-darken-1"> vente ' . htmlspecialchars($v->getnom()) . ' </p>
-                			<p class="prix">'.htmlspecialchars($v->getLot()->getLoyer()).' €/mois </p>
-                            <p class="surface">   <i class="material-icons">home</i><span class="surfaceText">'.htmlspecialchars($v->getLot()->getSurface()) . 'm² </span></p>
-                            <p class="surface">   <i class="material-icons">place</i><span class="surfaceText">'.htmlspecialchars($v->getLot()->getLocalisation()) .' </span></p>
+                			<p class="grey-text text-darken-1 nomLot" id="' . rawurlencode($v->getId()) . '">     
+                      </p>
+                        <div class="progress">
+                          <div class="indeterminate">
+                          </div>
+                        </div>
+                			<p class="prix">'.htmlspecialchars($v->getLoyer()).' €/mois </p>
+                            <p class="surface">   <i class="material-icons">home</i><span class="surfaceText">'.htmlspecialchars($v->getSurface()) . 'm² </span></p>
+                            <p class="surface">   <i class="material-icons">place</i><span class="surfaceText">'.htmlspecialchars($v->getLocalisation()) .' </span></p>
                             </div>
             		    </div>
                         </a>';
@@ -113,3 +119,4 @@
                 echo "connecte = false";
             };
         ?></script>
+        <script src="js/nomLots.js" defer></script>

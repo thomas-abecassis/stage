@@ -33,7 +33,7 @@ if( strcmp($_SESSION["login"], $u->getLogin())==0 || (Session::is_admin() && !$u
 		        	<p><span class="legerGras">E-mail</span><input  id="mailUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input></p>
 		        	<div class="ligne"></div>';
 		        	if(!Session::is_admin() || Session::is_user(myGet("id"))){
-		        		echo'<p><span class="legerGras">Mot de passe</span><input type="password" id="mdpUtilisateurMail" ></input></p>
+		        		echo'<p><span class="legerGras">Mot de passe</span><input autocomplete="new-password" value="" type="password" id="mdpUtilisateurMail" ></input></p>
 		        		<div class="ligne"></div>';
 		        	}
 		            
@@ -49,10 +49,10 @@ if( strcmp($_SESSION["login"], $u->getLogin())==0 || (Session::is_admin() && !$u
 	    		<div>
 		        	<p class="grandeTailleFont legerGras">Modifier votre mot de passe</p>
 		        	<div class="ligne"></div>
-		        	<p><span class="legerGras">Nouveau mot de passe</span><input type="password" id="nouveauMdp"></input></p>
+		        	<p><span class="legerGras">Nouveau mot de passe</span><input value="" type="password" id="nouveauMdp"></input></p>
 		        	<div class="ligne"></div>';
 		        	if(!Session::is_admin() || Session::is_user(myGet("id"))){
-		        		echo'<p><span class="legerGras">Ancien mot de passe</span><input type="password" id="ancienMdp" ></input></p>
+		        		echo'<p><span class="legerGras">Ancien mot de passe</span><input value="" type="password" id="ancienMdp" ></input></p>
 		        		<div class="ligne"></div>';
 		        	}
 
