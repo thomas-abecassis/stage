@@ -1,4 +1,4 @@
- <!-- Pour supprimer tout les lots -->
+<!-- Pour supprimer tout les lots -->
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
    <soapenv:Header>
 		<authentification>
@@ -7,8 +7,24 @@
 		</authentification>
     </soapenv:Header>
 	<soapenv:Body>
-	<supprimeLots></supprimeLots>
+	<supprimerLots></supprimerLots>
 	</soapenv:Body>
+</soapenv:Envelope>
+
+<!-- supprimer un seul lot -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerUnLot>
+      <idLot>1234</idLot>
+   </supprimerUnLot>
+   </soapenv:Body>
 </soapenv:Envelope>
 
  <!-- Pour supprimer toutes les images -->
@@ -70,4 +86,21 @@
       </plus>
 	</creerLot>
 	</soapenv:Body>
+</soapenv:Envelope>
+
+<!-- enregistrer une categorie et une valeur (si la categorie n'existe pas elle est créée) -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <saveCategorieEtValeur>
+      <categorie>Option(s)</categorie>
+      <valeur>ceci est une option</valeur>
+   </saveCategorieEtValeur>
+   </soapenv:Body>
 </soapenv:Envelope>

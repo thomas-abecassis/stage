@@ -84,6 +84,9 @@ class Serv{
 	}
 
 	public function supprimerImages(){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		$files = glob(File::build_path(array("..","image","*"))); 
 		foreach($files as $file){ 
 			if(is_file($file)){
@@ -102,13 +105,40 @@ class Serv{
 		return "fait";
 	}
 
-	public function supprimeLots(){
+	public function supprimerLots(){
 		if(!$this->auth){
 			return "pas connecté";
 		}
 		$sql="delete from lot";
 		Serv::$pdo->exec($sql);
 		return "fait";
+	}
+
+	public function supprimerUnLot($id){
+		if(!$this->auth){
+			return "pas connecté";
+		}
+		$sql="delete from lot where id=$id";
+		Serv::$pdo->exec($sql);
+		return "fait";
+	}
+
+	public function saveCategorieEtValeur($categorie, $valeur){
+		if(!$this->auth){
+			return "pas connecté";
+		}
+		$sql="select * from categories where categorie =\"$categorie\"";
+		//return $sql;
+		$categorieExiste = Serv::$pdo->query($sql);
+		if(count($categorieExiste->fetchAll())==0){
+			//si la categorie c'est pas enregistrée dans la base on doit l'enregistrer
+			$sql="insert into categories(categorie) values(\"$categorie\")";
+			Serv::$pdo->exec($sql);
+		}
+		$categorieId=ModelCategorie::categorieNameToId($categorie);
+		$sql="insert into sousCategorie(categorieId, valeur) values ($categorieId,\"$valeur\")";
+		Serv::$pdo->exec($sql);
+		return "fait"; 
 	}
 }
 

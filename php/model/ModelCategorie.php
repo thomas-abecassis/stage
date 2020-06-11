@@ -90,6 +90,16 @@ class ModelCategorie{
     return $tabId;
   }
 
+  public static function categorieNameToId($categorieName){
+    $sql="select id from categories where categorie=:categorieName";
+    $values=array("categorieName"=>$categorieName);
+    $req_prep = Model::$pdo->prepare($sql);
+    $req_prep->execute($values);
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    $rep= $req_prep->fetchAll();
+    return $rep[0]->id;
+  }
+
   public static function searchId($arrayValeurs,$id){
     foreach ($arrayValeurs as $key=>$tab) {
       foreach ($tab as $v) {

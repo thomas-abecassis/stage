@@ -7,8 +7,8 @@
    xmlns:tns = "http://localhost/stage/php/lib/webservice.xml"
    xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
 
-   <message name = "testParam">
-      <part name = "cc" type = "xsd:string"/>
+   <message name = "supprimerUnLotParam">
+      <part name = "idLot" type = "xsd:string"/>
    </message>
       
    <message name = "returnString">
@@ -23,6 +23,11 @@
    <message name = "authentificationParam">
       <part name = "login" type = "xsd:string"/>
       <part name = "password" type = "xsd:string"/>
+   </message>
+
+   <message name = "saveCategorieEtValeurParam">
+      <part name = "categorie" type = "xsd:string"/>
+      <part name = "valeur" type = "xsd:string"/>
    </message>
 
    <message name= "creerLotParam">
@@ -50,10 +55,18 @@
          <input message = "tns:creerLotParam"/>
          <output message = "tns:returnString"/>
       </operation>
-      <operation name = "supprimeLots">
+      <operation name = "supprimerUnLot">
+         <input message = "tns:supprimerUnLotParam"/>
+         <output message = "tns:returnString"/>
+      </operation>
+      <operation name = "supprimerLots">
          <output message = "tns:returnString"/>
       </operation>
       <operation name = "supprimerImages">
+         <output message = "tns:returnString"/>
+      </operation>
+      <operation name="saveCategorieEtValeur">
+         <input message = "tns:saveCategorieEtValeurParam"/>
          <output message = "tns:returnString"/>
       </operation>
    </portType>
@@ -94,8 +107,8 @@
                use = "encoded"/>
          </output>
       </operation>
-      <operation name = "supprimeLots">
-         <soap:operation soapAction = "creerLot"/>
+      <operation name = "supprimerLots">
+         <soap:operation soapAction = "supprimerLots"/>
          <input>
             <soap:body
                encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
@@ -128,6 +141,22 @@
       </operation>
       <operation name = "supprimerImages">
          <soap:operation soapAction = "supprimerImages"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "saveCategorieEtValeur">
+         <soap:operation soapAction = "saveCategorieEtValeur"/>
          <input>
             <soap:body
                encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
