@@ -75,7 +75,7 @@ class Modellot extends Model{
 
   public function getLocalisation(){
     $sql="select nom from villesFrance where id=:idLot";
-    $values=array("idLot"=>$this->id);
+    $values=array("idLot"=>$this->localisation);
 
     $req_prep = Model::$pdo->prepare($sql);
 

@@ -63,10 +63,6 @@ class ModelLotApprofondi {
     $req_prep = Model::$pdo->prepare($sql);
 
     $values = ModelLotApprofondi::getTableauPrep($dataPost,$typesBien,$nombrePieces);
-    echo "je dump";
-    var_dump($values);
-    echo "j'ai var dump";
-
     $req_prep->execute($values);
     if($req_prep==false){
       return array();
@@ -140,8 +136,6 @@ class ModelLotApprofondi {
 
     if(count($typesBien)!==0 || count($nombrePieces)!==0) 
       $sql=$sql.')';
-
-    var_dump($sql);
 
     if(!count($dataCheckBox)) return $sql;
 
