@@ -78,17 +78,7 @@ class Modellot extends Model{
   }
 
   public function getLocalisation(){
-    $sql="select nom from villesFrance where id=:idLoc";
-    $values=array("idLoc"=>$this->localisation);
-
-    $req_prep = Model::$pdo->prepare($sql);
-
-    $req_prep->execute($values);
-
-    $req_prep->setFetchMode(PDO::FETCH_OBJ);
-    $ville = $req_prep->fetchAll();
-    return $ville[0]->nom;
-    //return $this->localisation;
+    return $this->localisation;
   }
 
   public function getLocalisationId(){
@@ -121,6 +111,18 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
   }
 }
 
+  public static function selectById($id){
+    $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation where lot.id=:id";
+
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $values = array("id"=>$id);
+    $req_prep->execute($values);
+
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
+    $lot = $req_prep->fetchAll();
+    return $lot[0]; 
+  }
 
   public static function selectByRecherche($data,$page){
     if(!array_filter($data)){

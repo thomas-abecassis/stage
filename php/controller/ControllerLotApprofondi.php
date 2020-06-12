@@ -97,7 +97,7 @@ class ControllerLotApprofondi{
 
     public static function read(){
         $id=myGet("id");
-        $lot=ModelLot::select($id);
+        $lot=ModelLot::selectById($id);
         if($lot==false){
             $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
             require File::build_path(array('view','view.php'));  //"redirige" vers la vue
