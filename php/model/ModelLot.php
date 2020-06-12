@@ -74,7 +74,17 @@ class Modellot extends Model{
   }
 
   public function getLocalisation(){
-    return $this->localisation;
+    $sql="select nom from villesFrance where id=:idLot";
+    $values=array("idLot"=>$this->id);
+
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $req_prep->execute($values);
+
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    $ville = $req_prep->fetchAll();
+    return $ville[0]->nom;
+    //return $this->localisation;
   }
 
   public function getTab(){

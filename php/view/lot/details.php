@@ -117,10 +117,10 @@
 		<span class="titrePartie" >Critères</span>
 			<div class="row">	
 				<?php
-					//echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
+					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Adresse : </div><div class=\"critereLot\">". $lot->getLocalisation() ."</div></div>";
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Surface : </div><div class=\"critereLot\">". $lot->getSurface() ."m²</div></div>";
-					//echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Nombre de pièces : </div><div class=\"critereLot\">". $lot->getNombrePiece() ."</div></div>";
+					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Nombre de pièces : </div><div class=\"critereLot\">". $lot->getNombreDePieces() ."</div></div>";
 				?>
 			</div>
 		</div>
