@@ -22,7 +22,7 @@ class ControllerAlerte {
 
     public static function created(){
         if(Session::is_connected() && !empty($_SESSION["dataFirst"])){
-            $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],ModelCategorie::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]),"Nom par défault",true);
+            $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],ModelCategorie::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]),"Nom par défault",true, $_SESSION["nombrePieces"],$_SESSION["typesBien"] );
             $alerte->encode();
             $alerte->save();
             ModelAlerte::unsetSession();

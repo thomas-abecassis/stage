@@ -53,16 +53,19 @@ class ModelLotApprofondi {
   }
 
 
-  public static function searchDeep($dataCheckBox,$dataPost,$page){
-   if( !array_filter($dataCheckBox) && !array_filter($dataPost)){
-      $sql="select * from lot";
+  public static function searchDeep($dataCheckBox,$dataPost,$typesBien,$nombrePieces,$page){
+   if( !array_filter($dataCheckBox) && !array_filter($dataPost) && count($typesBien)==0 && count($nombrePieces)==0){
+      $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation ";   
     }else{
-      $sql=ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost);
+      $sql=ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost,$typesBien,$nombrePieces);
     }
     $sql=$sql." group by id LIMIT " . (($page-1)*15) . ", 15";
     $req_prep = Model::$pdo->prepare($sql);
 
-    $values = ModelLot::getTableauPrep($dataPost);
+    $values = ModelLotApprofondi::getTableauPrep($dataPost,$typesBien,$nombrePieces);
+    echo "je dump";
+    var_dump($values);
+    echo "j'ai var dump";
 
     $req_prep->execute($values);
     if($req_prep==false){
@@ -103,11 +106,45 @@ class ModelLotApprofondi {
     return $tabLotsApprofondis;
   }
 
-  public static function getSqlForDeepSearch($dataCheckBox,$dataPost){
+  public static function getSqlForDeepSearch($dataCheckBox,$dataPost,$typesBien,$nombrePieces){
     $sql=ModelLot::getSqlSearch($dataPost);
-    if(!count($dataCheckBox)){
-      return $sql;
+
+    if(arrayContentIsEmpty($dataPost) && (count($typesBien)!==0 || count($nombrePieces)!==0)) 
+      $sql=$sql.' where ';
+
+    if(count($typesBien)!==0 || count($nombrePieces)!==0){ 
+      if(!arrayContentIsEmpty($dataPost))
+        $sql=$sql . " and ";
+      $sql=$sql.'(';
     }
+
+    for ($i=0; $i<count($typesBien);$i++) {
+      $sql=$sql . " typeDeBien =:typeDeBien".$i;
+      if($i!==count($typesBien)-1)
+        $sql=$sql.' or '; 
+    }
+
+    if(count($typesBien)!==0 && count($nombrePieces)!==0) 
+      $sql=$sql.' or ';
+
+    for ($i=0; $i<count($nombrePieces);$i++) {
+      $nombreDePieces= $nombrePieces[$i];
+      if(!strpos($nombreDePieces, " et plus")===false ){ //strpos peut renvoyer 0 donc on utilise === false
+        $sql=$sql . " nombreDePieces >= :nombreDePieces".$i;
+      }else{
+        $sql=$sql . " nombreDePieces = :nombreDePieces".$i;
+      }
+      if($i!==count($nombrePieces)-1)
+        $sql=$sql.' or '; 
+    }
+
+    if(count($typesBien)!==0 || count($nombrePieces)!==0) 
+      $sql=$sql.')';
+
+    var_dump($sql);
+
+    if(!count($dataCheckBox)) return $sql;
+
     $sql="select * from ($sql) as lot join lotCategorie on lotCategorie.idLot=lot.id";
     $isFirst=true;
     foreach ($dataCheckBox as  $value ) {
@@ -122,14 +159,14 @@ class ModelLotApprofondi {
     return $sql;
   }
 
-  public static function getNbLotRecherche($dataCheckBox,$dataPost){
+  public static function getNbLotRecherche($dataCheckBox,$dataPost,$typesBien,$nombrePieces){
     if( !array_filter($dataCheckBox) && !array_filter($dataPost)){
       $sql="select count(*) as nbLot from lot";
     }else{
-      $sql="select count(*) as nbLot from ( " . ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost) . " ) as recherche ";
+      $sql="select count(*) as nbLot from ( " . ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost,$typesBien,$nombrePieces) . " ) as recherche ";
     }
     $req_prep = Model::$pdo->prepare($sql);
-    $values = ModelLot::getTableauPrep($dataPost);
+    $values = ModelLotApprofondi::getTableauPrep($dataPost,$typesBien,$nombrePieces);
 
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_OBJ);
@@ -144,6 +181,20 @@ class ModelLotApprofondi {
 
   public static function setSession($dataCheckBox){
     $_SESSION['dataCheckBox']=$dataCheckBox;
+  }
+
+  public static function getTableauPrep($dataPost,$typesBien,$nombrePieces){
+    $values = ModelLot::getTableauPrep($dataPost);
+
+    for ($i=0; $i<count($typesBien);$i++) {
+      $values["typeDeBien".$i]=$typesBien[$i];
+    }
+
+    for ($i=0; $i<count($nombrePieces);$i++) {
+      $values["nombreDePieces".$i]=intval (str_replace(" et plus", "", $nombrePieces[$i]));
+    }
+
+    return $values;
   }
 
 }

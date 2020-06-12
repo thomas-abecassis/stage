@@ -8,6 +8,8 @@ class ModelAlerte extends Model{
   private $loginUtilisateur;
   private $tabSimple;
   private $tabCheckBox;
+  private $tabTypeDeBien;
+  private $tabNombreDePieces;
   private $nom;
   private $idAlerte;
   private $activeMail;
@@ -15,25 +17,31 @@ class ModelAlerte extends Model{
   protected static $primary='idAlerte';
 
       
-  public function __construct($idAlerte = NULL,$loginUtilisateur = NULL,$tabSimple = NULL,$tabCheckBox = NULL,$nom = NULL, $activeMail = NULL) {
-    if ( !is_null($loginUtilisateur) && !is_null($tabSimple) && !is_null($tabCheckBox) && !is_null($nom) && !is_null($activeMail)) {
-      $this->loginUtilisateur = $loginUtilisateur;
-      $this->tabSimple = $tabSimple;
-      $this->tabCheckBox = $tabCheckBox;
-      $this->nom = $nom;
-      $this->idAlerte = $idAlerte;
-      $this->activeMail = $activeMail;
+  public function __construct($idAlerte = NULL,$loginUtilisateur = NULL,$tabSimple = NULL,$tabCheckBox = NULL,$nom = NULL, $activeMail = NULL, $tabNombreDePieces = NULL, $tabTypeDeBien = NULL) {
+    if ( !is_null($loginUtilisateur) && !is_null($tabSimple) && !is_null($tabCheckBox) && !is_null($nom) && !is_null($activeMail) && !is_null($tabTypeDeBien) && !is_null($tabNombreDePieces)) {
+        $this->loginUtilisateur = $loginUtilisateur;
+        $this->tabSimple = $tabSimple;
+        $this->tabCheckBox = $tabCheckBox;
+        $this->tabTypeDeBien = $tabTypeDeBien;
+        $this->tabNombreDePieces = $tabNombreDePieces;
+        $this->nom = $nom;
+        $this->idAlerte = $idAlerte;
+        $this->activeMail = $activeMail;
       }
   }
 
   public function decode(){
   	  $this->tabSimple=json_decode($this->tabSimple, true);
       $this->tabCheckBox=json_decode($this->tabCheckBox, true);
+      $this->tabNombreDePieces=json_decode($this->tabNombreDePieces, true);
+      $this->tabTypeDeBien=json_decode($this->tabTypeDeBien, true);
   }
 
   public function encode(){
       $this->tabSimple=json_encode($this->tabSimple, true);
       $this->tabCheckBox=json_encode($this->tabCheckBox, true);
+      $this->tabNombreDePieces=json_encode($this->tabNombreDePieces, true);
+      $this->tabTypeDeBien=json_encode($this->tabTypeDeBien, true);
   }
 
   public function getTabSimple(){
@@ -42,6 +50,14 @@ class ModelAlerte extends Model{
 
   public function getTabCheckBox(){
   	return $this->tabCheckBox;
+  }
+
+  public function getTabTypeDeBien(){
+    return $this->tabTypeDeBien;
+  }
+
+  public function getTabNombreDePieces(){
+    return $this->tabNombreDePieces;
   }
 
   public function getNom(){

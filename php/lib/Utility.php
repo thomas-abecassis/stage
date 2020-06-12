@@ -22,4 +22,11 @@ function intInArray($array){
 	return $ar;
 }
 
+function arrayContentIsEmpty($tab){
+	//prérequis : un tableau contenant des strings ou vide
+	foreach ($tab as $value) 
+		if(strcmp($value, "")!==0) return false;
+	return true;
+}
+
 ?>

@@ -21,7 +21,9 @@ let removeClickListener;
 let sauvegarde;
 
 function callbackIdentifiantCheck(xhr){
-	if(xhr.responseText.valueOf()=="true".valueOf()){
+	console.log(xhr.responseText);
+	if(xhr.responseText.replace(/ /g, '')=="true".valueOf()){
+		console.log("je reload");
 	    document.location.reload(true);
 	}else{
 		notification("mauvais identifiant ou mot de passe");
@@ -29,6 +31,7 @@ function callbackIdentifiantCheck(xhr){
 }
 
 function callbackRechercheSave(xhr){
+	console.log(xhr.responseText);
 	document.getElementById("inSauvegarde").innerHTML="recherche sauvegardée !";
 }
 

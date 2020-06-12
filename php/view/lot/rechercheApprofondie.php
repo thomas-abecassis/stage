@@ -34,6 +34,30 @@
 				    	</div>
 
 				    	<?php
+				    					    			echo "
+						    	<div class=\"categorie row\">
+						       		<div class=\"titreCategorie\">Type(s) de bien
+						       			<div class=\"col s12 ligne\"></div></div>
+						       				<div class=\"contientCheckBox\">";
+							       					foreach ($tabTypeDeBien as $typeDeBien) {
+							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeDeBien". $typeDeBien ."\" /><span> ".$typeDeBien." </span></label>";
+							       					}
+							    echo "
+					      					</div>
+					      		</div>";
+
+				    			echo "
+						    	<div class=\"categorie row\">
+						       		<div class=\"titreCategorie\">Nombre de pièces
+						       			<div class=\"col s12 ligne\"></div></div>
+						       				<div class=\"contientCheckBox\">";
+							       					foreach ($tabNombreDePieces as $nombreDePieces) {
+							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"nombreDePieces" . $nombreDePieces ."\" /><span> ".$nombreDePieces." </span></label>";
+							       					}
+							    echo "
+					      					</div>
+					      		</div>";
+
 				    		foreach ($categorieValeurs as $nomCategorie => $values) {
 
 				    			echo "
@@ -48,6 +72,10 @@
 					      					</div>
 					      	</div>";
 				    		}
+
+				    		
+
+					      		
 				    	?>
 			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
 		  		</div>

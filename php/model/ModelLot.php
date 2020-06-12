@@ -97,7 +97,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
 
   public static function selectByRecherche($data,$page){
     if(!array_filter($data)){
-      $sql="select * from lot ";
+      $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation ";
     }else{
       $sql=ModelLot::getSqlSearch($data);
     }
@@ -144,11 +144,11 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
   }
 
   public static function getSqlSearch($data){
-      $sql = "SELECT * from lot WHERE";
+      $sql = "select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation  WHERE";
       $firstCondition=true;
 
       $arr=array(
-        "localisation" => "localisation =",
+        "localisation" => "villesFrance.nom =",
         "minSurface" => " surface >=",
         "maxSurface" => "surface <=",
         "minBudget" => "loyer >=",
@@ -167,7 +167,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
       if(!$firstCondition){
         return $sql;
       }
-      return "SELECT * from lot";
+      return "select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation";
   }
 
 }

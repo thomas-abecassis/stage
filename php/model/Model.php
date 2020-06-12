@@ -1,7 +1,5 @@
 <?php
-
 require_once File::build_path(array("config", "Conf.php"));
-
 class Model{
 	
 	public static $pdo;
@@ -126,7 +124,5 @@ class Model{
     $req_prep->execute($data);
   }
 }
-
 Model::Init();
-
 ?>

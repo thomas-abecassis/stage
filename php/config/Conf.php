@@ -1,6 +1,5 @@
 <?php
-class Conf {
-
+class Conf{
 static private $debug = True; 
     
   static public function getDebug() {
