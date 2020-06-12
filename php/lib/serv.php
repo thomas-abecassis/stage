@@ -3,6 +3,7 @@
 require_once "File.php";
 require_once File::build_path(array("model","ModelLot.php"));
 require_once File::build_path(array("model","ModelCategorie.php"));
+require_once File::build_path(array("model","ModelAlerte.php"));
 
 class Serv{
 
@@ -140,6 +141,13 @@ class Serv{
 		$sql="insert into sousCategorie(categorieId, valeur) values ($categorieId,\"$valeur\")";
 		Serv::$pdo->exec($sql);
 		return "fait"; 
+	}
+
+	public function getAllAlertesActive(){
+		if(!$this->auth){
+			return "pas connecté";
+		}
+		return ModelAlerte::selectCol("activeMail",true);
 	}
 }
 

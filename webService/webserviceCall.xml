@@ -104,3 +104,17 @@
    </saveCategorieEtValeur>
    </soapenv:Body>
 </soapenv:Envelope>
+
+<!-- recevoir la liste de toutes les alertes actives enregistrées par les utilisateurs -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <getAllAlertesActive></getAllAlertesActive>
+   </soapenv:Body>
+</soapenv:Envelope>

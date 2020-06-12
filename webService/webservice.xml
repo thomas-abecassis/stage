@@ -40,6 +40,10 @@
       <part name = "description" type = "xsd:string"/>
       <part name = "informationsCommercial" type = "xsd:string"/>
       <part name = "plus" type = "xsd:anyType"/>
+   </message name="returnGetAllAlertesActive">
+      <part name = "alertes" type = "xsd:anyType"/>
+   <message>
+
    </message>
 
    <portType name = "test_PortType">
@@ -68,6 +72,9 @@
       <operation name="saveCategorieEtValeur">
          <input message = "tns:saveCategorieEtValeurParam"/>
          <output message = "tns:returnString"/>
+      </operation>
+      <operation name="getAllAlertesActive">
+         <output message = "tns:returnGetAllAlertesActive"/>
       </operation>
    </portType>
 
@@ -157,6 +164,22 @@
       </operation>
       <operation name = "saveCategorieEtValeur">
          <soap:operation soapAction = "saveCategorieEtValeur"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </input>
+            
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "http://localhost/stage/php/lib/webservice.xml"
+               use = "encoded"/>
+         </output>
+      </operation>
+      <operation name = "getAllAlertesActive">
+         <soap:operation soapAction = "getAllAlertesActive"/>
          <input>
             <soap:body
                encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
