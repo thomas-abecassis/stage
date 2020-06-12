@@ -44,7 +44,8 @@ class Serv{
 			exit();
 		}
 
-		$test=new ModelLot($id,$ville, $surface, $loyer, $description, $informationsCommercial);
+		$test=new ModelLot($id,$ville, $surface, $loyer, $description, $informationsCommercial, $typeDeBien, $nombrePiece);
+		$test->setLocalisation($test->getLocalisationId()); //On stoque l'ID de la ville dans la table lot 
 		$test->save();
 		//on ajoute toutes ses "options"
 

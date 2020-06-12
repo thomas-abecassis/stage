@@ -66,7 +66,7 @@
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>test</idLot>
+      <idLot>tesasdft</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>

@@ -73,9 +73,13 @@ class Modellot extends Model{
     return $this->description;
   }
 
+  public function setLocalisation($localisation){
+    $this->localisation=$localisation;
+  }
+
   public function getLocalisation(){
-    $sql="select nom from villesFrance where id=:idLot";
-    $values=array("idLot"=>$this->localisation);
+    $sql="select nom from villesFrance where id=:idLoc";
+    $values=array("idLoc"=>$this->localisation);
 
     $req_prep = Model::$pdo->prepare($sql);
 
@@ -85,6 +89,19 @@ class Modellot extends Model{
     $ville = $req_prep->fetchAll();
     return $ville[0]->nom;
     //return $this->localisation;
+  }
+
+  public function getLocalisationId(){
+    $sql="select id from villesFrance where UPPER(nom) = UPPER(:localisation)";
+    $values=array("localisation"=>$this->localisation);
+
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $req_prep->execute($values);
+
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    $ville = $req_prep->fetchAll();
+    return $ville[0]->id;
   }
 
   public function getTab(){
