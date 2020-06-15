@@ -91,10 +91,7 @@ class Serv{
 		}
 		$files = glob(File::build_path(array("..","image","*"))); 
 		foreach($files as $file){ 
-			if(is_file($file)){
-		    unlink($file);
-		    }
-		    else{
+			if(!is_file($file)){
 		    	//dans les dossiers images de lots il n'y a pas d'autres dossiers, en partant de ce principte il n'est pas nécessaire de faire de la récursivité
 		    	$filesInDir=glob(File::build_path(array("..","image",basename($file),"*")));
 		    	foreach ($filesInDir as $fileInDir) {
