@@ -68,7 +68,7 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>test</idLot>
+      <idLot>test24</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>

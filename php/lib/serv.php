@@ -64,6 +64,7 @@ class Serv{
 		//on transforme les stdClass en tableau
 		$plusTab=array();
 		foreach ($plus as $value) {
+			$
 			$tabTemp=array();
 			$tabTemp["categorie"]=$value->categorie;
 			$tabTemp["valeur"]=$value->valeur;
@@ -71,6 +72,9 @@ class Serv{
 		}
 
 		$tabIdValeurs=ModelCategories::arrayCategorieAndValeurToId($plusTab);
+		if($tabIdValeurs===false){
+			return "categorie_valeur_non_reconnue";
+		}
 		foreach ($tabIdValeurs as $idValeur) {
 			$sql="insert into lotCategorie values (\"$id\", $idValeur)";
 			Serv::$pdo->exec($sql);
