@@ -2,7 +2,7 @@
 
 require_once File::build_path(array("model", "Model.php"));
 require_once File::build_path(array("model", "ModelLot.php"));
-require_once File::build_path(array("model", "ModelCategorie.php"));
+require_once File::build_path(array("model", "ModelCategories.php"));
 
 class ModelLotApprofondi {
    

@@ -2,14 +2,14 @@
 require_once File::build_path(array("model", "ModelAlerte.php"));
 require_once File::build_path(array("model", "ModelLotApprofondi.php"));
 require_once File::build_path(array("model", "ModelLot.php"));
-require_once File::build_path(array("model", "ModelCategorie.php"));
+require_once File::build_path(array("model", "ModelCategories.php"));
 require_once File::build_path(array("lib", "Utility.php"));
 
 class ControllerLotApprofondi{
 
     public static function searchDeepen() {
         $controller='lot'; $view='rechercheApprofondie'; $pagetitle='Recherche de biens approfondie';     //appel au modèle pour gerer la BD
-        $categorieValeurs=ModelCategorie::getAllValeursCategories();
+        $categorieValeurs=ModelCategories::getAllValeursCategories();
         $tabTypeDeBien=array('Maison','Appartement');
         $tabNombreDePieces=array('1','2','3 et plus');
         require File::build_path(array("view", "view.php"));
@@ -78,7 +78,7 @@ class ControllerLotApprofondi{
         $typeDeBien=$alerte->getTabTypeDeBien();
         $nombreDePieces=$alerte->getTabNombreDePieces();
 
-        $dataCheckBox=ModelCategorie::arrayCategorieAndValeurToId($alerte->getTabCheckBox());
+        $dataCheckBox=ModelCategories::arrayCategorieAndValeurToId($alerte->getTabCheckBox());
         $dataPost=$alerte->getTabSimple();
 
         $_SESSION['dataCheckBox']=$dataCheckBox;

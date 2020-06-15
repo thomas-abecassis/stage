@@ -15,7 +15,18 @@ class Modellot extends Model{
   protected static $object = "lot";
   protected static $primary='id';
 
-
+public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL,$inf = NULL, $t = NULL, $nb = NULL) {
+  if (!is_null($i)  && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d) && !is_null($t) && !is_null($nb)) {
+    $this->id = $i;
+    $this->localisation = $loc;
+    $this->loyer = $loy;
+    $this->surface = $sur;
+    $this->description=$d;
+    $this->informationsCommercial=$inf;
+    $this->typeDeBien=$t;
+    $this->nombreDePieces = $nb;
+  }
+}
   // un getter
   public function getid() {
        return $this->id;
@@ -98,18 +109,7 @@ class Modellot extends Model{
     return get_object_vars($this);
   }
 
-public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL,$inf = NULL, $t = NULL, $nb = NULL) {
-  if (!is_null($i)  && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d) && !is_null($t) && !is_null($nb)) {
-    $this->id = $i;
-    $this->localisation = $loc;
-    $this->loyer = $loy;
-    $this->surface = $sur;
-    $this->description=$d;
-    $this->informationsCommercial=$inf;
-    $this->typeDeBien=$t;
-    $this->nombreDePieces = $nb;
-  }
-}
+
 
   public static function selectById($id){
     $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation where lot.id=:id";

@@ -1,10 +1,26 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelCategorie extends Model{
+class ModelCategories extends Model{
 
   protected static $object = "categories";
   protected static $primary='id';
+
+  private $id;
+  private $categorie;
+  private $interface;
+
+  public function __construct($i = NULL, $categorie = NULL, $interface = NULL) {
+    if (!is_null($i)  && !is_null($loc) && !is_null($interface) ) {
+      $this->id = $i;
+      $this->categorie = $categorie;
+      $this->interface = $interface;
+    }
+  }
+
+  public function getId(){
+    return $this->id;
+  }
 
   public static function getValeursCategoriesLot($lot){
     $sqlCategories = "select distinct categorie,categories.id from lotCategorie join sousCategorie on lotCategorie.idValeurCategorie=sousCategorie.id join categories on categories.id=sousCategorie.categorieId where idLot=\"".$lot->getLot()->getId()."\""; 
@@ -31,7 +47,7 @@ class ModelCategorie extends Model{
   }
 
   public static function getAllValeursCategories(){
-    $categories=ModelCategorie::getAllCategories();
+    $categories=ModelCategories::getAllCategories();
     $valeurs=array();
     foreach ($categories as $categorie) {
       $ar=array();
@@ -87,7 +103,7 @@ class ModelCategorie extends Model{
   public static function arrayIdToValeurAndCategorie($tabId){
     $tabValeurAndCategorie=array();
     for($i=0;$i<count($tabId);$i++){
-      $tabValeurAndCategorie[$i]=ModelCategorie::IdToValeurAndCategorie($tabId[$i]);
+      $tabValeurAndCategorie[$i]=ModelCategories::IdToValeurAndCategorie($tabId[$i]);
     }
     return $tabValeurAndCategorie;
   }
@@ -95,7 +111,7 @@ class ModelCategorie extends Model{
   public static function arrayCategorieAndValeurToId($tabValeurAndCategorie){
     $tabId=array();
     foreach ($tabValeurAndCategorie as $valeurEtCategorie) {
-      array_push($tabId,ModelCategorie::CategorieAndValeurToId($valeurEtCategorie["categorie"],$valeurEtCategorie["valeur"]));
+      array_push($tabId,ModelCategories::CategorieAndValeurToId($valeurEtCategorie["categorie"],$valeurEtCategorie["valeur"]));
     }
     return $tabId;
   }

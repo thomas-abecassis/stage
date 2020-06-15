@@ -2,7 +2,7 @@
 
 require_once "File.php";
 require_once File::build_path(array("model","ModelLot.php"));
-require_once File::build_path(array("model","ModelCategorie.php"));
+require_once File::build_path(array("model","ModelCategories.php"));
 require_once File::build_path(array("model","ModelAlerte.php"));
 
 class Serv{
@@ -70,7 +70,7 @@ class Serv{
 			array_push($plusTab, $tabTemp);
 		}
 
-		$tabIdValeurs=ModelCategorie::arrayCategorieAndValeurToId($plusTab);
+		$tabIdValeurs=ModelCategories::arrayCategorieAndValeurToId($plusTab);
 		foreach ($tabIdValeurs as $idValeur) {
 			$sql="insert into lotCategorie values (\"$id\", $idValeur)";
 			Serv::$pdo->exec($sql);
@@ -78,7 +78,6 @@ class Serv{
 		return "fait";
 	}
 
-	//todo : check erreur
 	public function saveImage($id,$image){
 		if(!$this->auth){
 			return "pas connecté";
@@ -94,6 +93,12 @@ class Serv{
         $current = file_get_contents($location);  
         $current = base64_decode($image);   
         file_put_contents($location, $current);
+        if(!file_exists(File::build_path(array("..","image",$id,$i.".jpg")))){
+        	return "probleme_creation_fichier";
+        }
+        if(!exif_imagetype(File::build_path(array("..","image",$id,$i.".jpg")))){
+        	return "mauvais_format";
+        }
         return "fait";
 	}
 
@@ -132,7 +137,7 @@ class Serv{
 	}
 
 	public function getAllCategoriesValeurs(){
-		$tabCategories = ModelCategorie::getAllValeursCategories();
+		$tabCategories = ModelCategories::getAllValeursCategories();
 		foreach ($tabCategories as $categorie) {
 			foreach ($categorie as $value) {
 				unset($value->id);
@@ -142,7 +147,7 @@ class Serv{
 	}
 
 	public function supprimerValeur($categorie,$valeur){
-		$id=ModelCategorie::CategorieAndValeurToId($categorie,$valeur);
+		$id=ModelCategories::CategorieAndValeurToId($categorie,$valeur);
 		if($id==false){
 			return "categorie_et_valeur_non_connues";
 		}
@@ -152,11 +157,17 @@ class Serv{
 	}
 
 	public function supprimerCategorie($categorie){
-		//todo
+		$categorie=ModelCategories::selectCol("categorie",$categorie);
+		if($categorie==false){
+			return "categorie_inexistante";
+		}
+		$categorie=$categorie[0];
+		ModelCategories::delete($categorie->getId());
+		return "fait";
 	}
 
 	public function supprimerCategoriesValeurs(){
-		ModelCategorie::deleteAllCategories();
+		ModelCategories::deleteAllCategories();
 		return "fait"; 
 	}
 
@@ -199,6 +210,10 @@ class Serv{
 		$sql="delete from lot where id=\"$id\"";
 		Serv::$pdo->exec($sql);
 
+		if(strcmp($this->supprimerImagesLot($id), "fait")!==0){
+			return "probleme_suppression_image";
+		}
+
 		return "fait";
 	}
 
@@ -214,7 +229,7 @@ class Serv{
 			$sql="insert into categories(categorie) values(\"$categorie\")";
 			Serv::$pdo->exec($sql);
 		}
-		$categorieId=ModelCategorie::categorieNameToId($categorie);
+		$categorieId=ModelCategories::categorieNameToId($categorie);
 		$sql="insert into sousCategorie(categorieId, valeur) values ($categorieId,\"$valeur\")";
 		Serv::$pdo->exec($sql);
 		return "fait"; 

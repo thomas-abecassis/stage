@@ -24,7 +24,7 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
    <soapenv:Body>
    <supprimerUnLot>
-      <idLot>1234</idLot>
+      <idLot>1</idLot>
    </supprimerUnLot>
    </soapenv:Body>
 </soapenv:Envelope>
@@ -230,3 +230,21 @@ http://localhost/stage/php/lib/soap.php
    </supprimerValeur>
    </soapenv:Body>
 </soapenv:Envelope>
+
+
+<!-- supprime une categorie -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerCategorie>
+      <categorie>Option(s)</categorie>
+   </supprimerCategorie>
+   </soapenv:Body>
+</soapenv:Envelope>
+
