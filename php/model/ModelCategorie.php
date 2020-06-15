@@ -1,7 +1,10 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 
-class ModelCategorie{
+class ModelCategorie extends Model{
+
+  protected static $object = "categories";
+  protected static $primary='id';
 
   public static function getValeursCategoriesLot($lot){
     $sqlCategories = "select distinct categorie,categories.id from lotCategorie join sousCategorie on lotCategorie.idValeurCategorie=sousCategorie.id join categories on categories.id=sousCategorie.categorieId where idLot=\"".$lot->getLot()->getId()."\""; 
@@ -43,7 +46,12 @@ class ModelCategorie{
     return $valeurs;
   }
 
-  private static function CategorieAndValeurToId($categorie, $valeur){
+  public static function deleteAllCategories(){
+    $sql="delete from categories";
+    Model::$pdo->exec($sql);
+  }
+
+  public static function CategorieAndValeurToId($categorie, $valeur){
     $sql="select sousCategorie.id from sousCategorie join categories on categories.id=sousCategorie.categorieId where sousCategorie.valeur= :valeur and categories.categorie= :categorie";
 
     $req_prep = Model::$pdo->prepare($sql);
@@ -53,7 +61,9 @@ class ModelCategorie{
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_OBJ);
     $rep= $req_prep->fetchAll();
-
+    if(count($rep)==0){
+      return false;
+    }
     return $rep[0]->id;
   }
 
@@ -97,6 +107,9 @@ class ModelCategorie{
     $req_prep->execute($values);
     $req_prep->setFetchMode(PDO::FETCH_OBJ);
     $rep= $req_prep->fetchAll();
+    if(count($rep)==0){
+      return false;
+    }
     return $rep[0]->id;
   }
 

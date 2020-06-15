@@ -1,3 +1,5 @@
+http://localhost/stage/php/lib/soap.php
+
 <!-- Pour supprimer tout les lots -->
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
    <soapenv:Header>
@@ -66,7 +68,7 @@
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>tesasdft</idLot>
+      <idLot>test</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>
@@ -76,16 +78,49 @@
       <informationsCommercial>2</informationsCommercial>
       <plus>
       	<plus1>
-            <categorie>Type(s) de bien</categorie>
-            <valeur>appartement</valeur>
+            <categorie>Type(s) de pièces</categorie>
+            <valeur>salle de bain</valeur>
          </plus1>
       	<plus2>
-            <categorie>Nombre de pièces</categorie>
-            <valeur>1</valeur>  
+            <categorie>Commodité(s)</categorie>
+            <valeur>alarme</valeur>  
          </plus2>
       </plus>
 	</creerLot>
 	</soapenv:Body>
+</soapenv:Envelope>
+
+ <!-- mettre à jour un lot -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+    <authentification>
+      <login>test</login>
+      <password>toast</password>
+    </authentification>
+    </soapenv:Header>
+  <soapenv:Body>
+  <mettreAJourLot>
+      <idLot>test</idLot>
+      <ville>Le Crès</ville>
+      <surface>111</surface>
+      <loyer>111</loyer>
+      <typeDeBien>maison</typeDeBien>
+      <nombrePiece>2</nombrePiece>
+      <description>2</description>
+      <informationsCommercial>2</informationsCommercial>
+      <plus>
+        <plus1>
+            <categorie>Type(s) de pièces</categorie>
+            <valeur>salle de bain</valeur>
+         </plus1>
+        <plus2>
+            <categorie>Commodité(s)</categorie>
+            <valeur>alarme</valeur>  
+         </plus2>
+      </plus>
+  </mettreAJourLot>
+  </soapenv:Body>
 </soapenv:Envelope>
 
 <!-- enregistrer une categorie et une valeur (si la categorie n'existe pas elle est créée) -->
@@ -116,5 +151,82 @@
     </soapenv:Header>
    <soapenv:Body>
    <getAllAlertesActive></getAllAlertesActive>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- supprimer les images d'un lot -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerImagesLot>
+      <idLot>1</idLot>
+   </supprimerImagesLot>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- recevoir toutes les categories et valeurs  -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+    <authentification>
+      <login>test</login>
+      <password>toast</password>
+    </authentification>
+    </soapenv:Header>
+  <soapenv:Body>
+  <getAllCategoriesValeurs></getAllCategoriesValeurs>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+
+<!-- supprimer toutes les categories et valeurs -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+    <authentification>
+      <login>test</login>
+      <password>toast</password>
+    </authentification>
+    </soapenv:Header>
+  <soapenv:Body>
+  <supprimerCategoriesValeurs></supprimerCategoriesValeurs>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- supprimer toutes les categories et valeurs -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+    <authentification>
+      <login>test</login>
+      <password>toast</password>
+    </authentification>
+    </soapenv:Header>
+  <soapenv:Body>
+  <supprimerCategoriesValeurs></supprimerCategoriesValeurs>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+
+<!-- supprime une valeur -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerValeur>
+      <categorie>Option(s)</categorie>
+      <valeur>ceci est une option</valeur>
+   </supprimerValeur>
    </soapenv:Body>
 </soapenv:Envelope>

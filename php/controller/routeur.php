@@ -41,6 +41,9 @@ if(!is_null(myGet('controller'))){
 $controller_classe="Controller".ucfirst($controller);
 
 if(class_exists($controller_classe,false)){
+	$mail = file_get_contents(File::build_path(array("..","fichiers", "mail.txt")));
+	$tel = file_get_contents(File::build_path(array("..","fichiers", "tel.txt")));
+	//j'initialise ces deux variables ici pour qu'elles soient présentent dans toutes les vues
 	$controller_classe::$action();
 }else{
 	ControllerLot::error();

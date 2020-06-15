@@ -42,12 +42,23 @@ class Serv{
 
 	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
 		if(!$this->auth){
-			exit();
+			return "pas connecté";
 		}
 
 		$test=new ModelLot($id,$ville, $surface, $loyer, $description, $informationsCommercial, $typeDeBien, $nombrePiece);
-		$test->setLocalisation($test->getLocalisationId()); //On stoque l'ID de la ville dans la table lot 
-		$test->save();
+		$villeId=$test->getLocalisationId();
+		if(is_null($villeId)){
+			return "nom_de_ville_inconnu";
+		}
+		$test->setLocalisation($villeId); //On stoque l'ID de la ville dans la table lot 
+		$retSave=$test->save();
+		if($retSave!==true){
+			if($retSave==23000)
+				return "id_lot_deja_existant";
+			else
+				return $retSave;
+		}
+
 		//on ajoute toutes ses "options"
 
 		//on transforme les stdClass en tableau
@@ -67,6 +78,7 @@ class Serv{
 		return "fait";
 	}
 
+	//todo : check erreur
 	public function saveImage($id,$image){
 		if(!$this->auth){
 			return "pas connecté";
@@ -104,6 +116,67 @@ class Serv{
 		return "fait";
 	}
 
+	public function supprimerImagesLot($id){
+		if(!$this->auth){
+			return "pas connecté";
+		}
+		$files = glob(File::build_path(array("..","image",$id, "*"))); 
+		foreach($files as $file){ 
+	    	unlink($file);
+		}
+		rmdir(File::build_path(array("..","image",$id)));
+		if(is_dir(File::build_path(array("..","image",$id)))){
+			return "probleme_de_droit";
+		}
+		return "fait";		
+	}
+
+	public function getAllCategoriesValeurs(){
+		$tabCategories = ModelCategorie::getAllValeursCategories();
+		foreach ($tabCategories as $categorie) {
+			foreach ($categorie as $value) {
+				unset($value->id);
+			}
+		}
+		return $tabCategories;
+	}
+
+	public function supprimerValeur($categorie,$valeur){
+		$id=ModelCategorie::CategorieAndValeurToId($categorie,$valeur);
+		if($id==false){
+			return "categorie_et_valeur_non_connues";
+		}
+		$sql="delete from sousCategorie where id=$id";
+		Serv::$pdo->exec($sql);
+		return "fait";
+	}
+
+	public function supprimerCategorie($categorie){
+		//todo
+	}
+
+	public function supprimerCategoriesValeurs(){
+		ModelCategorie::deleteAllCategories();
+		return "fait"; 
+	}
+
+	public function mettreAJourLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
+		if(!$this->auth){
+			return "pas connecté";
+		}
+
+		$retSup=$this->supprimerUnLot($id);
+		if(strcmp($retSup, "lot_n_existe_pas")==0){
+			return "lot_n_existe_pas";
+		}
+
+		$retCreation=$this->creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus);
+		if(strcmp($retCreation, "fait")!==0){
+			return "probleme_enregistrement_lot";
+		}
+		return "fait";
+	}
+
 	public function supprimerLots(){
 		if(!$this->auth){
 			return "pas connecté";
@@ -117,8 +190,15 @@ class Serv{
 		if(!$this->auth){
 			return "pas connecté";
 		}
-		$sql="delete from lot where id=$id";
+		$sqlNb="select * from lot where id=\"$id\"";
+		$result=Serv::$pdo->query($sqlNb);
+		if(count($result->fetchAll())==0){
+			return "lot_n_existe_pas";
+		}
+
+		$sql="delete from lot where id=\"$id\"";
 		Serv::$pdo->exec($sql);
+
 		return "fait";
 	}
 
@@ -130,7 +210,7 @@ class Serv{
 		//return $sql;
 		$categorieExiste = Serv::$pdo->query($sql);
 		if(count($categorieExiste->fetchAll())==0){
-			//si la categorie c'est pas enregistrée dans la base on doit l'enregistrer
+			//si la categorie n'est pas enregistrée dans la base on doit l'enregistrer
 			$sql="insert into categories(categorie) values(\"$categorie\")";
 			Serv::$pdo->exec($sql);
 		}
@@ -144,7 +224,11 @@ class Serv{
 		if(!$this->auth){
 			return "pas connecté";
 		}
-		return ModelAlerte::selectCol("activeMail",true);
+		$tabAlerte=ModelAlerte::selectCol("activeMail",true);
+		foreach ($tabAlerte as $alerte) {
+			$alerte->decode();
+		}
+		return $tabAlerte;
 	}
 }
 

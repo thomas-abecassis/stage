@@ -93,8 +93,13 @@ class Model{
 
 	    // Préparation de la requête
 	    $req_prep = Model::$pdo->prepare($sql);
-
-	    $req_prep->execute($data);
+	    try{
+	    	$req_prep->execute($data);
+	    }
+	    catch(PDOException $e){
+	    	return  $e->getCode();
+	    }
+	    return true;	    
   }
 
   //avec cette fonction on ne peut pas mettre à jour la clé primaire

@@ -117,6 +117,12 @@
               <button class="displayBlock" id="colorPicker1">couleur principale</button>
               <button class="displayBlock" id="colorPicker2">couleur secondaire </button>
               <div class="ligne"></div>
+
+            <h6 class="center">Modifier vos informations</h6>
+              
+              <form id="formMail"><input class="inputText" type ="text" placeholder="modifier votre mail"></input></form>
+              <form id="formNumero"><input class="inputText" type ="text" placeholder="modifier votre numero"></input></form>
+              <div class="ligne"></div>
           </div>';
         }
           ?>
@@ -134,8 +140,8 @@
                 <div class="row">
                   <div class="col s6 m3 push-m2">
                     <h5 class="white-text">Contactez nous </h5>
-                    <p class="grey-text text-lighten-4">Par téléphone : XX XX XX XX XX</p>
-                    <p class="grey-text text-lighten-4">Par mail : toast@gmail.com</p>
+                    <p class="grey-text text-lighten-4">Par téléphone : <?php global $tel; echo $tel ?></p>
+                    <p class="grey-text text-lighten-4">Par mail : <?php global $mail; echo $mail ?></p>
                   </div>
                   <div class="col s6 m3 push-m4">
                     <h5 class="white-text">Retrouvez nous sur </h5>

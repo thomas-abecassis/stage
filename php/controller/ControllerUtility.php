@@ -38,6 +38,24 @@ class ControllerUtility{
 		}
 	}
 
+	private static function changeFichierTexte($fichier, $contenu){
+		if(Session::is_admin()){
+			$file_handle = fopen(File::build_path(array("..","fichiers",$fichier)), 'w'); 
+			fwrite($file_handle, $contenu);
+			fclose($file_handle);
+			return true;
+		}		
+		return false;
+	}
+
+	public static function updateMail(){
+		changeFichierTexte("mail.txt",$_GET['nouveauMail']);
+	}
+
+	public static function updateTel(){
+		changeFichierTexte("tel.txt",$_GET['nouveauTel']);
+	}
+
 }
 
 ?>

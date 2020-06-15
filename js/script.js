@@ -386,7 +386,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	createColorPicker(picker1,"premiereCouleur");
 	createColorPicker(picker2,"secondeCouleur");
 
-
+	let formMail=document.getElementById("formMail");
+	let formTel=document.getElementById("formTel");
 	let inputPhotoLogo=document.getElementById("inputPhotoLogo");
 	var formLogo = document.getElementById("formLogo");
 	let inputPhotoBanniere=document.getElementById("inputPhotoBanniere");
@@ -410,6 +411,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				ev.preventDefault();
 				metAJourImage(ev,formBanniere,"banniere");
 			});
+
+			//formMail.addEventListener("");
 		}
 
 	$('.sidenav').sidenav();
