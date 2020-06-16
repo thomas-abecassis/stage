@@ -65,13 +65,13 @@ function creerSauvegarde(){
 	sauvegarde.style.setProperty("background-color", lighten(rgb,1.1), "important");
 	sauvegarde.removeEventListener("click",clickHandler);
 	sauvegarde.classList.remove("boite_hover");
-	requeteAJAX("index.php?controller=alerte&action=created",callbackRechercheSave);
+	requeteAJAX("index/alerte/created/",callbackRechercheSave);
 }
 
 function envoieConnexion(){
 	mail=document.getElementById("inputMail").value;
 	mdp=document.getElementById("inputMdp").value;
-	requeteAJAX("index.php?controller=utilisateur&action=connectedAjax&login="+mail+"&mdp=" +mdp,callbackIdentifiantCheck);
+	requeteAJAX("index/utilisateur/connectedAjax/?login="+mail+"&mdp=" +mdp,callbackIdentifiantCheck);
 }
 
 function envoieCreationCompte(){
@@ -81,7 +81,7 @@ function envoieCreationCompte(){
 	mdp=document.getElementById("inputMdp").value;
 	confirmMdp=document.getElementById("confirmMdp").value;
 	if(mdp==confirmMdp){
-		requeteAJAX("index.php?controller=utilisateur&action=createdAjax&login="+mail+"&mdp=" +mdp+"&nom=" +nom+"&prenom=" +prenom,callbackCreationCheck);
+		requeteAJAX("index/utilisateur/createdAjax/?login="+mail+"&mdp=" +mdp+"&nom=" +nom+"&prenom=" +prenom,callbackCreationCheck);
 	}
 	else{
 		notification("les mots de passes ne correspondent pas");
@@ -89,7 +89,7 @@ function envoieCreationCompte(){
 }
 
 function deconnect(){
-	requeteAJAX("index.php?controller=utilisateur&action=disconnectAjax",reload);
+	requeteAJAX("index/utilisateur/disconnectAjax/",reload);
 }
 
 function popUp(page,fctSubmit){
@@ -319,11 +319,19 @@ function metAJourImage(ev,form,nomFichier){
 }
 
 function callbackPhoto(xhr){
-	document.location.reload(true);
+	console.log(xhr.responseText);
+	//document.location.reload(true);
 }
 
 function compareElementValue(elementX, elementY){
 	return elementX.value && elementY.value && elementX.value > elementY.value;
+}
+
+function majInformations(form, name,input){
+	form.addEventListener("submit", function(ev){
+		ev.preventDefault();
+		requeteAJAX("index/Utility/update" + name + "/?nouveau"+ name +"="+input.value,reload);
+	});
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -386,16 +394,26 @@ document.addEventListener("DOMContentLoaded", function() {
 	createColorPicker(picker1,"premiereCouleur");
 	createColorPicker(picker2,"secondeCouleur");
 
-	let formMail=document.getElementById("formMail");
-	let formTel=document.getElementById("formTel");
 	let inputPhotoLogo=document.getElementById("inputPhotoLogo");
-	var formLogo = document.getElementById("formLogo");
-	let inputPhotoBanniere=document.getElementById("inputPhotoBanniere");
-	var formBanniere = document.getElementById("formBanniere");
 
 		if(inputPhotoLogo!=null){
+			var formLogo = document.getElementById("formLogo");
+			let inputPhotoBanniere=document.getElementById("inputPhotoBanniere");
+			var formBanniere = document.getElementById("formBanniere");
+			let formIcon=document.getElementById("formIcon");
+
+			let formTel=document.getElementById("formTel");
+
+			majInformations(document.getElementById("formMail"), "Mail", document.getElementById("inputModifyMail"));
+			majInformations(document.getElementById("formTel"), "Tel", document.getElementById("inputModifyTel"));
+
 			inputPhotoLogo.addEventListener('change', function() {
 				modifieImage(this,document.getElementById("logo"));
+			});
+
+			formLogo.addEventListener('submit', function(ev) {
+				ev.preventDefault();
+				metAJourImage(ev,formLogo,"logo");
 			});
 
 			formLogo.addEventListener('submit', function(ev) {
@@ -412,7 +430,12 @@ document.addEventListener("DOMContentLoaded", function() {
 				metAJourImage(ev,formBanniere,"banniere");
 			});
 
-			//formMail.addEventListener("");
+			formIcon.addEventListener('submit', function(ev) {
+				ev.preventDefault();
+				metAJourImage(ev,formIcon,"favicon");
+			});
+
+			
 		}
 
 	$('.sidenav').sidenav();
@@ -420,6 +443,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	$('.dropdown-trigger').dropdown({
 	 	'coverTrigger':false
 	});
+	$('.tabs').tabs();
 
 	
 	let submit=document.getElementById("submitForm");

@@ -4,6 +4,7 @@ require_once File::build_path(array("controller", "ControllerUtilisateur.php"));
 require_once File::build_path(array("controller", "ControllerLotApprofondi.php"));
 require_once File::build_path(array("controller", "ControllerAlerte.php"));
 require_once File::build_path(array("controller", "ControllerUtility.php"));
+require_once File::build_path(array("model", "ModelOptionsSite.php"));
 
  function myGet($nomvar){
  	if(isset($_GET[$nomvar])){
@@ -41,9 +42,14 @@ if(!is_null(myGet('controller'))){
 $controller_classe="Controller".ucfirst($controller);
 
 if(class_exists($controller_classe,false)){
-	$mail = file_get_contents(File::build_path(array("..","fichiers", "mail.txt")));
-	$tel = file_get_contents(File::build_path(array("..","fichiers", "tel.txt")));
-	//j'initialise ces deux variables ici pour qu'elles soient présentent dans toutes les vues
+	//j'initialise ces variables ici pour qu'elles soient présentent dans toutes les vues
+	$mail = ModelOptionsSite::select("mail")->getValeur();
+	$tel = ModelOptionsSite::select("telephone")->getValeur();
+	$facebook = ModelOptionsSite::select("facebook")->getValeur();
+	$twitter = ModelOptionsSite::select("twitter")->getValeur();
+	$linkedin = ModelOptionsSite::select("linkedin")->getValeur();
+	$instagram = ModelOptionsSite::select("instagram")->getValeur();
+
 	$controller_classe::$action();
 }else{
 	ControllerLot::error();

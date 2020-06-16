@@ -600,7 +600,7 @@ input[type=number] {
   padding: 5% 7% 6% 6%;
 }
 
-/*------------------- alerte ---------------*/
+/*  --------  alerte  --------  */
 
 .deleteAlerte{
   float:right;
@@ -662,10 +662,7 @@ input[type=number] {
     position: fixed !important;
     top:9%;
     left:3%;
-    padding: 10px;
     z-index: 1;
-    display: grid;
-    grid-gap: 10px;
   }
 
     #boxFixed{

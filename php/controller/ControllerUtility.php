@@ -35,10 +35,11 @@ class ControllerUtility{
 	public static function saveImage(){
 		if(Session::is_admin()){
 			move_uploaded_file( $_FILES['inputPhoto']['tmp_name'],File::build_path(array("..","image",myGet("nomFichier").".png")));
+			echo "save";
 		}
 	}
 
-	private static function changeFichierTexte($fichier, $contenu){
+	/*private static function changeFichierTexte($fichier, $contenu){
 		if(Session::is_admin()){
 			$file_handle = fopen(File::build_path(array("..","fichiers",$fichier)), 'w'); 
 			fwrite($file_handle, $contenu);
@@ -46,14 +47,14 @@ class ControllerUtility{
 			return true;
 		}		
 		return false;
-	}
+	}*/
 
 	public static function updateMail(){
-		changeFichierTexte("mail.txt",$_GET['nouveauMail']);
+		ControllerUtility::changeFichierTexte("mail.txt",$_GET['nouveauMail']);
 	}
 
 	public static function updateTel(){
-		changeFichierTexte("tel.txt",$_GET['nouveauTel']);
+		ControllerUtility::changeFichierTexte("tel.txt",$_GET['nouveauTel']);
 	}
 
 }

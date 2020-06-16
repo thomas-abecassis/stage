@@ -96,34 +96,68 @@
               <div class="row">
           <?php
         if(Session::is_admin()) {  
-         echo '<div class="colorPicker card">
-            <h6 class="center" >Modifier l\'apparence du site</h6>
-            <div class="ligne"></div>
-            <h6 class="center">Modifier le logo</h6> 
+         echo '          <div class="colorPicker card">
+          <div class="card-content">
+            <h6>Modifier votre site</h6>
+          </div>
+          <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+              <li class="tab"><a href="#test4">images</a></li>
+              <li class="tab"><a class="active" href="#test5">couleurs</a></li>
+              <li class="tab"><a href="#test6">infos</a></li>
+            </ul>
+          </div>
+          <div class="card-content grey lighten-4">
+            <div id="test4"><h6 class="center">Modifier le logo</h6> 
             <form id="formLogo">
               <input class="displayBlock" type="file" id="inputPhotoLogo" name="inputPhoto" >
               <input class="displayBlock" type="submit">
             </form>
-            <div class="ligne"></div>
+
+
+            <h6 class="center">Modifier l\'icone de l\'onglet</h6> 
+            <form id="formIcon">
+              <input class="displayBlock" type="file" id="inputIcon" name="inputPhoto" >
+              <input class="displayBlock" type="submit">
+            </form>
+            <h7 class="center">L\'image doit être de préference en 32x32</h7> 
+            
             <h6 class="center">Modifier la bannière</h6> 
             <form id="formBanniere">
               <input class="displayBlock" type="file" id="inputPhotoBanniere" name="inputPhoto" >
               <input class="displayBlock" type="submit">
-            </form>
-            <div class="ligne"></div>
-
-            <h6 class="center">Modifier les couleurs</h6>
-              
-              <button class="displayBlock" id="colorPicker1">couleur principale</button>
+            </form></div>
+            <div id="test5">   
+            <button class="displayBlock" id="colorPicker1">couleur principale</button>
               <button class="displayBlock" id="colorPicker2">couleur secondaire </button>
-              <div class="ligne"></div>
-
-            <h6 class="center">Modifier vos informations</h6>
-              
-              <form id="formMail"><input class="inputText" type ="text" placeholder="modifier votre mail"></input></form>
-              <form id="formNumero"><input class="inputText" type ="text" placeholder="modifier votre numero"></input></form>
-              <div class="ligne"></div>
-          </div>';
+              </div>
+            <div id="test6">              
+            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre mail"></input></form>
+            <form id="formTel"><input id="inputModifyTel" class="inputText" type ="text" placeholder="modifier votre numero"></input></form>
+            <h6>réseaux sociaux</h6>
+            <form id="formFacebook"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Facebook"></input></form>
+            <label>
+              <input id="checkFacebook" type="checkbox" class="filled-in" checked="checked" />
+              <span>afficher Facebook</span>
+            </label>
+            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Twitter"></input></form>
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span>afficher Twitter</span>
+            </label>
+            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Linkedin"></input></form>
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span>afficher Linkedin</span>
+            </label>
+            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Instagram"></input></form>
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span>afficher Instagram</span>
+            </label>
+            </div>
+          </div>
+        </div>';
         }
           ?>
             </div>
@@ -140,16 +174,19 @@
                 <div class="row">
                   <div class="col s6 m3 push-m2">
                     <h5 class="white-text">Contactez nous </h5>
-                    <p class="grey-text text-lighten-4">Par téléphone : <?php global $tel; echo $tel ?></p>
-                    <p class="grey-text text-lighten-4">Par mail : <?php global $mail; echo $mail ?></p>
+                    <p class="grey-text text-lighten-4">Par téléphone : <span><?php global $tel; echo $tel ?></span></p>
+                    <p class="grey-text text-lighten-4">Par mail : <span><?php global $mail; echo $mail ?></span></p>
                   </div>
                   <div class="col s6 m3 push-m4">
                     <h5 class="white-text">Retrouvez nous sur </h5>
                  <ul class="ft-social-list">
-                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-facebook"></span></a></li>
-                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-twitter"></span></a></li>
-                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-linkedin"></span></a></li>
-                  <li><a href="#" class="pure-button button-socicon"><span class="socicon socicon-instagram"></span></a></li>
+                  <?php
+                  global $facebook, $twitter, $linkedin, $instagram;
+                  echo "<li><a href=\"$facebook\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-facebook\"></span></a></li>";
+                  echo "<li><a href=\"$twitter\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-twitter\"></span></a></li>";
+                  echo "<li><a href=\"$linkedin\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-linkedin\"></span></a></li>";
+                  echo "<li><a href=\"$instagram\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-instagram\"></span></a></li>";
+                  ?>
                 </ul>
               </div>
             </div>
