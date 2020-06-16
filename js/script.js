@@ -40,6 +40,7 @@ function reload(xhr){
 }
 
 function callbackCreationCheck(xhr){
+	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
 	if(xhr.responseText.valueOf()=="register"){
 		racine.innerHTML="  <p class=\"center\"><i class=\"green-text small material-icons\">check</i> </p><p class=\"center\">Votre compte a été créé</p><div class=\"ligne\"></div><p class=\"center\">Allez vérifier votre adresse e-mail</p>";
@@ -327,10 +328,18 @@ function compareElementValue(elementX, elementY){
 	return elementX.value && elementY.value && elementX.value > elementY.value;
 }
 
-function majInformations(form, name,input){
+function majInformations(form, action, name, input){
 	form.addEventListener("submit", function(ev){
 		ev.preventDefault();
-		requeteAJAX("index/Utility/update" + name + "/?nouveau"+ name +"="+input.value,reload);
+		requeteAJAX("index/Utility/" + action + "/?nomOption="+ name +"&valeur="+input.value,reload);
+	});
+}
+
+function activerReseau(checkbox, name){
+	checkbox.addEventListener("click", function(ev){
+		requeteAJAX("index/Utility/activerReseauSocial/?nomOption="+ name ,function(xhr){
+			console.log(xhr.responseText);
+		});
 	});
 }
 
@@ -404,8 +413,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			let formTel=document.getElementById("formTel");
 
-			majInformations(document.getElementById("formMail"), "Mail", document.getElementById("inputModifyMail"));
-			majInformations(document.getElementById("formTel"), "Tel", document.getElementById("inputModifyTel"));
+			majInformations(document.getElementById("formMail"),"updateOptionSite", "Mail", document.getElementById("inputModifyMail"));
+			majInformations(document.getElementById("formTel"),"updateOptionSite", "Telephone", document.getElementById("inputModifyTel"));
+			majInformations(document.getElementById("formFacebook"),"updateLienReseau", "Facebook", document.getElementById("inputModifyFacebook"));
+			majInformations(document.getElementById("formTwitter"),"updateLienReseau", "Twitter", document.getElementById("inputModifyTwitter"));
+			majInformations(document.getElementById("formLinkedin"),"updateLienReseau", "Linkedin", document.getElementById("inputModifyLinkedin"));
+			majInformations(document.getElementById("formInstagram"),"updateLienReseau", "Instagram", document.getElementById("inputModifyInstagram"));
+
+			activerReseau(document.getElementById("checkFacebook"), "Facebook");
+			activerReseau(document.getElementById("checkTwitter"), "Twitter");
+			activerReseau(document.getElementById("checkLinkedin"), "Linkedin");
+			activerReseau(document.getElementById("checkInstagram"), "Instagram");
 
 			inputPhotoLogo.addEventListener('change', function() {
 				modifieImage(this,document.getElementById("logo"));
@@ -435,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				metAJourImage(ev,formIcon,"favicon");
 			});
 
-			
+
 		}
 
 	$('.sidenav').sidenav();

@@ -9,13 +9,12 @@ class ModelUtilisateur extends Model{
   private $prenom;
   private $mdp;
   private $role;
-  private $nonce;
 
   protected static $object = "utilisateur";
   protected static $primary='login';
 
-  public function __construct($l = NULL, $n = NULL, $p = NULL, $m = NULL, $r = NULL,$nonce = NULL ) {
-    if (!is_null($l) && !is_null($n) && !is_null($p) && !is_null($m) && !is_null($r) && !is_null($nonce)) {
+  public function __construct($l = NULL, $n = NULL, $p = NULL, $m = NULL, $r = NULL) {
+    if (!is_null($l) && !is_null($n) && !is_null($p) && !is_null($m) && !is_null($r) ) {
       // Si aucun de $m, $c et $i sont nuls,
       // c'est forcement qu'on les a fournis
       // donc on retombe sur le constructeur à 3 arguments
@@ -24,7 +23,6 @@ class ModelUtilisateur extends Model{
       $this->prenom = $p;
       $this->mdp = $m;
       $this->role = $r;
-      $this->nonce = $nonce;
     }
   }
 
@@ -76,14 +74,6 @@ class ModelUtilisateur extends Model{
 
   public function setMdp($mdp){
     $this->mdp=Security::chiffrer($mdp);
-  }
-
-  public function getNonce(){
-    return $this->nonce;
-  }
-
-  public function setNonce(){
-    $this->nonce=NULL;
   }
 
   public function getTab(){
@@ -153,4 +143,3 @@ class ModelUtilisateur extends Model{
     return false;
   }
 }
-?>

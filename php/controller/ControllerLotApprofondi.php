@@ -8,10 +8,9 @@ require_once File::build_path(array("lib", "Utility.php"));
 class ControllerLotApprofondi{
 
     public static function searchDeepen() {
+        $tabTypeDeBien=array("maison");
         $controller='lot'; $view='rechercheApprofondie'; $pagetitle='Recherche de biens approfondie';     //appel au modèle pour gerer la BD
         $categorieValeurs=ModelCategories::getAllValeursCategories();
-        $tabTypeDeBien=array('Maison','Appartement');
-        $tabNombreDePieces=array('1','2','3 et plus');
         require File::build_path(array("view", "view.php"));
     }
 
@@ -21,12 +20,12 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-        $typesBien=arrayContain($_GET,"typeDeBien"); 
-        $nombrePieces=arrayContain($_GET,"nombreDePieces");
+        $typesBien=arrayContain($_GET,"Type(s)_de_bien"); 
+        $nombrePieces=arrayContain($_GET,"Nombre_de_pièce(s)");
 
         $dataCheckBox=intInArray($_GET);
 
-        $maxSurface=myGet("maxSurface");
+        $maxSurface=myGet("maxSurface"); // ce critère n'est pas présent sur la recherche basique, c'est pour cela que je le traite différement
         if(is_null($maxSurface)){
             $maxSurface="";
         }
@@ -111,4 +110,3 @@ class ControllerLotApprofondi{
         }
     }
 }
-?>

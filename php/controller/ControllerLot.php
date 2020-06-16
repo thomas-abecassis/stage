@@ -7,4 +7,3 @@ class ControllerLot {
         require File::build_path(array("view", "view.php"));  //"redirige" vers la vue
     }
 }
-?>

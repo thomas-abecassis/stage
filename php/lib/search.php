@@ -38,7 +38,3 @@ if($tab!==false){
 else{
     echo "false";
 }
-
-
-
-?>

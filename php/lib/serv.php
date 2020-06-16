@@ -60,11 +60,11 @@ class Serv{
 		}
 
 		//on ajoute toutes ses "options"
-
 		//on transforme les stdClass en tableau
 		$plusTab=array();
+		array_push($plusTab, array("Type(s) de bien"=>$typeDeBien));
+		array_push($plusTab, array("Nombre de pièce(s)"=>$nombrePiece));
 		foreach ($plus as $value) {
-			$
 			$tabTemp=array();
 			$tabTemp["categorie"]=$value->categorie;
 			$tabTemp["valeur"]=$value->valeur;
@@ -244,13 +244,19 @@ class Serv{
 			return "pas connecté";
 		}
 		$tabAlerte=ModelAlerte::selectCol("activeMail",true);
+		$tabCriteres=array();
 		foreach ($tabAlerte as $alerte) {
+			$temp=array();
 			$alerte->decode();
+			$temp["loginUtilisateur"]=$alerte->getLoginUtilisateur();
+			$temp["tabSimple"]=$alerte->getTabSimple();
+			array_push($tabCriteres, $temp)
 		}
 		return $tabAlerte;
 	}
+
+
 }
 
 Serv::init();
 $test=new Serv();
-?>

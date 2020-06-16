@@ -28,5 +28,3 @@ function arrayContentIsEmpty($tab){
 		if(strcmp($value, "")!==0) return false;
 	return true;
 }
-
-?>

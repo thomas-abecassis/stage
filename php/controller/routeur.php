@@ -54,6 +54,3 @@ if(class_exists($controller_classe,false)){
 }else{
 	ControllerLot::error();
 }
-
-
-?>

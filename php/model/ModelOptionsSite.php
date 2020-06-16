@@ -20,4 +20,3 @@ class ModelOptionsSite extends Model{
     return $this->valeur;
   }
 }
-?>

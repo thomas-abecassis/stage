@@ -1,5 +1,7 @@
 <?php
 
+//pas besoin de require le model optionsSite car il est déjà require dans le routeur
+
 class ControllerUtility{
 
 	public static function changerCouleur(){
@@ -49,14 +51,32 @@ class ControllerUtility{
 		return false;
 	}*/
 
-	public static function updateMail(){
-		ControllerUtility::changeFichierTexte("mail.txt",$_GET['nouveauMail']);
+	public static function updateOptionSite(){
+		if(Session::is_admin()){
+			ModelOptionsSite::update(array("nomOption"=>$_GET['nomOption'], "valeur"=>$_GET['valeur']));
+		}
 	}
 
-	public static function updateTel(){
-		ControllerUtility::changeFichierTexte("tel.txt",$_GET['nouveauTel']);
+	public static function updateLienReseau(){
+		if(Session::is_admin()){
+			$lien=$_GET['valeur'];
+			if(strcmp("", $lien)!==0 && strpos(strtolower($lien), "http://") === false && strpos(strtolower($lien), "https://") === false)
+				//pour rediriger vers un site extérieur il faut "http://" devant le lien on vérifie donc si le client l'a rentré, dans le cas échéant on le rajoute
+				$lien="http://".$lien; 
+			ModelOptionsSite::update(array("nomOption"=>$_GET['nomOption'], "valeur"=>$lien));
+		}
 	}
 
+	public static function activerReseauSocial(){
+		if(Session::is_admin()){
+			$reseau=ModelOptionsSite::select($_GET['nomOption']);
+			if(is_null($reseau->getValeur())){
+				ModelOptionsSite::update(array("nomOption"=>$_GET['nomOption'], "valeur"=>""));
+			}
+			else{
+				ModelOptionsSite::update(array("nomOption"=>$_GET['nomOption'], "valeur"=> null));
+			}
+		}
+	}
 }
 
-?>

@@ -64,7 +64,7 @@ class ControllerUtilisateur {
         $prenom=myGet('prenom');
         $mdp=myGet('mdp');
         if(!filter_var($login, FILTER_VALIDATE_EMAIL)){
-            $v=new ModelUtilisateur("","","","","","");
+            $v=new ModelUtilisateur("","","","","");
             $isUpdate=false;
             echo "bad_mail_syntax";
         }else{
@@ -73,10 +73,8 @@ class ControllerUtilisateur {
                 echo "mail_allready_taken";
             }
             else{
-                $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0,$random);
+                $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0);
                 $v->save();
-                $mail="http://webinfo.iutmontp.univ-montp2.fr/~abecassist/PHP/TD8/index.php?action=validate&controller=utilisateur&nonce=".$random."&login=".$v->getLogin();
-                mail($login,"activation de votre compte",$mail);
                 echo "register";
             }
         }
@@ -268,19 +266,18 @@ class ControllerUtilisateur {
     static function connectedAjax(){
         if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
             $v = ModelUtilisateur::select(myGet("login"));
-            if(is_null($v->getNonce())){
-                $_SESSION["login"] = myGet("login");
-                echo "true";
-                if($v->isSuperAdmin()){
-                    $_SESSION["role"]=3;
-                }
-                if($v->isAdmin()){
-                    $_SESSION["role"]=2;
-                }
-                if($v->isCommercial()){
-                    $_SESSION["role"]=1;
-                }
+            $_SESSION["login"] = myGet("login");
+            echo "true";
+            if($v->isSuperAdmin()){
+                $_SESSION["role"]=3;
             }
+            if($v->isAdmin()){
+                $_SESSION["role"]=2;
+            }
+            if($v->isCommercial()){
+                $_SESSION["role"]=1;
+            }
+            
         }
         else{
             echo "false";
@@ -293,12 +290,13 @@ class ControllerUtilisateur {
         echo "true";
     }
 
+    /*
+    pas de validation de compte par mail
     static function validate(){
         $u=ModelUtilisateur::select(myGet("login"));
         if($u!=false){
             $u->setNonce();
             ModelUtilisateur::update($u->getTab());
         }
-    }
+    }*/
 }
-?>

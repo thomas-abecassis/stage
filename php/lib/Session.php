@@ -20,4 +20,3 @@ class Session {
     	return (!empty($_SESSION['role']) && $_SESSION['role']=1);
 	}
 }
-?>

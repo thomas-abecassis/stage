@@ -34,30 +34,7 @@
 				    	</div>
 
 				    	<?php
-				    					    			echo "
-						    	<div class=\"categorie row\">
-						       		<div class=\"titreCategorie\">Type(s) de bien
-						       			<div class=\"col s12 ligne\"></div></div>
-						       				<div class=\"contientCheckBox\">";
-							       					foreach ($tabTypeDeBien as $typeDeBien) {
-							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"typeDeBien". $typeDeBien ."\" /><span> ".$typeDeBien." </span></label>";
-							       					}
-							    echo "
-					      					</div>
-					      		</div>";
-
-				    			echo "
-						    	<div class=\"categorie row\">
-						       		<div class=\"titreCategorie\">Nombre de pièces
-						       			<div class=\"col s12 ligne\"></div></div>
-						       				<div class=\"contientCheckBox\">";
-							       					foreach ($tabNombreDePieces as $nombreDePieces) {
-							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"nombreDePieces" . $nombreDePieces ."\" /><span> ".$nombreDePieces." </span></label>";
-							       					}
-							    echo "
-					      					</div>
-					      		</div>";
-
+				 
 				    		foreach ($categorieValeurs as $nomCategorie => $values) {
 
 				    			echo "
@@ -66,7 +43,12 @@
 						       			<div class=\"col s12 ligne\"></div></div>
 						       				<div class=\"contientCheckBox\">";
 							       					foreach ($values as $value) {
-							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"" . $value->id ."\" /><span> ".$value->valeur." </span></label>";
+							       						$name;
+							       						if(strcmp($nomCategorie, "Type(s) de bien")==0 || strcmp($nomCategorie, "Nombre de pièce(s)")==0)
+							       							$name=$nomCategorie.$value->valeur;
+							       						else
+							       							$name=$value->id;
+							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"" . $name ."\" /><span> ".$value->valeur." </span></label>";
 							       					}
 							    echo "
 					      					</div>

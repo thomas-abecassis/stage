@@ -22,7 +22,14 @@ class ControllerAlerte {
 
     public static function created(){
         if(Session::is_connected() && !empty($_SESSION["dataFirst"])){
-            $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],ModelCategories::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]),"Nom par défault",true, $_SESSION["nombrePieces"],$_SESSION["typesBien"] );
+            $tabPlus=ModelCategories::arrayIdToValeurAndCategorie($_SESSION["dataCheckBox"]);
+            foreach ($_SESSION["nombrePieces"] as $value) {
+                array_push($tabPlus, array("categorie"=>"Nombre de pièce(s)", "valeur"=>$value));
+            }
+            foreach ($_SESSION["typesBien"] as $value) {
+                array_push($tabPlus, array("categorie"=>"Type(s) de bien", "valeur"=>$value));
+            }
+            $alerte=new ModelAlerte(null,$_SESSION["login"],$_SESSION["dataFirst"],$tabPlus,"Nom par défault",true );
             $alerte->encode();
             $alerte->save();
             ModelAlerte::unsetSession();
@@ -76,4 +83,3 @@ class ControllerAlerte {
         }
     }
 }
-?>

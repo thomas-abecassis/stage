@@ -12,7 +12,7 @@ class ModelLotApprofondi {
   public function __construct($modelLot = NULL) {
     if (!is_null($modelLot) ) {
       $this->modelLot = $modelLot;
-      $this->plus=ModelCategorie::getValeursCategoriesLot($this);
+      $this->plus=ModelCategories::getValeursCategoriesLot($this);
       }
   }
 
@@ -55,7 +55,7 @@ class ModelLotApprofondi {
 
   public static function searchDeep($dataCheckBox,$dataPost,$typesBien,$nombrePieces,$page){
    if( !array_filter($dataCheckBox) && !array_filter($dataPost) && count($typesBien)==0 && count($nombrePieces)==0){
-      $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces from lot JOIN villesFrance on villesFrance.id=lot.localisation ";   
+      $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location from lot JOIN villesFrance on villesFrance.id=lot.localisation ";   
     }else{
       $sql=ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost,$typesBien,$nombrePieces);
     }
@@ -71,8 +71,7 @@ class ModelLotApprofondi {
     //return $req_prep->fetchAll();
     $test=$req_prep->fetchAll();
     return $test; 
-    return ModelLotApprofondi::lotsToLotsApprofondi($test); //Je peux optimiser ça en utilisant de l'ajax
-
+    //return ModelLotApprofondi::lotsToLotsApprofondi($test); //trop lent de tout convertir
   }
 
   private static function lotToLotApprofondi($lot,$tabValeursCategories){
@@ -88,13 +87,13 @@ class ModelLotApprofondi {
 
     $tabValeurs= array();
     foreach ($rep as $valeur){
-      array_push($tabValeurs, ModelCategorie::searchId($tabValeursCategories, $valeur->idValeurCategorie));
+      array_push($tabValeurs, ModelCategories::searchId($tabValeursCategories, $valeur->idValeurCategorie));
     }
     return new ModelLotApprofondi($lot, $tabValeurs);
   }
 
   public static function lotsToLotsApprofondi($tabLots){
-    $valeurs=ModelCategorie::getAllValeursCategories();
+    $valeurs=ModelCategories::getAllValeursCategories();
     $tabLotsApprofondis = array();
     foreach ($tabLots as $lot) {
       array_push($tabLotsApprofondis, ModelLotApprofondi::lotToLotApprofondi($lot,$valeurs));
@@ -154,7 +153,7 @@ class ModelLotApprofondi {
   }
 
   public static function getNbLotRecherche($dataCheckBox,$dataPost,$typesBien,$nombrePieces){
-    if( !array_filter($dataCheckBox) && !array_filter($dataPost)){
+    if( !array_filter($dataCheckBox) && !array_filter($dataPost) && count($typesBien)==0 && count($nombrePieces)==0){
       $sql="select count(*) as nbLot from lot";
     }else{
       $sql="select count(*) as nbLot from ( " . ModelLotApprofondi::getSqlForDeepSearch($dataCheckBox,$dataPost,$typesBien,$nombrePieces) . " ) as recherche ";
@@ -192,4 +191,3 @@ class ModelLotApprofondi {
   }
 
 }
-?>

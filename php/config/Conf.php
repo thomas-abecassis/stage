@@ -42,4 +42,3 @@ static private $debug = True;
     return self::$databases['password'];
   }
 }
-?>

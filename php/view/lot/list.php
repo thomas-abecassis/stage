@@ -29,7 +29,7 @@
 
                 echo '<div class="infoBoite ">
                 			<p class="grey-text text-darken-1 nomLot" id="' . rawurlencode($v->getId()) . '">    
-                         location ' . $v->getNom() . '
+                          ' . $v->getNom() . '
                       </p>
                 			<p class="prix">'.htmlspecialchars($v->getLoyer()).' €/mois </p>
                             <p class="surface">   <i class="material-icons">home</i><span class="surfaceText">'.htmlspecialchars($v->getSurface()) . 'm² </span></p>

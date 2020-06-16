@@ -52,4 +52,3 @@ catch(SoapFault $e)
 {
   echo $e;
 }
-?>

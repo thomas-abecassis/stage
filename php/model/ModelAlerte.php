@@ -8,8 +8,6 @@ class ModelAlerte extends Model{
   private $loginUtilisateur;
   private $tabSimple;
   private $tabCheckBox;
-  private $tabTypeDeBien;
-  private $tabNombreDePieces;
   private $nom;
   private $idAlerte;
   private $activeMail;
@@ -17,13 +15,11 @@ class ModelAlerte extends Model{
   protected static $primary='idAlerte';
 
       
-  public function __construct($idAlerte = NULL,$loginUtilisateur = NULL,$tabSimple = NULL,$tabCheckBox = NULL,$nom = NULL, $activeMail = NULL, $tabNombreDePieces = NULL, $tabTypeDeBien = NULL) {
-    if ( !is_null($loginUtilisateur) && !is_null($tabSimple) && !is_null($tabCheckBox) && !is_null($nom) && !is_null($activeMail) && !is_null($tabTypeDeBien) && !is_null($tabNombreDePieces)) {
+  public function __construct($idAlerte = NULL,$loginUtilisateur = NULL,$tabSimple = NULL,$tabCheckBox = NULL,$nom = NULL, $activeMail = NULL) {
+    if ( !is_null($loginUtilisateur) && !is_null($tabSimple) && !is_null($tabCheckBox) && !is_null($nom) && !is_null($activeMail)) {
         $this->loginUtilisateur = $loginUtilisateur;
         $this->tabSimple = $tabSimple;
         $this->tabCheckBox = $tabCheckBox;
-        $this->tabTypeDeBien = $tabTypeDeBien;
-        $this->tabNombreDePieces = $tabNombreDePieces;
         $this->nom = $nom;
         $this->idAlerte = $idAlerte;
         $this->activeMail = $activeMail;
@@ -33,15 +29,11 @@ class ModelAlerte extends Model{
   public function decode(){
   	  $this->tabSimple=json_decode($this->tabSimple, true);
       $this->tabCheckBox=json_decode($this->tabCheckBox, true);
-      $this->tabNombreDePieces=json_decode($this->tabNombreDePieces, true);
-      $this->tabTypeDeBien=json_decode($this->tabTypeDeBien, true);
   }
 
   public function encode(){
       $this->tabSimple=json_encode($this->tabSimple, true);
       $this->tabCheckBox=json_encode($this->tabCheckBox, true);
-      $this->tabNombreDePieces=json_encode($this->tabNombreDePieces, true);
-      $this->tabTypeDeBien=json_encode($this->tabTypeDeBien, true);
   }
 
   public function getTabSimple(){
@@ -53,11 +45,22 @@ class ModelAlerte extends Model{
   }
 
   public function getTabTypeDeBien(){
-    return $this->tabTypeDeBien;
+    $temp=array();
+    foreach ($this->tabCheckBox as $key => $value) {
+      if(strcmp($key, "Type(s) de bien")==0)
+        array_push($temp, $value);
+    }
+    return $temp;
   }
 
   public function getTabNombreDePieces(){
-    return $this->tabNombreDePieces;
+    $temp=array();
+    foreach ($this->tabCheckBox as $key => $value) {
+      if(strcmp($key, "Nombre de pièce(s)")==0)
+        array_push($temp, $value);
+    }
+    var_dump($temp);
+    return $temp;
   }
 
   public function getNom(){
@@ -80,11 +83,9 @@ class ModelAlerte extends Model{
   	$this->nom=$nom;
   }
 
-
   public function getLoginUtilisateur(){
     return $this->loginUtilisateur;
   }
-
 
   public function getLocalisation(){
   	if($this->tabSimple["localisation"]!==""){
@@ -164,5 +165,3 @@ class ModelAlerte extends Model{
 }
 
 //ModelAlerte::checkAll();
-
-?>

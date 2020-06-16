@@ -35,13 +35,12 @@ footer a {
 .ft-social {
   padding: 0 1.875rem 1.25rem;
 }
-.ft-social-list {
-  display: flex;
-}
+
 .ft-social-list li {
   margin: 0.5rem;
   font-size: 1.25rem;
   padding-right: 1em;
+  display: inline-block;
 }
 /* Footer legal */
 .ft-legal {

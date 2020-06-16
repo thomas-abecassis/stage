@@ -114,7 +114,7 @@
 			}
 		?>
 		<div class="paddingSmall">
-		<span class="titrePartie" >Critères</span>
+		<span class="titrePartie" >Spécificités</span>
 			<div class="row">	
 				<?php
 					echo "<div class=\" critere col s12 l6\"><div class=\"nomCritere\">Type de bien : </div><div class=\"critereLot\">". $lot->getTypeDeBien() ."</div></div>";
@@ -126,7 +126,7 @@
 		</div>
 		<div class="decoupageSection"></div>
 		<div class="paddingSmall">
-		<span class="titrePartie" >Les plus</span>
+		<span class="titrePartie" >Critères</span>
 			<ul class="liste">
 				<?php
 					foreach ($lotApprofondi->getPlus() as $values ) {

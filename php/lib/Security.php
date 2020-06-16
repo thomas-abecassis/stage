@@ -16,4 +16,3 @@ class Security {
 	  return $hex;
 	}
 }
-?>

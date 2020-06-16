@@ -144,4 +144,3 @@ class ModelCategories extends Model{
   }
   
 }
-?>

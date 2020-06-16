@@ -131,30 +131,33 @@
             <button class="displayBlock" id="colorPicker1">couleur principale</button>
               <button class="displayBlock" id="colorPicker2">couleur secondaire </button>
               </div>
-            <div id="test6">              
+            <div id="test6">';
+            echo '
+
             <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre mail"></input></form>
             <form id="formTel"><input id="inputModifyTel" class="inputText" type ="text" placeholder="modifier votre numero"></input></form>
-            <h6>réseaux sociaux</h6>
-            <form id="formFacebook"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Facebook"></input></form>
-            <label>
-              <input id="checkFacebook" type="checkbox" class="filled-in" checked="checked" />
-              <span>afficher Facebook</span>
-            </label>
-            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Twitter"></input></form>
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span>afficher Twitter</span>
-            </label>
-            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Linkedin"></input></form>
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span>afficher Linkedin</span>
-            </label>
-            <form id="formMail"><input id="inputModifyMail" class="inputText" type ="text" placeholder="modifier votre lien Instagram"></input></form>
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span>afficher Instagram</span>
-            </label>
+            <h6>réseaux sociaux</h6>';
+
+            global $facebook, $twitter, $linkedin, $instagram;
+            $tabReseaux=array( "Facebook"=>$facebook, "Twitter"=>$twitter,"Linkedin"=> $linkedin, "Instagram"=>$instagram);
+
+            foreach ($tabReseaux as $nom => $lien) {
+              echo "
+            <form id=\"form$nom\">
+              <input id=\"inputModify$nom\" class=\"inputText\" type =\"text\" placeholder=\"modifier votre lien $nom\" value=\"$lien\"></input>
+            </form>
+            <label>";
+            if(is_null($lien)){
+              echo "<input id=\"check$nom\" type=\"checkbox\" class=\"filled-in\" />";
+            }
+            else{
+              echo "<input id=\"check$nom\" type=\"checkbox\" class=\"filled-in\" checked=\"checked\" />";
+            }
+              echo"
+              <span>afficher $nom</span>
+            </label>";
+            }
+            echo'
             </div>
           </div>
         </div>';
@@ -172,20 +175,26 @@
             <div class="ligne"></div>
               <div class="container">
                 <div class="row">
-                  <div class="col s6 m3 push-m2">
-                    <h5 class="white-text">Contactez nous </h5>
-                    <p class="grey-text text-lighten-4">Par téléphone : <span><?php global $tel; echo $tel ?></span></p>
-                    <p class="grey-text text-lighten-4">Par mail : <span><?php global $mail; echo $mail ?></span></p>
-                  </div>
-                  <div class="col s6 m3 push-m4">
-                    <h5 class="white-text">Retrouvez nous sur </h5>
-                 <ul class="ft-social-list">
                   <?php
-                  global $facebook, $twitter, $linkedin, $instagram;
-                  echo "<li><a href=\"$facebook\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-facebook\"></span></a></li>";
-                  echo "<li><a href=\"$twitter\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-twitter\"></span></a></li>";
-                  echo "<li><a href=\"$linkedin\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-linkedin\"></span></a></li>";
-                  echo "<li><a href=\"$instagram\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-instagram\"></span></a></li>";
+                  global $facebook, $twitter, $linkedin, $instagram, $mail, $tel;
+                  echo"
+                    <div class=\"col s6 m3 push-m2\">
+                    <h5 class=\"white-text\">Contactez nous </h5>
+                    <p class=\"grey-text text-lighten-4\">Par téléphone : <span> $tel</span></p>
+                    <p class=\"grey-text text-lighten-4\">Par mail : <span> $mail </span></p>
+                  </div>";
+                  if(!is_null($facebook) || !is_null($twitter) || !is_null($linkedin) || !is_null($instagram)){
+                  echo '<div class="col  push-m4">
+                    <h5 class="white-text">Retrouvez nous sur </h5>
+                 <ul class="ft-social-list center">';
+
+                    $tabReseaux=array( "facebook"=>$facebook, "twitter"=>$twitter,"linkedin"=> $linkedin, "instagram"=>$instagram);
+                    foreach ($tabReseaux as $nom => $lien) {
+                      if(!is_null($lien)){
+                        echo "<li><a href=\"$lien\" class=\"pure-button button-socicon\"><span class=\"socicon socicon-$nom\"></span></a></li>";
+                      }
+                    }
+                  }
                   ?>
                 </ul>
               </div>
