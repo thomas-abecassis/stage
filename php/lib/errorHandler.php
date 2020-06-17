@@ -1,4 +1,4 @@
- <?php
+<?php
  $debug=true;
  function errorPage(){
     $controller='lot'; $view='error'; $pagetitle='Recherche de biens';     //appel au modèle pour gerer la BD

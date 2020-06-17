@@ -290,13 +290,4 @@ class ControllerUtilisateur {
         echo "true";
     }
 
-    /*
-    pas de validation de compte par mail
-    static function validate(){
-        $u=ModelUtilisateur::select(myGet("login"));
-        if($u!=false){
-            $u->setNonce();
-            ModelUtilisateur::update($u->getTab());
-        }
-    }*/
 }
