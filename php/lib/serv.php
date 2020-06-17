@@ -45,7 +45,7 @@ class Serv{
 			return "pas connecté";
 		}
 
-		$test=new ModelLot($id,$ville, $surface, $loyer, $description, $informationsCommercial, $typeDeBien, $nombrePiece);
+		$test=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
 		$villeId=$test->getLocalisationId();
 		if(is_null($villeId)){
 			return "nom_de_ville_inconnu";
@@ -62,15 +62,15 @@ class Serv{
 		//on ajoute toutes ses "options"
 		//on transforme les stdClass en tableau
 		$plusTab=array();
-		array_push($plusTab, array("Type(s) de bien"=>$typeDeBien));
-		array_push($plusTab, array("Nombre de pièce(s)"=>$nombrePiece));
+		array_push($plusTab, array("categorie" => "Type(s) de bien","valeur" => $typeDeBien));
+		if(intval($nombrePiece)>=6) $nombrePiece = "6 et plus";
+		array_push($plusTab, array("categorie" =>"Nombre de pièce(s)","valeur" => $nombrePiece));
 		foreach ($plus as $value) {
 			$tabTemp=array();
 			$tabTemp["categorie"]=$value->categorie;
 			$tabTemp["valeur"]=$value->valeur;
 			array_push($plusTab, $tabTemp);
 		}
-
 		$tabIdValeurs=ModelCategories::arrayCategorieAndValeurToId($plusTab);
 		if($tabIdValeurs===false){
 			return "categorie_valeur_non_reconnue";
@@ -250,12 +250,10 @@ class Serv{
 			$alerte->decode();
 			$temp["loginUtilisateur"]=$alerte->getLoginUtilisateur();
 			$temp["tabSimple"]=$alerte->getTabSimple();
-			array_push($tabCriteres, $temp)
+			array_push($tabCriteres, $temp);
 		}
 		return $tabAlerte;
 	}
-
-
 }
 
 Serv::init();

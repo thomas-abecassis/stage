@@ -43,12 +43,7 @@
 						       			<div class=\"col s12 ligne\"></div></div>
 						       				<div class=\"contientCheckBox\">";
 							       					foreach ($values as $value) {
-							       						$name;
-							       						if(strcmp($nomCategorie, "Type(s) de bien")==0 || strcmp($nomCategorie, "Nombre de pièce(s)")==0)
-							       							$name=$nomCategorie.$value->valeur;
-							       						else
-							       							$name=$value->id;
-							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"" . $name ."\" /><span> ".$value->valeur." </span></label>";
+							       						echo "<label ><input type=\"checkbox\" class=\"filled-in\" name=\"" . $value->id ."\" /><span> ".$value->valeur." </span></label>";
 							       					}
 							    echo "
 					      					</div>

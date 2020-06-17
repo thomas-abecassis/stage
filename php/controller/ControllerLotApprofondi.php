@@ -20,8 +20,8 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-        $typesBien=arrayContain($_GET,"Type(s)_de_bien"); 
-        $nombrePieces=arrayContain($_GET,"Nombre_de_pièce(s)");
+        $typesBien=array();
+        $nombrePieces=array();
 
         $dataCheckBox=intInArray($_GET);
 
@@ -46,8 +46,8 @@ class ControllerLotApprofondi{
         
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
         $page=myGet("page");
-        $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$typesBien,$nombrePieces,$page);
-        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$typesBien,$nombrePieces,$page)-1)/15)+1;
+        $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$page);
+        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$page)-1)/15)+1;
         $lot="lotApprofondi";
         $getURL = getURLParametersWithout(array("controller","action","page"));
         require File::build_path(array("view", "view.php"));
@@ -60,7 +60,7 @@ class ControllerLotApprofondi{
             array_push($tabLots, ModelLot::select($idLot));
         }
         $tabLotsApprofondi=ModelLotApprofondi::lotsToLotsApprofondi($tabLots);
-        $tabNomsLots=array();
+        $tabNomsLots=array();   
         foreach ($tabLotsApprofondi as $lotApprofondi) {
             array_push($tabNomsLots, $lotApprofondi->getNom());
         }
@@ -74,8 +74,8 @@ class ControllerLotApprofondi{
         $alerte=urldecode(myGet("alerte"));
         $alerte=unserialize($alerte);
 
-        $typeDeBien=$alerte->getTabTypeDeBien();
-        $nombreDePieces=$alerte->getTabNombreDePieces();
+        $typeDeBien=array();
+        $nombreDePieces=array();
 
         $dataCheckBox=ModelCategories::arrayCategorieAndValeurToId($alerte->getTabCheckBox());
         $dataPost=$alerte->getTabSimple();
@@ -86,9 +86,9 @@ class ControllerLotApprofondi{
         $_SESSION["nombrePieces"]=$nombreDePieces;
 
         $page=1;
-        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$typeDeBien,$nombreDePieces,$page)-1)/15)+1;
+        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$page)-1)/15)+1;
         $controller='lot'; $view='list'; $pagetitle='Liste des lots';     
-        $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$typeDeBien,$nombreDePieces,$page);
+        $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$page);
         $getURL = getURLParametersWithout(array("controller","action","page"));
         $lot="lotApprofondi";
         require File::build_path(array("view", "view.php"));

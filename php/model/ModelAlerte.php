@@ -46,20 +46,20 @@ class ModelAlerte extends Model{
 
   public function getTabTypeDeBien(){
     $temp=array();
-    foreach ($this->tabCheckBox as $key => $value) {
-      if(strcmp($key, "Type(s) de bien")==0)
-        array_push($temp, $value);
+    foreach ($this->tabCheckBox as $value) {
+      if(strcmp($value["categorie"], "Type(s) de bien")==0){
+        array_push($temp, $value["valeur"]);
+      }
     }
     return $temp;
   }
 
   public function getTabNombreDePieces(){
     $temp=array();
-    foreach ($this->tabCheckBox as $key => $value) {
-      if(strcmp($key, "Nombre de pièce(s)")==0)
+    foreach ($this->tabCheckBox as $value) {
+      if(strcmp($value["categorie"], "Nombre de pièce(s)")==0)
         array_push($temp, $value);
     }
-    var_dump($temp);
     return $temp;
   }
 

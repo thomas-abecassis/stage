@@ -68,12 +68,12 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>test24</idLot>
+      <idLot>test234</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>
-      <typeDeBien>maison</typeDeBien>
-      <nombrePiece>2</nombrePiece>
+      <typeDeBien>Maison</typeDeBien>
+      <nombrePiece>10</nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
       <plus>

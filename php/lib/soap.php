@@ -2,7 +2,7 @@
 require_once('serv.php');
 try
 {
-  $server = new SoapServer(null, array('encoding'=>'ISO-8859-1','uri' => 'localhost'));
+  $server = new SoapServer(null, array('encoding'=>'UTF-8','uri' => 'localhost'));
 
   $server->setClass("Serv");
   $server->handle();
