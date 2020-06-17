@@ -243,16 +243,17 @@ class Serv{
 		if(!$this->auth){
 			return "pas connecté";
 		}
+
 		$tabAlerte=ModelAlerte::selectCol("activeMail",true);
-		$tabCriteres=array();
+		$tabSoapVar=array();
 		foreach ($tabAlerte as $alerte) {
 			$temp=array();
 			$alerte->decode();
 			$temp["loginUtilisateur"]=$alerte->getLoginUtilisateur();
 			$temp["tabSimple"]=$alerte->getTabSimple();
-			array_push($tabCriteres, $temp);
+			array_push($tabSoapVar, new SoapVar($alerte, SOAP_ENC_OBJECT, null, null, 'alerte' ));
 		}
-		return $tabAlerte;
+		return new SoapVar($tabSoapVar, SOAP_ENC_OBJECT, null, null, 'tabAlerte');
 	}
 }
 
