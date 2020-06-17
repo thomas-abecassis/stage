@@ -47,18 +47,7 @@ class Serv{
 		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
 
 		//met en forme les plus pour créer un lotApprofondi
-		if(intval($nombrePiece)>=6){
-			$nombrePiece="6 et plus";
-		}
-        $tab=array("Type(s) de bien"=> array($typeDeBien), "Nombre de pièce(s)"=> array($nombrePiece));
-        foreach ($plus as $tabValeurCategorie) {
-            $nomCategorie=$tabValeurCategorie->categorie;
-            if(array_key_exists($nomCategorie, $tab)){
-                array_push($tab[$nomCategorie], $tabValeurCategorie->valeur);
-            }else{
-                $tab[$nomCategorie]=array($tabValeurCategorie->valeur);
-            }
-        }
+		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 
 		$lotApprofondi=new ModelLotApprofondi($lot, $tab);
 		return $lotApprofondi->saveLotApprofondi();
@@ -162,16 +151,25 @@ class Serv{
 			return "pas connecté";
 		}
 
-		$retSup=$this->supprimerUnLot($id);
-		if(strcmp($retSup, "lot_n_existe_pas")==0){
+		$ancienLotApprofondi=ModelLotApprofondi::selectById($id);
+
+		if($ancienLotApprofondi==false)
 			return "lot_n_existe_pas";
-		}
+		
+		$this->supprimerUnLot($id);
 
-		$lot=ModelLotApprofondi::selectById($id);
 
-		$retCreation=$this->creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus);
+		$lot=new ModelLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial);
+		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
+		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
+
+		$retCreation=$nouveauLotApprofondi->saveLotApprofondi();
 		if(strcmp($retCreation, "fait")!==0){
+
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
+			$this->supprimerUnLot($id);
+			$ancienLotApprofondi->saveLotApprofondi();
+			return $retCreation;
 			return "probleme_enregistrement_lot";
 		}
 		return "fait";
@@ -240,6 +238,23 @@ class Serv{
 		}
 		return new SoapVar($tabSoapVar, SOAP_ENC_OBJECT, null, null, 'tabAlerte');
 	}
+}
+
+function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){
+	//cette fonction sert à transformer les tableaux donnés en entrée en un seul tableau mis en forme pour un LotApprofondi
+		if(intval($nombrePiece)>=6){
+			$nombrePiece="6 et plus";
+		}
+        $tab=array("Type(s) de bien"=> array($typeDeBien), "Nombre de pièce(s)"=> array($nombrePiece));
+        foreach ($plus as $tabValeurCategorie) {
+            $nomCategorie=$tabValeurCategorie->categorie;
+            if(array_key_exists($nomCategorie, $tab)){
+                array_push($tab[$nomCategorie], $tabValeurCategorie->valeur);
+            }else{
+                $tab[$nomCategorie]=array($tabValeurCategorie->valeur);
+            }
+        }
+    return $tab;
 }
 
 Serv::init();

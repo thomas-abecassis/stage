@@ -68,7 +68,7 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>test234</idLot>
+      <idLot>test23</idLot>
       <ville>Montpellier</ville>
       <surface>11</surface>
       <loyer>11</loyer>
@@ -101,9 +101,9 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
   <soapenv:Body>
   <mettreAJourLot>
-      <idLot>test</idLot>
-      <ville>Le Crès</ville>
-      <surface>222</surface>
+      <idLot>test23</idLot>
+      <ville>Montpellier</ville>
+      <surface>111</surface>
       <loyer>111</loyer>
       <typeDeBien>maison</typeDeBien>
       <nombrePiece>2</nombrePiece>
