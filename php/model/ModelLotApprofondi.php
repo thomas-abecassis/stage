@@ -9,11 +9,15 @@ class ModelLotApprofondi {
   private $modelLot;
   private $plus;
       
-  public function __construct($modelLot = NULL) {
-    if (!is_null($modelLot) ) {
+  public function __construct($modelLot = NULL, $plus = NULL) {
+    if (!is_null($modelLot) ) 
       $this->modelLot = $modelLot;
+
+    if (!is_null($plus) )
+      $this->plus=$plus;
+
+    else
       $this->plus=ModelCategories::getValeursCategoriesLot($this);
-      }
   }
 
   /*public function getnom(){
@@ -99,6 +103,43 @@ class ModelLotApprofondi {
       array_push($tabLotsApprofondis, ModelLotApprofondi::lotToLotApprofondi($lot,$valeurs));
     }
     return $tabLotsApprofondis;
+  }
+
+  public static function selectById($id){
+    $lot=ModelLot::selectById($id);
+    if($lot==false){
+      return false;
+    }
+    return ModelLotApprofondi::lotsToLotsApprofondi(array($lot))[0];
+  }
+
+  public function saveLotApprofondi(){
+    $lot=$this->modelLot;
+    $villeId=$lot->getLocalisationId();
+
+    if(is_null($villeId))
+      return "nom_de_ville_inconnu";
+
+    $lot->setLocalisation($villeId); //On stoque l'ID de la ville dans la table lot 
+    $retSave=$lot->save();
+
+    if($retSave!==true){
+      if($retSave==23000)
+        return "id_lot_deja_existant";
+      else
+        return $retSave;
+    }
+
+    $tabIdValeurs=ModelCategories::arrayCategorieAndValeurToId($this->plus);
+    if($tabIdValeurs===false){
+      return "categorie_valeur_non_reconnue";
+    }
+    $id=$lot->getId();
+    foreach ($tabIdValeurs as $idValeur) {
+      $sql="insert into lotCategorie values (\"$id\", $idValeur)";
+      Model::$pdo->exec($sql);
+    }
+    return "fait";
   }
 
   public static function getSqlForDeepSearch($dataCheckBox,$dataPost){

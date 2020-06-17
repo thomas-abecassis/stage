@@ -77,7 +77,19 @@ class ControllerLotApprofondi{
         $typeDeBien=array();
         $nombreDePieces=array();
 
-        $dataCheckBox=ModelCategories::arrayCategorieAndValeurToId($alerte->getTabCheckBox());
+        $tab=array();
+        foreach ($alerte->getTabCheckBox() as $tabValeurCategorie) {
+            $nomCategorie=$tabValeurCategorie["categorie"];
+            if(array_key_exists($nomCategorie, $tab)){
+                array_push($tab[$nomCategorie], $tabValeurCategorie["valeur"]);
+            }else{
+                $tab[$nomCategorie]=array($tabValeurCategorie["valeur"]);
+            }
+        }
+        
+
+
+        $dataCheckBox=ModelCategories::arrayCategorieAndValeurToId($tab);
         $dataPost=$alerte->getTabSimple();
 
         $_SESSION['dataCheckBox']=$dataCheckBox;
@@ -97,6 +109,7 @@ class ControllerLotApprofondi{
     public static function read(){
         $id=myGet("id");
         $lot=ModelLot::selectById($id);
+
         if($lot==false){
             $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
             require File::build_path(array('view','view.php'));  //"redirige" vers la vue

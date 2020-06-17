@@ -44,42 +44,24 @@ class Serv{
 		if(!$this->auth){
 			return "pas connecté";
 		}
+		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
 
-		$test=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
-		$villeId=$test->getLocalisationId();
-		if(is_null($villeId)){
-			return "nom_de_ville_inconnu";
+		//met en forme les plus pour créer un lotApprofondi
+		if(intval($nombrePiece)>=6){
+			$nombrePiece="6 et plus";
 		}
-		$test->setLocalisation($villeId); //On stoque l'ID de la ville dans la table lot 
-		$retSave=$test->save();
-		if($retSave!==true){
-			if($retSave==23000)
-				return "id_lot_deja_existant";
-			else
-				return $retSave;
-		}
+        $tab=array("Type(s) de bien"=> array($typeDeBien), "Nombre de pièce(s)"=> array($nombrePiece));
+        foreach ($plus as $tabValeurCategorie) {
+            $nomCategorie=$tabValeurCategorie->categorie;
+            if(array_key_exists($nomCategorie, $tab)){
+                array_push($tab[$nomCategorie], $tabValeurCategorie->valeur);
+            }else{
+                $tab[$nomCategorie]=array($tabValeurCategorie->valeur);
+            }
+        }
 
-		//on ajoute toutes ses "options"
-		//on transforme les stdClass en tableau
-		$plusTab=array();
-		array_push($plusTab, array("categorie" => "Type(s) de bien","valeur" => $typeDeBien));
-		if(intval($nombrePiece)>=6) $nombrePiece = "6 et plus";
-		array_push($plusTab, array("categorie" =>"Nombre de pièce(s)","valeur" => $nombrePiece));
-		foreach ($plus as $value) {
-			$tabTemp=array();
-			$tabTemp["categorie"]=$value->categorie;
-			$tabTemp["valeur"]=$value->valeur;
-			array_push($plusTab, $tabTemp);
-		}
-		$tabIdValeurs=ModelCategories::arrayCategorieAndValeurToId($plusTab);
-		if($tabIdValeurs===false){
-			return "categorie_valeur_non_reconnue";
-		}
-		foreach ($tabIdValeurs as $idValeur) {
-			$sql="insert into lotCategorie values (\"$id\", $idValeur)";
-			Serv::$pdo->exec($sql);
-		}
-		return "fait";
+		$lotApprofondi=new ModelLotApprofondi($lot, $tab);
+		return $lotApprofondi->saveLotApprofondi();
 	}
 
 	public function saveImage($id,$image){
@@ -185,8 +167,11 @@ class Serv{
 			return "lot_n_existe_pas";
 		}
 
+		$lot=ModelLotApprofondi::selectById($id);
+
 		$retCreation=$this->creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus);
 		if(strcmp($retCreation, "fait")!==0){
+			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			return "probleme_enregistrement_lot";
 		}
 		return "fait";

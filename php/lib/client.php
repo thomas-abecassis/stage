@@ -33,13 +33,14 @@ try
   $soapHeaders[] = new SoapHeader("http://localhost", 'authentification', $auth);
 
   $clientSOAP->__setSoapHeaders($soapHeaders);
+  /*
   $ret = $clientSOAP->__call('supprimerUnLot', array("123"));
-  echo $ret;
+  echo $ret;*/
 
   
-  /*$ret = $clientSOAP->__call('creerLot', array("toest", "Montpellier", "123", "123", "maison", "123", "123", "123", array(array("categorie"=>"Type(s) de bien","valeur"=>"appartement"))));
+  $ret = $clientSOAP->__call('creerLot', array("test2", "Montpellier", "123", "123", "maison", "123", "123", "123", array(array("categorie"=>"Type(s) de bien","valeur"=>"appartement"))));
   echo $clientSOAP->__getLastResponse();
-  echo $ret;*/
+  var_dump($ret);
 
   /*$path = '../../image/fond.jpg';
   $type = pathinfo($path, PATHINFO_EXTENSION);

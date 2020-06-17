@@ -24,7 +24,7 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
    <soapenv:Body>
    <supprimerUnLot>
-      <idLot>1</idLot>
+      <idLot>test234</idLot>
    </supprimerUnLot>
    </soapenv:Body>
 </soapenv:Envelope>
@@ -53,7 +53,7 @@ http://localhost/stage/php/lib/soap.php
 	<soapenv:Body>
 	<saveImage>
 		<idLot>58008</idLot>
-		<imageString>Ym9uam91cg==</imageString>
+		<imageString>iVBORw0KGgoAAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB90lEQVRYR92WT07CQBTGZzABQnThKSDRltRNUbyEZxBcsWOLUROWdqcb4Q6eApOyQUpIwGvgAkikZh59zczQ0imgaLsZ5k9nfu973xtKyZ4fuufzSSIAXEnFWEHFWhySrl8D+AoCMK1yih+3652F1z9Q8ZeqAmwdA1hZb1pl4Ry73mF9pooAFgajAgASl6xL/3jXdYl3ENFvz4S9c8c5ws8HQfMv/GkAyLnWMEDKQbMH4K38K7Ttm0c/EEoouX6pQ786voJWaxjQDpq9tZ5YpwC8qDUMWIMAbR/AEqSveACVVQCskkBPKKeARc4iNbN34LDu9J5Lr0vMLOsTYk8fwAPVj6USO/PAPgDAA518PkUoJefvLQhnaNagdaXrh3pa4vhkNoV15fF4Kw/Qt0IBNipJAIIBAjqT2QxGL0Yj4A27F6JMSAfForD9afcZcoxKyGfL81q/nzAAlPYok4HgT+wnEHhYWnpDnt+ZAkx29nzO59AKAJw5fwxA3hhzL48nCgArZMF+9HVdSEFYGR6m0zBVdByoPa785A8XmFS5iuEicXQd1qIHogB0x1n7H4DvqwDgWgbi3wuYa5xEU0a5Xgb/VwCBnsCIVHO+jQJ8KnxP4KBqzncBIHjC6yh/hCYKQDZwYJ2HlesmZRi110bzccpwowOiXvoG0fkJMLsqL0YAAAAASUVORK5CYII=</imageString>
 	</saveImage>
 	</soapenv:Body>
 </soapenv:Envelope>
@@ -103,7 +103,7 @@ http://localhost/stage/php/lib/soap.php
   <mettreAJourLot>
       <idLot>test</idLot>
       <ville>Le Crès</ville>
-      <surface>111</surface>
+      <surface>222</surface>
       <loyer>111</loyer>
       <typeDeBien>maison</typeDeBien>
       <nombrePiece>2</nombrePiece>
@@ -118,6 +118,10 @@ http://localhost/stage/php/lib/soap.php
             <categorie>Commodité(s)</categorie>
             <valeur>alarme</valeur>  
          </plus2>
+         <plus3>
+            <categorie>Orientation(s)</categorie>
+            <valeur>est</valeur>  
+          </plus3>
       </plus>
   </mettreAJourLot>
   </soapenv:Body>

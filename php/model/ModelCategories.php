@@ -110,12 +110,14 @@ class ModelCategories extends Model{
 
   public static function arrayCategorieAndValeurToId($tabValeurAndCategorie){
     $tabId=array();
-    foreach ($tabValeurAndCategorie as $valeurEtCategorie) {
-      $id=ModelCategories::CategorieAndValeurToId($valeurEtCategorie["categorie"],$valeurEtCategorie["valeur"]);
-      if($id===false){
-        return false;
+    foreach ($tabValeurAndCategorie as $categorie=>$tabCategorie) {
+      foreach ($tabCategorie as $valeur) {
+        $id=ModelCategories::CategorieAndValeurToId($categorie,$valeur);
+        if($id===false){
+          return false;
+        }
+        array_push($tabId,$id);
       }
-      array_push($tabId,$id);
     }
     return $tabId;
   }
