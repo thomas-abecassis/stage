@@ -47,7 +47,7 @@ class ModelAlerte extends Model{
   public function getTabTypeDeBien(){
     $temp=array();
     foreach ($this->tabCheckBox as $value) {
-      if(strcmp($value["categorie"], "Type(s) de bien")==0){
+      if($value["categorie"]==="Type(s) de bien"){
         array_push($temp, $value["valeur"]);
       }
     }
@@ -57,7 +57,7 @@ class ModelAlerte extends Model{
   public function getTabNombreDePieces(){
     $temp=array();
     foreach ($this->tabCheckBox as $value) {
-      if(strcmp($value["categorie"], "Nombre de pièce(s)")==0)
+      if($value["categorie"] === "Nombre de pièce(s)")
         array_push($temp, $value);
     }
     return $temp;
@@ -96,7 +96,7 @@ class ModelAlerte extends Model{
 
   public function getSurfaceStr(){
   	if($this->tabSimple["minSurface"]!==""){
-  		return $this->tabSimple["minSurface"] . "ou plus";	
+  		return $this->tabSimple["minSurface"] . "m² ou plus";	
   	}
   	return "Toute surface";
   }

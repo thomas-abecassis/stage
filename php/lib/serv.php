@@ -34,7 +34,7 @@ class Serv{
 
 
 	public function authentification($obj){
-		if(strcmp($obj->login, "test") == 0 && strcmp($obj->password, "toast") == 0){
+		if($obj->login === "test" && $obj->password === "toast"){
 			$this->auth = true;
 		}
 		else{
@@ -165,7 +165,7 @@ class Serv{
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
 		$retCreation=$nouveauLotApprofondi->saveLotApprofondi(); 
-		if(strcmp($retCreation, "fait")!==0){
+		if($retCreation !== "fait")){
 
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
@@ -197,7 +197,7 @@ class Serv{
 		$sql="delete from lot where id=\"$id\"";
 		Serv::$pdo->exec($sql);
 
-		if(strcmp($this->supprimerImagesLot($id), "fait")!==0){
+		if($this->supprimerImagesLot($id) !== "fait"){
 			return "probleme_suppression_image";
 		}
 

@@ -158,7 +158,7 @@ class ModelUtilisateur extends Model{
     if($u==false){
       return $u;
     }
-    if(strcmp($u->getMdp(),Security::chiffrer($mdp))==0){
+    if($u->getMdp()===Security::chiffrer($mdp)){
       return true;
     }
     return false;

@@ -25,6 +25,6 @@ function intInArray($array){
 function arrayContentIsEmpty($tab){
 	//prérequis : un tableau contenant des strings ou vide
 	foreach ($tab as $value) 
-		if(strcmp($value, "")!==0) return false;
+		if($value !== "") return false;
 	return true;
 }

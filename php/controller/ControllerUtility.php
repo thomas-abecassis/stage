@@ -60,7 +60,7 @@ class ControllerUtility{
 	public static function updateLienReseau(){
 		if(Session::is_admin()){
 			$lien=$_GET['valeur'];
-			if(strcmp("", $lien)!==0 && strpos(strtolower($lien), "http://") === false && strpos(strtolower($lien), "https://") === false)
+			if($lien!==""  && strpos(strtolower($lien), "http://") === false && strpos(strtolower($lien), "https://") === false)
 				//pour rediriger vers un site extérieur il faut "http://" devant le lien on vérifie donc si le client l'a rentré, dans le cas échéant on le rajoute
 				$lien="http://".$lien; 
 			ModelOptionsSite::update(array("nomOption"=>$_GET['nomOption'], "valeur"=>$lien));

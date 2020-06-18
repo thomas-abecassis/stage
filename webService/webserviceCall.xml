@@ -249,7 +249,7 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
    <soapenv:Body>
    <getUtilisateursInactifs>
-      <nombreDeSemaines>8</nombreDeSemaines>
+      <nombreDeSemaines>0</nombreDeSemaines>
    </getUtilisateursInactifs>
    </soapenv:Body>
 </soapenv:Envelope>

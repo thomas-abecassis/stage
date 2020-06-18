@@ -39,7 +39,6 @@ class ControllerUtilisateur {
     }
 
     public static function Read(){
-        var_dump(Modelutilisateur::selectBySemainesSansConnexion(100));
         $_SESSION["pageName"]=myGet("id");
         $u=false;
         if(Session::is_admin()){
