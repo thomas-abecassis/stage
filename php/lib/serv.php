@@ -158,18 +158,17 @@ class Serv{
 		
 		$this->supprimerUnLot($id);
 
-
-		$lot=new ModelLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial);
+		$lot=new ModelLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial,1);
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
 		$retCreation=$nouveauLotApprofondi->saveLotApprofondi();
+		return $retCreation; 
 		if(strcmp($retCreation, "fait")!==0){
 
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
-			$ancienLotApprofondi->saveLotApprofondi();
-			return $retCreation;
+			return $ancienLotApprofondi->saveLotApprofondi();
 			return "probleme_enregistrement_lot";
 		}
 		return "fait";

@@ -116,7 +116,6 @@ class ModelLotApprofondi {
   public function saveLotApprofondi(){
     $lot=$this->modelLot;
     $villeId=$lot->getLocalisationId();
-
     if(is_null($villeId))
       return "nom_de_ville_inconnu";
 

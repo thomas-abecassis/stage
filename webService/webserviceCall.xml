@@ -105,8 +105,8 @@ http://localhost/stage/php/lib/soap.php
       <ville>Montpellier</ville>
       <surface>111</surface>
       <loyer>111</loyer>
-      <typeDeBien>maison</typeDeBien>
-      <nombrePiece>2</nombrePiece>
+      <typeDeBien>Maison</typeDeBien>
+      <nombrePiece>6 et plus</nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
       <plus>
@@ -118,10 +118,6 @@ http://localhost/stage/php/lib/soap.php
             <categorie>Commodité(s)</categorie>
             <valeur>alarme</valeur>  
          </plus2>
-         <plus3>
-            <categorie>Orientation(s)</categorie>
-            <valeur>est</valeur>  
-          </plus3>
       </plus>
   </mettreAJourLot>
   </soapenv:Body>
