@@ -95,21 +95,35 @@ class ModelAlerte extends Model{
   }
 
   public function getSurfaceStr(){
-  	if($this->tabSimple["minSurface"]!==""){
-  		return $this->tabSimple["minSurface"] . "m² ou plus";	
+    $minSurface=$this->tabSimple["minSurface"];
+    $maxSurface=$this->tabSimple["maxSurface"];
+
+    if($minSurface!==""){
+      if($maxSurface!==""){
+        return $minSurface . "m² - " . $maxSurface . "m²"; 
+      }
+  		return $minSurface . "m² ou plus";	
   	}
+
+    if($maxSurface!==""){
+      return "moins de " . $maxSurface;
+    }
   	return "Toute surface";
   }
 
   public function getBudgetStr(){
-  	 if($this->tabSimple["minBudget"]!=="" && $this->tabSimple["maxBudget"]==""){
-  		return "plus de ". $this->tabSimple["minBudget"]."€";
+    $minBudget=$this->tabSimple["minBudget"];
+    $maxBudget=$this->tabSimple["maxBudget"];
+
+
+  	if($minBudget!=="" && $maxBudget==""){
+  		return "plus de ". $maxBudget . "€";
   	}
-  	if($this->tabSimple["minBudget"]=="" && $this->tabSimple["maxBudget"]!==""){
-  		return "moins de " . $this->tabSimple["maxBudget"]."€"; 
+  	if($minBudget=="" && $maxBudget!==""){
+  		return "moins de " . $maxBudget . "€"; 
   	}
   	if( $this->tabSimple["maxBudget"]!==""){
-  		return $this->tabSimple["minBudget"]."€ - ".$this->tabSimple["maxBudget"]."€"; 
+  		return $minBudget . "€ - " . $maxBudget."€"; 
   	}
   	return "Tout Budget";
   }
