@@ -17,6 +17,6 @@ class Session {
 	}
 
 	public static function is_commercial() {
-    	return (!empty($_SESSION['role']) && $_SESSION['role']=1);
+    	return (!empty($_SESSION['role']) && $_SESSION['role']==1);
 	}
 }

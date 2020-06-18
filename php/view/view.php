@@ -110,21 +110,21 @@
           <div class="card-content grey lighten-4">
             <div id="test4"><h6 class="center">Modifier le logo</h6> 
             <form id="formLogo">
-              <input class="displayBlock" type="file" id="inputPhotoLogo" name="inputPhoto" >
+              <input class="displayBlock" type="file" id="inputPhotoLogo" name="inputPhoto" accept="image/*" >
               <input class="displayBlock" type="submit">
             </form>
 
 
             <h6 class="center">Modifier l\'icone de l\'onglet</h6> 
             <form id="formIcon">
-              <input class="displayBlock" type="file" id="inputIcon" name="inputPhoto" >
+              <input class="displayBlock" type="file" id="inputIcon" name="inputPhoto" accept="image/*">
               <input class="displayBlock" type="submit">
             </form>
             <h7 class="center">L\'image doit être de préference en 32x32</h7> 
             
             <h6 class="center">Modifier la bannière</h6> 
             <form id="formBanniere">
-              <input class="displayBlock" type="file" id="inputPhotoBanniere" name="inputPhoto" >
+              <input class="displayBlock" type="file" id="inputPhotoBanniere" name="inputPhoto" accept="image/*">
               <input class="displayBlock" type="submit">
             </form></div>
             <div id="test5">   

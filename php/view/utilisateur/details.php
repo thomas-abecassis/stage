@@ -25,7 +25,7 @@
 				  	</p>
 				</div>
         	</div>';
-if( strcmp($_SESSION["login"], $u->getLogin())==0 || (Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
+if( $_SESSION["login"] === $u->getLogin() || (Session::is_admin() && !$u->isAdmin()) || Session::is_super_admin()){
 	echo '	<div class="card " id="modificationCompte">
 	    		<div>
 		        	<p class="grandeTailleFont legerGras">Modifier votre e-mail</p>

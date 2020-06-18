@@ -14,9 +14,6 @@ class ControllerLotApprofondi{
         require File::build_path(array("view", "view.php"));
     }
 
-    private static function getAllTypeDeBien(){
-        $sql="select distinct";
-    }
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
