@@ -110,7 +110,7 @@ class ModelLotApprofondi {
     if($lot==false){
       return false;
     }
-    return ModelLotApprofondi::lotsToLotsApprofondi(array($lot))[0];
+    return new ModelLotApprofondi($lot);
   }
 
   public function saveLotApprofondi(){

@@ -162,13 +162,12 @@ class Serv{
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
-		$retCreation=$nouveauLotApprofondi->saveLotApprofondi();
-		return $retCreation; 
+		$retCreation=$nouveauLotApprofondi->saveLotApprofondi(); 
 		if(strcmp($retCreation, "fait")!==0){
 
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
-			return $ancienLotApprofondi->saveLotApprofondi();
+			$ancienLotApprofondi->saveLotApprofondi();
 			return "probleme_enregistrement_lot";
 		}
 		return "fait";

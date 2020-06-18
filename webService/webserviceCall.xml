@@ -118,6 +118,10 @@ http://localhost/stage/php/lib/soap.php
             <categorie>Commodité(s)</categorie>
             <valeur>alarme</valeur>  
          </plus2>
+         <plus3>
+            <categorie>Orientation(s)</categorie>
+            <valeur>est</valeur>  
+          </plus3>
       </plus>
   </mettreAJourLot>
   </soapenv:Body>

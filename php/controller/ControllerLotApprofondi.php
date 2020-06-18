@@ -86,7 +86,7 @@ class ControllerLotApprofondi{
                 $tab[$nomCategorie]=array($tabValeurCategorie["valeur"]);
             }
         }
-        
+
 
 
         $dataCheckBox=ModelCategories::arrayCategorieAndValeurToId($tab);
