@@ -165,7 +165,7 @@ class Serv{
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
 		$retCreation=$nouveauLotApprofondi->saveLotApprofondi(); 
-		if($retCreation !== "fait")){
+		if($retCreation !== "fait"){
 
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
@@ -246,6 +246,12 @@ class Serv{
 			array_push($tabSoapVar, new SoapVar($utilisateur, SOAP_ENC_OBJECT, null, null, 'utilisateur' ));
 		}
 		return new SoapVar($tabSoapVar, SOAP_ENC_OBJECT, null, null, 'tabUtilisateurs');
+	}
+
+	public function supprimerUtilisateur($loginUtilisateur){
+		//supprime l'utilisateur dont le login correspond à celui passé en paramètre
+		ModelUtilisateur::delete($loginUtilisateur);
+		return "fait";
 	}
 }
 

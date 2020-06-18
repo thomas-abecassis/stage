@@ -650,6 +650,10 @@ input[type=number] {
     overflow: hidden;
 }
 
+.overflowAuto{
+  overflow: auto;
+}
+
 @media (min-width: 1101px){
 
   #logo{
@@ -860,6 +864,9 @@ input[type=number] {
   transition: opacity .3s;
 }
 
+.paddingTop{
+  padding-top: 1em !important;
+}
 
 
 @media (min-width: 1101px){

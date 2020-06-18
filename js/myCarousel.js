@@ -37,32 +37,35 @@ function deplacementDesBoutons(offset,forcePass){
 
 function eventsBoutonsDroit(){
 	let boutonDroit=document.getElementById("boutonDroite");
-	boutonDroit.addEventListener("click",function(){
-	enleveClasseSelection()
-	if(deplacement<children.length-1){
-		deplacement++;
-	}else{
-		deplacement=0;
+	if(boutonDroit!==null){
+		boutonDroit.addEventListener("click",function(){
+		enleveClasseSelection()
+		if(deplacement<children.length-1){
+			deplacement++;
+		}else{
+			deplacement=0;
+		}
+		deplacementDesBoutons(0,false);
+		slide();
+	});
 	}
-	deplacementDesBoutons(0,false);
-	slide();
-});
 }
 
 function eventsBoutonsGauche(){
 	let boutonGauche=document.getElementById("boutonGauche");
-	boutonGauche.addEventListener("click",function(){
-	enleveClasseSelection()
-	if(deplacement>0){
-		deplacement--;
-		deplacementDesBoutons(2,false);
-	}else{
-		deplacement=children.length-1;
-		deplacementDesBoutons(1,true);
+	if(boutonGauche!==null){
+		boutonGauche.addEventListener("click",function(){
+		enleveClasseSelection()
+		if(deplacement>0){
+			deplacement--;
+			deplacementDesBoutons(2,false);
+		}else{
+			deplacement=children.length-1;
+			deplacementDesBoutons(1,true);
+		}
+		slide();
+	});
 	}
-
-	slide();
-});
 }
 
 function eventsBoutonsBas(){

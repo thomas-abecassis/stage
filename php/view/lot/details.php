@@ -112,15 +112,27 @@
 		<div class="decoupageSection"></div>
 		<div class="paddingSmall">
 		<span class="titrePartie" >Critères</span>
-			<ul class="liste">
+			<div class="row">
 				<?php
-					foreach ($lotApprofondi->getPlus() as $values ) {
-						foreach ($values as $value) {
-							echo "<li>" . $value . "</li>";
+					$ligneCategorie = true;
+					foreach ($lotApprofondi->getPlus() as $categorieNom => $categorie ) {
+						// on ne veut pas re-afficher le type de bien et le nombre de pièces
+						if($categorieNom !=="Type(s) de bien" && $categorieNom !=="Nombre de pièce(s)"){
+							if($ligneCategorie)
+								echo '<div class="overflowAuto">';
+							echo '<div class="paddingTop col s6">';
+							echo $categorieNom;
+							foreach ($categorie as $valeur) {
+								echo "<li>" . $valeur . "</li>";
+							}
+							echo '</div>';
+							if(!$ligneCategorie)
+								echo "</div>";
+							$ligneCategorie=!$ligneCategorie;
 						}
 					}
 			?>
-			</ul>
+			</div>
 		</div>
 		<div class="decoupageSection"></div>
 		<div class="paddingSmall">

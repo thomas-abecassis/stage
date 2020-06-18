@@ -253,3 +253,19 @@ http://localhost/stage/php/lib/soap.php
    </getUtilisateursInactifs>
    </soapenv:Body>
 </soapenv:Envelope>
+
+<!-- supprime un utilisateur -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerUtilisateur>
+      <loginUtilisateur>test@test.com</loginUtilisateur>
+   </supprimerUtilisateur>
+   </soapenv:Body>
+</soapenv:Envelope>
