@@ -35,23 +35,15 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
   }
 
   public function getnom(){
-    $TypeDeBien=$this->typeDeBien;
-    $nombreDePiece=$this->nombreDePieces;
-
-    $nom=$TypeDeBien;
-    if($nombreDePiece!==false){
-      $nom=$nom . " " . $nombreDePiece . " pièces ";
-    }
-    if(empty($nom)){
-      $nom = "de bien";
-    }
-    if($this->location){
-      $nom="location " . $nom;
-    }
-    else{
-      $nom="vente " . $nom;
-    }
-    return $nom;
+    if($this->location)
+      $typeDeVente="location ";
+    else
+      $typeDeVente="vente ";
+    if($this->nombreDePieces==1)
+      $pieces = " pièce";
+    else
+      $pieces = " pièces";
+    return $typeDeVente . $this->typeDeBien . " " . $this->nombreDePieces . $pieces;
   }
 
   public function getTypeDeBien(){

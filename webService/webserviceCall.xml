@@ -106,7 +106,7 @@ http://localhost/stage/php/lib/soap.php
       <surface>111</surface>
       <loyer>111</loyer>
       <typeDeBien>Maison</typeDeBien>
-      <nombrePiece>6 et plus</nombrePiece>
+      <nombrePiece>6 et plus </nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
       <plus>
@@ -203,20 +203,6 @@ http://localhost/stage/php/lib/soap.php
   </soapenv:Body>
 </soapenv:Envelope>
 
-<!-- supprimer toutes les categories et valeurs -->
-
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
-   <soapenv:Header>
-    <authentification>
-      <login>test</login>
-      <password>toast</password>
-    </authentification>
-    </soapenv:Header>
-  <soapenv:Body>
-  <supprimerCategoriesValeurs></supprimerCategoriesValeurs>
-  </soapenv:Body>
-</soapenv:Envelope>
-
 
 <!-- supprime une valeur -->
 
@@ -252,3 +238,18 @@ http://localhost/stage/php/lib/soap.php
    </soapenv:Body>
 </soapenv:Envelope>
 
+<!-- recevoir tous les utilisateur non connecté pendant nombreDeSemaines semaines -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <getUtilisateursInactifs>
+      <nombreDeSemaines>8</nombreDeSemaines>
+   </getUtilisateursInactifs>
+   </soapenv:Body>
+</soapenv:Envelope>

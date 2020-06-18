@@ -4,6 +4,8 @@ require_once "File.php";
 require_once File::build_path(array("model","ModelLot.php"));
 require_once File::build_path(array("model","ModelCategories.php"));
 require_once File::build_path(array("model","ModelAlerte.php"));
+require_once File::build_path(array("model","ModelUtilisateur.php"));
+
 
 class Serv{
 
@@ -158,7 +160,7 @@ class Serv{
 		
 		$this->supprimerUnLot($id);
 
-		$lot=new ModelLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial,1);
+		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
@@ -235,6 +237,15 @@ class Serv{
 			array_push($tabSoapVar, new SoapVar($alerte, SOAP_ENC_OBJECT, null, null, 'alerte' ));
 		}
 		return new SoapVar($tabSoapVar, SOAP_ENC_OBJECT, null, null, 'tabAlerte');
+	}
+
+	public function getUtilisateursInactifs($nombreDeSemaines){
+		$tabUtilisateurs=ModelUtilisateur::selectBySemainesSansConnexion($nombreDeSemaines);
+		$tabSoapVar=array();
+		foreach ($tabUtilisateurs as $utilisateur) {
+			array_push($tabSoapVar, new SoapVar($utilisateur, SOAP_ENC_OBJECT, null, null, 'utilisateur' ));
+		}
+		return new SoapVar($tabSoapVar, SOAP_ENC_OBJECT, null, null, 'tabUtilisateurs');
 	}
 }
 

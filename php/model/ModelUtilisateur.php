@@ -9,12 +9,13 @@ class ModelUtilisateur extends Model{
   private $prenom;
   private $mdp;
   private $role;
+  private $dateDerniereConnexion;
 
   protected static $object = "utilisateur";
   protected static $primary='login';
 
-  public function __construct($l = NULL, $n = NULL, $p = NULL, $m = NULL, $r = NULL) {
-    if (!is_null($l) && !is_null($n) && !is_null($p) && !is_null($m) && !is_null($r) ) {
+  public function __construct($l = NULL, $n = NULL, $p = NULL, $m = NULL, $r = NULL, $dateDerniereConnexion = NULL) {
+    if (!is_null($l) && !is_null($n) && !is_null($p) && !is_null($m) && !is_null($r) && !is_null($dateDerniereConnexion)) {
       // Si aucun de $m, $c et $i sont nuls,
       // c'est forcement qu'on les a fournis
       // donc on retombe sur le constructeur à 3 arguments
@@ -23,6 +24,7 @@ class ModelUtilisateur extends Model{
       $this->prenom = $p;
       $this->mdp = $m;
       $this->role = $r;
+      $this->dateDerniereConnexion = $dateDerniereConnexion;
     }
   }
 
@@ -40,6 +42,18 @@ class ModelUtilisateur extends Model{
 
   public function getRole(){
     return $this->role;
+  }
+
+  public function getDate(){
+    return $this->dateDerniereConnexion;
+  }
+
+  public function getMdp(){
+    return $this->mdp;
+  }
+
+  public function setMdp($mdp){
+    $this->mdp=Security::chiffrer($mdp);
   }
 
   public function isSimpleUtilisateur(){
@@ -68,14 +82,6 @@ class ModelUtilisateur extends Model{
       return "admin";
   }
 
-  public function getMdp(){
-    return $this->mdp;
-  }
-
-  public function setMdp($mdp){
-    $this->mdp=Security::chiffrer($mdp);
-  }
-
   public function getTab(){
     return get_object_vars($this);
   }
@@ -90,21 +96,36 @@ class ModelUtilisateur extends Model{
   }
 
   public static function selectByLoginAndPage($login,$page){
-     $sql = "SELECT * from utilisateur WHERE lower(login) LIKE lower(:tag) and role !=3 limit " . (($page-1)*30) . ", 30 ";
+    $sql = "SELECT * from utilisateur WHERE lower(login) LIKE lower(:tag) and role !=3 limit " . (($page-1)*30) . ", 30 ";
       // Préparation de la requête
-      $req_prep = Model::$pdo->prepare($sql);
+    $req_prep = Model::$pdo->prepare($sql);
 
-      $values = array(
-          "tag" => "%" . $login . "%",
-      );
+    $values = array("tag" => "%" . $login . "%");
  
-      $req_prep->execute($values);
-      if($req_prep==false){
-        return false;
-      }
-      $req_prep->setFetchMode(PDO::FETCH_CLASS,"ModelUtilisateur");
-      $tab_utilisateur = $req_prep->fetchAll();
-      return $tab_utilisateur;
+    $req_prep->execute($values);
+    if($req_prep==false){
+      return false;
+    }
+    $req_prep->setFetchMode(PDO::FETCH_CLASS,"ModelUtilisateur");
+    $tab_utilisateur = $req_prep->fetchAll();
+    return $tab_utilisateur;
+  }
+
+  public static function selectBySemainesSansConnexion($nombreDeSemaine){
+    //retourne les utilisateurs sans role qui ne se sont pas connecter pendant $nombreSemaine semaine.
+    $sql = "SELECT * from utilisateur WHERE dateDerniereConnexion <  DATE_ADD(NOW(), INTERVAL :nombreDeSemaine DAY) ";
+      // Préparation de la requête
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $values = array("nombreDeSemaine" =>"-".$nombreDeSemaine*7);
+ 
+    $req_prep->execute($values);
+    if($req_prep==false){
+      return false;
+    }
+    $req_prep->setFetchMode(PDO::FETCH_CLASS,"ModelUtilisateur");
+    $tab_utilisateur = $req_prep->fetchAll();
+    return $tab_utilisateur;
   }
 
   public static function count(){

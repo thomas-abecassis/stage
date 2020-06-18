@@ -33,7 +33,7 @@
                                 </span>
                               </div>
                             <div class="boutonsAlerte">
-                                <a href="index/lotApprofondi/searchedDeepenAlerte/?alerte='.urlencode(serialize($alerte)).'"><div class="boutonAlerte boutonAnnonces secondeCouleur">Voir les lots</div></a>
+                                <a href="index/lotApprofondi/searchedDeepenAlerte/?page=1&alerte='.urlencode(serialize($alerte)).'"><div class="boutonAlerte boutonAnnonces secondeCouleur">Voir les lots</div></a>
                                 <div class="boutonAlerte boutonModification secondeCouleurBorder"> Modifier</div></div>
                             </div>
                             </div>

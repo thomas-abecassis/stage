@@ -39,6 +39,7 @@ class ControllerUtilisateur {
     }
 
     public static function Read(){
+        var_dump(Modelutilisateur::selectBySemainesSansConnexion(100));
         $_SESSION["pageName"]=myGet("id");
         $u=false;
         if(Session::is_admin()){
@@ -64,7 +65,7 @@ class ControllerUtilisateur {
         $prenom=myGet('prenom');
         $mdp=myGet('mdp');
         if(!filter_var($login, FILTER_VALIDATE_EMAIL)){
-            $v=new ModelUtilisateur("","","","","");
+            $v=new ModelUtilisateur("","","","","", "");
             $isUpdate=false;
             echo "bad_mail_syntax";
         }else{
@@ -73,7 +74,7 @@ class ControllerUtilisateur {
                 echo "mail_allready_taken";
             }
             else{
-                $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0);
+                $v=new Modelutilisateur($login,$nom,$prenom,Security::chiffrer($mdp),0, date("Y-m-d H:i:s"));
                 $v->save();
                 echo "register";
             }
@@ -144,7 +145,8 @@ class ControllerUtilisateur {
             "nom"=>myGet('nom'),
             "prenom"=>myGet('prenom'),
             "mdp"=>$utilisateur->getMdp(),
-            "role"=>$role
+            "role"=>$role,
+            "dateDerniereConnexion" =>$utilisateur->getDate() 
             );
             ModelUtilisateur::update($data);
             if($roleChanged){
@@ -228,7 +230,8 @@ class ControllerUtilisateur {
             "nom"=>$u->getNom(),
             "prenom"=>$u->getPrenom(),
             "mdp"=>Security::chiffrer(myGet("newMdp")),
-            "role"=>$u->getRole()
+            "role"=>$u->getRole(),
+            "dateDerniereConnexion" =>$utilisateur->getDate()
             );
             ModelUtilisateur::update($data);
             echo "true";
@@ -247,7 +250,8 @@ class ControllerUtilisateur {
             "nom"=>$u->getNom(),
             "prenom"=>$u->getPrenom(),
             "mdp"=>Security::chiffrer(myGet("newMdp")),
-            "role"=>$u->getRole()
+            "role"=>$u->getRole(),
+            "dateDerniereConnexion" =>$utilisateur->getDate() 
             );
             ModelUtilisateur::update($data);
             echo "true";
@@ -265,16 +269,25 @@ class ControllerUtilisateur {
 
     static function connectedAjax(){
         if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
-            $v = ModelUtilisateur::select(myGet("login"));
+            $u = ModelUtilisateur::select(myGet("login"));
+            $data=array(
+            "login"=>$u->getLogin(),
+            "nom"=>$u->getNom(),
+            "prenom"=>$u->getPrenom(),
+            "mdp"=>$u->getMdp(),
+            "role"=>$u->getRole(),
+            "dateDerniereConnexion" =>date("Y-m-d H:i:s") 
+            );
+            ModelUtilisateur::update($data);
             $_SESSION["login"] = myGet("login");
             echo "true";
-            if($v->isSuperAdmin()){
+            if($u->isSuperAdmin()){
                 $_SESSION["role"]=3;
             }
-            if($v->isAdmin()){
+            if($u->isAdmin()){
                 $_SESSION["role"]=2;
             }
-            if($v->isCommercial()){
+            if($u->isCommercial()){
                 $_SESSION["role"]=1;
             }
             

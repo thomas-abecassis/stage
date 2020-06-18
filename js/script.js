@@ -43,7 +43,7 @@ function callbackCreationCheck(xhr){
 	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
 	if(xhr.responseText.valueOf()=="register"){
-		racine.innerHTML="  <p class=\"center\"><i class=\"green-text small material-icons\">check</i> </p><p class=\"center\">Votre compte a été créé</p><div class=\"ligne\"></div><p class=\"center\">Allez vérifier votre adresse e-mail</p>";
+		racine.innerHTML="  <p class=\"center\"><i class=\"green-text small material-icons\">check</i> </p><p class=\"center\">Votre compte a été créé</p><div class=\"ligne\"></div><p class=\"center\">Vous pouvez maintenant vous connecter</p>";
 	}
 	else if(xhr.responseText.valueOf()=="bad_mail_syntax"){
 		notification("mauvais fomat d'adresse e-mail");

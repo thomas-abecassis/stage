@@ -2,7 +2,7 @@
 <div class="containerLot">
 <div id="retour">
 <?php
-	echo '<a href="index/lotApprofondi/searchedDeepen/?'. $getURL.'"> <i class="material-icons">keyboard_backspace</i> <span class=" sousLignerHover absolute">Retour aux résultats </span></a>';
+	echo '<a href="index/lotApprofondi/' . $retour . '/?'. $getURL.'"> <i class="material-icons">keyboard_backspace</i> <span class=" sousLignerHover absolute">Retour aux résultats </span></a>';
 ?>
 
 </div>
@@ -60,21 +60,6 @@
 
 			?>
 			</div></div>
-	  		<!---<div id="slideBouton" class="slide">
-	  		<div class="intoSlide intoSlideBouton row ">
-		    	<div class="boutonSlider col s2 offset-s2"> <div class="selectionne ImageBoutonSlide"></div> </div>
-		    	<div class="boutonSlider col s2 offset-s1" > <div class="ImageBoutonSlide"></div> </div>
-		    	<div class="boutonSlider col s2 offset-s1" > <div class="ImageBoutonSlide"></div> </div>
-	    	</div>
-	    	<div class="intoSlide  intoSlideBouton row">
-		    	<div class="boutonSlider col s2 offset-s2" > <div class="ImageBoutonSlide"></div> </div>
-		    	<div class="boutonSlider col s2 offset-s1" > <div class="ImageBoutonSlide"></div>  </div>
-		    	<div class="boutonSlider col s2 offset-s1" > <div class="ImageBoutonSlide"></div> </div>
-	    	</div>
-	    	<div class="intoSlide  intoSlideBouton row">
-		    	<div class="boutonSlider col s2 offset-s2" > <div class="ImageBoutonSlide"></div> </div>
-		    	<div class="boutonSlider col s2 offset-s1" > <div class="ImageBoutonSlide"></div> </div>
-	    	</div></div> -->
 	  </div>
 	</div>
     	<?php echo '<div class="infosEssentiels "><div class="nom">' .htmlspecialchars($lot->getNom()). '</div><div class=
@@ -89,11 +74,11 @@
 		<span  class="lightBold phraseContact">Contactez nous !</span>
 		<div class="col s6 m6 l12">
 			<div class="contactButton displayFlex premiereCouleur" id="contactTelButton"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
-			<div class="contactContent displayNone premiereCouleurBorder" id="contactTelContent"><i class="material-icons">local_phone</i><span>06 XX XX XX XX</span></div>
+			<div class="contactContent displayNone premiereCouleurBorder" id="contactTelContent"><i class="material-icons">local_phone</i><span><?php global $tel; echo $tel ?></span></div>
 		</div>
 		<div class="col s6 m6 l12">
 			<div class="contactButton displayFlex premiereCouleur" id="contactMailButton"><i class="material-icons">email</i><span>e-mail</span></div>
-			<div class="contactContent displayNone premiereCouleurBorder" id="contactMailContent"><i class="material-icons">email</i><span>monmail@mail.fr</span></div>
+			<div class="contactContent displayNone premiereCouleurBorder" id="contactMailContent"><i class="material-icons">email</i><span><?php global $mail; echo $mail?></span></div>
 		</div>
 	</div>
 </div>
