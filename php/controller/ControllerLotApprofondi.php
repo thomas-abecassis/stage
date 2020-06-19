@@ -3,6 +3,7 @@ require_once File::build_path(array("model", "ModelAlerte.php"));
 require_once File::build_path(array("model", "ModelLotApprofondi.php"));
 require_once File::build_path(array("model", "ModelLot.php"));
 require_once File::build_path(array("model", "ModelCategories.php"));
+require_once File::build_path(array("model", "ModelUtilisateur.php"));
 require_once File::build_path(array("lib", "Utility.php"));
 
 class ControllerLotApprofondi{
@@ -18,14 +19,11 @@ class ControllerLotApprofondi{
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
         $dataCheckBox=intInArray($_GET);
-        $maxSurface=myGet("maxSurface"); // ce critère n'est pas présent sur la recherche basique, c'est pour cela que je le traite différement
-        if(is_null($maxSurface)){
-            $maxSurface="";
-        }
+
         $dataPost=array(
             "localisation" => myGet("localisation"),
             "minSurface" => myGet("minSurface"),
-            "maxSurface" => $maxSurface,
+            "maxSurface" => myGet("maxSurface"),
             "minBudget" => myGet("minBudget"),
             "maxBudget" => myGet("maxBudget")
         );
@@ -36,6 +34,10 @@ class ControllerLotApprofondi{
         ModelLotApprofondi::unsetSession();
         $alerte=urldecode(myGet("alerte"));
         $alerte=unserialize($alerte);
+        if($alerte===false){
+            //comme unserialize lève une notice dans le cas d'une erreur nous n'avons pas besoin de la gérer, l'errorHandler s'en charge
+            return;
+        }
 
         $tab=array();
         foreach ($alerte->getTabCheckBox() as $tabValeurCategorie) {
@@ -75,8 +77,15 @@ class ControllerLotApprofondi{
         $_SESSION["dataCheckBox"]=$dataCheckBox;
         
         $page=myGet("page");
+        if(!intval($page))
+            $page=1;
+        if($page<1)
+            $page=1;
+        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost)-1)/15)+1;
+        if($page>$nbPage)
+            $page=$nbPage;
+
         $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$page);
-        $nbPage=(int)((ModelLotApprofondi::getNbLotRecherche($dataCheckBox,$dataPost,$page)-1)/15)+1;
         $lot="lotApprofondi";
         $getURL = getURLParametersWithout(array("controller","action","page"));
 
