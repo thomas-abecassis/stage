@@ -17,8 +17,6 @@ class ControllerLotApprofondi{
 
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
-        $typesBien=array();
-        $nombrePieces=array();
         $dataCheckBox=intInArray($_GET);
         $maxSurface=myGet("maxSurface"); // ce critère n'est pas présent sur la recherche basique, c'est pour cela que je le traite différement
         if(is_null($maxSurface)){
@@ -31,15 +29,14 @@ class ControllerLotApprofondi{
             "minBudget" => myGet("minBudget"),
             "maxBudget" => myGet("maxBudget")
         );
-        ControllerLotApprofondi::searched($dataPost, $dataCheckBox,$typesBien, $nombrePieces);
+        ControllerLotApprofondi::searched($dataPost, $dataCheckBox);
     }
 
     public static function searchedDeepenAlerte() {
         ModelLotApprofondi::unsetSession();
         $alerte=urldecode(myGet("alerte"));
         $alerte=unserialize($alerte);
-        $typeDeBien=array();
-        $nombreDePieces=array();
+
         $tab=array();
         foreach ($alerte->getTabCheckBox() as $tabValeurCategorie) {
             $nomCategorie=$tabValeurCategorie["categorie"];
@@ -51,14 +48,14 @@ class ControllerLotApprofondi{
         }
         $dataCheckBox=ModelCategories::arrayCategorieAndValeurToId($tab);
         $dataPost=$alerte->getTabSimple();
-        ControllerLotApprofondi::searched($dataPost, $dataCheckBox,$typeDeBien, $nombreDePieces);
+        ControllerLotApprofondi::searched($dataPost, $dataCheckBox);
     }
 
     public static function read(){
         $id=myGet("id");
         $lot=ModelLot::selectById($id);
         if($lot==false){
-            $controller='lot'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
+            $controller='erreur'; $view='erreur404'; $pagetitle='Erreur 404';     //appel au modèle pour gerer la BD
             require File::build_path(array('view','view.php'));  //"redirige" vers la vue
         }
         else{     
@@ -73,11 +70,9 @@ class ControllerLotApprofondi{
         }
     }
 
-    private static function searched($dataPost, $dataCheckBox, $typesBien, $nombrePieces){
+    private static function searched($dataPost, $dataCheckBox){
         $_SESSION["dataFirst"]=$dataPost;
         $_SESSION["dataCheckBox"]=$dataCheckBox;
-        $_SESSION["typesBien"]=$typesBien;
-        $_SESSION["nombrePieces"]=$nombrePieces;
         
         $page=myGet("page");
         $tab_lot=ModelLotApprofondi::searchDeep($dataCheckBox,$dataPost,$page);

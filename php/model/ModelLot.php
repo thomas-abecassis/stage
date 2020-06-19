@@ -121,6 +121,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
 
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelLot');
     $lot = $req_prep->fetchAll();
+    if(count($lot)==0) return false;
     return $lot[0]; 
   }
 
