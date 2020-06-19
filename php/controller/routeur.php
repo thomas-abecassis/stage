@@ -4,6 +4,7 @@ require_once File::build_path(array("controller", "ControllerUtilisateur.php"));
 require_once File::build_path(array("controller", "ControllerLotApprofondi.php"));
 require_once File::build_path(array("controller", "ControllerAlerte.php"));
 require_once File::build_path(array("controller", "ControllerUtility.php"));
+require_once File::build_path(array("controller", "ControllerErreur.php"));
 require_once File::build_path(array("model", "ModelOptionsSite.php"));
 
  function myGet($nomvar){
@@ -41,7 +42,7 @@ if(!is_null(myGet('controller'))){
 }
 $controller_classe="Controller".ucfirst($controller);
 
-if(class_exists($controller_classe,false)){
+if(class_exists($controller_classe,false) && method_exists(new $controller_classe(), $action)){
 	//j'initialise ces variables ici pour qu'elles soient présentent dans toutes les vues
 	$mail = ModelOptionsSite::select("mail")->getValeur();
 	$tel = ModelOptionsSite::select("telephone")->getValeur();
@@ -52,5 +53,5 @@ if(class_exists($controller_classe,false)){
 
 	$controller_classe::$action();
 }else{
-	ControllerLot::error();
+	ControllerErreur::erreurActionNotFound();
 }
