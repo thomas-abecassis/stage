@@ -5,6 +5,8 @@ require_once File::build_path(array("model","ModelLot.php"));
 require_once File::build_path(array("model","ModelCategories.php"));
 require_once File::build_path(array("model","ModelAlerte.php"));
 require_once File::build_path(array("model","ModelUtilisateur.php"));
+require_once File::build_path(array("model","ModelMail.php"));
+require_once File::build_path(array("model","ModelTelephone.php"));
 
 
 class Serv{
@@ -42,11 +44,42 @@ class Serv{
 		}
 	}
 
-	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
+	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $mail, $telephone, $plus){
 		if(!$this->auth){
 			return "pas connecté";
 		}
-		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
+		if($telephone==="")
+			$telephone=NULL;
+		if($mail==="")
+			$mail=NULL;
+
+		if(!is_null($mail)){
+			$modelMail=ModelMail::selectCol("mail",$mail);
+			if($modelMail===false){
+				$modelMail=new ModelMail(NULL, $mail);
+				$modelMail->save();
+				$modelMail=ModelMail::selectCol("mail",$mail);
+			}
+			$mail=$modelMail[0][0];
+		}
+
+		if(!is_null($telephone)){
+			$modelTelephone=ModelTelephone::selectCol("telephone",$telephone);
+			if($modelTelephone===false){
+				$modelTelephone=new ModelTelephone(NULL, $telephone);
+				$modelTelephone->save();
+				$modelTelephone=ModelTelephone::selectCol("telephone",$telephone);
+			}
+			$telephone=$modelTelephone[0][0];
+		}
+
+		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1, $mail, $telephone);
+
+		$villeId=$lot->getLocalisationId();
+    	if(is_null($villeId))
+      		return "nom_de_ville_inconnu";
+
+    	$lot->setLocalisation($villeId); //On stoque l'ID de la ville dans la table lot 
 
 		//met en forme les plus pour créer un lotApprofondi
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
@@ -148,7 +181,7 @@ class Serv{
 		return "fait"; 
 	}
 
-	public function mettreAJourLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $plus){
+	public function mettreAJourLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $mail, $telephone, $plus){
 		if(!$this->auth){
 			return "pas connecté";
 		}
@@ -160,7 +193,12 @@ class Serv{
 		
 		$this->supprimerUnLot($id);
 
-		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1);
+		if($mail==="")
+			$mail=NULL;
+		if($telephone==="")
+			$telephone=NULL;
+
+		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1, $mail, $telephone);
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
@@ -170,6 +208,7 @@ class Serv{
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
 			$ancienLotApprofondi->saveLotApprofondi();
+			return $retCreation;
 			return "probleme_enregistrement_lot";
 		}
 		return "fait";

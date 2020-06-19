@@ -59,6 +59,7 @@ http://localhost/stage/php/lib/soap.php
 </soapenv:Envelope>
 
  <!-- enregistrer un lot -->
+ <!-- si le lot n'est pas rattaché à un mail ou un numero il faut laisser les balises vides -->
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
    <soapenv:Header>
 		<authentification>
@@ -76,6 +77,8 @@ http://localhost/stage/php/lib/soap.php
       <nombrePiece>10</nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
+      <mail>toast2</mail>
+      <telephone>111</telephone>
       <plus>
       	<plus1>
             <categorie>Type(s) de pièces</categorie>
@@ -91,7 +94,7 @@ http://localhost/stage/php/lib/soap.php
 </soapenv:Envelope>
 
  <!-- mettre à jour un lot -->
-
+ <!-- si le lot n'est pas rattaché à un mail ou un numero il faut laisser les balises vides -->
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
    <soapenv:Header>
     <authentification>
@@ -109,6 +112,8 @@ http://localhost/stage/php/lib/soap.php
       <nombrePiece>6 et plus </nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
+      <mail>toast3</mail>
+      <telephone>222</telephone>
       <plus>
         <plus1>
             <categorie>Type(s) de pièces</categorie>

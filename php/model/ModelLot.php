@@ -13,10 +13,12 @@ class Modellot extends Model{
   private $typeDeBien;
   private $nombreDePieces;
   private $location;
+  private $mail;
+  private $telephone;
   protected static $object = "lot";
   protected static $primary='id';
 
-public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL,$inf = NULL, $t = NULL, $nb = NULL,$location = NULL) {
+public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d = NULL,$inf = NULL, $t = NULL, $nb = NULL,$location = NULL, $mail = NULL, $telephone = NULL) {
   if (!is_null($i)  && !is_null($loc) && !is_null($loy) && !is_null($sur) && !is_null($d) && !is_null($t) && !is_null($nb) && !is_null($location)) {
     $this->id = $i;
     $this->localisation = $loc;
@@ -27,6 +29,8 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
     $this->typeDeBien=$t;
     $this->nombreDePieces = $nb;
     $this->location = $location;
+    $this->mail = $mail;
+    $this->telephone = $telephone;
   }
 }
   // un getter
@@ -52,7 +56,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
 
   public function getNombreDePieces(){
     return $this->nombreDePieces;
-    }
+  }
 
   // un setter
   public function setid($id2) {
@@ -84,35 +88,45 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
     return $this->description;
   }
 
-  public function setLocalisation($localisation){
-    $this->localisation=$localisation;
-  }
 
   public function getLocalisation(){
     return $this->localisation;
   }
 
+  public function getMail(){
+    return $this->mail;
+  }
+
+  public function getTelephone(){
+    return $this->telephone;
+  }
+
+
+  public function setLocalisation($localisation){
+    $this->localisation=$localisation;
+  }
+
+  public function setMail($mail){
+    $this->mail=$mail;
+  }
+
+  public function setTelephone($telephone){
+    $this->telephone=$telephone;
+  }
+
+
+
   public function getLocalisationId(){
-    $sql="select id from villesFrance where UPPER(nom) = UPPER(:localisation)";
-    $values=array("localisation"=>$this->localisation);
-
-    $req_prep = Model::$pdo->prepare($sql);
-
-    $req_prep->execute($values);
-
-    $req_prep->setFetchMode(PDO::FETCH_OBJ);
-    $ville = $req_prep->fetchAll();
-    return $ville[0]->id;
+    $resultat=Model::requete("select id from villesFrance where UPPER(nom) = UPPER(:localisation)",array("localisation"=>$this->localisation));
+    return $resultat[0]->id;
   }
 
   public function getTab(){
     return get_object_vars($this);
   }
 
-
-
   public static function selectById($id){
-    $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location from lot JOIN villesFrance on villesFrance.id=lot.localisation where lot.id=:id";
+    $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location, mailLot.mail, telephoneLot.telephone from lot JOIN villesFrance on villesFrance.id=lot.localisation left join mailLot on mailLot.id=lot.mail left join telephoneLot on telephoneLot.id=lot.telephone where lot.id=:id";
 
     $req_prep = Model::$pdo->prepare($sql);
 
@@ -127,7 +141,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
 
   public static function selectByRecherche($data,$page){
     if(!array_filter($data)){
-      $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location from lot JOIN villesFrance on villesFrance.id=lot.localisation ";
+    $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location, mailLot.mail, telephoneLot.telephone from lot JOIN villesFrance on villesFrance.id=lot.localisation left join mailLot on mailLot.id=lot.mail left join telephoneLot on telephoneLot.id=lot.telephone";
     }else{
       $sql=ModelLot::getSqlSearch($data);
     }
@@ -174,7 +188,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
   }
 
   public static function getSqlSearch($data){
-      $sql = "select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location from lot JOIN villesFrance on villesFrance.id=lot.localisation  WHERE";
+    $sql="select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location, mailLot.mail, telephoneLot.telephone from lot JOIN villesFrance on villesFrance.id=lot.localisation left join mailLot on mailLot.id=lot.mail left join telephoneLot on telephoneLot.id=lot.telephone where";
       $firstCondition=true;
 
       $arr=array(
@@ -197,7 +211,7 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
       if(!$firstCondition){
         return $sql;
       }
-      return "select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location from lot JOIN villesFrance on villesFrance.id=lot.localisation";
+      return "select lot.id,nom as localisation,surface, loyer, description, informationsCommercial, typeDeBien, nombreDePieces, location, mailLot.mail, telephoneLot.telephone from lot JOIN villesFrance on villesFrance.id=lot.localisation left join mailLot on mailLot.id=lot.mail left join telephoneLot on telephoneLot.id=lot.telephone";
   }
 
 }

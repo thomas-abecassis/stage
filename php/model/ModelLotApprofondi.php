@@ -101,11 +101,6 @@ class ModelLotApprofondi {
 
   public function saveLotApprofondi(){
     $lot=$this->modelLot;
-    $villeId=$lot->getLocalisationId();
-    if(is_null($villeId))
-      return "nom_de_ville_inconnu";
-
-    $lot->setLocalisation($villeId); //On stoque l'ID de la ville dans la table lot 
     $retSave=$lot->save();
 
     if($retSave!==true){

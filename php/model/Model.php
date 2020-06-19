@@ -130,5 +130,16 @@ class Model{
 
     $req_prep->execute($data);
   }
+
+  //pour executer une requete préparer 
+  public static function requete($sql, $tabPrep){
+
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $req_prep->execute($tabPrep);
+
+    $req_prep->setFetchMode(PDO::FETCH_OBJ);
+    return $req_prep->fetchAll();
+  }
 }
 Model::Init();

@@ -74,11 +74,35 @@
 		<span  class="lightBold phraseContact">Contactez nous !</span>
 		<div class="col s6 m6 l12">
 			<div class="contactButton displayFlex premiereCouleur" id="contactTelButton"><i class="material-icons">local_phone</i><span>Téléphone</span></div>
-			<div class="contactContent displayNone premiereCouleurBorder" id="contactTelContent"><i class="material-icons">local_phone</i><span><?php global $tel; echo $tel ?></span></div>
+			<div class="contactContent displayNone premiereCouleurBorder" id="contactTelContent"><i class="material-icons">local_phone</i><span>
+			<?php
+				$telLot=$lot->getTelephone();
+				if (!is_null($telLot)){
+					echo $telLot;
+				}
+				else{
+				 global $tel;
+				 echo $tel;
+				}
+			 ?>
+			 </span></div>
 		</div>
 		<div class="col s6 m6 l12">
 			<div class="contactButton displayFlex premiereCouleur" id="contactMailButton"><i class="material-icons">email</i><span>e-mail</span></div>
-			<div class="contactContent displayNone premiereCouleurBorder" id="contactMailContent"><i class="material-icons">email</i><span><?php global $mail; echo $mail?></span></div>
+			<div class="contactContent displayNone premiereCouleurBorder" id="contactMailContent"><i class="material-icons">email</i>
+				<span>
+					<?php
+						$mailLot=$lot->getMail();
+						if(!is_null($mailLot)){
+							echo $mailLot;
+						}
+						else{
+						 	global $mail;
+						 	echo $mail;
+						}
+					 ?>
+				</span>
+			</div>
 		</div>
 	</div>
 </div>
