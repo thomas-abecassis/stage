@@ -265,7 +265,7 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
    <soapenv:Body>
    <supprimerUtilisateur>
-      <loginUtilisateur>test@test.com</loginUtilisateur>
+      <loginUtilisateur>test2@test.com</loginUtilisateur>
    </supprimerUtilisateur>
    </soapenv:Body>
 </soapenv:Envelope>

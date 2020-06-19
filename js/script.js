@@ -488,6 +488,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				notSurface.classList.remove("displayNone");
 			}
 		});
+
 	}
 });
 
