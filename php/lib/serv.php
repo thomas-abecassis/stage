@@ -45,33 +45,9 @@ class Serv{
 	}
 
 	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $mail, $telephone, $plus){
-		if(!$this->auth){
-			return "pas connecté";
-		}
-		if($telephone==="")
-			$telephone=NULL;
-		if($mail==="")
-			$mail=NULL;
 
-		if(!is_null($mail)){
-			$modelMail=ModelMail::selectCol("mail",$mail);
-			if($modelMail===false){
-				$modelMail=new ModelMail(NULL, $mail);
-				$modelMail->save();
-				$modelMail=ModelMail::selectCol("mail",$mail);
-			}
-			$mail=$modelMail[0][0];
-		}
-
-		if(!is_null($telephone)){
-			$modelTelephone=ModelTelephone::selectCol("telephone",$telephone);
-			if($modelTelephone===false){
-				$modelTelephone=new ModelTelephone(NULL, $telephone);
-				$modelTelephone->save();
-				$modelTelephone=ModelTelephone::selectCol("telephone",$telephone);
-			}
-			$telephone=$modelTelephone[0][0];
-		}
+		$mail=getId("mail", $mail);
+		$telephone=getId("telephone", $telephone);
 
 		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1, $mail, $telephone);
 
@@ -193,22 +169,26 @@ class Serv{
 		
 		$this->supprimerUnLot($id);
 
-		if($mail==="")
-			$mail=NULL;
-		if($telephone==="")
-			$telephone=NULL;
+		$mail=getId("mail", $mail);
+		$telephone=getId("telephone", $telephone);
 
 		$lot=new ModelLot($id,$ville, $loyer, $surface, $description, $informationsCommercial, $typeDeBien, $nombrePiece,1, $mail, $telephone);
+
+		$villeId=$lot->getLocalisationId();
+    	if(is_null($villeId))
+      		return "nom_de_ville_inconnu";
+
+    	$lot->setLocalisation($villeId); //On stoque l'ID de la ville dans la table lot 
+
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
-		$retCreation=$nouveauLotApprofondi->saveLotApprofondi(); 
+		return $nouveauLotApprofondi->saveLotApprofondi(); 
 		if($retCreation !== "fait"){
 
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
 			$ancienLotApprofondi->saveLotApprofondi();
-			return $retCreation;
 			return "probleme_enregistrement_lot";
 		}
 		return "fait";
@@ -309,6 +289,23 @@ function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){
             }
         }
     return $tab;
+}
+
+function getId($nomAttribut, $valeur){
+	if($valeur==="")
+		return NULL;
+
+	$model="model".ucfirst($nomAttribut);
+
+	if(!is_null($valeur)){
+		$obj=$model::selectCol($nomAttribut,$valeur);
+		if($obj===false){
+			$obj=new $model(NULL, $valeur);
+			$obj->save();
+			$obj=$model::selectCol($nomAttribut,$valeur);
+		}
+		return $obj[0][0];
+	}
 }
 
 Serv::init();
