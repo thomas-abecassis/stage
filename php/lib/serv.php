@@ -183,11 +183,17 @@ class Serv{
 		$tab=metEnFormeTableau($typeDeBien, $nombrePiece, $plus);
 		$nouveauLotApprofondi=new ModelLotApprofondi($lot, $tab);
 
-		return $nouveauLotApprofondi->saveLotApprofondi(); 
+		$retCreation=$nouveauLotApprofondi->saveLotApprofondi(); 
 		if($retCreation !== "fait"){
 
 			//dans le cas de problème de mise à jour on resupprime le lot et on le re-enregistre dans son etat initial
 			$this->supprimerUnLot($id);
+			$villeId=$ancienLotApprofondi->getLot()->getLocalisationId();
+			$ancienLotApprofondi->getLot()->setLocalisation($villeId);
+			$mail=getId("mail", $ancienLotApprofondi->getLot()->getMail());
+			$telephone=getId("telephone", $ancienLotApprofondi->getLot()->getTelephone());
+			$ancienLotApprofondi->getLot()->setMail($mail);
+			$ancienLotApprofondi->getLot()->setTelephone($telephone);
 			$ancienLotApprofondi->saveLotApprofondi();
 			return "probleme_enregistrement_lot";
 		}

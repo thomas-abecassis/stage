@@ -18,8 +18,8 @@ try
 
   $clientSOAP = new SoapClient( null,
       array (
-        'uri' => 'http://localhost/stage/php/lib/soap.php',
-        'location' => 'http://localhost/stage/php/lib/soap.php',
+        'uri' => 'http://localhost:8080/stage/php/lib/soap.php',
+        'location' => 'http://localhost:8080/stage/php/lib/soap.php',
         'trace' => 1,
         'exceptions' => 0
     ));
@@ -30,17 +30,19 @@ try
   //echo $ret;
 
   $auth=new authentificateur("test","toast");
-  $soapHeaders[] = new SoapHeader("http://localhost", 'authentification', $auth);
+  $soapHeaders[] = new SoapHeader("http://localhost:8080", 'authentification', $auth);
 
   $clientSOAP->__setSoapHeaders($soapHeaders);
   /*
   $ret = $clientSOAP->__call('supprimerUnLot', array("123"));
   echo $ret;*/
-
+$ret = $clientSOAP->__call('supprimerUnLot', array("test2"));
+  $ret = $clientSOAP->__call('creerLot', array("test2", "Montpellier", "123", "123", "maison", "123", "123", "123","toast", "111", array("Commodité(s)"=>array("alarme"))));
+  //$ret = $clientSOAP->__call('mettreAJourLot', array("test2", "Montpellier", "12113", "123", "maison", "123", "123", "123", array(array("valeur"=>"appartement", "Option(s)"=>"gardien"))));
   
-  $ret = $clientSOAP->__call('creerLot', array("test2", "Montpellier", "123", "123", "maison", "123", "123", "123", array(array("categorie"=>"Type(s) de bien","valeur"=>"appartement"))));
+  
   echo $clientSOAP->__getLastResponse();
-  var_dump($ret);
+
 
   /*$path = '../../image/fond.jpg';
   $type = pathinfo($path, PATHINFO_EXTENSION);
