@@ -40,18 +40,12 @@ class ModelCategories extends Model{
     return $valeurs;
   }
 
-  public static function getAllCategories(){
-    $sql="SELECT * FROM categories";
-    $rep=Model::$pdo->query($sql);
-    return $rep->fetchAll(PDO::FETCH_OBJ);
-  }
-
   public static function getAllValeursCategories(){
-    $categories=ModelCategories::getAllCategories();
+    $categories=ModelCategories::selectAll();
     $valeurs=array();
     foreach ($categories as $categorie) {
       $ar=array();
-      $sql="select valeur,id from sousCategorie where categorieId=".$categorie->id;
+      $sql="select valeur,id from sousCategorie where categorieId=".$categorie->getId();
       $rep=Model::$pdo->query($sql);
       $rep=$rep->fetchAll(PDO::FETCH_OBJ);
       foreach ($rep as $valeurCategorie) {
@@ -60,11 +54,6 @@ class ModelCategories extends Model{
       $valeurs[$categorie->categorie]=$ar;
     }
     return $valeurs;
-  }
-
-  public static function deleteAllCategories(){
-    $sql="delete from categories";
-    Model::$pdo->exec($sql);
   }
 
   public static function CategorieAndValeurToId($categorie, $valeur){
@@ -120,19 +109,6 @@ class ModelCategories extends Model{
       }
     }
     return $tabId;
-  }
-
-  public static function categorieNameToId($categorieName){
-    $sql="select id from categories where categorie=:categorieName";
-    $values=array("categorieName"=>$categorieName);
-    $req_prep = Model::$pdo->prepare($sql);
-    $req_prep->execute($values);
-    $req_prep->setFetchMode(PDO::FETCH_OBJ);
-    $rep= $req_prep->fetchAll();
-    if(count($rep)==0){
-      return false;
-    }
-    return $rep[0]->id;
   }
 
   public static function searchId($arrayValeurs,$id){

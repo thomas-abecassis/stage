@@ -59,8 +59,8 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
   }
 
   // un setter
-  public function setid($id2) {
-       $this->id = $id2;
+  public function setid($id) {
+       $this->id = $id;
   }
 
   public function getLoyer(){
@@ -69,15 +69,6 @@ public function __construct($i = NULL, $loc = NULL, $loy = NULL, $sur = NULL,$d 
 
   public function getInformationsCommercial(){
     return $this->informationsCommercial;
-  }
-
-  public function setprix($prix){
-    if(strlen($prix)==8){
-    $this->prix=$prix;
-    }
-    else{
-      echo"oupsi";
-    }
   }
 
   public function getSurface(){

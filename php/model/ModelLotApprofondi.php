@@ -20,20 +20,6 @@ class ModelLotApprofondi {
       $this->plus=ModelCategories::getValeursCategoriesLot($this);
   }
 
-  public function getTypeDeBien(){
-    if(array_key_exists("Type(s) de bien",$this->plus)){
-      return $this->plus["Type(s) de bien"][0];
-    }
-      return "";
-  }
-
-  public function getNombreDePiece(){
-    if(array_key_exists("Nombre de pièces",$this->plus)){
-      return $this->plus["Nombre de pièces"][0];
-    }
-      return false;
-  }
-
   public function getPlus(){
     return $this->plus;
   }
@@ -41,7 +27,6 @@ class ModelLotApprofondi {
   public function getLot(){
     return $this->modelLot;
   }
-
 
   public static function searchDeep($dataCheckBox,$dataPost,$page){
    if( !array_filter($dataCheckBox) && !array_filter($dataPost) ){

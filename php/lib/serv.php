@@ -153,7 +153,7 @@ class Serv{
 	}
 
 	public function supprimerCategoriesValeurs(){
-		ModelCategories::deleteAllCategories();
+		ModelCategories::deleteAll();
 		return "fait"; 
 	}
 
@@ -241,7 +241,7 @@ class Serv{
 			$sql="insert into categories(categorie) values(\"$categorie\")";
 			Serv::$pdo->exec($sql);
 		}
-		$categorieId=ModelCategories::categorieNameToId($categorie);
+		$categorieId=ModelCategories::selectCol("categorie", $categorie)[0]->getId();
 		$sql="insert into sousCategorie(categorieId, valeur) values ($categorieId,\"$valeur\")";
 		Serv::$pdo->exec($sql);
 		return "fait"; 

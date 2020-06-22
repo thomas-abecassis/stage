@@ -128,6 +128,10 @@ class ModelAlerte extends Model{
   	return "Tout Budget";
   }
 
+  /*
+
+  Les fonctions commentées servent à notifier les utilisateurs 
+
   public static function checkAll(){
   	$allAlerte=ModelAlerte::selectCol("activeMail",true);
   	foreach ($allAlerte as $alerte) {
@@ -160,6 +164,7 @@ class ModelAlerte extends Model{
   public function envoiMail(){
   	echo $this->loginUtilisateur;
   }
+  */
 
   public function updated(){
   	ModelAlerte::update($this->getTab());

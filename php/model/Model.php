@@ -82,6 +82,11 @@ class Model{
 	    $req_prep->execute($values);
 	}
 
+	public static function deleteAll(){
+		$sql="delete from " . static::$object;
+		Model::$pdo->exec($sql);
+	}
+
  public function save(){
  	    Model::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	Model::$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

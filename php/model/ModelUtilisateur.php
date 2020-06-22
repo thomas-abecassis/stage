@@ -129,6 +129,7 @@ class ModelUtilisateur extends Model{
   }
 
   public static function count(){
+    // comme les superadmins n'apparaissent pas dans la liste on ne les compte pas 
     $sql = "SELECT count(*) as nb from utilisateur where role!=3";
     // Préparation de la requête
  

@@ -261,11 +261,6 @@ class ControllerUtilisateur {
         }
     }   
 
-    public static function error(){
-        $controller='utilisateur'; $view='error'; $pagetitle='erreur';     //appel au modèle pour gerer la BD
-        require File::build_path(array("view", "view.php"));  //"redirige" vers la vue        
-    }
-
     static function connectedAjax(){
         if(ModelUtilisateur::checkPassword(myGet("login"),myGet("mdp"))){
             $u = ModelUtilisateur::select(myGet("login"));
@@ -301,5 +296,4 @@ class ControllerUtilisateur {
         session_destroy();
         echo "true";
     }
-
 }

@@ -144,7 +144,7 @@ http://localhost/stage/php/lib/soap.php
    <soapenv:Body>
    <saveCategorieEtValeur>
       <categorie>Option(s)</categorie>
-      <valeur>ceci est une option</valeur>
+      <valeur>moi aussi je suis un option</valeur>
    </saveCategorieEtValeur>
    </soapenv:Body>
 </soapenv:Envelope>
