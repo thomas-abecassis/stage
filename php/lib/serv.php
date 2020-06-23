@@ -45,7 +45,9 @@ class Serv{
 	}
 
 	public function creerLot($id,$ville, $surface, $loyer, $typeDeBien, $nombrePiece, $description, $informationsCommercial, $mail, $telephone, $plus){
-
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		$mail=getId("mail", $mail);
 		$telephone=getId("telephone", $telephone);
 
@@ -123,6 +125,9 @@ class Serv{
 	}
 
 	public function getAllCategoriesValeurs(){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		$tabCategories = ModelCategories::getAllValeursCategories();
 		foreach ($tabCategories as $categorie) {
 			foreach ($categorie as $value) {
@@ -133,6 +138,9 @@ class Serv{
 	}
 
 	public function supprimerValeur($categorie,$valeur){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		$id=ModelCategories::CategorieAndValeurToId($categorie,$valeur);
 		if($id==false){
 			return "categorie_et_valeur_non_connues";
@@ -143,6 +151,9 @@ class Serv{
 	}
 
 	public function supprimerCategorie($categorie){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		$categorie=ModelCategories::selectCol("categorie",$categorie);
 		if($categorie==false){
 			return "categorie_inexistante";
@@ -153,6 +164,9 @@ class Serv{
 	}
 
 	public function supprimerCategoriesValeurs(){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		ModelCategories::deleteAll();
 		return "fait"; 
 	}
@@ -265,6 +279,9 @@ class Serv{
 	}
 
 	public function getUtilisateursInactifs($nombreDeSemaines){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		$tabUtilisateurs=ModelUtilisateur::selectBySemainesSansConnexion($nombreDeSemaines);
 		$tabSoapVar=array();
 		foreach ($tabUtilisateurs as $utilisateur) {
@@ -281,6 +298,9 @@ class Serv{
 }
 
 function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 	//cette fonction sert à transformer les tableaux donnés en entrée en un seul tableau mis en forme pour un LotApprofondi
 		if(intval($nombrePiece)>=6){
 			$nombrePiece="6 et plus";
@@ -298,6 +318,9 @@ function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){
 }
 
 function getId($nomAttribut, $valeur){
+	if(!$this->auth){
+		return "pas connecté";
+	}
 	if($valeur==="")
 		return NULL;
 
