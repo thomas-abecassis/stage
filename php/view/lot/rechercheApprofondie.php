@@ -54,7 +54,7 @@
 
 					      		
 				    	?>
-			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Envoyer" />
+			            <input  class="inputButton inputButtonCentre secondeCouleur" type="submit" value="Rechercher" />
 		  		</div>
 			    </div>
 	            <input type='hidden' name='page' value='1'>

@@ -46,7 +46,7 @@
 
 		    <div id="wrapperButtonRecherche" class="absolute">
 	    		<div class="relative" style="left: -50%;">
-		            <input  class="secondeCouleur inputButton" type="submit" value="Envoyer" />
+		            <input  class="secondeCouleur inputButton" type="submit" value="Rechercher" />
 	    		</div>
 	  		</div>
 	  		
