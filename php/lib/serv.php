@@ -36,7 +36,9 @@ class Serv{
 
 
 	public function authentification($obj){
-		if($obj->login === "test" && $obj->password === "toast"){
+		$login="test";
+		$password="toast";
+		if($obj->login === $lgoin && $obj->password === $password){
 			$this->auth = true;
 		}
 		else{
