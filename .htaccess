@@ -1,5 +1,11 @@
 ErrorDocument 404 /site/index.php?controller=erreur&action=erreur404 
 
+ErrorDocument 403 /site/index.php?controller=erreur&action=erreur404 
+
+RedirectMatch 403 ^/site/webservice/.*$
+
+RedirectMatch 403 ^/site/doc/.*$
+
 Options -Indexes
 
 RewriteEngine on
