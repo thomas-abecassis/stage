@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php echo $pagetitle; ?></title>
-  <base href='http://localhost/site/'>
+  <base href='http://localhost/site/ '>
   <link rel="shortcut icon" href="image/favicon.png" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/couleur.css">
