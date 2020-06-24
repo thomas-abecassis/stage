@@ -22,8 +22,7 @@ let sauvegarde;
 
 function callbackIdentifiantCheck(xhr){
 	console.log(xhr.responseText);
-	if(xhr.responseText.replace(/ /g, '')=="true".valueOf()){
-		console.log("je reload");
+	if(xhr.responseText=="true".valueOf()){
 	    document.location.reload(true);
 	}else{
 		notification("mauvais identifiant ou mot de passe");
