@@ -14,14 +14,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteCond %{REQUEST_FILENAME}\.php -f
 
-RewriteRule ^index/([0-9a-z-A-Z]+)/([0-9a-z-A-Z]+)/ index.php?controller=$1&action=$2 [QSA,NC,L]
+RewriteRule index/([0-9a-z-A-Z]+)/([0-9a-z-A-Z]+)/ index.php?controller=$1&action=$2 [QSA,NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteCond %{REQUEST_FILENAME}\.php -f
 
 RewriteRule ^index index.php [NC,L]
-
-<FilesMatch "\.(jpg|jpeg|png)$">
-FileETag MTime Size
-</FilesMatch>

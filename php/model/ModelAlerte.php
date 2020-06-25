@@ -128,6 +128,11 @@ class ModelAlerte extends Model{
   	return "Tout Budget";
   }
 
+  public static function alerteCorrespondToUser($id,$login){
+    $alerte=ModelAlerte::select($id);
+    return $alerte->getLoginUtilisateur()==$login;
+  }
+
   /*
 
   Les fonctions commentées servent à notifier les utilisateurs 
@@ -139,11 +144,6 @@ class ModelAlerte extends Model{
   			$alerte->envoiMail();
   		}
   	}
-  }
-
-  public static function alerteCorrespondToUser($id,$login){
-  	$alerte=ModelAlerte::select($id);
-  	return $alerte->getLoginUtilisateur()==$login;
   }
 
   public function check(){

@@ -1,6 +1,6 @@
 <?php
 
- $debug=false;
+ $debug=true;
  function errorPage(){
  	ControllerErreur::erreurActionNotFound();
  }
