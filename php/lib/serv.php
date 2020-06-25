@@ -1,6 +1,7 @@
 <?php
 
 require_once "File.php";
+require_once File::build_path(array("config","Conf.php"));
 require_once File::build_path(array("model","ModelLot.php"));
 require_once File::build_path(array("model","ModelCategories.php"));
 require_once File::build_path(array("model","ModelAlerte.php"));
@@ -13,19 +14,16 @@ class Serv{
 
 	public static $pdo;
 
-    public static $hostname = 'webinfo.iutmontp.univ-montp2.fr';
-    public static $database_name = 'abecassist';
-    public static $login = 'abecassist';
-    public static $password = 'iutthomas2019';
-
     private $auth = false;
 
 
 	public static function Init(){
-		$hostname=Serv::$hostname;
-		$database_name=Serv::$database_name;
+		$hostname = Conf::getHostName();
+		$database_name = Conf::getDatabase();
+		$login = Conf::getLogin();
+		$password = Conf::getPassword();
 		try {
-			self::$pdo = new PDO("mysql:host=$hostname;dbname=$database_name", Serv::$login, Serv::$password,
+			self::$pdo = new PDO("mysql:host=$hostname;dbname=$database_name", $login, $password,
                      array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));		}
         catch (PDOException $e) {
 			echo $e->getMessage(); // affiche un message d'erreur
@@ -38,11 +36,11 @@ class Serv{
 	public function authentification($obj){
 		$login="test";
 		$password="toast";
-		if($obj->login === $lgoin && $obj->password === $password){
+		if($obj->login === $login && $obj->password === $password){
 			$this->auth = true;
 		}
 		else{
-			return "mauvais login et mdp";
+			return "mauvais login et mdp ";
 		}
 	}
 
@@ -300,9 +298,6 @@ class Serv{
 }
 
 function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){
-		if(!$this->auth){
-			return "pas connecté";
-		}
 	//cette fonction sert à transformer les tableaux donnés en entrée en un seul tableau mis en forme pour un LotApprofondi
 		if(intval($nombrePiece)>=6){
 			$nombrePiece="6 et plus";
@@ -320,9 +315,6 @@ function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){
 }
 
 function getId($nomAttribut, $valeur){
-	if(!$this->auth){
-		return "pas connecté";
-	}
 	if($valeur==="")
 		return NULL;
 
