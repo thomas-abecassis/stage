@@ -9,8 +9,8 @@ class Security {
 	}
 
 	public static function generateRandomHex() {
-	  // Generate a 32 digits hexadecimal number
-	  $numbytes = 16; // Because 32 digits hexadecimal = 16 bytes
+	// cette fonction servait à la validation des e-mail
+	  $numbytes = 16; 
 	  $bytes = openssl_random_pseudo_bytes($numbytes); 
 	  $hex   = bin2hex($bytes);
 	  return $hex;

@@ -68,7 +68,6 @@ class ControllerUtilisateur {
             $isUpdate=false;
             echo "bad_mail_syntax";
         }else{
-            $random=Security::generateRandomHex();
             if(ModelUtilisateur::select($login)!==false){
                 echo "mail_allready_taken";
             }
