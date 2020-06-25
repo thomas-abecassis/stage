@@ -179,13 +179,13 @@
                   global $facebook, $twitter, $linkedin, $instagram, $mail, $tel;
                   echo"
                     <div class=\"col s6 m3 push-m2\">
-                    <h5 class=\"white-text\">Contactez nous </h5>
+                    <h5 class=\"white-text\">Contactez-nous </h5>
                     <p class=\"grey-text text-lighten-4\">Par téléphone : <span> $tel</span></p>
                     <p class=\"grey-text text-lighten-4\">Par mail : <span> $mail </span></p>
                   </div>";
                   if(!is_null($facebook) || !is_null($twitter) || !is_null($linkedin) || !is_null($instagram)){
                   echo '<div class="col  push-m4">
-                    <h5 class="white-text">Retrouvez nous sur </h5>
+                    <h5 class="white-text">Retrouvez-nous sur </h5>
                  <ul class="ft-social-list center">';
 
                     $tabReseaux=array( "facebook"=>$facebook, "twitter"=>$twitter,"linkedin"=> $linkedin, "instagram"=>$instagram);

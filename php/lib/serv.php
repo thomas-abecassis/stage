@@ -12,7 +12,7 @@ require_once File::build_path(array("model","ModelTelephone.php"));
 
 class Serv{
 
-	public static $pdo;
+	private static $pdo;
 
     private $auth = false;
 
