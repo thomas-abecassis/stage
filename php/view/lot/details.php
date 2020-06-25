@@ -115,7 +115,7 @@
 		<?php
 			if(Session::is_commercial()){
 				echo '<div class="paddingSmall">
-						<span class="titrePartie" >Informations commercial</span>
+						<span class="titrePartie" >Informations commerciales</span>
 						<div class="description">';
 				echo $lot->getInformationsCommercial();
 				echo '</div>
