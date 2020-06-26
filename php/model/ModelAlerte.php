@@ -133,6 +133,13 @@ class ModelAlerte extends Model{
     return $alerte->getLoginUtilisateur()==$login;
   }
 
+  public static function deleteFromUsers($login){
+    $tabAlertes=ModelAlerte::selectCol("loginUtilisateur", $login);
+    foreach ($tabAlertes as $alerte) {
+      ModelAlerte::delete($alerte->getId());
+    }
+  }
+
   /*
 
   Les fonctions commentées servent à notifier les utilisateurs 

@@ -295,6 +295,14 @@ class Serv{
 		ModelUtilisateur::delete($loginUtilisateur);
 		return "fait";
 	}
+
+	public function supprimerAlertesUtilisateur($loginUtilisateur){
+		if(ModelUtilisateur::select($loginUtilisateur)===false){
+			return "login_inconnu";
+		}
+		ModelAlerte::deleteFromUsers($loginUtilisateur);
+		return "fait";
+	}
 }
 
 function metEnFormeTableau($typeDeBien,$nombrePiece,$plus){

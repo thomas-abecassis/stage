@@ -274,3 +274,19 @@ http://localhost/stage/php/lib/soap.php
    </supprimerUtilisateur>
    </soapenv:Body>
 </soapenv:Envelope>
+
+<!-- supprime les alertes d'un utilisateur -->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header>
+      <authentification>
+         <login>test</login>
+         <password>toast</password>
+      </authentification>
+    </soapenv:Header>
+   <soapenv:Body>
+   <supprimerAlertesUtilisateur>
+      <loginUtilisateur>test2@test.com</loginUtilisateur>
+   </supprimerAlertesUtilisateur>
+   </soapenv:Body>
+</soapenv:Envelope>

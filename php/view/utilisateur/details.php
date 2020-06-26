@@ -8,9 +8,9 @@
 
 	        	<input type="hidden" id="loginUtilisateur" value='.htmlspecialchars($u->getLogin()).'></input>
 				<div class="ligne"></div>
-				<p> <span class="legerGras">Nom </span><input id="nomUtilisateur" value='.htmlspecialchars($u->getNom()).'></input></p>
+				<p> <span class="legerGras">Nom </span><input id="nomUtilisateur" value="'.htmlspecialchars($u->getNom()).'"></input></p>
 	        	<div class="ligne"></div>
-	        	<p> <span class="legerGras">Prenom </span><input id="prenomUtilisateur" value='.htmlspecialchars($u->getPrenom()).'></input></p>
+	        	<p> <span class="legerGras">Prenom </span><input id="prenomUtilisateur" value="'.htmlspecialchars($u->getPrenom()).'"></input></p>
 	        	<div class="ligne"></div>';
 	        	if(Session::is_admin()){
 	        		echo '<p> Role : <span id="role" class="legerGras">'.ucFirst(htmlspecialchars($u->getRoleStr())).'</span></p>';
