@@ -1,24 +1,24 @@
 
 				.premiereCouleur{
-				  background-color:rgba(69,118,130,1) !important;
+				  background-color:rgba(63,118,132,1) !important;
 				}
 
 				.premiereCouleurText{
-				  color:  rgba(69,118,130,1) !important;
+				  color:  rgba(63,118,132,1) !important;
 				}
 
 				.premiereCouleurBorder{
-				  border-color:  rgba(69,118,130,1) !important;
+				  border-color:  rgba(63,118,132,1) !important;
 				}
 
 				.secondeCouleur{
-				    background-color: rgb(70, 186, 190) !important;
+				    background-color: rgba(203,203,203,1) !important;
 				}
 
 				.secondeCouleurText{
-				  color: rgb(70, 186, 190) !important
+				  color: rgba(203,203,203,1) !important
 				}
 
 				.secondeCouleurBorder{
-				  border-color: rgb(70, 186, 190) !important
+				  border-color: rgba(203,203,203,1) !important
 				}

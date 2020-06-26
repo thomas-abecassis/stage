@@ -251,7 +251,7 @@ function createColorPicker(element,variableCouleur){
 			url="index/Utility/changerCouleur/?secondColor="+color.rgbaString+"&mainColor="+previousMainColor;
 			previousSecondColor=color.rgbaString;
 		}
-		requeteAJAX(url,callbackCouleur);
+		requeteAJAX(url,doNothing);
 		checkCouleur=true;
 	}
 
@@ -277,7 +277,7 @@ function createColorPicker(element,variableCouleur){
 }
 
 
-function callbackCouleur(xhr){
+function doNothing(xhr){
 	//console.log(xhr.responseText);
 	//do nothing
 	return;
@@ -337,9 +337,7 @@ function majInformations(form, action, name, input){
 
 function activerReseau(checkbox, name){
 	checkbox.addEventListener("click", function(ev){
-		requeteAJAX("index/Utility/activerReseauSocial/?nomOption="+ name ,function(xhr){
-			//console.log(xhr.responseText);
-		});
+		requeteAJAX("index/Utility/activerReseauSocial/?nomOption="+ name ,doNothing);
 	});
 }
 
