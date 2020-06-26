@@ -208,7 +208,7 @@
               <li><a href="#">Termes &amp; Conditions</a></li>
               <li><a href="#">Mentions légales &amp; CGU</a></li>
               <li><a href="#">Données personnelles</a></li>
-              <li>&copy; 2019 Copyright Sofuto Inc.</li>
+              <li>&copy; 2020 Copyright Priam.</li>
             </ul>
             
           </div>
