@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function callback(xhr, load){
-	console.log(xhr.responseText);
 	if(["0","1","2","3","true"].indexOf(xhr.responseText)>-1){
 		notification(load, "le compte a été mis à jour","green-text");
 	}
@@ -66,11 +65,11 @@ function callback(xhr, load){
 function modifie(bouton, url, loadElement, getUrl){
 	bouton.addEventListener("click", function(){
 		let startUrl=url;
-		console.log(getUrl);
+		//console.log(getUrl);
 		for(let param in getUrl){
 			url=url + param + "=" + getUrl[param].value + "&";
 		}
-		console.log(url);
+		//console.log(url);
 		requeteAJAX(url,function(xhr){
 			callback(xhr,loadElement);
 		});

@@ -106,7 +106,7 @@ class ModelAlerte extends Model{
   	}
 
     if($maxSurface!==""){
-      return "moins de " . $maxSurface;
+      return "moins de " . $maxSurface . "m²";
     }
   	return "Toute surface";
   }
@@ -117,7 +117,7 @@ class ModelAlerte extends Model{
 
 
   	if($minBudget!=="" && $maxBudget==""){
-  		return "plus de ". $maxBudget . "€";
+  		return "plus de ". $minBudget . "€";
   	}
   	if($minBudget=="" && $maxBudget!==""){
   		return "moins de " . $maxBudget . "€"; 

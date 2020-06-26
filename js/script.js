@@ -21,7 +21,6 @@ let removeClickListener;
 let sauvegarde;
 
 function callbackIdentifiantCheck(xhr){
-	console.log(xhr.responseText);
 	if(xhr.responseText=="true".valueOf()){
 	    document.location.reload(true);
 	}else{
@@ -30,7 +29,6 @@ function callbackIdentifiantCheck(xhr){
 }
 
 function callbackRechercheSave(xhr){
-	console.log(xhr.responseText);
 	document.getElementById("inSauvegarde").innerHTML="recherche sauvegardée !";
 }
 
@@ -39,7 +37,6 @@ function reload(xhr){
 }
 
 function callbackCreationCheck(xhr){
-	console.log(xhr.responseText);
 	let racine=document.getElementById("racineCard");
 	if(xhr.responseText.valueOf()=="register"){
 		racine.innerHTML="  <p class=\"center\"><i class=\"green-text small material-icons\">check</i> </p><p class=\"center\">Votre compte a été créé</p><div class=\"ligne\"></div><p class=\"center\">Vous pouvez maintenant vous connecter</p>";
@@ -281,7 +278,9 @@ function createColorPicker(element,variableCouleur){
 
 
 function callbackCouleur(xhr){
-	console.log(xhr.responseText);
+	//console.log(xhr.responseText);
+	//do nothing
+	return;
 }
 
 function modifierCouleur(nomCouleur, couleur){
@@ -319,8 +318,10 @@ function metAJourImage(ev,form,nomFichier){
 }
 
 function callbackPhoto(xhr){
-	console.log(xhr.responseText);
+	//console.log(xhr.responseText);
 	//document.location.reload(true);
+	//do nothing
+	return;
 }
 
 function compareElementValue(elementX, elementY){
@@ -337,7 +338,7 @@ function majInformations(form, action, name, input){
 function activerReseau(checkbox, name){
 	checkbox.addEventListener("click", function(ev){
 		requeteAJAX("index/Utility/activerReseauSocial/?nomOption="+ name ,function(xhr){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 		});
 	});
 }

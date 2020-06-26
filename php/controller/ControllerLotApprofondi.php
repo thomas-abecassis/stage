@@ -19,11 +19,15 @@ class ControllerLotApprofondi{
     public static function searchedDeepen() {
         //je créer des tableaux contenant le résultat de chaque categories contenant des checkboxs du formulaire
         $dataCheckBox=intInArray($_GET);
+        $maxSurface=myGet("maxSurface");
+        if(is_null($maxSurface)){
+            $maxSurface="";
+        }
 
         $dataPost=array(
             "localisation" => myGet("localisation"),
             "minSurface" => myGet("minSurface"),
-            "maxSurface" => myGet("maxSurface"),
+            "maxSurface" => $maxSurface,
             "minBudget" => myGet("minBudget"),
             "maxBudget" => myGet("maxBudget")
         );

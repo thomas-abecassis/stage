@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function callbackAdmin(xhr){
-	console.log(xhr.responseText);
+	//console.log(xhr.responseText);
 	if(xhr.responseText!="false"){
 		if(xhr.responseText=="0"){
 			document.getElementById("role").textContent="Simple utilisateur";

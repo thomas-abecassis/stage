@@ -4,7 +4,8 @@ let lastInput;
 let lastButon;
 
 function callback1(xhr){
-	console.log(xhr.responseText);
+	//do nothing
+	return;
 }
 
 function mettreEvents(){
