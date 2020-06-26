@@ -244,6 +244,9 @@ class Serv{
 	}
 
 	public function saveCategorieEtValeur($categorie, $valeur){
+		if($categorie==="Nombre de pièce(s)" && intval($valeur)>=6){
+			$valeur="6 et plus";
+		}
 		if(!$this->auth){
 			return "pas connecté";
 		}
