@@ -291,12 +291,18 @@ class Serv{
 	}
 
 	public function supprimerUtilisateur($loginUtilisateur){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		//supprime l'utilisateur dont le login correspond à celui passé en paramètre
 		ModelUtilisateur::delete($loginUtilisateur);
 		return "fait";
 	}
 
 	public function supprimerAlertesUtilisateur($loginUtilisateur){
+		if(!$this->auth){
+			return "pas connecté";
+		}
 		if(ModelUtilisateur::select($loginUtilisateur)===false){
 			return "login_inconnu";
 		}
