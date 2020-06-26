@@ -9,9 +9,9 @@ class ModelLotApprofondi {
   private $modelLot;
   private $plus;
       
-  public function __construct($modelLot = NULL, $plus = NULL) {
-    if (!is_null($modelLot) ) 
-      $this->modelLot = $modelLot;
+  public function __construct($lot = NULL, $plus = NULL) {
+    if (!is_null($lot) ) 
+      $this->modelLot = $lot;
 
     if (!is_null($plus) )
       $this->plus=$plus;
