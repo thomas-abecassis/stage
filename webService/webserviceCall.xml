@@ -69,12 +69,12 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
 	<soapenv:Body>
 	<creerLot>
-      <idLot>test23</idLot>
-      <ville>Montpellier</ville>
-      <surface>11</surface>
+      <idLot>test2</idLot>
+      <ville>Le Cres</ville>
+      <surface>100</surface>
       <loyer>11</loyer>
       <typeDeBien>Maison</typeDeBien>
-      <nombrePiece>10</nombrePiece>
+      <nombrePiece>1</nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
       <mail>toast2</mail>
@@ -109,7 +109,7 @@ http://localhost/stage/php/lib/soap.php
       <surface>111</surface>
       <loyer>111</loyer>
       <typeDeBien>Maison</typeDeBien>
-      <nombrePiece>6 et plus </nombrePiece>
+      <nombrePiece>1</nombrePiece>
       <description>2</description>
       <informationsCommercial>2</informationsCommercial>
       <mail>toast3</mail>
@@ -143,8 +143,8 @@ http://localhost/stage/php/lib/soap.php
     </soapenv:Header>
    <soapenv:Body>
    <saveCategorieEtValeur>
-      <categorie>Option(s)</categorie>
-      <valeur>moi aussi je suis un option</valeur>
+            <categorie>Type(s) de pièces</categorie>
+            <valeur>salle de bain</valeur>
    </saveCategorieEtValeur>
    </soapenv:Body>
 </soapenv:Envelope>

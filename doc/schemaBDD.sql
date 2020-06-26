@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  ven. 26 juin 2020 à 16:26
+-- Généré le :  ven. 26 juin 2020 à 18:05
 -- Version du serveur :  5.5.47-0+deb8u1
 -- Version de PHP :  7.2.22-1+0~20190902.26+debian8~1.gbpd64eb7
 
@@ -37,25 +37,6 @@ CREATE TABLE `alerte` (
   `activeMail` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `alerte`
---
-
-INSERT INTO `alerte` (`loginUtilisateur`, `tabSimple`, `tabCheckBox`, `nom`, `idAlerte`, `activeMail`) VALUES
-('hugo00007@yopmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"3\",\"maxBudget\":\"3\"}', '[]', 'Ma recherche', 258, 1),
-('test6@test.com', '{\"localisation\":\"Ozan\",\"minSurface\":\"1\",\"maxSurface\":\"111\",\"minBudget\":\"1\",\"maxBudget\":\"111\"}', '[{\"categorie\":\"Orientation(s)\",\"valeur\":\"est\"}]', 'Nom par défaultasdrf', 259, 0),
-('test6@test.com', '{\"localisation\":\"\",\"minSurface\":\"1\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Nom par défault', 260, 1),
-('test@test.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Nom par défault', 261, 1),
-('hugo00007@yopmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[{\"categorie\":\"Type(s) de bien\",\"valeur\":\"Maison\"}]', 'Nom par défault', 262, 0),
-('hugo00007@yopmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[{\"categorie\":\"Type(s) de bien\",\"valeur\":\"Maison\"},{\"categorie\":\"Type(s) de bien\",\"valeur\":\"Appartement\"}]', 'Nom par défault', 263, 1),
-('testtest@test.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":null,\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'test', 264, 0),
-('a@gmail.com', '{\"localisation\":\"Montpellier\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Montpellier', 282, 1),
-('a@gmail.com', '{\"localisation\":\"\",\"minSurface\":\"50\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Minimum 50 m2', 283, 0),
-('a@gmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"450\"}', '[]', 'Maximum 450 de loyer', 284, 1),
-('a@gmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Appartements', 285, 0),
-('hugo00007@yopmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Nom par défault', 286, 1),
-('hugo00007@yopmail.com', '{\"localisation\":\"\",\"minSurface\":\"\",\"maxSurface\":\"\",\"minBudget\":\"\",\"maxBudget\":\"\"}', '[]', 'Nom par défault', 287, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -67,19 +48,6 @@ CREATE TABLE `categories` (
   `categorie` varchar(256) CHARACTER SET utf8 NOT NULL,
   `interface` varchar(256) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `categories`
---
-
-INSERT INTO `categories` (`id`, `categorie`, `interface`) VALUES
-(3, 'Type(s) de pièces', ''),
-(4, 'Commodité(s)', ''),
-(5, 'Rangement(s)', ''),
-(6, 'Orientation(s)', ''),
-(8, 'Type(s) de bien', ''),
-(9, 'Nombre de pièce(s)', ''),
-(18, 'Option(s)', '');
 
 -- --------------------------------------------------------
 
@@ -100,17 +68,6 @@ CREATE TABLE `lot` (
   `mail` int(11) DEFAULT NULL,
   `telephone` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `lot`
---
-
-INSERT INTO `lot` (`id`, `localisation`, `surface`, `loyer`, `description`, `informationsCommercial`, `typeDeBien`, `nombreDePieces`, `location`, `mail`, `telephone`) VALUES
-('1', 13339, 12, 250, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'Téléphone du propriétaire : 00 00 00 00 00, adresse exacte : 1 rue de Mozart', 'appartement', 1, 1, NULL, NULL),
-('2', 13339, 130, 750, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '', 'maison', 5, 1, NULL, NULL),
-('3', 13339, 45, 520, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '', 'appartement', 3, 1, NULL, NULL),
-('4', 13339, 65, 630, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '', 'maison ', 4, 1, NULL, NULL),
-('5', 13339, 20, 350, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '', 'appartement', 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -134,18 +91,6 @@ CREATE TABLE `mailLot` (
   `mail` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `mailLot`
---
-
-INSERT INTO `mailLot` (`id`, `mail`) VALUES
-(1, 'test'),
-(2, 'toast'),
-(3, 'toast2'),
-(4, 'toast2'),
-(5, 'toast3'),
-(6, 'Array');
-
 -- --------------------------------------------------------
 
 --
@@ -167,12 +112,6 @@ INSERT INTO `optionsSite` (`nomOption`, `valeur`) VALUES
 ('Facebook', ''),
 ('Twitter', ''),
 ('Linkedin', ''),
-('Instagram', ''),
-('Telephone', '123'),
-('Mail', 'kjahsd'),
-('Facebook', ''),
-('Twitter', ''),
-('Linkedin', ''),
 ('Instagram', '');
 
 -- --------------------------------------------------------
@@ -187,27 +126,6 @@ CREATE TABLE `sousCategorie` (
   `valeur` varchar(256) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `sousCategorie`
---
-
-INSERT INTO `sousCategorie` (`id`, `categorieId`, `valeur`) VALUES
-(3, 3, 'salle de bain'),
-(4, 4, 'alarme'),
-(5, 5, 'cave'),
-(6, 6, 'est'),
-(8, 3, 'toilettes s'),
-(13, 9, '1'),
-(15, 8, 'Maison'),
-(16, 8, 'Appartement'),
-(20, 9, '2'),
-(21, 9, '3'),
-(22, 9, '4'),
-(23, 9, '5'),
-(24, 9, '6 et plus'),
-(25, 18, 'ceci est une option'),
-(26, 18, 'moi aussi je suis un option');
-
 -- --------------------------------------------------------
 
 --
@@ -218,17 +136,6 @@ CREATE TABLE `telephoneLot` (
   `id` int(11) NOT NULL,
   `telephone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `telephoneLot`
---
-
-INSERT INTO `telephoneLot` (`id`, `telephone`) VALUES
-(1, '12 34 56 78 90'),
-(2, '00 00 0 0 0'),
-(3, '111'),
-(4, '111'),
-(5, '222');
 
 -- --------------------------------------------------------
 
@@ -244,132 +151,6 @@ CREATE TABLE `utilisateur` (
   `role` smallint(2) NOT NULL DEFAULT '0',
   `dateDerniereConnexion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`login`, `nom`, `prenom`, `mdp`, `role`, `dateDerniereConnexion`) VALUES
-('1', '1', '1', '1', 0, '2020-06-19'),
-('100', '1', '1', '1', 2, '2020-06-19'),
-('101', '1', '1', '1', 0, '2020-06-19'),
-('102', '1', '1', '1', 0, '2020-06-19'),
-('103', '1', '1', '1', 0, '2020-06-19'),
-('104', '1', '1', '1', 0, '2020-06-19'),
-('105', '1', '1', '1', 0, '2020-06-19'),
-('106', '1', '1', '1', 0, '2020-06-19'),
-('107', '1', '1', '1', 0, '2020-06-19'),
-('108', '1', '1', '1', 0, '2020-06-19'),
-('109', '1', '1', '1', 0, '2020-06-19'),
-('110', '1', '1', '1', 0, '2020-06-19'),
-('111', '1', '1', '1', 0, '2020-06-19'),
-('112', '1', '1', '1', 0, '2020-06-19'),
-('113', '1', '1', '1', 0, '2020-06-19'),
-('114', '1', '1', '1', 0, '2020-06-19'),
-('115', '1', '1', '1', 0, '2020-06-19'),
-('116', '1', '1', '1', 0, '2020-06-19'),
-('117', '1', '1', '1', 0, '2020-06-19'),
-('118', '1', '1', '1', 0, '2020-06-19'),
-('119', 'asdfasdf', '1', '1', 2, '2020-06-19'),
-('120', '1', '1', '1', 0, '2020-06-19'),
-('121', '1', '1', '1', 0, '2020-06-19'),
-('122', '1', '1', '1', 0, '2020-06-19'),
-('123', '1', '1', '1', 0, '2020-06-19'),
-('124', '1', '1', '1', 0, '2020-06-19'),
-('125', '1', '1', '1', 0, '2020-06-19'),
-('126', '1', '1', '1', 0, '2020-06-19'),
-('127', '1', '1', '1', 0, '2020-06-19'),
-('128', '1', '1', '1', 0, '2020-06-19'),
-('129', '1', '1', '1', 0, '2020-06-19'),
-('130', '1', '1', '1', 0, '2020-06-19'),
-('131', '1', '1', '1', 0, '2020-06-19'),
-('132', '1', '1', '1', 0, '2020-06-19'),
-('133', '1', '1', '1', 0, '2020-06-19'),
-('134', '1', '1', '1', 0, '2020-06-19'),
-('135', '1', '1', '1', 0, '2020-06-19'),
-('136', '1', '1', '1', 0, '2020-06-19'),
-('137', '1', '1', '1', 0, '2020-06-19'),
-('138', '1', '1', '1', 0, '2020-06-19'),
-('139', '1', '1', '1', 0, '2020-06-19'),
-('140', '1', '1', '1', 0, '2020-06-19'),
-('141', '1', '1', '1', 0, '2020-06-19'),
-('142', '1', '1', '1', 0, '2020-06-19'),
-('143', '1', '1', '1', 0, '2020-06-19'),
-('144', '1', '1', '1', 0, '2020-06-19'),
-('145', '1', '1', '1', 0, '2020-06-19'),
-('146', '1', '1', '1', 0, '2020-06-19'),
-('147', '1', '1', '1', 0, '2020-06-19'),
-('148', '1', '1', '1', 0, '2020-06-19'),
-('149', '1', '1', '1', 0, '2020-06-19'),
-('150', '1', '1', '1', 0, '2020-06-19'),
-('151', '1', '1', '1', 0, '2020-06-19'),
-('152', '1', '1', '1', 0, '2020-06-19'),
-('153', '1', '1', '1', 0, '2020-06-19'),
-('154', '1', '1', '1', 0, '2020-06-19'),
-('155', '1', '1', '1', 0, '2020-06-19'),
-('156', '1', '1', '1', 0, '2020-06-19'),
-('157', '1', '1', '1', 0, '2020-06-19'),
-('158', '1', '1', '1', 0, '2020-06-19'),
-('159', '1', '1', '1', 0, '2020-06-19'),
-('160', '1', '1', '1', 0, '2020-06-19'),
-('161', '1', '1', '1', 0, '2020-06-19'),
-('162', '1', '1', '1', 0, '2020-06-19'),
-('163', '1', '1', '1', 0, '2020-06-19'),
-('164', '1', '1', '1', 0, '2020-06-19'),
-('165', '1', '1', '1', 0, '2020-06-19'),
-('166', '1', '1', '1', 0, '2020-06-19'),
-('167', '1', '1', '1', 0, '2020-06-19'),
-('168', '1', '1', '1', 0, '2020-06-19'),
-('169', '1', '1', '1', 0, '2020-06-19'),
-('170', '1', '1', '1', 0, '2020-06-19'),
-('171', '1', '1', '1', 0, '2020-06-19'),
-('172', '1', '1', '1', 0, '2020-06-19'),
-('173', '1', '1', '1', 0, '2020-06-19'),
-('174', '1', '1', '1', 0, '2020-06-19'),
-('175', '1', '1', '1', 0, '2020-06-19'),
-('176', '1', '1', '1', 0, '2020-06-19'),
-('177', '1', '1', '1', 0, '2020-06-19'),
-('178', '1', '1', '1', 0, '2020-06-19'),
-('179', '1', '1', '1', 0, '2020-06-19'),
-('180', '1', '1', '1', 0, '2020-06-19'),
-('181', '1', '1', '1', 0, '2020-06-19'),
-('182', '1', '1', '1', 0, '2020-06-19'),
-('183', '1', '1', '1', 0, '2020-06-19'),
-('184', '1', '1', '1', 0, '2020-06-19'),
-('185', '1', '1', '1', 0, '2020-06-19'),
-('186', '1', '1', '1', 0, '2020-06-19'),
-('187', '1', '1', '1', 0, '2020-06-19'),
-('188', '1', '1', '1', 0, '2020-06-19'),
-('189', '1', '1', '1', 0, '2020-06-19'),
-('190', '1', '1', '1', 0, '2020-06-19'),
-('191', '1', '1', '1', 0, '2020-06-19'),
-('192', '1', '1', '1', 0, '2020-06-19'),
-('193', '1', '1', '1', 0, '2020-06-19'),
-('194', '1', '1', '1', 0, '2020-06-19'),
-('195', '1', '1', '1', 0, '2020-06-19'),
-('196', '1', '1', '1', 0, '2020-06-19'),
-('197', '1', '1', '1', 0, '2020-06-19'),
-('198', '1', '1', '1', 0, '2020-06-19'),
-('199', '1', '1', '1', 0, '2020-06-19'),
-('<h1>bonjour</h1>a', 'easdf', 'edadsf', '403a3067bfe85021fdabd1b59e9a0368cd92a6bdd5e7c6fda86a8d51468acc5e', 2, '2020-06-18'),
-('a@gmail.com', 'eaeae', 'edaasd', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 1, '2020-06-26'),
-('asdaaf@de.fraadsaeasf', 'adsfassda', 'adfsaasa', '77734dc229cc6cae7c687036ac5f9a55c4b155c7dba709dbbd48377b9d6df15f', 2, '2020-06-18'),
-('hugo00007@yopmail.com', 'Mon nom', 'Mon prenom', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 2, '2020-06-26'),
-('hugo00007@yopmail.comewrwer', 'azerty', 'azerty', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('hugo00007@yopmail.commmmmmmmmmmmm', 'azerty', 'azerty', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 1, '2020-06-18'),
-('hugo000dewqde07@yopmail.com', 'Abecassis', 'hugo00007@yopmail.com', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5', 0, '2020-06-18'),
-('iut2test@yopmail.com', 'ioehrgaw', 'abecassist', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 1, '2020-06-18'),
-('priam', 'priam', 'priam', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 3, '2020-06-25'),
-('test3@test.com', 'azerty', 'azertyadsf', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('test4@test.com', 'Abecassis', 'Thomas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('test5@test.com', 'Abecassis', 'Thomasásdfadsf', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('test6@test.com', 'Abecassis', 'Thomas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('test@test.com', 'Abecassis', 'Thomas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-19'),
-('testtest@test.com', 'Abecassis', 'Thomas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-25'),
-('testtoast2@yopmail.com', 'azerty', 'azerty', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 2, '2020-06-18'),
-('thomas.abecassis@orange.fr', 'Abecassis', 'Thomas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('thomas.abecassis@orange.frasdfadsf', 'Abecassisasdf', 'Thomas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0, '2020-06-18'),
-('thomas.abecassis@oreange.fr', 'Abecassis', 'Thomas', '3f79bb7b435b05321651daefd374cdc681dc06faa65e374e38337b88ca046dea', 0, '2020-06-18');
 
 -- --------------------------------------------------------
 
